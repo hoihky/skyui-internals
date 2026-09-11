@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 16 — FilterEditor · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 16 — FilterEditor</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-16-filtereditor">Chapter 16: FilterEditor</h1>
+<p><code>FilterEditor</code> in the <code>SkyUI.Data</code> package is a hierarchical filter builder — groups with AND/OR logic containing individual field conditions. It demonstrates <strong>ViewModel inside a control</strong>, <strong>document model separation</strong>, and <strong>pluggable SQL export</strong>.</p>
+<h2 id="problem-and-shape">Problem and Shape</h2>
+<p>Data grids often need ad-hoc filtering: &quot;Status is Active AND (Region is EU OR Region is UK)&quot;. <code>FilterEditor</code> provides a visual tree for building that expression, with optional SQL preview for power users.</p>
+<pre><code>FilterDocument
+└── FilterGroupNode (AND)
+    ├── FilterConditionNode (Status = Active)
+    └── FilterGroupNode (OR)
+        ├── FilterConditionNode (Region = EU)
+        └── FilterConditionNode (Region = UK)
+</code></pre>
+<h2 id="control-api">Control API</h2>
+<pre><code class="language-csharp">public class FilterEditor : TemplatedControl
+{
+    public static readonly StyledProperty&lt;FilterDocument?&gt; DocumentProperty = ...;
+    public static readonly StyledProperty&lt;IFilterSqlExporter?&gt; SqlExporterProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; ShowSqlPreviewProperty = ...; // default true
+}
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Document</code></td>
+<td>Root filter tree model</td>
+</tr>
+<tr>
+<td><code>SqlExporter</code></td>
+<td>Strategy for SQL string generation</td>
+</tr>
+<tr>
+<td><code>ShowSqlPreview</code></td>
+<td>Toggles preview panel in template</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodel-bridge-pattern">ViewModel Bridge Pattern</h2>
+<p>The control creates an internal <code>FilterEditorViewModel</code> when <code>Document</code> is assigned:</p>
+<pre><code class="language-csharp">private void OnDocumentOrExporterChanged()
+{
+    if (Document is null)
+    {
+        TearDownViewModel();
+        DataContext = null;
+        return;
+    }
+
+    if (_viewModel?.Document != Document)
+    {
+        TearDownViewModel();
+        _viewModel = new FilterEditorViewModel(Document, SqlExporter ?? new BasicFilterSqlExporter());
+        DataContext = _viewModel;
+    }
+    else
+    {
+        _viewModel!.SqlExporter = SqlExporter ?? new BasicFilterSqlExporter();
+    }
+}
+</code></pre>
+<h3 id="why-internal-viewmodel">Why Internal ViewModel?</h3>
+<p>Filter UI involves dozens of bindable commands: add group, add condition, remove node, toggle AND/OR, change operator. Putting all of that on the control class would bloat the public API. The internal ViewModel:</p>
+<ul>
+<li>Keeps <code>FilterEditor</code> properties minimal (<code>Document</code>, <code>SqlExporter</code>, <code>ShowSqlPreview</code>)</li>
+<li>Enables template bindings to <code>{Binding AddConditionCommand}</code> etc.</li>
+<li>Allows unit testing ViewModel logic without visual tree</li>
+</ul>
+<h3 id="lifecycle-cleanup">Lifecycle Cleanup</h3>
+<pre><code class="language-csharp">protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
+{
+    TearDownViewModel();
+    base.OnDetachedFromLogicalTree(e);
+}
+
+private void TearDownViewModel()
+{
+    _viewModel?.Dispose();
+    _viewModel = null;
+}
+</code></pre>
+<p>Disposing on detach prevents subscriptions to <code>Document</code> change events from leaking.</p>
+<h2 id="document-model">Document Model</h2>
+<pre><code class="language-csharp">public class FilterDocument
+{
+    public FilterGroupNode Root { get; }
+    public IReadOnlyList&lt;FilterFieldDescriptor&gt; Fields { get; }
+}
+
+public abstract class FilterNode { }
+
+public class FilterGroupNode : FilterNode
+{
+    public FilterGroupOperator Operator { get; set; } // And, Or
+    public ObservableCollection&lt;FilterNode&gt; Children { get; }
+}
+
+public class FilterConditionNode : FilterNode
+{
+    public string FieldName { get; set; }
+    public FilterOperator Operator { get; set; } // Equals, Contains, GreaterThan, ...
+    public object? Value { get; set; }
+}
+</code></pre>
+<p><code>FilterFieldDescriptor</code> describes available fields (name, type, allowed operators) so the UI can populate dropdowns without hard-coding schema.</p>
+<h2 id="ifiltersqlexporter-strategy">IFilterSqlExporter Strategy</h2>
+<pre><code class="language-csharp">public interface IFilterSqlExporter
+{
+    string Export(FilterGroupNode root);
+}
+</code></pre>
+<p><code>BasicFilterSqlExporter</code> generates parameterized SQL WHERE clauses. Consumers with custom dialects implement the interface:</p>
+<pre><code class="language-csharp">public class PostgreSqlFilterExporter : IFilterSqlExporter
+{
+    public string Export(FilterGroupNode root) =&gt;
+        BuildWhereClause(root, dialect: SqlDialect.PostgreSql);
+}
+</code></pre>
+<pre><code class="language-xml">&lt;FilterEditor Document=&quot;{Binding FilterDoc}&quot;
+SqlExporter=&quot;{x:Static local:PostgreSqlExporter.Instance}&quot;
+ShowSqlPreview=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="template-structure">Template Structure</h2>
+<p>The theme template typically contains:</p>
+<ul>
+<li>Tree view or nested panels for group/condition hierarchy</li>
+<li>Operator dropdowns on group headers</li>
+<li>Field/operator/value editors on condition rows</li>
+<li>SQL preview <code>TextBox</code> bound to <code>ViewModel.SqlPreview</code> (read-only)</li>
+</ul>
+<h2 id="integration-with-virtual-grid">Integration with Virtual Grid</h2>
+<pre><code class="language-csharp">public class CrudViewModel
+{
+    public FilterDocument FilterDocument { get; } = CreateDefaultFilter();
+    public IVirtualGridDataSource GridSource { get; private set; }
+
+    public void ApplyFilter()
+    {
+        var sql = _exporter.Export(FilterDocument.Root);
+        GridSource = new SqlFilteredDataSource(_connection, sql);
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;SkyDrawer IsOpen=&quot;{Binding IsFilterOpen}&quot; DrawerContent=&quot;{Binding FilterPanel}&quot; /&gt;
+&lt;!-- FilterPanel contains FilterEditor --&gt;
+</code></pre>
+<h2 id="patterns-summary">Patterns Summary</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document model</td>
+<td>Serializable filter tree independent of UI</td>
+</tr>
+<tr>
+<td>Internal ViewModel</td>
+<td>Rich command surface without public control API bloat</td>
+</tr>
+<tr>
+<td>Strategy</td>
+<td><code>IFilterSqlExporter</code> for SQL dialects</td>
+</tr>
+<tr>
+<td>IDisposable teardown</td>
+<td>Unsubscribe on logical detach</td>
+</tr>
+</tbody>
+</table>
+<h2 id="building-a-similar-editor-control">Building a Similar Editor Control</h2>
+<ol>
+<li>Define a <strong>document</strong> model the app can save/load</li>
+<li>Create an internal <strong>ViewModel</strong> with commands for tree mutations</li>
+<li>Set <code>DataContext = viewModel</code> when document changes</li>
+<li>Keep <strong>export/evaluation</strong> pluggable via interfaces</li>
+<li><strong>Dispose</strong> subscriptions when document clears or control detaches</li>
+</ol>
+<h2 id="deep-dive-document-model-and-visitor-pattern">Deep Dive: Document Model and Visitor Pattern</h2>
+<h3 id="filterdocument-root">FilterDocument Root</h3>
+<pre><code class="language-csharp">public sealed class FilterDocument
+{
+    public FilterGroupNode Root { get; } = new();
+    public ObservableCollection&lt;FilterFieldDescriptor&gt; Fields { get; } = new();
+}
+</code></pre>
+<p><code>Fields</code> describes what the user can filter on — name, CLR type, allowed operators. The UI populates field dropdowns from this collection; SQL export uses <code>FieldPath</code> for column identifiers.</p>
+<h3 id="filternodebase-hierarchy">FilterNodeBase Hierarchy</h3>
+<pre><code>FilterNodeBase (abstract)
+├── FilterGroupNode     → LogicalKind: And | Or, Children collection
+└── FilterConditionNode → FieldPath, Operator, ValueText
+</code></pre>
+<p>Every node implements the <strong>visitor pattern</strong>:</p>
+<pre><code class="language-csharp">public abstract class FilterNodeBase : INotifyPropertyChanged
+{
+    public abstract T Accept&lt;T&gt;(IFilterNodeVisitor&lt;T&gt; visitor);
+    public FilterGroupNode? Parent { get; internal set; }
+}
+</code></pre>
+<p>Visitors traverse the tree without <code>switch</code> on node types scattered through the UI — SQL export, JSON serialization, and runtime evaluation each get a dedicated visitor implementation.</p>
+<h3 id="filterconditionnode">FilterConditionNode</h3>
+<pre><code class="language-csharp">public sealed class FilterConditionNode : FilterNodeBase
+{
+    public string FieldPath { get; set; }
+    public FilterCompareOperator Operator { get; set; }
+    public string? ValueText { get; set; }
+}
+</code></pre>
+<p>Operators include <code>Equal</code>, <code>NotEqual</code>, <code>Contains</code>, <code>StartsWith</code>, <code>IsNull</code>, <code>GreaterThan</code>, and more. The theme renders operator dropdowns from <code>FilterEditorThemeLists.CompareOperators</code>.</p>
+<p><code>ValueText</code> is deliberately a string — the editor normalizes display; exporters parse to SQL literals. Typed evaluation visitors can parse to <code>int</code>, <code>DateTime</code>, etc.</p>
+<h3 id="group-mutation-api">Group Mutation API</h3>
+<pre><code class="language-csharp">public FilterConditionNode AddCondition(string fieldPath, FilterCompareOperator op, string? valueText = null)
+{
+    var c = new FilterConditionNode(fieldPath, op, valueText);
+    _children.Add(c);
+    return c;
+}
+
+public FilterGroupNode AddGroup(FilterLogicalKind kind = FilterLogicalKind.And)
+{
+    var g = new FilterGroupNode { LogicalKind = kind };
+    _children.Add(g);
+    return g;
+}
+</code></pre>
+<p><code>FilterGroupNode</code> maintains parent pointers on <code>CollectionChanged</code> so <code>RemoveSelected</code> can walk up the tree and delete nodes without orphaned references.</p>
+<h2 id="deep-dive-filtereditorviewmodel-commands">Deep Dive: FilterEditorViewModel Commands</h2>
+<p>The ViewModel is created once per <code>Document</code> instance and becomes the control's <code>DataContext</code>:</p>
+<pre><code class="language-csharp">AddAndGroupCommand = new FilterEditorRelayCommand(() =&gt; AddGroup(FilterLogicalKind.And));
+AddOrGroupCommand = new FilterEditorRelayCommand(() =&gt; AddGroup(FilterLogicalKind.Or));
+AddConditionCommand = new FilterEditorRelayCommand(AddCondition);
+RemoveSelectedCommand = new FilterEditorRelayCommand(RemoveSelected, CanRemoveSelected);
+RemoveNodeCommand = new FilterEditorNodeCommand(RemoveNode);
+</code></pre>
+<h3 id="adding-a-condition-to-the-selected-group">Adding a Condition to the Selected Group</h3>
+<pre><code class="language-csharp">private void AddCondition()
+{
+    var target = SelectedNode switch
+    {
+        FilterGroupNode g =&gt; g,
+        FilterConditionNode c =&gt; c.Parent,
+        _ =&gt; _document.Root
+    };
+    if (target is null) return;
+
+    var field = _document.Fields.FirstOrDefault()?.FieldPath ?? &quot;Field&quot;;
+    target.AddCondition(field, FilterCompareOperator.Equal, &quot;&quot;);
+    RefreshSql();
+}
+</code></pre>
+<p>Selection context matters: if the user selects a condition row, new conditions append to its parent group — matching DevExpress-style filter UIs.</p>
+<h3 id="subscription-graph">Subscription Graph</h3>
+<p>On construction, the ViewModel wires every node in the tree:</p>
+<pre><code class="language-csharp">WireFilterGroup(_document.Root);
+
+private void WireFilterGroup(FilterGroupNode g)
+{
+    g.Children.CollectionChanged += OnGroupChildrenChanged;
+    foreach (var child in g.Children)
+        WireNode(child);
+}
+
+private void WireNode(FilterNodeBase node)
+{
+    node.PropertyChanged += OnNodePropertyChanged;
+    if (node is FilterGroupNode childGroup)
+        WireFilterGroup(childGroup);
+}
+</code></pre>
+<p>Any change — new child, operator edit, value text change — calls <code>RefreshSql()</code>. On dispose, <code>UnwireFilterGroup</code> tears down the graph to prevent leaks when <code>Document</code> is replaced.</p>
+<h3 id="live-sql-preview">Live SQL Preview</h3>
+<pre><code class="language-csharp">private void RefreshSql()
+{
+    SqlPreview = _exporter.ToSql(_document);
+}
+</code></pre>
+<p>The preview panel binds <code>{Binding SqlPreview}</code> read-only. Power users verify the filter before applying; developers debug exporter implementations.</p>
+<h2 id="deep-dive-basicfiltersqlexporter">Deep Dive: BasicFilterSqlExporter</h2>
+<p>SQL generation is a visitor over the same tree the UI edits:</p>
+<pre><code class="language-csharp">public string VisitGroup(FilterGroupNode node)
+{
+    if (node.Children.Count == 0)
+        return &quot;(1 = 1)&quot;;
+
+    var sep = node.LogicalKind == FilterLogicalKind.And ? &quot; AND &quot; : &quot; OR &quot;;
+    var sb = new StringBuilder();
+    sb.Append('(');
+    foreach (var child in node.Children)
+    {
+        sb.Append(sep);
+        sb.Append(child.Accept(this));
+    }
+    sb.Append(')');
+    return sb.ToString();
+}
+</code></pre>
+<p>Condition visit maps operators to SQL:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Operator</th>
+<th>SQL shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Contains</code></td>
+<td><code>&quot;Column&quot; LIKE '%' \|\| 'value' \|\| '%'</code></td>
+</tr>
+<tr>
+<td><code>IsNull</code></td>
+<td><code>&quot;Column&quot; IS NULL</code></td>
+</tr>
+<tr>
+<td><code>GreaterThan</code></td>
+<td><code>&quot;Column&quot; &gt; 'value'</code></td>
+</tr>
+</tbody>
+</table>
+<p>Identifiers are double-quoted; string literals single-quoted with escape doubling. Replace <code>BasicFilterSqlExporter</code> with <code>PostgreSqlFilterExporter</code> or <code>SqlServerFilterExporter</code> for dialect-specific syntax — the UI unchanged.</p>
+<h2 id="end-to-end-walkthrough-filter-grid">End-to-End Walkthrough: Filter + Grid</h2>
+<p><strong>Step 1 — Define fields when the page loads:</strong></p>
+<pre><code class="language-csharp">var doc = new FilterDocument();
+doc.Fields.Add(new FilterFieldDescriptor(&quot;Status&quot;, typeof(string)));
+doc.Fields.Add(new FilterFieldDescriptor(&quot;Amount&quot;, typeof(decimal)));
+doc.Root.AddCondition(&quot;Status&quot;, FilterCompareOperator.Equal, &quot;Active&quot;);
+</code></pre>
+<p><strong>Step 2 — Bind the editor:</strong></p>
+<pre><code class="language-xml">&lt;FilterEditor Document=&quot;{Binding FilterDoc}&quot;
+SqlExporter=&quot;{x:Static local:AppSqlExporter.Instance}&quot;
+ShowSqlPreview=&quot;True&quot; /&gt;
+</code></pre>
+<p><strong>Step 3 — User builds <code>(Status = Active AND Amount &gt; 1000)</code> in the UI.</strong></p>
+<p><strong>Step 4 — Apply button runs:</strong></p>
+<pre><code class="language-csharp">var whereClause = exporter.ToSql(FilterDoc);
+GridSource = new SqlVirtualGridDataSource(_db, baseQuery, whereClause);
+Grid.InvalidateStructure();
+</code></pre>
+<p>**Step 5 — Grid's <code>IVirtualGridDataSource</code> executes paged queries with the WHERE clause appended.</p>
+<h3 id="serializing-filters">Serializing Filters</h3>
+<p>Because the model is a plain object tree, serialize to JSON for saved views:</p>
+<pre><code class="language-csharp">// Pseudocode: visitor that emits JSON nodes
+var json = FilterJsonVisitor.Export(document.Root);
+await File.WriteAllTextAsync(&quot;saved-filter.json&quot;, json);
+</code></pre>
+<p>Restore on load and assign back to <code>FilterEditor.Document</code>.</p>
+<h2 id="why-viewmodel-inside-the-control">Why ViewModel Inside the Control?</h2>
+<p>Alternatives considered in SkyUI:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Approach</th>
+<th>Drawback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Put commands on <code>FilterEditor</code></td>
+<td>15+ commands pollute control API</td>
+</tr>
+<tr>
+<td>Require external ViewModel</td>
+<td>Every consumer duplicates wiring</td>
+</tr>
+<tr>
+<td>Internal ViewModel</td>
+<td>✅ Single assignment: set <code>Document</code></td>
+</tr>
+</tbody>
+</table>
+<p>Consumers with advanced needs can still bind their own ViewModel alongside — set <code>Document</code> from outside and listen to <code>PropertyChanged</code> on condition nodes.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reuse <code>FilterDocument</code> without unwiring</td>
+<td>Duplicate SQL refresh handlers</td>
+</tr>
+<tr>
+<td>Empty <code>Fields</code> collection</td>
+<td>Add Condition creates invalid field paths</td>
+</tr>
+<tr>
+<td>Mutate tree without <code>ObservableCollection</code></td>
+<td>UI does not update</td>
+</tr>
+<tr>
+<td>SQL exporter not parameterized</td>
+<td>Injection risk if <code>ValueText</code> comes from untrusted input — sanitize in exporter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p><code>FilterEditor</code> is SkyUI's example of a <strong>domain-specific editor control</strong> — document tree + visitor pattern for export, internal ViewModel for commands, and subscription wiring for live SQL preview. The complexity lives in the model and ViewModel; the <code>FilterEditor</code> class itself is under 90 lines because it delegates aggressively.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-16-filtereditor">Chapter 16: FilterEditor</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#problem-and-shape">Problem and Shape</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#control-api">Control API</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#viewmodel-bridge-pattern">ViewModel Bridge Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-internal-viewmodel">Why Internal ViewModel?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#lifecycle-cleanup">Lifecycle Cleanup</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#document-model">Document Model</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#ifiltersqlexporter-strategy">IFilterSqlExporter Strategy</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#template-structure">Template Structure</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#integration-with-virtual-grid">Integration with Virtual Grid</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#patterns-summary">Patterns Summary</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-a-similar-editor-control">Building a Similar Editor Control</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-document-model-and-visitor-pattern">Deep Dive: Document Model and Visitor Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#filterdocument-root">FilterDocument Root</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#filternodebase-hierarchy">FilterNodeBase Hierarchy</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#filterconditionnode">FilterConditionNode</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#group-mutation-api">Group Mutation API</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-filtereditorviewmodel-commands">Deep Dive: FilterEditorViewModel Commands</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#adding-a-condition-to-the-selected-group">Adding a Condition to the Selected Group</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#subscription-graph">Subscription Graph</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#live-sql-preview">Live SQL Preview</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-basicfiltersqlexporter">Deep Dive: BasicFilterSqlExporter</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#end-to-end-walkthrough-filter-grid">End-to-End Walkthrough: Filter + Grid</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#serializing-filters">Serializing Filters</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#why-viewmodel-inside-the-control">Why ViewModel Inside the Control?</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#common-mistakes">Common Mistakes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

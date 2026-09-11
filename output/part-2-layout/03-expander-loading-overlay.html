@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 7 — SkyExpander and SkyLoadingOverlay · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 7 — SkyExpander and SkyLoadingOverlay</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-7-skyexpander-and-skyloadingoverlay">Chapter 7: SkyExpander and SkyLoadingOverlay</h1>
+<p>Part II continues with two controls at opposite ends of the complexity spectrum: a <strong>primitive subclass</strong> that adds almost no code (<code>SkyExpander</code>), and a <strong>content overlay</strong> that manages hit-testing during async work (<code>SkyLoadingOverlay</code>).</p>
+<h2 id="skyexpander-when-subclassing-is-enough">SkyExpander: When Subclassing Is Enough</h2>
+<p>Avalonia ships <code>Expander</code> — a header that toggles content visibility. SkyUI does not reimplement expand/collapse logic. It subclasses and applies theme classes:</p>
+<pre><code class="language-csharp">public class SkyExpander : Expander
+{
+    public SkyExpander()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-expander&quot;);
+    }
+}
+</code></pre>
+<h3 id="why-this-is-valid-architecture">Why This Is Valid Architecture</h3>
+<p>Before writing a <code>TemplatedControl</code>, ask:</p>
+<ol>
+<li>Does the built-in control already expose the right API? <strong>Yes</strong> — <code>IsExpanded</code>, <code>Header</code>, content.</li>
+<li>Can styling alone achieve the desired look? <strong>Yes</strong> — theme targets <code>Expander.sky-expander</code>.</li>
+<li>Is there new behavior? <strong>No</strong> — no validation, no adapters, no custom parts.</li>
+</ol>
+<p>If all three answers favor the primitive, subclass + style class is the correct choice. You avoid maintaining duplicate template parts and inherit bug fixes from Avalonia upstream.</p>
+<h3 id="theme-responsibilities">Theme Responsibilities</h3>
+<p>The theme template for <code>Expander.sky-expander</code> typically adjusts:</p>
+<ul>
+<li>Chevron icon rotation when expanded (via <code>^:expanded</code> selector on Avalonia's pseudo-class)</li>
+<li>Header padding from <code>SkySpace12Px</code></li>
+<li>Content area background from <code>SkySurfaceBrush</code></li>
+<li>Corner radius and border from card tokens</li>
+</ul>
+<p>The C# class stays frozen; visual iteration happens entirely in XAML.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyExpander Header=&quot;Advanced options&quot; IsExpanded=&quot;False&quot;&gt;
+  &lt;StackPanel Spacing=&quot;8&quot;&gt;
+    &lt;CheckBox Content=&quot;Enable debug logging&quot; /&gt;
+    &lt;CheckBox Content=&quot;Send anonymous telemetry&quot; /&gt;
+  &lt;/StackPanel&gt;
+&lt;/SkyExpander&gt;
+</code></pre>
+<h3 id="lesson">Lesson</h3>
+<p>Not every control in a toolkit needs custom C#. SkyUI's catalog mixes full implementations with thin wrappers deliberately. When auditing your own codebase, flag wrappers that grew unnecessary logic — they may have been candidates for style-only customization.</p>
+<hr />
+<h2 id="skyloadingoverlay-blocking-async-operations">SkyLoadingOverlay: Blocking Async Operations</h2>
+<p><code>SkyLoadingOverlay</code> lives in <code>src/SkyUI/Controls/Data/</code> because it is commonly paired with data views, though it works over any content.</p>
+<h3 id="base-class-contentcontrol">Base Class: ContentControl</h3>
+<p>It inherits <code>ContentControl</code> — the overlay wraps existing page content:</p>
+<pre><code class="language-xml">&lt;SkyLoadingOverlay IsLoading=&quot;{Binding IsRefreshing}&quot;
+                   LoadingText=&quot;Loading records...&quot;&gt;
+  &lt;SkyVirtualDataGrid DataSource=&quot;{Binding Source}&quot; /&gt;
+&lt;/SkyLoadingOverlay&gt;
+</code></pre>
+<p>When <code>IsLoading</code> is false, only the child grid is visible. When true, a semi-transparent scrim and optional spinner appear above the child.</p>
+<h3 id="properties">Properties</h3>
+<pre><code class="language-csharp">public class SkyLoadingOverlay : ContentControl
+{
+    public static readonly StyledProperty&lt;bool&gt; IsLoadingProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; LoadingTextProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; BlocksInputProperty =
+        ... defaultValue: true);
+}
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsLoading</code></td>
+<td>Shows/hides overlay chrome</td>
+</tr>
+<tr>
+<td><code>LoadingText</code></td>
+<td>Optional message below spinner</td>
+</tr>
+<tr>
+<td><code>BlocksInput</code></td>
+<td>When true, pointer events do not reach children</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hit-testing-model">Hit-Testing Model</h3>
+<p>This is the critical implementation detail:</p>
+<pre><code class="language-csharp">private void SyncLoadingState()
+{
+    var loading = IsLoading;
+    Classes.Set(&quot;sky-loading-overlay-active&quot;, loading);
+
+    if (_overlay is not null)
+    {
+        _overlay.IsVisible = loading;
+        _overlay.IsHitTestVisible = loading &amp;&amp; BlocksInput;
+    }
+}
+</code></pre>
+<p>Avalonia's input system routes pointer events to the topmost element that has <code>IsHitTestVisible = true</code>. If the overlay panel is visible but not hit-test visible, users can interact with content beneath — useful for background refresh indicators.</p>
+<p>When <code>BlocksInput</code> is true (default), the overlay captures all clicks, preventing double-submit or navigation during save operations.</p>
+<h3 id="constructor-and-classes">Constructor and Classes</h3>
+<pre><code class="language-csharp">public SkyLoadingOverlay()
+{
+    Classes.Add(&quot;sky&quot;);
+    Classes.Add(&quot;sky-loading-overlay&quot;);
+}
+</code></pre>
+<p>The <code>sky-loading-overlay-active</code> class is toggled in code; theme styles increase scrim opacity and show the progress ring when active.</p>
+<h3 id="template-structure">Template Structure</h3>
+<pre><code class="language-xml">&lt;ControlTheme TargetType=&quot;controls:SkyLoadingOverlay&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate&gt;
+      &lt;Grid&gt;
+        &lt;ContentPresenter Content=&quot;{TemplateBinding Content}&quot; /&gt;
+        &lt;Panel Name=&quot;PART_Overlay&quot;
+               Background=&quot;{DynamicResource SkyScrimBrush}&quot;
+               IsVisible=&quot;False&quot;&gt;
+          &lt;StackPanel HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;
+            &lt;SkyProgressRing IsIndeterminate=&quot;True&quot; /&gt;
+            &lt;TextBlock Text=&quot;{TemplateBinding LoadingText}&quot; /&gt;
+          &lt;/StackPanel&gt;
+        &lt;/Panel&gt;
+      &lt;/Grid&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p>The child content and overlay are siblings in a <code>Grid</code>. The overlay covers the full area when visible.</p>
+<h3 id="view-model-integration">View Model Integration</h3>
+<pre><code class="language-csharp">public async Task RefreshAsync()
+{
+    IsRefreshing = true;
+    try
+    {
+        Records = await _api.FetchAllAsync();
+    }
+    finally
+    {
+        IsRefreshing = false;
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;SkyLoadingOverlay IsLoading=&quot;{Binding IsRefreshing}&quot;
+                   LoadingText=&quot;Fetching data...&quot;
+                   BlocksInput=&quot;True&quot;&gt;
+  &lt;!-- page content --&gt;
+&lt;/SkyLoadingOverlay&gt;
+</code></pre>
+<p>Always clear <code>IsLoading</code> in <code>finally</code> so a failed request does not leave the UI permanently blocked.</p>
+<h3 id="comparison-with-skyskeleton">Comparison with SkySkeleton</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Control</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkyLoadingOverlay</code></td>
+<td>Blocking wait over existing layout; user should not interact</td>
+</tr>
+<tr>
+<td><code>SkySkeleton</code></td>
+<td>Placeholder shapes while structure is known but data is not yet loaded</td>
+</tr>
+</tbody>
+</table>
+<p>Skeletons suit initial page load; overlays suit refresh-in-place.</p>
+<h2 id="summary">Summary</h2>
+<p><code>SkyExpander</code> demonstrates the <strong>minimal subclass</strong> pattern. <code>SkyLoadingOverlay</code> demonstrates <strong>content overlay</strong> with explicit hit-test control — a pattern you will reuse for any &quot;please wait&quot; UI over existing content.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-7-skyexpander-and-skyloadingoverlay">Chapter 7: SkyExpander and SkyLoadingOverlay</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyexpander-when-subclassing-is-enough">SkyExpander: When Subclassing Is Enough</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-this-is-valid-architecture">Why This Is Valid Architecture</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#theme-responsibilities">Theme Responsibilities</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#lesson">Lesson</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyloadingoverlay-blocking-async-operations">SkyLoadingOverlay: Blocking Async Operations</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#base-class-contentcontrol">Base Class: ContentControl</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#properties">Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#hit-testing-model">Hit-Testing Model</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#constructor-and-classes">Constructor and Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-structure">Template Structure</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#view-model-integration">View Model Integration</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#comparison-with-skyskeleton">Comparison with SkySkeleton</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 2 — Package Architecture · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 2 — Package Architecture</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-2-skyui-package-architecture">Chapter 2: SkyUI Package Architecture</h1>
+<p>A UI toolkit that ships as one giant assembly becomes hard to version, hard to test, and hard to adopt incrementally. SkyUI splits responsibilities across NuGet packages so a minimal app can reference only essentials, while a data-heavy admin tool can add grids and filter editors without pulling diagram rendering.</p>
+<p>This chapter explains each package, what it contains, how dependencies flow, and the architectural principles that keep the split maintainable.</p>
+<h2 id="package-dependency-graph">Package Dependency Graph</h2>
+<pre><code>                    ┌─────────────────┐
+                    │  SkyUI.Themes.Sky │
+                    └────────┬────────┘
+                             │ references
+         ┌───────────────────┼───────────────────┐
+         ▼                   ▼                   ▼
+   ┌──────────┐        ┌──────────┐        ┌──────────┐
+   │ SkyUI    │        │SkyUI.Fonts│       │SkyUI.Core │
+   └────┬─────┘        └──────────┘        └──────────┘
+        │
+   ┌────┴─────┐
+   ▼          ▼
+SkyUI.Core  SkyUI.Icons
+
+Optional (reference SkyUI, not each other):
+   SkyUI.Data          SkyUI.Diagram
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Package</th>
+<th>Target</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkyUI.Core</code></td>
+<td><code>net10.0</code></td>
+<td>Tokens, motion, theme attached properties, applicators</td>
+</tr>
+<tr>
+<td><code>SkyUI.Fonts</code></td>
+<td><code>net10.0</code></td>
+<td>Inter + Noto Sans SC typography resource dictionaries</td>
+</tr>
+<tr>
+<td><code>SkyUI.Icons</code></td>
+<td><code>net10.0</code></td>
+<td><code>SkyIcon</code>, <code>SkyFontIcon</code>, <code>SkyIconKind</code> geometry catalog</td>
+</tr>
+<tr>
+<td><code>SkyUI</code></td>
+<td><code>net10.0</code></td>
+<td>Essentials controls — forms, layout, nav, shell, feedback</td>
+</tr>
+<tr>
+<td><code>SkyUI.Themes.Sky</code></td>
+<td><code>net10.0</code></td>
+<td>ContentFirstDark: ControlThemes, styles, primitives preset</td>
+</tr>
+<tr>
+<td><code>SkyUI.Data</code></td>
+<td><code>net10.0</code></td>
+<td>Virtual data grid, filter editor</td>
+</tr>
+<tr>
+<td><code>SkyUI.Diagram</code></td>
+<td><code>net10.0</code></td>
+<td><code>DiagramSurface</code> canvas control</td>
+</tr>
+</tbody>
+</table>
+<p>Nothing in <code>SkyUI.Core</code> references controls. That directionality prevents circular references: tokens are defined once and consumed everywhere.</p>
+<h2 id="skyui.core-infrastructure-without-ui-chrome">SkyUI.Core: Infrastructure Without UI Chrome</h2>
+<p><code>SkyUI.Core</code> answers: <em>how does every control know what &quot;accent color&quot; or &quot;16px padding&quot; means, and how can an app change those at runtime?</em></p>
+<h3 id="skytokenkeys">SkyTokenKeys</h3>
+<p>Stable string constants for resource dictionary keys:</p>
+<pre><code class="language-csharp">public static class SkyTokenKeys
+{
+    public static class Brush
+    {
+        public const string Accent = &quot;SkyAccentBrush&quot;;
+        public const string Surface = &quot;SkySurfaceBrush&quot;;
+        // ...
+    }
+    public static class Spacing
+    {
+        public const string Space8Px = &quot;SkySpace8Px&quot;;
+        public const string Space16Px = &quot;SkySpace16Px&quot;;
+        // ...
+    }
+}
+</code></pre>
+<p>C# code and XAML both reference the same keys. When a token name changes, you update one constant and the compiler finds stale usages.</p>
+<h3 id="skythemeproperties-attached">SkyThemeProperties (Attached)</h3>
+<pre><code class="language-xml">&lt;Application sky:SkyThemeProperties.AccentOverride=&quot;#1ED760&quot;
+sky:SkyThemeProperties.Density=&quot;Compact&quot;&gt;
+</code></pre>
+<p>Changed handlers invoke:</p>
+<ul>
+<li><code>SkyAccentOverrideApplicator</code> — injects overridden accent brushes into app resources</li>
+<li><code>SkyDensityApplicator</code> — swaps comfortable vs compact spacing/height tokens</li>
+</ul>
+<p>Because controls use <code>{DynamicResource SkyAccentBrush}</code>, accent override propagates without recompiling templates.</p>
+<h3 id="skymotionanimator">SkyMotionAnimator</h3>
+<p>Shared enter/exit animations for <code>SkyDialogHost</code>, <code>SkySnackbarHost</code>, <code>SkySheetHost</code>, and <code>SkyNavigationView</code> content transitions. Centralizing motion prevents each overlay from inventing different durations and easing curves.</p>
+<h2 id="skyui-control-organization">SkyUI: Control Organization</h2>
+<p>Controls live under <code>src/SkyUI/Controls/</code> grouped by <strong>domain</strong>, not by inheritance:</p>
+<pre><code>Controls/
+Accordion/       SkyAccordion, SkyAccordionItem
+CheckedListBox/  CheckedListBox + adapter types
+Data/            SkyPagination*, SkyKpiTile, SkyLoadingOverlay
+Feedback/        SkyAlert, SkyDialogHost, SkySnackbarHost, ...
+Forms/           SkyFormField, SkyAutocomplete, SkyRadioGroup, ...
+Layout/          SkyCard, SkyDivider, SkyResponsiveGrid, SkyExpander
+Lists/           SkyVirtualTreeView
+Menus/           SkyMenuBar, SkyContextMenu, SkyMenuFlyout
+Mobile/          SkySafeArea, SkyActionSheet, SkyTouchTarget
+Navigation/      SkyNavigationView, SkyTabView, SkyBreadcrumb
+Pickers/         SkyDatePicker, SkyTimePicker, SkyCalendar
+Primitives/      SkyButtonProperties, SkyTooltip, SkyPopover
+Shell/           SkySplitView, SkyListDetailPage, SkyCommandBar, ...
+Timeline/        VideoTimeline
+</code></pre>
+<p>This structure maps to how product teams think about UI (&quot;we need a form field&quot; → look in <code>Forms/</code>) and mirrors the theme folder layout in <code>SkyUI.Themes.Sky/Themes/SkyDark/Controls/</code>.</p>
+<h2 id="four-control-inheritance-strategies">Four Control Inheritance Strategies</h2>
+<p>SkyUI consistently chooses one of four approaches:</p>
+<h3 id="templatedcontrol-custom-visual-behavior">1. TemplatedControl — custom visual + behavior</h3>
+<p>Used when the control needs named template parts, non-trivial interaction, or state machines.</p>
+<p>Examples: <code>SkyFormField</code>, <code>SkyDialogHost</code>, <code>CheckedListBox</code>, <code>Chip</code>, <code>SkyNavigationView</code>.</p>
+<h3 id="contentcontrol-itemscontrol-composition-containers">2. ContentControl / ItemsControl — composition containers</h3>
+<p>Used when structure is &quot;host children&quot; with optional chrome.</p>
+<p>Examples: <code>SkyCard</code> (ContentControl), <code>SkyAccordion</code> (ItemsControl), <code>Badge</code> (ContentControl).</p>
+<h3 id="primitive-subclass-thin-wrapper">3. Primitive subclass — thin wrapper</h3>
+<p>Used when Avalonia's built-in control already does the work; SkyUI only adds style classes and small API extensions.</p>
+<pre><code class="language-csharp">public class SkySearchBox : TextBox
+{
+    public SkySearchBox() =&gt; Classes.Add(&quot;sky-search&quot;);
+}
+
+public class SkyDatePicker : CalendarDatePicker
+{
+    public SkyDatePicker()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-date-picker&quot;);
+    }
+}
+</code></pre>
+<h3 id="panel-subclass-custom-layoutrendering">4. Panel subclass — custom layout/rendering</h3>
+<p>Used when template-based layout is insufficient.</p>
+<p>Example: <code>DiagramSurface</code> positions nodes at absolute coordinates and draws edges in <code>Render</code>.</p>
+<h2 id="dual-consumption-named-controls-vs-styled-primitives">Dual Consumption: Named Controls vs Styled Primitives</h2>
+<p>SkyUI deliberately supports two authoring styles:</p>
+<p><strong>Named controls</strong> for behavior-rich components:</p>
+<pre><code class="language-xml">&lt;SkyFormField Label=&quot;Email&quot;&gt;
+  &lt;TextBox Watermark=&quot;you@example.com&quot; /&gt;
+&lt;/SkyFormField&gt;
+</code></pre>
+<p><strong>Styled primitives</strong> for simple visual variants:</p>
+<pre><code class="language-xml">&lt;Button Classes=&quot;sky sky-primary&quot; Content=&quot;Save&quot; /&gt;
+&lt;ComboBox Classes=&quot;sky&quot; ItemsSource=&quot;{Binding Items}&quot; /&gt;
+</code></pre>
+<p><code>SkyThemeClasses</code> centralizes class name strings:</p>
+<pre><code class="language-csharp">public const string Sky = &quot;sky&quot;;
+public const string Primary = &quot;sky-primary&quot;;
+public const string Outlined = &quot;sky-outlined&quot;;
+public const string Search = &quot;sky-search&quot;;
+</code></pre>
+<p>The dual model avoids an explosion of <code>SkyPrimaryButton</code>, <code>SkyOutlinedButton</code> subclasses. Subclass only when behavior differs, not when color differs.</p>
+<h2 id="theme-package-behaviorappearance-split">Theme Package: Behavior/Appearance Split</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Layer</th>
+<th>Location</th>
+<th>Contains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Behavior</td>
+<td><code>SkyUI</code> C#</td>
+<td>Properties, events, validation, adapters</td>
+</tr>
+<tr>
+<td>Appearance</td>
+<td><code>SkyUI.Themes.Sky</code> XAML</td>
+<td>ControlTheme templates, Style selectors</td>
+</tr>
+</tbody>
+</table>
+<p>Bootstrapping in consumer <code>App.axaml</code>:</p>
+<pre><code class="language-xml">&lt;Application.Styles&gt;
+  &lt;FluentTheme /&gt;
+  &lt;StyleInclude Source=&quot;avares://SkyUI.Themes.Sky/Themes/SkyTheme.axaml&quot; /&gt;
+&lt;/Application.Styles&gt;
+</code></pre>
+<p>For data controls, include the extension theme:</p>
+<pre><code class="language-xml">&lt;StyleInclude Source=&quot;avares://SkyUI.Data/Themes/SkyTheme.WithData.axaml&quot; /&gt;
+</code></pre>
+<h3 id="two-file-theme-convention">Two-File Theme Convention</h3>
+<table class="table">
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Forms.axaml</code></td>
+<td><code>ControlTheme</code> keyed by <code>{x:Type ...}</code></td>
+</tr>
+<tr>
+<td><code>Forms.Styles.axaml</code></td>
+<td>Pseudo-class and variant <code>Style</code> selectors</td>
+</tr>
+</tbody>
+</table>
+<p>Primitives that style Avalonia types without subclassing live in <code>SkyPreset.Primitives.axaml</code>.</p>
+<h2 id="optional-packages-in-detail">Optional Packages in Detail</h2>
+<h3 id="skyui.data">SkyUI.Data</h3>
+<ul>
+<li><code>SkyVirtualDataGrid</code> — windowed row access via <code>IVirtualGridDataSource</code></li>
+<li><code>FilterEditor</code> — hierarchical filter tree with SQL preview</li>
+<li>Separate theme merge: apps without grids do not load grid templates</li>
+</ul>
+<h3 id="skyui.diagram">SkyUI.Diagram</h3>
+<ul>
+<li><code>DiagramSurface</code> : <code>Panel</code></li>
+<li>Pluggable <code>IEdgePathComputer</code>, <code>IDiagramNodePresenterFactory</code>, <code>IDiagramSceneHitTester</code></li>
+<li>Demonstrates SkyUI beyond templated controls</li>
+</ul>
+<h2 id="xaml-namespace">XAML Namespace</h2>
+<p><code>XmlnsDefinition</code> maps CLR namespaces to <code>https://skyui.dev</code>:</p>
+<pre><code class="language-xml">xmlns:sky=&quot;https://skyui.dev&quot;
+</code></pre>
+<p>Types from <code>SkyUI</code>, <code>SkyUI.Core</code>, <code>SkyUI.Data</code>, and <code>SkyUI.Diagram</code> resolve through one XML namespace prefix.</p>
+<h2 id="samples-demo-and-tests">Samples, Demo, and Tests</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Project</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkyUI.Demo</code></td>
+<td>Desktop gallery — one page per control category</td>
+</tr>
+<tr>
+<td><code>samples/SettingsApp</code></td>
+<td>Navigation shell, theme/density switching</td>
+</tr>
+<tr>
+<td><code>samples/CrudListDetail</code></td>
+<td>List-detail + virtual grid MVVM</td>
+</tr>
+<tr>
+<td><code>tests/SkyUI.UnitTests</code></td>
+<td>Token math, pagination, validators</td>
+</tr>
+<tr>
+<td><code>tests/SkyUI.HeadlessTests</code></td>
+<td>Template apply, binding, interaction without GPU</td>
+</tr>
+</tbody>
+</table>
+<p>Expected workflow for a new control: implement C# → add theme → demo page → headless test.</p>
+<h2 id="design-principles">Design Principles</h2>
+<ol>
+<li><strong>Separation of behavior and appearance</strong> — C# never sets <code>Background = Brushes.Gray</code></li>
+<li><strong>Progressive disclosure</strong> — optional Data/Diagram packages</li>
+<li><strong>Token-driven visuals</strong> — semantic brush names, 8px spacing scale</li>
+<li><strong>Composition over monoliths</strong> — <code>SkyListDetailPage</code> assembles shell primitives</li>
+<li><strong>Pluggable adapters</strong> — CheckedListBox, VirtualGrid, FilterEditor, Diagram</li>
+<li><strong>Consistent overlay pattern</strong> — host at root + static facade + motion animator</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>SkyUI's package boundaries encode architectural intent. Core owns tokens and motion; Essentials owns controls; Themes owns visuals; Data and Diagram own specialized domains. When you add a feature, place it in the shallowest package that can express it — do not put grid logic in <code>SkyUI</code> if only data apps need it.</p>
+<p>Next: how design tokens connect C# constants to theme XAML.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-2-skyui-package-architecture">Chapter 2: SkyUI Package Architecture</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#package-dependency-graph">Package Dependency Graph</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyuicore-infrastructure-without-ui-chrome">SkyUI.Core: Infrastructure Without UI Chrome</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skytokenkeys">SkyTokenKeys</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skythemeproperties-attached">SkyThemeProperties (Attached)</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skymotionanimator">SkyMotionAnimator</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyui-control-organization">SkyUI: Control Organization</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#four-control-inheritance-strategies">Four Control Inheritance Strategies</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#1-templatedcontrol-custom-visual-behavior">1. TemplatedControl — custom visual + behavior</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#2-contentcontrol-itemscontrol-composition-containers">2. ContentControl / ItemsControl — composition containers</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#3-primitive-subclass-thin-wrapper">3. Primitive subclass — thin wrapper</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#4-panel-subclass-custom-layoutrendering">4. Panel subclass — custom layout/rendering</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#dual-consumption-named-controls-vs-styled-primitives">Dual Consumption: Named Controls vs Styled Primitives</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#theme-package-behaviorappearance-split">Theme Package: Behavior/Appearance Split</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#two-file-theme-convention">Two-File Theme Convention</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#optional-packages-in-detail">Optional Packages in Detail</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyuidata">SkyUI.Data</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyuidiagram">SkyUI.Diagram</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#xaml-namespace">XAML Namespace</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#samples-demo-and-tests">Samples, Demo, and Tests</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#design-principles">Design Principles</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

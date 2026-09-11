@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 21 — Dialog and Snackbar Hosts · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 21 — Dialog and Snackbar Hosts</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-21-dialog-and-snackbar-hosts">Chapter 21: Dialog and Snackbar Hosts</h1>
+<p>Transient UI — modals, toasts, and bottom sheets — requires a different architecture than inline controls. SkyUI uses <strong>host controls</strong> embedded at the application root, paired with <strong>static facades</strong> for imperative show/close APIs. This chapter explains the host pattern, animation integration, concurrency control, hit testing, and the Avalonia overlay mechanics that keep feedback UI predictable across platforms.</p>
+<h2 id="why-overlays-need-hosts">Why Overlays Need Hosts</h2>
+<p>Inline controls participate in normal measure/arrange passes and share the page's z-order. Modals must sit above navigation chrome, block input to content beneath, and animate without disturbing layout below. Putting a dialog inside a page <code>Grid</code> row causes clipping, incorrect centering when keyboards open, and z-order fights with sibling panels.</p>
+<p>The host pattern lifts overlays to a dedicated layer at the window root.</p>
+<h2 id="the-host-pattern">The Host Pattern</h2>
+<pre><code>Window
+└── Main content
+└── SkyDialogHost (overlay layer, z-index top)
+└── SkySnackbarHost (toast layer)
+└── SkySheetHost (bottom sheet layer)
+</code></pre>
+<p>Each host is a <code>TemplatedControl</code> placed once at the root of the visual tree. Application code calls static methods or sets properties on the host to show content.</p>
+<h3 id="avalonia-concept-z-order-and-panel-children">Avalonia Concept: Z-Order and Panel Children</h3>
+<p>In a root <code>Panel</code>, later children paint above earlier ones. Declare hosts <strong>after</strong> main content in XAML so they render on top without explicit <code>ZIndex</code>. If you use a <code>Grid</code> with shared cells, set <code>Panel.ZIndex</code> on hosts explicitly — default z-order follows declaration order only within the same parent.</p>
+<p>Hosts should stretch to fill the window:</p>
+<pre><code class="language-xml">&lt;Panel&gt;
+  &lt;local:MainView /&gt;
+  &lt;SkyDialogHost HorizontalAlignment=&quot;Stretch&quot;
+                 VerticalAlignment=&quot;Stretch&quot; /&gt;
+  &lt;SkySnackbarHost VerticalAlignment=&quot;Bottom&quot;
+                   HorizontalAlignment=&quot;Center&quot; /&gt;
+&lt;/Panel&gt;
+</code></pre>
+<h2 id="skydialoghost">SkyDialogHost</h2>
+<h3 id="properties-and-events">Properties and Events</h3>
+<pre><code class="language-csharp">public class SkyDialogHost : TemplatedControl
+{
+    public static readonly StyledProperty&lt;bool&gt; IsOpenProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; TitleProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; DialogContentProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; PrimaryButtonTextProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; SecondaryButtonTextProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsDismissibleProperty = ...;
+
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; ClosedEvent = ...;
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; PrimaryActionEvent = ...;
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; SecondaryActionEvent = ...;
+}
+</code></pre>
+<p><code>IsDismissible</code> gates overlay-click and escape-key dismissal — use <code>false</code> for destructive confirmations that require an explicit button choice.</p>
+<h3 id="openclose-lifecycle">Open/Close Lifecycle</h3>
+<pre><code class="language-csharp">static SkyDialogHost()
+{
+    IsOpenProperty.Changed.AddClassHandler&lt;SkyDialogHost&gt;(
+        (host, e) =&gt; _ = host.OnIsOpenChangedAsync(e));
+}
+
+public SkyDialogHost()
+{
+    IsHitTestVisible = false; // closed host does not block clicks
+}
+
+public void Show() =&gt; IsOpen = true;
+
+public void Close()
+{
+    if (!IsOpen) return;
+    IsOpen = false;
+    RaiseEvent(new RoutedEventArgs(ClosedEvent));
+}
+</code></pre>
+<p>When closed, <code>IsHitTestVisible</code> is false so the host is transparent to pointer events. When open, it becomes true and the overlay captures all input.</p>
+<h3 id="avalonia-concept-ishittestvisible">Avalonia Concept: IsHitTestVisible</h3>
+<p><code>IsHitTestVisible=&quot;False&quot;</code> removes the element from hit testing while leaving it in the visual tree. Closed hosts must not intercept clicks meant for content below. Some developers hide hosts with <code>Opacity=&quot;0&quot;</code> instead — that still blocks hits unless <code>IsHitTestVisible</code> is false. Always pair visibility state with hit test visibility for overlay roots.</p>
+<h3 id="animation-on-openclose">Animation on Open/Close</h3>
+<pre><code class="language-csharp">private async Task OnIsOpenChangedAsync(AvaloniaPropertyChangedEventArgs e)
+{
+    animationCancellation?.Cancel();
+    animationCancellation = new CancellationTokenSource();
+    var token = animationCancellation.Token;
+
+    if (e.NewValue is true)
+    {
+        IsHitTestVisible = true;
+        await SkyMotionAnimator.Default.AnimateFadeScaleInAsync(
+            dialogPanel!, overlayPanel!, token);
+    }
+    else
+    {
+        await SkyMotionAnimator.Default.AnimateFadeScaleOutAsync(
+            dialogPanel!, overlayPanel!, token);
+        IsHitTestVisible = false;
+    }
+}
+</code></pre>
+<p><code>SkyMotionAnimator</code> provides consistent fade + scale transitions shared with snackbar and sheet hosts. Cancellation prevents animation glitches when open/close is toggled rapidly.</p>
+<p>Animate <strong>opacity and scale</strong> on <code>PART_DialogPanel</code>, not the entire host — scaling the full window-sized overlay looks wrong. The scrim fades independently.</p>
+<h3 id="overlay-click-to-dismiss">Overlay Click to Dismiss</h3>
+<pre><code class="language-csharp">private void OnOverlayPointerPressed(object sender, PointerPressedEventArgs e)
+{
+    if (!IsDismissible) return;
+    if (e.Source == overlayPanel)
+        Close();
+}
+</code></pre>
+<p>Only clicks directly on the scrim dismiss the dialog. Clicks on the dialog panel itself do not propagate to the overlay handler.</p>
+<p>Compare <code>e.Source == overlayPanel</code>, not <code>e.Source == sender</code>, when nested transparent panels exist inside the overlay. Source identifies the original element hit; sender is the element that registered the handler.</p>
+<h3 id="keyboard-dismissal">Keyboard Dismissal</h3>
+<p>Register for escape key on open:</p>
+<pre><code class="language-csharp">private void OnKeyDown(object? sender, KeyEventArgs e)
+{
+    if (IsOpen &amp;&amp; IsDismissible &amp;&amp; e.Key == Key.Escape)
+    {
+        Close();
+        e.Handled = true;
+    }
+}
+</code></pre>
+<p>Attach in <code>OnApplyTemplate</code> to the host or overlay panel. Mark handled to prevent escape from also closing a parent flyout.</p>
+<h3 id="template-parts">Template Parts</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_Overlay</code></td>
+<td>Dimmed background scrim</td>
+</tr>
+<tr>
+<td><code>PART_DialogPanel</code></td>
+<td>Centered dialog card</td>
+</tr>
+<tr>
+<td><code>PART_CloseButton</code></td>
+<td>X button in header</td>
+</tr>
+<tr>
+<td><code>PART_PrimaryButton</code></td>
+<td>Confirm action</td>
+</tr>
+<tr>
+<td><code>PART_SecondaryButton</code></td>
+<td>Cancel action</td>
+</tr>
+</tbody>
+</table>
+<p>Wire button clicks in <code>OnApplyTemplate</code>:</p>
+<pre><code class="language-csharp">primaryButton!.Click += (_, _) =&gt;
+{
+    RaiseEvent(new RoutedEventArgs(PrimaryActionEvent));
+    Close();
+};
+</code></pre>
+<p>Raise action events <strong>before</strong> close if handlers need to read dialog content still mounted in the tree.</p>
+<h2 id="skymessagebox-static-facade">SkyMessageBox: Static Facade</h2>
+<p><code>SkyMessageBox</code> provides a familiar API without requiring consumers to manage dialog state:</p>
+<pre><code class="language-csharp">public static class SkyMessageBox
+{
+    private static SkyDialogHost? attachedHost;
+    private static readonly SemaphoreSlim dialogGate = new(1, 1);
+
+    public static void Attach(SkyDialogHost host) =&gt; attachedHost = host;
+
+    public static async Task&lt;SkyMessageBoxResult&gt; ConfirmAsync(
+        string message,
+        string? title = &quot;Confirm&quot;,
+        string primaryText = &quot;OK&quot;,
+        string secondaryText = &quot;Cancel&quot;,
+        SkyDialogHost? dialogHost = null,
+        CancellationToken cancellationToken = default)
+    {
+        var host = dialogHost ?? attachedHost
+            ?? throw new InvalidOperationException(
+                &quot;Call SkyMessageBox.Attach(SkyDialogHost) or pass dialogHost.&quot;);
+
+        await dialogGate.WaitAsync(cancellationToken);
+        try
+        {
+            return await ShowOnHostAsync(host, message, title, primaryText, secondaryText);
+        }
+        finally
+        {
+            dialogGate.Release();
+        }
+    }
+}
+</code></pre>
+<h3 id="taskcompletionsource-pattern">TaskCompletionSource Pattern</h3>
+<p><code>ShowOnHostAsync</code> typically completes when the dialog closes:</p>
+<pre><code class="language-csharp">private static async Task&lt;SkyMessageBoxResult&gt; ShowOnHostAsync(
+    SkyDialogHost host, string message, ...)
+{
+    var tcs = new TaskCompletionSource&lt;SkyMessageBoxResult&gt;();
+
+    void OnPrimary(object? s, RoutedEventArgs e)
+    {
+        host.PrimaryAction -= OnPrimary;
+        host.SecondaryAction -= OnSecondary;
+        host.Closed -= OnClosed;
+        tcs.TrySetResult(SkyMessageBoxResult.Primary);
+    }
+
+    void OnSecondary(object? s, RoutedEventArgs e) { /* map to Secondary */ }
+    void OnClosed(object? s, RoutedEventArgs e) { tcs.TrySetResult(SkyMessageBoxResult.Dismissed); }
+
+    host.PrimaryAction += OnPrimary;
+    host.SecondaryAction += OnSecondary;
+    host.Closed += OnClosed;
+
+    host.Title = title;
+    host.DialogContent = new SkyAlert { Message = message };
+    host.PrimaryButtonText = primaryText;
+    host.SecondaryButtonText = secondaryText;
+    host.Show();
+
+    return await tcs.Task;
+}
+</code></pre>
+<p>Unsubscribe all handlers in every exit path — leaked handlers cause wrong results on the next dialog.</p>
+<h3 id="key-design-decisions">Key Design Decisions</h3>
+<ol>
+<li><strong>Attach pattern</strong> — Register the host once at app startup; all static calls use it</li>
+<li><strong>SemaphoreSlim gate</strong> — Only one dialog at a time; concurrent calls queue</li>
+<li><strong>Optional host override</strong> — Pass a specific host for testing or multi-window scenarios</li>
+<li><strong>Task-based API</strong> — <code>ConfirmAsync</code> returns a result enum; callers await the user's choice</li>
+</ol>
+<h3 id="application-setup">Application Setup</h3>
+<pre><code class="language-csharp">// In MainWindow constructor or OnOpened
+SkyMessageBox.Attach(this.FindControl&lt;SkyDialogHost&gt;(&quot;DialogHost&quot;));
+</code></pre>
+<pre><code class="language-xml">&lt;Panel&gt;
+  &lt;local:MainView /&gt;
+  &lt;SkyDialogHost x:Name=&quot;DialogHost&quot; /&gt;
+&lt;/Panel&gt;
+</code></pre>
+<p>Call <code>Attach</code> after <code>InitializeComponent</code> when named hosts exist. For <code>App.axaml</code> lifetime, attach in <code>MainWindow.Opened</code> so the visual tree is fully materialized.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-csharp">var result = await SkyMessageBox.ConfirmAsync(
+    &quot;Delete this item permanently?&quot;,
+    title: &quot;Confirm Delete&quot;,
+    primaryText: &quot;Delete&quot;,
+    secondaryText: &quot;Cancel&quot;);
+
+if (result == SkyMessageBoxResult.Primary)
+    await DeleteItemAsync();
+</code></pre>
+<p>The static method builds a <code>SkyAlert</code> as dialog content, sets title and button text on the host, awaits the close event, and maps the button clicked to the result enum.</p>
+<h3 id="debugging-skymessagebox">Debugging SkyMessageBox</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Exception / behavior</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InvalidOperationException</code> on Attach</td>
+<td>Call <code>Attach</code> before first <code>ConfirmAsync</code></td>
+</tr>
+<tr>
+<td>Second dialog never shows</td>
+<td>Prior await stuck; gate not released in <code>finally</code></td>
+</tr>
+<tr>
+<td>Wrong button result</td>
+<td>Handler leak from previous show</td>
+</tr>
+<tr>
+<td>Dialog behind content</td>
+<td>Host declared before main content in panel</td>
+</tr>
+<tr>
+<td>Clicks pass through open dialog</td>
+<td><code>IsHitTestVisible</code> still false mid-animation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="skysnackbarhost">SkySnackbarHost</h2>
+<p>Snackbars are non-blocking notifications that auto-dismiss. The host manages a queue:</p>
+<pre><code class="language-csharp">public class SkySnackbarHost : TemplatedControl
+{
+    private readonly Queue&lt;SkySnackbarItem&gt; _queue = new();
+
+    public void Enqueue(
+        string message,
+        SkyFeedbackVariant variant = SkyFeedbackVariant.Neutral,
+        TimeSpan? duration = null)
+    {
+        var item = new SkySnackbarItem(message, variant, duration ?? TimeSpan.FromSeconds(4));
+        _queue.Enqueue(item);
+        ProcessQueueAsync();
+    }
+}
+</code></pre>
+<h3 id="queue-processing">Queue Processing</h3>
+<p>Only one snackbar is visible at a time. When the current snackbar's timer expires or the user dismisses it, the next item in the queue animates in. This prevents notification stacking from covering critical UI.</p>
+<pre><code class="language-csharp">private async Task ProcessQueueAsync()
+{
+    if (_isShowing || _queue.Count == 0) return;
+    _isShowing = true;
+
+    while (_queue.Count &gt; 0)
+    {
+        var item = _queue.Dequeue();
+        await ShowItemAsync(item);
+        await Task.Delay(item.Duration);
+        await HideItemAsync();
+    }
+
+    _isShowing = false;
+}
+</code></pre>
+<p>Use a cancellation token per item so <code>Enqueue</code> with urgent messages can skip the delay when you add priority support later.</p>
+<p>Unlike dialogs, snackbars should <strong>not</strong> set <code>IsHitTestVisible</code> on the full host — only the bar itself needs hits for the dismiss button. The rest of the window stays interactive.</p>
+<h3 id="static-facade-for-snackbars">Static Facade for Snackbars</h3>
+<p>Mirror the dialog attach pattern:</p>
+<pre><code class="language-csharp">public static class SkySnackbar
+{
+    private static SkySnackbarHost? attachedHost;
+
+    public static void Attach(SkySnackbarHost host) =&gt; attachedHost = host;
+
+    public static void Show(string message, SkyFeedbackVariant variant = SkyFeedbackVariant.Neutral)
+    {
+        (attachedHost ?? throw new InvalidOperationException(&quot;Attach snackbar host first&quot;))
+            .Enqueue(message, variant);
+    }
+}
+</code></pre>
+<p>View models call <code>SkySnackbar.Show(&quot;Saved!&quot;)</code> without injecting the host.</p>
+<h3 id="skysnackbarbar">SkySnackbarBar</h3>
+<p>Each notification is rendered by <code>SkySnackbarBar</code>, a <code>TemplatedControl</code> with variant-driven styling:</p>
+<pre><code class="language-csharp">public enum SkyFeedbackVariant
+{
+    Neutral, Info, Warning, Danger, Success
+}
+</code></pre>
+<p>The variant maps to brush tokens: <code>SkyInfoBrush</code>, <code>SkyWarningBrush</code>, <code>SkyDangerBrush</code>, and accent colors for success.</p>
+<p>Apply variant via style classes in a changed handler — same pattern as <code>Chip</code>:</p>
+<pre><code class="language-csharp">Classes.Set(&quot;feedback-info&quot;, variant == SkyFeedbackVariant.Info);
+Classes.Set(&quot;feedback-danger&quot;, variant == SkyFeedbackVariant.Danger);
+</code></pre>
+<h2 id="skysheethost-and-skyactionsheet">SkySheetHost and SkyActionSheet</h2>
+<p>Mobile action sheets use the same host pattern. <code>SkyActionSheet</code> is a static facade over <code>SkySheetHost</code>:</p>
+<pre><code class="language-csharp">public static class SkyActionSheet
+{
+    public static void Attach(SkySheetHost host) =&gt; attachedHost = host;
+
+    public static async Task&lt;SkyActionSheetResult&gt; ShowAsync(
+        IReadOnlyList&lt;SkyActionSheetItem&gt; items,
+        string? title = null,
+        SkySheetHost? host = null)
+    {
+        // Build button list, show sheet, await selection
+    }
+}
+</code></pre>
+<p><code>SkyActionSheetItem</code> carries title, destructive flag, and cancel flag. The host animates the sheet up from the bottom with the same motion system as dialogs.</p>
+<p>Destructive items use <code>SkyDangerBrush</code> in the template. Cancel items are visually separated — often in their own row with top margin — following platform conventions even on desktop when simulating mobile flows.</p>
+<p>Sheets share the semaphore pattern with dialogs if only one sheet should be visible. Alternatively, sheets queue like snackbars depending on product rules.</p>
+<h2 id="layer-coordination">Layer Coordination</h2>
+<p>When dialog, sheet, and snackbar hosts coexist:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Layer</th>
+<th>Input block</th>
+<th>Typical z-order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dialog</td>
+<td>Full window</td>
+<td>Highest</td>
+</tr>
+<tr>
+<td>Sheet</td>
+<td>Full window or bottom region</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Snackbar</td>
+<td>None (bar only)</td>
+<td>Above content, below modal</td>
+</tr>
+</tbody>
+</table>
+<p>Opening a dialog while a snackbar shows: either dismiss the snackbar immediately or leave it dimmed beneath the scrim — pick one behavior app-wide.</p>
+<h2 id="skyfeedbackvariant-across-controls">SkyFeedbackVariant Across Controls</h2>
+<p>The <code>SkyFeedbackVariant</code> enum is shared across <code>SkyAlert</code>, <code>SkyBanner</code>, <code>SkySnackbarBar</code>, and message box content. One enum drives consistent semantic coloring everywhere feedback is shown.</p>
+<p>Centralizing variants means token renames propagate through one mapping table in the theme layer.</p>
+<h2 id="avalonia-concept-routed-events-for-host-actions">Avalonia Concept: Routed Events for Host Actions</h2>
+<p>Host controls expose <code>RoutedEvent</code> instances for primary/secondary actions rather than <code>event EventHandler</code> CLR events. Routed events bubble, support class handlers, and integrate with Avalonia's event routing diagnostics. Facades subscribe temporarily per show cycle; do not use routed events for long-lived view model bindings.</p>
+<h2 id="building-your-own-overlay-system">Building Your Own Overlay System</h2>
+<ol>
+<li><strong>One host per overlay type</strong> — dialog, toast, sheet</li>
+<li><strong>Embed at root</strong> — above all page content</li>
+<li><strong>Toggle <code>IsHitTestVisible</code></strong> — only capture input when open (dialogs/sheets)</li>
+<li><strong>Animate with shared motion</strong> — consistent enter/exit across overlay types</li>
+<li><strong>Static facade for common cases</strong> — message box, action sheet</li>
+<li><strong>Semaphore for modal concurrency</strong> — one dialog at a time</li>
+<li><strong>Queue for toasts</strong> — one visible, rest wait</li>
+<li><strong>TaskCompletionSource for awaitable APIs</strong> — map user action to task result</li>
+<li><strong>Unsubscribe handlers</strong> — every show cycle cleans up prior subscriptions</li>
+</ol>
+<h2 id="testing-overlay-hosts">Testing Overlay Hosts</h2>
+<p>Headless tests can attach a host to a <code>Window</code>, call <code>Show()</code>, simulate button clicks via <code>RaiseEvent</code>, and assert task results. Test the semaphore by starting two <code>ConfirmAsync</code> calls without awaiting the first — second should wait, not throw.</p>
+<p>For visual regression, snapshot the host in open state with fake content — overlay animations are often disabled in test builds via <code>SkyMotionPreferences</code>.</p>
+<h2 id="summary">Summary</h2>
+<p>The host + facade pattern separates <strong>where</strong> overlays render (root-level host) from <strong>how</strong> they are triggered (static API or direct property setting). Animation, hit testing, and concurrency are handled inside the host so application code stays simple: <code>await SkyMessageBox.ConfirmAsync(...)</code> or <code>snackbarHost.Enqueue(&quot;Saved!&quot;)</code>. Understanding <code>IsHitTestVisible</code>, z-order, and TaskCompletionSource wiring resolves most overlay bugs without rewriting page layout.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-21-dialog-and-snackbar-hosts">Chapter 21: Dialog and Snackbar Hosts</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#why-overlays-need-hosts">Why Overlays Need Hosts</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-host-pattern">The Host Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-z-order-and-panel-children">Avalonia Concept: Z-Order and Panel Children</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skydialoghost">SkyDialogHost</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#properties-and-events">Properties and Events</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#openclose-lifecycle">Open/Close Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-ishittestvisible">Avalonia Concept: IsHitTestVisible</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#animation-on-openclose">Animation on Open/Close</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#overlay-click-to-dismiss">Overlay Click to Dismiss</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#keyboard-dismissal">Keyboard Dismissal</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-parts">Template Parts</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skymessagebox-static-facade">SkyMessageBox: Static Facade</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#taskcompletionsource-pattern">TaskCompletionSource Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#key-design-decisions">Key Design Decisions</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#application-setup">Application Setup</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-skymessagebox">Debugging SkyMessageBox</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skysnackbarhost">SkySnackbarHost</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#queue-processing">Queue Processing</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#static-facade-for-snackbars">Static Facade for Snackbars</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skysnackbarbar">SkySnackbarBar</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skysheethost-and-skyactionsheet">SkySheetHost and SkyActionSheet</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#layer-coordination">Layer Coordination</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyfeedbackvariant-across-controls">SkyFeedbackVariant Across Controls</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#avalonia-concept-routed-events-for-host-actions">Avalonia Concept: Routed Events for Host Actions</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-overlay-system">Building Your Own Overlay System</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#testing-overlay-hosts">Testing Overlay Hosts</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

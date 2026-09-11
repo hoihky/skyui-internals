@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 14 — Pagination and KPI Tiles · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 14 — Pagination and KPI Tiles</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-14-skypaginationbase-and-skykpitile">Chapter 14: SkyPaginationBase and SkyKpiTile</h1>
+<p>Data presentation controls surface information rather than collect it. This chapter examines two patterns: an abstract base class that shares paging logic between UI variants, and a self-contained templated control for metric display.</p>
+<p>Pagination and KPI tiles sit at opposite ends of complexity. Pagination manages state, commands, and derived properties across multiple visual variants. KPI tiles are nearly stateless — bind values, apply theme, done. Studying both teaches when to invest in shared infrastructure versus keeping controls minimal.</p>
+<h2 id="skypaginationbase-abstract-base-for-shared-logic">SkyPaginationBase: Abstract Base for Shared Logic</h2>
+<p>Pagination appears in two forms in SkyUI:</p>
+<ul>
+<li><code>SkyPagination</code> — a standalone pager bar with page number buttons</li>
+<li><code>SkyDataPager</code> — a compact pager integrated into data views</li>
+</ul>
+<p>Both share the same math, state properties, and navigation commands. That shared behavior lives in <code>SkyPaginationBase</code>.</p>
+<h3 id="why-abstract-base-instead-of-composition">Why Abstract Base Instead of Composition?</h3>
+<p>You could extract paging into a <code>SkyPaginationController</code> helper and inject it into both controls. SkyUI chose an abstract base because:</p>
+<ul>
+<li>Paging properties bind directly on the control in XAML (<code>CurrentPage</code>, <code>PageCount</code>)</li>
+<li>Template parts differ, but <code>OnApplyTemplate</code> logic is minimal</li>
+<li>Consumers expect a single control element, not control + controller wiring</li>
+</ul>
+<p>If a third variant needed different commands or a different state machine, a helper class would become attractive. At two variants with identical behavior, the abstract base wins on simplicity.</p>
+<h3 id="shared-state-properties">Shared State Properties</h3>
+<pre><code class="language-csharp">public abstract class SkyPaginationBase : TemplatedControl
+{
+    public static readonly StyledProperty&lt;int&gt; CurrentPageProperty =
+        AvaloniaProperty.Register&lt;SkyPaginationBase, int&gt;(nameof(CurrentPage), 1);
+
+    public static readonly StyledProperty&lt;int&gt; PageSizeProperty =
+        AvaloniaProperty.Register&lt;SkyPaginationBase, int&gt;(nameof(PageSize), 10);
+
+    public static readonly StyledProperty&lt;int&gt; TotalCountProperty =
+        AvaloniaProperty.Register&lt;SkyPaginationBase, int&gt;(nameof(TotalCount), 0);
+
+    public static readonly StyledProperty&lt;IEnumerable?&gt; ItemsSourceProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsTotalCountAutomaticProperty = ...;
+    public static readonly StyledProperty&lt;ItemsControl?&gt; TargetProperty = ...;
+}
+</code></pre>
+<p><code>CurrentPage</code>, <code>PageSize</code>, and <code>TotalCount</code> are the three inputs to paging math. <code>ItemsSource</code> provides the full data set that gets sliced. <code>Target</code> optionally binds to an <code>ItemsControl</code> whose <code>ItemsSource</code> is updated automatically when the page changes.</p>
+<p><code>IsTotalCountAutomatic</code> when true sets <code>TotalCount</code> from <code>ItemsSource.Count()</code> whenever the source changes. Disable it when <code>TotalCount</code> comes from a server response that reports total records independently of the current page's fetched items.</p>
+<h3 id="computed-state-with-direct-properties">Computed State with Direct Properties</h3>
+<p>Read-only derived values use <code>DirectProperty&lt;T&gt;</code> with backing fields:</p>
+<pre><code class="language-csharp">public static readonly DirectProperty&lt;SkyPaginationBase, int&gt; PageCountProperty =
+    AvaloniaProperty.RegisterDirect&lt;SkyPaginationBase, int&gt;(
+        nameof(PageCount), control =&gt; control.PageCount);
+
+private int pageCount;
+public int PageCount =&gt; pageCount;
+</code></pre>
+<p><code>DirectProperty</code> is appropriate when the value is computed in code and never set from XAML or styles. <code>StyledProperty</code> supports styling and inheritance; <code>DirectProperty</code> is lighter for read-only projections.</p>
+<p>When <code>TotalCount</code> or <code>PageSize</code> changes, <code>OnPagingInputChanged</code> recalculates:</p>
+<pre><code class="language-csharp">private void OnPagingInputChanged()
+{
+    pageCount = SkyPaginationMath.ComputePageCount(TotalCount, PageSize);
+    rangeStart = SkyPaginationMath.ComputeRangeStart(CurrentPage, PageSize, TotalCount);
+    rangeEnd = SkyPaginationMath.ComputeRangeEnd(CurrentPage, PageSize, TotalCount);
+    currentPageItems = SkyPaginationMath.SlicePage(ItemsSource, CurrentPage, PageSize);
+
+    canGoToFirst = CurrentPage &gt; 1;
+    canGoToPrevious = CurrentPage &gt; 1;
+    canGoToNext = CurrentPage &lt; pageCount;
+    canGoToLast = CurrentPage &lt; pageCount;
+
+    RaisePropertyChanged(PageCountProperty);
+    RaisePropertyChanged(RangeStartProperty);
+    // ... other direct properties
+
+    if (Target is not null)
+        Target.ItemsSource = currentPageItems;
+}
+</code></pre>
+<p>Consumers bind UI to <code>PageCount</code>, <code>CanGoToNext</code>, and <code>RangeStart</code> without calculating these values themselves.</p>
+<h3 id="clamping-currentpage">Clamping CurrentPage</h3>
+<p>When <code>TotalCount</code> shrinks (filter applied, items deleted), <code>CurrentPage</code> may exceed <code>PageCount</code>. Clamp in the changed handler:</p>
+<pre><code class="language-csharp">private static void OnCurrentPageChanged(SkyPaginationBase control, AvaloniaPropertyChangedEventArgs e)
+{
+    var page = (int)e.NewValue!;
+    var maxPage = SkyPaginationMath.ComputePageCount(control.TotalCount, control.PageSize);
+    if (maxPage &gt; 0 &amp;&amp; page &gt; maxPage)
+        control.CurrentPage = maxPage;
+    else
+        control.OnPagingInputChanged();
+}
+</code></pre>
+<p>Without clamping, <code>SlicePage</code> returns empty results and confuses users who were on page 5 of a list that now has 2 pages.</p>
+<h3 id="pagination-math">Pagination Math</h3>
+<p><code>SkyPaginationMath</code> is a static helper keeping formulas in one place:</p>
+<pre><code class="language-csharp">public static class SkyPaginationMath
+{
+    public static int ComputePageCount(int totalCount, int pageSize) =&gt;
+        pageSize &lt;= 0 ? 0 : Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize));
+
+    public static int ComputeRangeStart(int currentPage, int pageSize, int totalCount) =&gt;
+        totalCount == 0 ? 0 : (currentPage - 1) * pageSize + 1;
+
+    public static int ComputeRangeEnd(int currentPage, int pageSize, int totalCount) =&gt;
+        Math.Min(currentPage * pageSize, totalCount);
+
+    public static IEnumerable? SlicePage(IEnumerable? source, int page, int pageSize)
+    {
+        if (source is null || pageSize &lt;= 0) return null;
+        var skip = (page - 1) * pageSize;
+        return source.Cast&lt;object?&gt;().Skip(skip).Take(pageSize);
+    }
+}
+</code></pre>
+<p>Extracting math into a static class makes it unit-testable without creating control instances.</p>
+<p>Note that <code>ComputePageCount</code> returns 1 even when <code>totalCount</code> is 0. The UI shows &quot;page 1 of 1&quot; with zero items, which is less confusing than &quot;page 1 of 0.&quot; <code>RangeStart</code> returns 0 when empty to produce copy like &quot;Showing 0–0 of 0.&quot;</p>
+<h3 id="server-side-pagination">Server-Side Pagination</h3>
+<p>Client-side slicing works for in-memory collections. For server-side data, override the pattern:</p>
+<pre><code class="language-csharp">public class ServerPagedViewModel : INotifyPropertyChanged
+{
+    public int CurrentPage { get; set; } = 1;
+    public int PageSize { get; set; } = 25;
+    public int TotalCount { get; set; }
+
+    public ObservableCollection&lt;Item&gt; CurrentPageItems { get; } = new();
+
+    public async Task LoadPageAsync()
+    {
+        var result = await _api.GetItemsAsync(CurrentPage, PageSize);
+        CurrentPageItems.Clear();
+        foreach (var item in result.Items)
+            CurrentPageItems.Add(item);
+        TotalCount = result.TotalCount;
+    }
+}
+</code></pre>
+<p>Bind <code>SkyPagination</code> to <code>TotalCount</code> and <code>CurrentPage</code>, but set <code>ItemsSource</code> to null and bind the list directly to <code>CurrentPageItems</code>. Handle <code>PageChanged</code> to call <code>LoadPageAsync</code>.</p>
+<h3 id="navigation-commands">Navigation Commands</h3>
+<p>The base class exposes <code>ICommand</code> properties for first, previous, next, and last page:</p>
+<pre><code class="language-csharp">public ICommand FirstPageCommand =&gt; firstPageCommand;
+public ICommand PreviousPageCommand =&gt; previousPageCommand;
+public ICommand NextPageCommand =&gt; nextPageCommand;
+public ICommand LastPageCommand =&gt; lastPageCommand;
+</code></pre>
+<p>Commands are implemented as lightweight relay commands that check <code>CanExecute</code> against the <code>canGoTo*</code> flags:</p>
+<pre><code class="language-csharp">private sealed class SkyPaginationRelayCommand : ICommand
+{
+    private readonly Action _execute;
+    private readonly Func&lt;bool&gt; _canExecute;
+
+    public bool CanExecute(object? parameter) =&gt; _canExecute();
+    public void Execute(object? parameter) =&gt; _execute();
+
+    public event EventHandler? CanExecuteChanged;
+
+    public void RaiseCanExecuteChanged() =&gt;
+        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+}
+</code></pre>
+<p>Call <code>RaiseCanExecuteChanged</code> on all commands whenever <code>OnPagingInputChanged</code> updates the <code>canGoTo*</code> flags. Without this, buttons stay enabled after navigation because WPF/Avalonia does not automatically requery <code>CanExecute</code>.</p>
+<p>Wire commands in XAML:</p>
+<pre><code class="language-xml">&lt;Button Content=&quot;Previous&quot;
+        Command=&quot;{Binding PreviousPageCommand, ElementName=Pager}&quot; /&gt;
+&lt;Button Content=&quot;Next&quot;
+        Command=&quot;{Binding NextPageCommand, ElementName=Pager}&quot; /&gt;
+</code></pre>
+<h3 id="pagechanged-routed-event">PageChanged Routed Event</h3>
+<pre><code class="language-csharp">public static readonly RoutedEvent&lt;RoutedEventArgs&gt; PageChangedEvent =
+RoutedEvent.Register&lt;SkyPaginationBase, RoutedEventArgs&gt;(
+    nameof(PageChanged), RoutingStrategies.Bubble);
+</code></pre>
+<p>Raised only when <code>CurrentPage</code> actually changes, allowing view models to reload data on page navigation:</p>
+<pre><code class="language-csharp">pager.AddHandler(SkyPaginationBase.PageChangedEvent, (_, _) =&gt;
+{
+    _ = viewModel.LoadPageAsync();
+});
+</code></pre>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;StackPanel&gt;
+  &lt;ListBox ItemsSource=&quot;{Binding CurrentPageItems}&quot;
+           x:Name=&quot;ItemList&quot; /&gt;
+  &lt;SkyPagination ItemsSource=&quot;{Binding AllItems}&quot;
+                 PageSize=&quot;25&quot;
+                 TotalCount=&quot;{Binding TotalCount}&quot;
+                 Target=&quot;{Binding #ItemList}&quot; /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>The <code>Target</code> binding automatically updates the list box when the user clicks next page.</p>
+<p>Display range text in the pager template:</p>
+<pre><code class="language-xml">&lt;TextBlock&gt;
+  Showing &lt;Run Text=&quot;{Binding RangeStart}&quot; /&gt;
+  –&lt;Run Text=&quot;{Binding RangeEnd}&quot; /&gt;
+  of &lt;Run Text=&quot;{Binding TotalCount}&quot; /&gt;
+&lt;/TextBlock&gt;
+</code></pre>
+<h3 id="debugging-pagination">Debugging Pagination</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empty list on page 2</td>
+<td><code>CurrentPage</code> not clamped after filter</td>
+<td>Clamp page in changed handler</td>
+</tr>
+<tr>
+<td>Next button always enabled</td>
+<td><code>CanExecuteChanged</code> not raised</td>
+<td>Raise after flag updates</td>
+</tr>
+<tr>
+<td>Wrong item count</td>
+<td><code>IsTotalCountAutomatic</code> false but <code>TotalCount</code> stale</td>
+<td>Refresh <code>TotalCount</code> on source change</td>
+</tr>
+<tr>
+<td>Target not updating</td>
+<td><code>Target</code> binding broken</td>
+<td>Use <code>ElementName</code> or <code>x:Reference</code></td>
+</tr>
+<tr>
+<td>Skip/Take slow</td>
+<td>Large <code>IEnumerable</code> re-enumerated</td>
+<td>Use <code>IList</code> with index access</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-use-an-abstract-base">When to Use an Abstract Base</h3>
+<p>Extract an abstract base when:</p>
+<ul>
+<li>Two or more controls share identical state machine logic</li>
+<li>Subclasses differ only in visual template, not behavior</li>
+<li>Computed properties and commands are identical</li>
+</ul>
+<p>Do not use an abstract base when subclasses need different template parts with conflicting <code>OnApplyTemplate</code> logic. In that case, extract a helper class instead.</p>
+<hr />
+<h2 id="skykpitile-focused-templated-control">SkyKpiTile: Focused Templated Control</h2>
+<p><code>SkyKpiTile</code> displays a single key performance indicator: a title, a large value, and an optional delta trend.</p>
+<pre><code class="language-csharp">public class SkyKpiTile : TemplatedControl
+{
+    public static readonly StyledProperty&lt;string?&gt; TitleProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; ValueProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; DeltaProperty = ...;
+    public static readonly StyledProperty&lt;SkyKpiDeltaTrend&gt; DeltaTrendProperty = ...;
+}
+
+public enum SkyKpiDeltaTrend
+{
+    Neutral,
+    Up,
+    Down
+}
+</code></pre>
+<p><code>DeltaTrend</code> drives color selection in the theme: green for up, red for down, muted for neutral. The C# class sets a style class or pseudo-class based on the enum; the theme maps each variant to <code>SkyAccentBrush</code>, <code>SkyDangerBrush</code>, or <code>SkyTextSecondaryBrush</code>.</p>
+<h3 id="syncing-trend-to-style-classes">Syncing Trend to Style Classes</h3>
+<p>In the static constructor:</p>
+<pre><code class="language-csharp">static SkyKpiTile()
+{
+    DeltaTrendProperty.Changed.AddClassHandler&lt;SkyKpiTile&gt;((tile, e) =&gt;
+    {
+        var trend = (SkyKpiDeltaTrend)e.NewValue!;
+        tile.Classes.Set(&quot;kpi-up&quot;, trend == SkyKpiDeltaTrend.Up);
+        tile.Classes.Set(&quot;kpi-down&quot;, trend == SkyKpiDeltaTrend.Down);
+        tile.Classes.Set(&quot;kpi-neutral&quot;, trend == SkyKpiDeltaTrend.Neutral);
+    });
+}
+</code></pre>
+<p>Style classes on the control root let the template use simple selectors without converters in XAML.</p>
+<h3 id="template-structure">Template Structure</h3>
+<pre><code class="language-xml">&lt;ControlTheme x:Key=&quot;{x:Type controls:SkyKpiTile}&quot; TargetType=&quot;controls:SkyKpiTile&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate&gt;
+      &lt;Border Background=&quot;{DynamicResource SkyCardBrush}&quot;
+              CornerRadius=&quot;{DynamicResource SkyRadiusMd}&quot;
+              Padding=&quot;{DynamicResource SkySpace16Px}&quot;&gt;
+        &lt;StackPanel Spacing=&quot;4&quot;&gt;
+          &lt;TextBlock Text=&quot;{TemplateBinding Title}&quot;
+                     Foreground=&quot;{DynamicResource SkyTextSecondaryBrush}&quot;
+                     FontSize=&quot;{DynamicResource SkyFontSizeSm}&quot; /&gt;
+          &lt;TextBlock Text=&quot;{TemplateBinding Value}&quot;
+                     Foreground=&quot;{DynamicResource SkyTextPrimaryBrush}&quot;
+                     FontSize=&quot;{DynamicResource SkyFontSize2Xl}&quot;
+                     FontWeight=&quot;Bold&quot; /&gt;
+          &lt;TextBlock Text=&quot;{TemplateBinding Delta}&quot;
+                     Classes.kpi-up=&quot;{TemplateBinding DeltaTrend, Converter=...}&quot; /&gt;
+        &lt;/StackPanel&gt;
+      &lt;/Border&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p>KPI tiles are intentionally simple. They have no interaction, no template parts wired in C#, and no collection management. They are pure presentation.</p>
+<h3 id="formatting-values-in-the-view-model">Formatting Values in the View Model</h3>
+<p>Keep formatting logic out of the control:</p>
+<pre><code class="language-csharp">public string FormattedMau =&gt; $&quot;{MonthlyActiveUsers:N0}&quot;;
+public string FormattedDelta =&gt; $&quot;{DeltaPercent:+0.0;-0.0;0}%&quot;;
+public SkyKpiDeltaTrend Trend =&gt;
+    DeltaPercent &gt; 0 ? SkyKpiDeltaTrend.Up :
+    DeltaPercent &lt; 0 ? SkyKpiDeltaTrend.Down :
+    SkyKpiDeltaTrend.Neutral;
+</code></pre>
+<pre><code class="language-xml">&lt;SkyKpiTile Title=&quot;Monthly Active Users&quot;
+Value=&quot;{Binding FormattedMau}&quot;
+Delta=&quot;{Binding FormattedDelta}&quot;
+DeltaTrend=&quot;{Binding Trend}&quot; /&gt;
+</code></pre>
+<p>This keeps <code>SkyKpiTile</code> culture-agnostic and reusable.</p>
+<h3 id="dashboard-composition">Dashboard Composition</h3>
+<p>KPI tiles compose naturally with <code>SkyResponsiveGrid</code>:</p>
+<pre><code class="language-xml">&lt;SkyResponsiveGrid&gt;
+  &lt;SkyKpiTile Title=&quot;Monthly Active Users&quot;
+              Value=&quot;48,291&quot;
+              Delta=&quot;+12.4%&quot;
+              DeltaTrend=&quot;Up&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Churn Rate&quot;
+              Value=&quot;2.1%&quot;
+              Delta=&quot;-0.3%&quot;
+              DeltaTrend=&quot;Down&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Support Tickets&quot;
+              Value=&quot;1,204&quot;
+              Delta=&quot;0%&quot;
+              DeltaTrend=&quot;Neutral&quot; /&gt;
+&lt;/SkyResponsiveGrid&gt;
+</code></pre>
+<p>For loading states, wrap tiles in a container that shows skeleton placeholders until data arrives. <code>SkyKpiTile</code> does not need built-in loading UI — a parent <code>ContentControl</code> with a <code>DataTrigger</code> or view model <code>IsLoading</code> flag suffices.</p>
+<h3 id="accessibility">Accessibility</h3>
+<p>KPI tiles should expose a single accessible name combining title and value:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;AutomationProperties.Name&quot;
+Value=&quot;{Binding Title, RelativeSource={RelativeSource Self}}&quot; /&gt;
+</code></pre>
+<p>Or set in the view model: <code>AutomationProperties.SetName(tile, $&quot;Monthly Active Users: 48,291&quot;)</code>.</p>
+<h2 id="summary">Summary</h2>
+<p><code>SkyPaginationBase</code> demonstrates the <strong>abstract base class</strong> pattern for shared behavioral logic with variant visuals. <code>SkyKpiTile</code> demonstrates the <strong>simple templated control</strong> pattern for read-only data display. Data presentation controls tend toward one of these two poles: stateful logic with commands, or stateless templates with enum-driven styling.</p>
+<p>The next chapter covers <code>SkyVirtualDataGrid</code>, the most complex data presentation control in SkyUI.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-14-skypaginationbase-and-skykpitile">Chapter 14: SkyPaginationBase and SkyKpiTile</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skypaginationbase-abstract-base-for-shared-logic">SkyPaginationBase: Abstract Base for Shared Logic</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-abstract-base-instead-of-composition">Why Abstract Base Instead of Composition?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#shared-state-properties">Shared State Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#computed-state-with-direct-properties">Computed State with Direct Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#clamping-currentpage">Clamping CurrentPage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#pagination-math">Pagination Math</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#server-side-pagination">Server-Side Pagination</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#navigation-commands">Navigation Commands</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#pagechanged-routed-event">PageChanged Routed Event</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-pagination">Debugging Pagination</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#when-to-use-an-abstract-base">When to Use an Abstract Base</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skykpitile-focused-templated-control">SkyKpiTile: Focused Templated Control</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#syncing-trend-to-style-classes">Syncing Trend to Style Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-structure">Template Structure</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#formatting-values-in-the-view-model">Formatting Values in the View Model</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#dashboard-composition">Dashboard Composition</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#accessibility">Accessibility</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

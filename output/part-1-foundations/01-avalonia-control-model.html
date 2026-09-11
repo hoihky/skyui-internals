@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 1 — The Avalonia Control Model · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 1 — The Avalonia Control Model</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-1-the-avalonia-control-model">Chapter 1: The Avalonia Control Model</h1>
+<p>Every SkyUI control is an Avalonia control first. Before studying <code>SkyFormField</code> or <code>CheckedListBox</code>, you need a working mental model of how Avalonia represents UI objects, how properties flow between data and visuals, and how templates turn a C# class into something the user can see and interact with.</p>
+<p>This chapter builds that foundation. Later chapters refer back to these ideas constantly.</p>
+<h2 id="objects-properties-and-the-property-system">Objects, Properties, and the Property System</h2>
+<p>In Avalonia, almost everything meaningful inherits <code>AvaloniaObject</code>. The central idea is the <strong>styled property</strong>: a named, typed slot whose value can come from a default, a style, a binding, or a direct <code>SetValue</code> call — with a well-defined precedence order.</p>
+<p>When you write:</p>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;string?&gt; LabelProperty =
+    AvaloniaProperty.Register&lt;SkyFormField, string?&gt;(nameof(Label));
+
+public string? Label
+{
+    get =&gt; GetValue(LabelProperty);
+    set =&gt; SetValue(LabelProperty, value);
+}
+</code></pre>
+<p>you are doing four things at once:</p>
+<ol>
+<li><strong>Registering</strong> a global identity (<code>LabelProperty</code>) so the framework can route styles, bindings, and animations to this slot.</li>
+<li><strong>Declaring metadata</strong> — type, owner type, default value, binding mode, coercion, validation.</li>
+<li><strong>Exposing a CLR wrapper</strong> so C# and XAML can read and write the value naturally.</li>
+<li><strong>Enabling change notification</strong> — any change can trigger recalculation, pseudo-class updates, or layout.</li>
+</ol>
+<h3 id="property-value-precedence">Property Value Precedence</h3>
+<p>Avalonia resolves the effective value of a styled property from multiple sources. From lowest to highest priority (simplified):</p>
+<table class="table">
+<thead>
+<tr>
+<th>Source</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default value</td>
+<td>Registered at <code>AvaloniaProperty.Register</code></td>
+</tr>
+<tr>
+<td>Inherited value</td>
+<td>Font family flowing from parent</td>
+</tr>
+<tr>
+<td>Style setters</td>
+<td><code>&lt;Setter Property=&quot;Padding&quot; Value=&quot;8&quot; /&gt;</code></td>
+</tr>
+<tr>
+<td>Template bindings</td>
+<td><code>{TemplateBinding Background}</code></td>
+</tr>
+<tr>
+<td>Local value</td>
+<td><code>control.Label = &quot;Name&quot;</code> or XAML attribute</td>
+</tr>
+<tr>
+<td>Animation</td>
+<td>Running transition temporarily overriding value</td>
+</tr>
+</tbody>
+</table>
+<p>Understanding precedence matters when debugging: if your code sets <code>Background</code> but the theme style also sets it, the winner depends on whether the value is set locally or only through styling.</p>
+<h3 id="class-handlers-vs-instance-handlers">Class Handlers vs Instance Handlers</h3>
+<p>SkyUI overwhelmingly uses <strong>class handlers</strong> registered in the static constructor:</p>
+<pre><code class="language-csharp">static SkyFormField()
+{
+    ErrorMessageProperty.Changed.AddClassHandler&lt;SkyFormField&gt;(
+        (field, e) =&gt; field.SyncErrorState());
+}
+</code></pre>
+<p>A class handler runs for <strong>every</strong> instance of <code>SkyFormField</code> when <code>ErrorMessage</code> changes. This is preferable to overriding <code>OnPropertyChanged</code> when:</p>
+<ul>
+<li>The reaction is specific to one property</li>
+<li>You do not need to intercept changes before the base class sees them</li>
+<li>You want to keep instance <code>OnPropertyChanged</code> thin</li>
+</ul>
+<p>The event args (<code>AvaloniaPropertyChangedEventArgs</code>) expose <code>OldValue</code>, <code>NewValue</code>, and <code>Property</code>, which is useful when one handler serves multiple related properties.</p>
+<h2 id="direct-properties-for-computed-state">Direct Properties for Computed State</h2>
+<p>Some values should be readable in bindings but not writable from XAML. <code>SkyPaginationBase.PageCount</code> is derived from <code>TotalCount</code> and <code>PageSize</code>:</p>
+<pre><code class="language-csharp">public static readonly DirectProperty&lt;SkyPaginationBase, int&gt; PageCountProperty =
+    AvaloniaProperty.RegisterDirect&lt;SkyPaginationBase, int&gt;(
+        nameof(PageCount),
+        control =&gt; control.PageCount);
+
+private int pageCount;
+public int PageCount =&gt; pageCount;
+</code></pre>
+<p>When paging inputs change, the control recalculates <code>pageCount</code> and calls <code>RaisePropertyChanged(PageCountProperty)</code>. Direct properties are the right tool for <strong>projections</strong> of internal state — never for primary user input.</p>
+<h2 id="attached-properties">Attached Properties</h2>
+<p>Attached properties belong to a static helper class but can be set on other types:</p>
+<pre><code class="language-csharp">SkyButtonProperties.SetIsLoading(myButton, true);
+</code></pre>
+<pre><code class="language-xml">&lt;Button sky:SkyButtonProperties.IsLoading=&quot;{Binding IsSaving}&quot; /&gt;
+</code></pre>
+<p>They are covered in depth in Chapter 25. For now, remember: attached properties extend existing types without subclassing.</p>
+<h2 id="the-visual-tree-and-logical-tree">The Visual Tree and Logical Tree</h2>
+<p>Avalonia maintains two parallel hierarchies:</p>
+<p><strong>Logical tree</strong> — matches what you declared in XAML. Parent-child relationships used for resources, data context inheritance, and <code>IsLogicalAncestorOf</code> checks. When <code>SkyFormField</code> hosts a <code>TextBox</code> as content, the text box is a logical child of the field.</p>
+<p><strong>Visual tree</strong> — includes everything actually rendered, including objects created inside <code>ControlTemplate</code>. The <code>PART_Label</code> <code>TextBlock</code> inside <code>SkyFormField</code>'s template is in the visual tree but not the logical tree as a direct child of the field.</p>
+<pre><code>Logical:   SkyFormField → TextBox (content)
+Visual:    SkyFormField → [template root] → StackPanel → PART_Label, PART_InputHost → TextBox
+</code></pre>
+<p><code>SkyFormField</code> subscribes to <code>OnAttachedToLogicalTree</code> to find descendant <code>InputElement</code>s and wire <code>LostFocus</code> for validation. That only works on the <strong>logical</strong> tree — template-internal elements that are not logically attached to the field would be missed if you walked the visual tree incorrectly.</p>
+<h3 id="visual-vs-logical-tree-apis">Visual vs Logical Tree APIs</h3>
+<table class="table">
+<thead>
+<tr>
+<th>API</th>
+<th>Tree</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>this.GetVisualDescendants()</code></td>
+<td>Visual</td>
+<td>Find all <code>SkyAccordionItem</code> instances under an accordion</td>
+</tr>
+<tr>
+<td><code>this.IsLogicalAncestorOf(child)</code></td>
+<td>Logical</td>
+<td>Check if hosted input belongs to this form field</td>
+</tr>
+<tr>
+<td><code>OnAttachedToVisualTree</code></td>
+<td>Visual</td>
+<td>Start layout-sensitive work (measure bounds)</td>
+</tr>
+<tr>
+<td><code>OnAttachedToLogicalTree</code></td>
+<td>Logical</td>
+<td>Subscribe to content element events</td>
+</tr>
+</tbody>
+</table>
+<h2 id="templatedcontrol-and-controltemplate">TemplatedControl and ControlTemplate</h2>
+<p><code>TemplatedControl</code> separates <strong>behavior</strong> (C#) from <strong>structure</strong> (XAML template in the theme). The control class declares an API and template contract; the theme provides the visual tree.</p>
+<h3 id="registering-a-controltheme">Registering a ControlTheme</h3>
+<p>In <code>SkyUI.Themes.Sky</code>:</p>
+<pre><code class="language-xml">&lt;ControlTheme x:Key=&quot;{x:Type controls:SkyFormField}&quot;
+              TargetType=&quot;controls:SkyFormField&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate TargetType=&quot;controls:SkyFormField&quot;&gt;
+      &lt;StackPanel Spacing=&quot;4&quot;&gt;
+        &lt;DockPanel&gt;
+          &lt;TextBlock Name=&quot;PART_Label&quot; DockPanel.Dock=&quot;Left&quot; /&gt;
+          &lt;TextBlock Name=&quot;PART_RequiredIndicator&quot; Text=&quot;*&quot; DockPanel.Dock=&quot;Right&quot; /&gt;
+        &lt;/DockPanel&gt;
+        &lt;TextBlock Name=&quot;PART_Hint&quot; Opacity=&quot;0.7&quot; /&gt;
+        &lt;ContentPresenter Name=&quot;PART_InputHost&quot;
+                          Content=&quot;{TemplateBinding Content}&quot; /&gt;
+        &lt;TextBlock Name=&quot;PART_Error&quot; IsVisible=&quot;False&quot; /&gt;
+      &lt;/StackPanel&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p>Key bindings:</p>
+<ul>
+<li><code>{TemplateBinding Property}</code> — one-way bind to a property on the <strong>templated control</strong></li>
+<li><code>{Binding}</code> inside template — uses <code>DataContext</code> of the templated control unless overridden</li>
+<li><code>Name=&quot;PART_*&quot;</code> — registers the element in the template name scope</li>
+</ul>
+<h3 id="onapplytemplate-lifecycle">OnApplyTemplate Lifecycle</h3>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+
+    // 1. Unhook old parts (if re-applying)
+    if (_closeButton is not null)
+        _closeButton.Click -= OnCloseClick;
+
+    // 2. Resolve new parts
+    _closeButton = e.NameScope.Find(CloseButtonPartName) as Button;
+
+    // 3. Hook events
+    if (_closeButton is not null)
+        _closeButton.Click += OnCloseClick;
+
+    // 4. Push current state to parts
+    SyncErrorState();
+}
+</code></pre>
+<p><code>OnApplyTemplate</code> runs:</p>
+<ul>
+<li>After the control is first loaded with a theme</li>
+<li>When the theme changes at runtime</li>
+<li>When a new <code>Template</code> is assigned in code</li>
+</ul>
+<p>Always unhook old event handlers before replacing part references. Failure to do so causes duplicate handlers and subtle memory leaks.</p>
+<h3 id="templatepart-metadata">TemplatePart Metadata</h3>
+<pre><code class="language-csharp">[TemplatePart(InputHostPartName, typeof(ContentPresenter))]
+public class SkyFormField : TemplatedControl
+{
+    public const string InputHostPartName = &quot;PART_InputHost&quot;;
+}
+</code></pre>
+<p><code>[TemplatePart]</code> is documentation and tooling support — Avalonia does not enforce that the part exists. SkyUI uses <code>public const string</code> part names consistently so theme authors and control authors share one contract.</p>
+<h2 id="pseudo-classes">Pseudo-Classes</h2>
+<p>Pseudo-classes are boolean flags on a control that style selectors can target. They are not full properties — you do not bind to them from view models.</p>
+<pre><code class="language-csharp">[PseudoClasses(&quot;error&quot;)]
+public class SkyFormField : TemplatedControl
+{
+    private void SyncErrorState() =&gt;
+        PseudoClasses.Set(&quot;:error&quot;, HasError);
+}
+</code></pre>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyFormField.error /template/ ContentPresenter#PART_InputHost&quot;&gt;
+  &lt;Setter Property=&quot;BorderBrush&quot; Value=&quot;{DynamicResource SkyDangerBrush}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Note the selector syntax: <code>controls|SkyFormField.error</code> matches the type with pseudo-class <code>error</code>. Selectors can drill into template children with <code>/template/</code>.</p>
+<p>Pseudo-classes are ideal for <strong>derived visual state</strong> — error, expanded, resizing, compact — that consumers should not set directly.</p>
+<h2 id="style-classes-css-classes">Style Classes (CSS Classes)</h2>
+<p><code>control.Classes</code> is a set of string tags, similar to CSS classes:</p>
+<pre><code class="language-csharp">public SkyCard()
+{
+    Classes.Add(&quot;sky&quot;);
+    Classes.Add(&quot;sky-card&quot;);
+}
+
+private void SyncHoverClass() =&gt;
+    Classes.Set(&quot;sky-card-hoverable&quot;, IsHoverable);
+</code></pre>
+<p><code>Classes.Set(name, enabled)</code> adds or removes a single class atomically. Theme selectors use <code>.classname</code>:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyCard.sky-card-hoverable&quot;&gt;
+  &lt;Setter Property=&quot;BoxShadow&quot; Value=&quot;{DynamicResource SkyElevationMd}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>SkyUI uses style classes for <strong>configurable variants</strong> (primary button, outlined chip) and pseudo-classes for <strong>runtime state</strong> (error, open, resizing).</p>
+<h2 id="routed-events">Routed Events</h2>
+<p>Routed events bubble or tunnel through the visual tree:</p>
+<pre><code class="language-csharp">public static readonly RoutedEvent&lt;RoutedEventArgs&gt; DeleteRequestedEvent =
+    RoutedEvent.Register&lt;Chip, RoutedEventArgs&gt;(
+        nameof(DeleteRequested), RoutingStrategies.Bubble);
+
+public event EventHandler&lt;RoutedEventArgs&gt;? DeleteRequested
+{
+    add =&gt; AddHandler(DeleteRequestedEvent, value);
+    remove =&gt; RemoveHandler(DeleteRequestedEvent, value);
+}
+
+// Raising:
+RaiseEvent(new RoutedEventArgs(DeleteRequestedEvent));
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Direction</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bubble</td>
+<td>Child → parent</td>
+<td>Button click, item expanded</td>
+</tr>
+<tr>
+<td>Tunnel</td>
+<td>Parent → child</td>
+<td>Rare in SkyUI</td>
+</tr>
+<tr>
+<td>Direct</td>
+<td>Source only</td>
+<td>Internal handling</td>
+</tr>
+</tbody>
+</table>
+<p><code>SkyAccordion</code> listens for bubbling <code>ExpandedEvent</code> from child items to enforce single-selection mode without tight coupling.</p>
+<p>Set <code>e.Handled = true</code> on routed events when you want to stop further propagation — <code>Chip</code> does this on delete button click to prevent also firing <code>ChipClick</code>.</p>
+<h2 id="content-property-and-child-collections">Content Property and Child Collections</h2>
+<p><code>[Content]</code> marks the default XAML child property:</p>
+<pre><code class="language-csharp">[Content]
+public object? Content { get; set; }
+</code></pre>
+<pre><code class="language-xml">&lt;SkyFormField Label=&quot;Email&quot;&gt;
+  &lt;TextBox /&gt;   &lt;!-- becomes Content --&gt;
+&lt;/SkyFormField&gt;
+</code></pre>
+<p>For collections, <code>[Content]</code> on <code>IList Items</code> allows:</p>
+<pre><code class="language-xml">&lt;SkyNavigationView&gt;
+  &lt;SkyNavigationViewItem Content=&quot;Home&quot; /&gt;
+  &lt;SkyNavigationViewItem Content=&quot;Settings&quot; /&gt;
+&lt;/SkyNavigationView&gt;
+</code></pre>
+<h2 id="data-binding-modes">Data Binding Modes</h2>
+<p>When registering input properties, set the default binding mode explicitly:</p>
+<pre><code class="language-csharp">AvaloniaProperty.Register&lt;SkyAutocomplete, string?&gt;(
+nameof(Text), defaultBindingMode: BindingMode.TwoWay);
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Mode</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OneWay</td>
+<td>Source → control</td>
+</tr>
+<tr>
+<td>TwoWay</td>
+<td>Source ↔ control</td>
+</tr>
+<tr>
+<td>OneTime</td>
+<td>Source → control once</td>
+</tr>
+<tr>
+<td>OneWayToSource</td>
+<td>Control → source only</td>
+</tr>
+</tbody>
+</table>
+<p>SkyUI uses TwoWay for user-editable values (<code>Text</code>, <code>SelectedItem</code>, <code>Value</code>, <code>IsOpen</code>) and OneWay for display-only projections unless the consumer overrides in XAML.</p>
+<h2 id="re-owning-properties-from-base-types">Re-Owning Properties from Base Types</h2>
+<p><code>SkySlider</code> does not reimplement slider math. It <strong>re-owns</strong> properties from <code>RangeBase</code> and <code>Slider</code>:</p>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;double&gt; ValueProperty =
+RangeBase.ValueProperty.AddOwner&lt;SkySlider&gt;();
+</code></pre>
+<p><code>AddOwner&lt;T&gt;()</code> registers the same property on a derived type so styles and bindings target <code>SkySlider.Value</code> while Avalonia's built-in <code>Slider</code> inside the template can bind to the same property on the outer control via <code>{TemplateBinding Value}</code>.</p>
+<p>This pattern keeps composite controls thin: outer API surface matches inner primitive behavior.</p>
+<h2 id="measure-arrange-and-layout-brief">Measure, Arrange, and Layout (Brief)</h2>
+<p>Even templated controls participate in layout. The panel system calls:</p>
+<ol>
+<li><strong>Measure</strong> — child reports desired size</li>
+<li><strong>Arrange</strong> — parent assigns final bounds</li>
+</ol>
+<p><code>SkyResponsiveGrid</code> overrides <code>OnPropertyChanged</code> for <code>BoundsProperty</code> because when the control's allocated width changes, column count must update. Custom <code>Panel</code> subclasses (Chapter 27) override <code>MeasureOverride</code> and <code>ArrangeOverride</code> directly.</p>
+<h2 id="summary-checklist-for-control-authors">Summary Checklist for Control Authors</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Concept</th>
+<th>SkyUI usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StyledProperty</td>
+<td>All bindable API</td>
+</tr>
+<tr>
+<td>DirectProperty</td>
+<td>PageCount, computed flags</td>
+</tr>
+<tr>
+<td>Class handler</td>
+<td>Property → pseudo-class / class sync</td>
+</tr>
+<tr>
+<td>OnApplyTemplate</td>
+<td>Wire PART_* elements</td>
+</tr>
+<tr>
+<td>Pseudo-classes</td>
+<td>Error, expanded, open, compact</td>
+</tr>
+<tr>
+<td>Style classes</td>
+<td>sky-*, variant names</td>
+</tr>
+<tr>
+<td>Routed events</td>
+<td>Delete, close, selection changed</td>
+</tr>
+<tr>
+<td>Logical tree hooks</td>
+<td>Form field validation on focus loss</td>
+</tr>
+<tr>
+<td>AddOwner</td>
+<td>SkySlider value, SkyIcon foreground</td>
+</tr>
+</tbody>
+</table>
+<p>With this model in place, the next chapter maps how SkyUI organizes dozens of controls into composable packages.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-1-the-avalonia-control-model">Chapter 1: The Avalonia Control Model</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#objects-properties-and-the-property-system">Objects, Properties, and the Property System</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#property-value-precedence">Property Value Precedence</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#class-handlers-vs-instance-handlers">Class Handlers vs Instance Handlers</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#direct-properties-for-computed-state">Direct Properties for Computed State</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#attached-properties">Attached Properties</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-visual-tree-and-logical-tree">The Visual Tree and Logical Tree</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#visual-vs-logical-tree-apis">Visual vs Logical Tree APIs</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#templatedcontrol-and-controltemplate">TemplatedControl and ControlTemplate</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#registering-a-controltheme">Registering a ControlTheme</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#onapplytemplate-lifecycle">OnApplyTemplate Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#templatepart-metadata">TemplatePart Metadata</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#pseudo-classes">Pseudo-Classes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#style-classes-css-classes">Style Classes (CSS Classes)</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#routed-events">Routed Events</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#content-property-and-child-collections">Content Property and Child Collections</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#data-binding-modes">Data Binding Modes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#re-owning-properties-from-base-types">Re-Owning Properties from Base Types</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#measure-arrange-and-layout-brief">Measure, Arrange, and Layout (Brief)</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary-checklist-for-control-authors">Summary Checklist for Control Authors</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

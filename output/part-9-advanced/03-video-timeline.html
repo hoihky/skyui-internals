@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 29 — VideoTimeline · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 29 — VideoTimeline</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-29-videotimeline">Chapter 29: VideoTimeline</h1>
+<p><code>VideoTimeline</code> is a sealed <code>TemplatedControl</code> for multi-track video editing UIs — clips on lanes, playhead scrubbing, range selection, markers, and clipboard operations. At over 1,600 lines, it is SkyUI's largest single control and demonstrates <strong>imperative canvas interaction</strong> within a templated shell.</p>
+<h2 id="domain-model">Domain Model</h2>
+<p>Bindable collections represent timeline data:</p>
+<pre><code class="language-csharp">public sealed class VideoTimeline : TemplatedControl
+{
+    public static readonly DirectProperty&lt;VideoTimeline, ObservableCollection&lt;TimelineTrackItem&gt;&gt; TracksProperty = ...;
+    public static readonly DirectProperty&lt;VideoTimeline, ObservableCollection&lt;TimelineClipItem&gt;&gt; ClipsProperty = ...;
+    public static readonly DirectProperty&lt;VideoTimeline, ObservableCollection&lt;TimelineMarkerItem&gt;&gt; MarkersProperty = ...;
+
+    public static readonly StyledProperty&lt;double&gt; DurationProperty = ...;        // default 120 seconds
+    public static readonly StyledProperty&lt;double&gt; PixelsPerSecondProperty = ...; // default 40
+    public static readonly StyledProperty&lt;double&gt; PlayheadTimeProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsPlayingProperty = ...;
+}
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Type</th>
+<th>Represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TimelineTrackItem</code></td>
+<td>Named lane (video, audio, subtitle)</td>
+</tr>
+<tr>
+<td><code>TimelineClipItem</code></td>
+<td>Segment on a track with start time and duration</td>
+</tr>
+<tr>
+<td><code>TimelineMarkerItem</code></td>
+<td>Point annotation on the ruler</td>
+</tr>
+</tbody>
+</table>
+<h2 id="template-parts-for-scroll-sync">Template Parts for Scroll Sync</h2>
+<p>Multiple synchronized scroll viewers:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_RulerScroll</code></td>
+<td>Horizontal time ruler</td>
+</tr>
+<tr>
+<td><code>PART_RulerCanvas</code></td>
+<td>Tick marks and time labels</td>
+</tr>
+<tr>
+<td><code>PART_VerticalTrackScroll</code></td>
+<td>Track headers</td>
+</tr>
+<tr>
+<td><code>PART_MainScroll</code></td>
+<td>Clip canvas horizontal scroll</td>
+</tr>
+<tr>
+<td><code>PART_MainCanvas</code></td>
+<td>Clip rectangles, selection, playhead</td>
+</tr>
+</tbody>
+</table>
+<p>Ruler and main canvas scroll horizontally together — pointer handlers on one update offset on the other.</p>
+<h2 id="coordinate-system">Coordinate System</h2>
+<p>Horizontal position maps time to pixels:</p>
+<pre><code class="language-csharp">private double TimeToX(double time) =&gt; time * PixelsPerSecond;
+private double XToTime(double x) =&gt; x / PixelsPerSecond;
+</code></pre>
+<p><code>Duration</code> and <code>PixelsPerSecond</code> define virtual canvas width = <code>Duration * PixelsPerSecond</code>. Vertical position maps to track index from <code>Tracks</code> collection order.</p>
+<h2 id="playback-timer">Playback Timer</h2>
+<pre><code class="language-csharp">public void Play()
+{
+    IsPlaying = true;
+    _playTimer.Start();
+}
+
+private void OnPlayTick()
+{
+    PlayheadTime = Math.Min(PlayheadTime + tickDelta, Duration);
+    if (PlayheadTime &gt;= Duration)
+        Stop();
+    InvalidateVisual();
+}
+</code></pre>
+<p><code>PlayheadTime</code> is bindable — external preview players can sync to the same property.</p>
+<h2 id="interaction-state-machine">Interaction State Machine</h2>
+<p>Pointer handlers manage modes:</p>
+<ol>
+<li><strong>Scrub</strong> — drag on ruler moves playhead</li>
+<li><strong>Select clip</strong> — click clip updates selection, raises <code>ClipSelectionChanged</code></li>
+<li><strong>Move clip</strong> — drag clip changes start time on track</li>
+<li><strong>Range select</strong> — drag on empty canvas selects time range (<code>TimeRangeSelectionChanged</code>)</li>
+<li><strong>Zoom</strong> — mouse wheel adjusts <code>PixelsPerSecond</code> within clamped bounds</li>
+</ol>
+<p>Each mode captures pointer on press and releases on pointer up. <code>Focusable = true</code> enables keyboard shortcuts (delete selected clips, copy/paste).</p>
+<h2 id="clipboard-api">Clipboard API</h2>
+<pre><code class="language-csharp">public void CopySelectionToClipboard();
+public void CutSelectionToClipboard();
+public void PasteClipboardAtPlayhead();
+</code></pre>
+<p>Uses <code>SkyClipboard</code> helpers to serialize selected <code>TimelineClipItem</code> data. Paste creates new clips at <code>PlayheadTime</code> offset.</p>
+<h2 id="collection-change-handling">Collection Change Handling</h2>
+<pre><code class="language-csharp">public ObservableCollection&lt;TimelineClipItem&gt; Clips
+{
+    set
+    {
+        if (_clips == value) return;
+        UnhookClips(_clips);
+        _clips = value;
+        HookClips(_clips);
+        FullRebuild();
+    }
+}
+</code></pre>
+<p><code>INotifyCollectionChanged</code> on clips and tracks triggers <code>FullRebuild()</code> to recalculate layout metrics. Individual property changes on clip items (start time, duration) trigger partial invalidation.</p>
+<h2 id="mvvm-integration">MVVM Integration</h2>
+<p>View models hold the same collection instances the control binds to:</p>
+<pre><code class="language-csharp">public class EditorViewModel
+{
+    public ObservableCollection&lt;TimelineTrackItem&gt; Tracks { get; } = new();
+    public ObservableCollection&lt;TimelineClipItem&gt; Clips { get; } = new();
+    public double PlayheadTime { get; set; }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;VideoTimeline Tracks=&quot;{Binding Tracks}&quot;
+Clips=&quot;{Binding Clips}&quot;
+PlayheadTime=&quot;{Binding PlayheadTime, Mode=TwoWay}&quot;
+Duration=&quot;{Binding ProjectDuration}&quot; /&gt;
+</code></pre>
+<p>The control mutates clip positions during drag; view models should use observable clip models or listen to timeline events to persist changes.</p>
+<h2 id="custom-rendering-vs-child-controls">Custom Rendering vs Child Controls</h2>
+<p>Clips are drawn on <code>PART_MainCanvas</code> via <code>DrawingContext</code> or positioned <code>Border</code> children — the implementation chooses based on interaction needs. Hit testing maps pointer position to clip bounds stored in layout cache.</p>
+<p>This hybrid — templated scroll chrome + imperative canvas content — is common in professional editing controls.</p>
+<h2 id="when-to-study-videotimeline">When to Study VideoTimeline</h2>
+<p>Use this control as reference when building:</p>
+<ul>
+<li>Gantt charts with drag-resize bars</li>
+<li>Audio waveforms with scrubbing</li>
+<li>Scheduling grids with time axes</li>
+<li>Any zoomable, scrollable custom canvas</li>
+</ul>
+<p>Do <strong>not</strong> use it as reference for simple form controls — the complexity is domain-driven.</p>
+<h2 id="deep-dive-scroll-synchronization">Deep Dive: Scroll Synchronization</h2>
+<p>Three <code>ScrollViewer</code> instances must stay aligned:</p>
+<table class="table">
+<thead>
+<tr>
+<th>ScrollViewer</th>
+<th>Axis</th>
+<th>Synced with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_RulerScroll</code></td>
+<td>Horizontal</td>
+<td><code>PART_MainScroll</code></td>
+</tr>
+<tr>
+<td><code>PART_MainScroll</code></td>
+<td>Horizontal + vertical</td>
+<td>Ruler horizontal</td>
+</tr>
+<tr>
+<td><code>PART_VerticalTrackScroll</code></td>
+<td>Vertical</td>
+<td>Main vertical</td>
+</tr>
+</tbody>
+</table>
+<p>When the user scrolls the clip canvas horizontally, handlers copy <code>Offset.X</code> to the ruler scroll viewer so tick marks align with clips:</p>
+<pre><code class="language-csharp">private void OnMainScrollChanged(object? sender, ScrollChangedEventArgs e)
+{
+    if (_rulerScroll is not null &amp;&amp; Math.Abs(_rulerScroll.Offset.X - e.NewOffset.X) &gt; 0.5)
+        _rulerScroll.Offset = new Vector(e.NewOffset.X, _rulerScroll.Offset.Y);
+}
+</code></pre>
+<p>Guard with epsilon to prevent feedback loops when both handlers react to each other.</p>
+<h3 id="layout-scroll-restore">Layout Scroll Restore</h3>
+<p>After <code>FullRebuild()</code>, scroll positions restore from <code>_pendingLayoutScrollRestore</code> — rebuilding clip visuals resets scroll without this would jump the playhead off-screen.</p>
+<hr />
+<h2 id="deep-dive-clip-visual-lifecycle">Deep Dive: Clip Visual Lifecycle</h2>
+<p>Clips are not one-control-per-model in the logical tree indefinitely. <code>FullRebuild()</code> clears <code>_clipBorders</code> and recreates <code>Border</code> elements positioned on <code>PART_MainCanvas</code>:</p>
+<pre><code class="language-csharp">private void FullRebuild()
+{
+    _mainCanvas?.Children.Clear();
+    _clipBorders.Clear();
+    foreach (var clip in Clips)
+        AddClipVisual(clip);
+    DrawPlayhead();
+    DrawMarkers();
+}
+</code></pre>
+<p><code>AddClipVisual</code> computes:</p>
+<pre><code class="language-csharp">var left = TimeToX(clip.StartTime);
+var width = TimeToX(clip.Duration);
+var top = TrackIndexToY(clip.TrackId);
+</code></pre>
+<p>Hook <code>PropertyChanged</code> on each <code>TimelineClipItem</code> for live updates when view model mutates start/duration during drag.</p>
+<h3 id="trim-handles">Trim Handles</h3>
+<p><code>TrimHandleWidth = 8</code> pixels at clip left/right edges. Pointer near edge starts trim drag instead of move drag — changes <code>StartTime</code> or <code>Duration</code> without moving the whole clip.</p>
+<p><code>MinClipDurationSeconds = 0.08</code> prevents collapse to zero length.</p>
+<hr />
+<h2 id="deep-dive-selection-and-clipboard">Deep Dive: Selection and Clipboard</h2>
+<pre><code class="language-csharp">private readonly HashSet&lt;string&gt; _selectedClipIds = new(StringComparer.Ordinal);
+
+public IReadOnlyList&lt;TimelineClipItem&gt; GetSelectedClips() =&gt;
+    Clips.Where(c =&gt; _selectedClipIds.Contains(c.Id)).ToList();
+</code></pre>
+<p>Selection is internal — the control does not expose <code>SelectedClips</code> as a bindable property to avoid fighting MVVM selection state. Listen to <code>ClipSelectionChanged</code> and call <code>GetSelectedClips()</code> to sync outward.</p>
+<h3 id="copy-cut-paste">Copy / Cut / Paste</h3>
+<pre><code class="language-csharp">public void CopySelectionToClipboard();
+public void CutSelectionToClipboard();
+public void PasteClipboardAtPlayhead();
+</code></pre>
+<p>Internal <code>_clipboard</code> list clones <code>TimelineClipItem</code> data. Paste offsets clips to <code>PlayheadTime</code> so inserted segments align with the current scrub position. <code>ClipsPasted</code> event carries new IDs for undo stack integration.</p>
+<hr />
+<h2 id="deep-dive-playback-loop">Deep Dive: Playback Loop</h2>
+<pre><code class="language-csharp">private readonly DispatcherTimer _playTimer = new() { Interval = TimeSpan.FromMilliseconds(33) };
+
+// ~30 fps
+private void OnPlayTick(object? sender, EventArgs e)
+{
+    var next = PlayheadTime + 0.033;
+    if (next &gt;= Duration)
+    {
+        PlayheadTime = Duration;
+        Stop();
+    }
+    else
+        PlayheadTime = next;
+    InvalidatePlayhead();
+}
+</code></pre>
+<p><code>PlayheadTime</code> is a styled property with coercion to <code>[0, Duration]</code>. External preview engines can bind two-way and drive the same property while muting the internal timer.</p>
+<p><code>Seek(double time)</code> jumps playhead and raises <code>PlayheadChanged</code> without starting playback.</p>
+<hr />
+<h2 id="deep-dive-time-range-selection">Deep Dive: Time Range Selection</h2>
+<p>Drag on empty canvas (not on a clip) creates a shaded range between two times:</p>
+<pre><code class="language-csharp">public bool HasTimeRangeSelection { get; }
+public (double Start, double End) TimeRangeSelection { get; }
+</code></pre>
+<p><code>TimeRangeSelectionChanged</code> fires when the user completes drag. Export, delete range, or loop playback can consume the range — the control only surfaces geometry.</p>
+<hr />
+<h2 id="deep-dive-track-reorder">Deep Dive: Track Reorder</h2>
+<p>Drag track header in <code>PART_HeaderStack</code> past <code>TrackReorderDragThreshold</code> (8px):</p>
+<ol>
+<li>Highlight drop index</li>
+<li>On release, reorder <code>Tracks</code> collection</li>
+<li>Raise <code>TrackOrderChanged</code> with old/new indices</li>
+</ol>
+<p>Clips reference <code>TrackId</code> string — reordering tracks does not mutate clips, only Y layout mapping.</p>
+<hr />
+<h2 id="deep-dive-wheel-zoom">Deep Dive: Wheel Zoom</h2>
+<pre><code class="language-csharp">private void OnMainCanvasPointerWheelChanged(object? sender, PointerWheelEventArgs e)
+{
+    var factor = e.Delta.Y &gt; 0 ? 1.1 : 0.9;
+    PixelsPerSecond = Math.Clamp(PixelsPerSecond * factor, MinPps, MaxPps);
+    FullRebuild();
+}
+</code></pre>
+<p><code>PixelsPerSecond</code> coercion keeps zoom within usable range. Zoom anchors at playhead or pointer X depending on implementation — check source for <code>ZoomAt</code> behavior when extending.</p>
+<hr />
+<h2 id="property-coercion">Property Coercion</h2>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;double&gt; DurationProperty =
+AvaloniaProperty.Register&lt;VideoTimeline, double&gt;(nameof(Duration), 120, coerce: CoerceDuration);
+</code></pre>
+<p>Coercion clamps <code>PlayheadTime</code> when <code>Duration</code> shrinks, preventing playhead stranded past end. Always register coerce callbacks when properties have cross-dependencies.</p>
+<hr />
+<h2 id="mvvm-contract-summary">MVVM Contract Summary</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Bind to VM</th>
+<th>Control owns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tracks</code>, <code>Clips</code>, <code>Markers</code> collections</td>
+<td>Clip selection set</td>
+</tr>
+<tr>
+<td><code>Duration</code>, <code>PixelsPerSecond</code></td>
+<td>Scroll sync internals</td>
+</tr>
+<tr>
+<td><code>PlayheadTime</code>, <code>IsPlaying</code></td>
+<td>Play timer</td>
+</tr>
+<tr>
+<td><code>SelectedTrackId</code></td>
+<td>Track highlight</td>
+</tr>
+</tbody>
+</table>
+<p>Mutate collections on the VM; listen to events for edits initiated inside the control (drag, delete, paste).</p>
+<hr />
+<h2 id="architecture-diagram">Architecture Diagram</h2>
+<pre><code>┌──────────────── VideoTimeline ─────────────────┐
+│ PART_RulerScroll → PART_RulerCanvas (ticks)   │
+│ PART_VerticalTrackScroll → PART_HeaderStack   │
+│ PART_MainScroll → PART_MainCanvas             │
+│     ├── Clip borders (positioned by time)     │
+│     ├── Playhead line                         │
+│     ├── Range selection shade                 │
+│     └── Markers                               │
+│ DispatcherTimer (playback)                    │
+│ Pointer state: move | trim | select | scrub   │
+└───────────────────────────────────────────────┘
+</code></pre>
+<h2 id="debugging-checklist">Debugging Checklist</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ruler out of sync</td>
+<td>Main scroll handler not copying X offset</td>
+</tr>
+<tr>
+<td>Clips wrong track Y</td>
+<td><code>TrackId</code> mismatch after reorder</td>
+</tr>
+<tr>
+<td>Playhead jumps on rebuild</td>
+<td>Scroll restore not applied</td>
+</tr>
+<tr>
+<td>Selection lost after zoom</td>
+<td><code>FullRebuild</code> clearing without restoring <code>_selectedClipIds</code></td>
+</tr>
+<tr>
+<td>Paste at wrong time</td>
+<td><code>PlayheadTime</code> not updated before paste</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p><code>VideoTimeline</code> pushes SkyUI's templated control model to its limit: triple scroll sync, imperative clip canvas, trim/move pointer modes, internal selection with clipboard, and coerced time properties. It complements <code>DiagramSurface</code> (Chapter 27) — spatial data on a time axis instead of free-form graph coordinates.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-29-videotimeline">Chapter 29: VideoTimeline</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#domain-model">Domain Model</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#template-parts-for-scroll-sync">Template Parts for Scroll Sync</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#coordinate-system">Coordinate System</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#playback-timer">Playback Timer</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#interaction-state-machine">Interaction State Machine</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#clipboard-api">Clipboard API</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#collection-change-handling">Collection Change Handling</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#mvvm-integration">MVVM Integration</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#custom-rendering-vs-child-controls">Custom Rendering vs Child Controls</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#when-to-study-videotimeline">When to Study VideoTimeline</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-scroll-synchronization">Deep Dive: Scroll Synchronization</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#layout-scroll-restore">Layout Scroll Restore</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-clip-visual-lifecycle">Deep Dive: Clip Visual Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#trim-handles">Trim Handles</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-selection-and-clipboard">Deep Dive: Selection and Clipboard</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#copy-cut-paste">Copy / Cut / Paste</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-playback-loop">Deep Dive: Playback Loop</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-time-range-selection">Deep Dive: Time Range Selection</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-track-reorder">Deep Dive: Track Reorder</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-wheel-zoom">Deep Dive: Wheel Zoom</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#property-coercion">Property Coercion</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#mvvm-contract-summary">MVVM Contract Summary</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#architecture-diagram">Architecture Diagram</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-checklist">Debugging Checklist</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

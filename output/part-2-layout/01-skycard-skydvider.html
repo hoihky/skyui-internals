@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 5 — SkyCard and SkyDivider · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 5 — SkyCard and SkyDivider</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-5-skycard-and-skydivider">Chapter 5: SkyCard and SkyDivider</h1>
+<p>Part II examines layout controls — the building blocks that structure content on screen. We begin with two controls at opposite ends of the complexity spectrum: <code>SkyCard</code>, a composed container built on <code>ContentControl</code>, and <code>SkyDivider</code>, a minimal <code>TemplatedControl</code> that demonstrates pseudo-class-driven orientation.</p>
+<p>Both controls illustrate core Avalonia ideas: the property system for bindable API surface, <code>ControlTheme</code> for visual structure, and the split between logical content (what you declare) and visual tree nodes (what the template renders).</p>
+<h2 id="skycard-composition-without-templates">SkyCard: Composition Without Templates</h2>
+<p><code>SkyCard</code> is an elevated surface that groups related content with optional header and footer regions. It inherits <code>ContentControl</code> rather than <code>TemplatedControl</code> because its visual structure is simple enough to live entirely in theme XAML while the C# class focuses on API surface.</p>
+<p>Choosing <code>ContentControl</code> signals intent: the control <strong>hosts</strong> content; it does not own complex interaction logic inside named template parts. Avalonia already provides <code>Content</code>, <code>ContentTemplate</code>, and content presenter infrastructure. SkyCard adds optional header/footer slots on top of that model.</p>
+<h3 id="the-property-surface">The Property Surface</h3>
+<pre><code class="language-csharp">public class SkyCard : ContentControl
+{
+    public static readonly StyledProperty&lt;object?&gt; HeaderProperty =
+        AvaloniaProperty.Register&lt;SkyCard, object?&gt;(nameof(Header));
+
+    public static readonly StyledProperty&lt;IDataTemplate?&gt; HeaderTemplateProperty =
+        AvaloniaProperty.Register&lt;SkyCard, IDataTemplate?&gt;(nameof(HeaderTemplate));
+
+    public static readonly StyledProperty&lt;object?&gt; FooterProperty =
+        AvaloniaProperty.Register&lt;SkyCard, object?&gt;(nameof(Footer));
+
+    public static readonly StyledProperty&lt;IDataTemplate?&gt; FooterTemplateProperty =
+        AvaloniaProperty.Register&lt;SkyCard, IDataTemplate?&gt;(nameof(FooterTemplate));
+
+    public static readonly StyledProperty&lt;bool&gt; IsHoverableProperty =
+        AvaloniaProperty.Register&lt;SkyCard, bool&gt;(nameof(IsHoverable));
+}
+</code></pre>
+<p>Four design decisions are visible here:</p>
+<ol>
+<li><strong>Header and Footer as <code>object?</code></strong> — They accept a string, a <code>Control</code>, or any data object paired with a template</li>
+<li><strong>Separate template properties</strong> — <code>HeaderTemplate</code> and <code>FooterTemplate</code> follow the Avalonia item-template pattern used by <code>ContentControl</code> itself</li>
+<li><strong>Main content via inherited <code>Content</code></strong> — <code>ContentControl</code> already provides <code>Content</code> and <code>ContentTemplate</code>; SkyCard does not duplicate them</li>
+<li><strong><code>IsHoverable</code> as behavioral flag</strong> — Drives a style class rather than a pseudo-class because hover is a configurational preference, not a transient interaction state like <code>:pointerover</code></li>
+</ol>
+<h3 id="contentcontrol-and-the-logical-tree">ContentControl and the Logical Tree</h3>
+<p>When you write:</p>
+<pre><code class="language-xml">&lt;SkyCard&gt;
+  &lt;ListBox ItemsSource=&quot;{Binding Items}&quot; /&gt;
+&lt;/SkyCard&gt;
+</code></pre>
+<p>The <code>ListBox</code> is a <strong>logical child</strong> of the <code>SkyCard</code>. Data context inheritance flows from parent to child unless explicitly overridden. Bindings inside the list resolve against the page view model, not against <code>SkyCard</code> properties — unless you set <code>SkyCard.DataContext</code> separately.</p>
+<p>Header and footer set through attached property syntax remain logical content owned by the card:</p>
+<pre><code class="language-xml">&lt;SkyCard Header=&quot;Settings&quot;&gt;
+  ...
+&lt;/SkyCard&gt;
+</code></pre>
+<p>The string <code>&quot;Settings&quot;</code> is stored on <code>HeaderProperty</code>; the theme's <code>ContentPresenter</code> displays it via <code>{TemplateBinding Header}</code>.</p>
+<h3 id="style-classes-in-the-constructor">Style Classes in the Constructor</h3>
+<pre><code class="language-csharp">public SkyCard()
+{
+    Classes.Add(&quot;sky&quot;);
+    Classes.Add(&quot;sky-card&quot;);
+}
+
+static SkyCard()
+{
+    IsHoverableProperty.Changed.AddClassHandler&lt;SkyCard&gt;(
+        (card, _) =&gt; card.SyncHoverClass());
+}
+
+private void SyncHoverClass() =&gt;
+    Classes.Set(&quot;sky-card-hoverable&quot;, IsHoverable);
+</code></pre>
+<p>Adding classes in the constructor guarantees every <code>SkyCard</code> instance is styled even if the consumer forgets to set <code>Classes</code> in XAML. The hover class toggles reactively: when <code>IsHoverable</code> becomes true, <code>sky-card-hoverable</code> is added; when false, it is removed.</p>
+<p>Theme styles target <code>SkyCard.sky-card-hoverable</code> to apply elevation or border changes on pointer over. Because this is a <strong>style class</strong> toggled from C#, the card does not need <code>:pointerover</code> pseudo-class logic in the control class — Avalonia's built-in pointer pseudo-classes still apply on the control; the extra class gates whether hover <strong>visuals</strong> activate.</p>
+<h3 id="theme-template-structure">Theme Template Structure</h3>
+<p>The <code>ControlTheme</code> for <code>SkyCard</code> typically looks like:</p>
+<pre><code class="language-xml">&lt;ControlTheme x:Key=&quot;{x:Type controls:SkyCard}&quot; TargetType=&quot;controls:SkyCard&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate&gt;
+      &lt;Border Name=&quot;PART_Root&quot;
+              Background=&quot;{DynamicResource SkyCardBrush}&quot;
+              CornerRadius=&quot;{DynamicResource SkyRadiusLg}&quot;
+              BoxShadow=&quot;{DynamicResource SkyElevationSm}&quot;&gt;
+        &lt;StackPanel&gt;
+          &lt;ContentPresenter Name=&quot;PART_HeaderPresenter&quot;
+                            Content=&quot;{TemplateBinding Header}&quot;
+                            ContentTemplate=&quot;{TemplateBinding HeaderTemplate}&quot;
+                            IsVisible=&quot;{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}&quot; /&gt;
+          &lt;ContentPresenter Content=&quot;{TemplateBinding Content}&quot;
+                            ContentTemplate=&quot;{TemplateBinding ContentTemplate}&quot;
+                            Margin=&quot;{DynamicResource SkySpace16Px}&quot; /&gt;
+          &lt;ContentPresenter Name=&quot;PART_FooterPresenter&quot;
+                            Content=&quot;{TemplateBinding Footer}&quot;
+                            ContentTemplate=&quot;{TemplateBinding FooterTemplate}&quot;
+                            IsVisible=&quot;{TemplateBinding Footer, Converter={x:Static ObjectConverters.IsNotNull}}&quot; /&gt;
+        &lt;/StackPanel&gt;
+      &lt;/Border&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p><code>PART_Root</code> is declared with <code>[TemplatePart]</code> metadata even though <code>SkyCard</code> does not override <code>OnApplyTemplate</code>. The part name documents the template contract for theme authors and enables future C# logic (such as elevation animation on press) without breaking the template.</p>
+<h3 id="visual-tree-layout">Visual Tree Layout</h3>
+<p>After template application, the visual tree resembles:</p>
+<pre><code>SkyCard (logical + visual)
+└── Border [PART_Root]          ← visual only
+    └── StackPanel               ← visual only
+        ├── ContentPresenter [PART_HeaderPresenter]
+        ├── ContentPresenter     ← main content host
+        │   └── ListBox          ← logical child appears here visually
+        └── ContentPresenter [PART_FooterPresenter]
+</code></pre>
+<p>Developers navigate the logical tree for data context and lifecycle. Tools and hit-testing walk the visual tree. When debugging &quot;my header does not show,&quot; verify both that <code>Header</code> is set and that <code>PART_HeaderPresenter</code> is visible in the visual tree.</p>
+<h3 id="step-by-step-card-with-bound-header-and-custom-content">Step-by-Step: Card with Bound Header and Custom Content</h3>
+<p><strong>Goal:</strong> Dashboard tile with dynamic title and a chart control inside.</p>
+<ol>
+<li><strong>View model</strong> exposes <code>TileTitle</code> and chart data series</li>
+<li><strong>XAML:</strong></li>
+</ol>
+<pre><code class="language-xml">&lt;SkyCard Header=&quot;{Binding TileTitle}&quot;
+         IsHoverable=&quot;True&quot;&gt;
+  &lt;SkySparkline Values=&quot;{Binding Series}&quot; /&gt;
+&lt;/SkyCard&gt;
+</code></pre>
+<ol start="3">
+<li><strong>Binding path</strong> resolves <code>TileTitle</code> from the card's inherited data context</li>
+<li><strong><code>Header</code> binding</strong> is one-way by default — sufficient for display text</li>
+<li><strong>Theme</strong> applies hover elevation when pointer enters and <code>sky-card-hoverable</code> is present</li>
+</ol>
+<p>To replace the default header text block with an icon + title layout, set <code>HeaderTemplate</code> on the card or define a implicit data template in resources — same pattern as <code>ItemsControl</code> items.</p>
+<h3 id="usage-patterns">Usage Patterns</h3>
+<p><strong>Simple card with text content:</strong></p>
+<pre><code class="language-xml">&lt;SkyCard&gt;
+  &lt;TextBlock Text=&quot;No new notifications.&quot; /&gt;
+&lt;/SkyCard&gt;
+</code></pre>
+<p><strong>Card with header and hover effect:</strong></p>
+<pre><code class="language-xml">&lt;SkyCard Header=&quot;Top Artists&quot;
+         IsHoverable=&quot;True&quot;&gt;
+  &lt;ListBox ItemsSource=&quot;{Binding Artists}&quot; /&gt;
+&lt;/SkyCard&gt;
+</code></pre>
+<p><strong>Card with custom header template:</strong></p>
+<pre><code class="language-xml">&lt;SkyCard&gt;
+  &lt;SkyCard.Header&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;
+      &lt;SkyIcon Kind=&quot;Music&quot; /&gt;
+      &lt;TextBlock Text=&quot;Playlist&quot; FontWeight=&quot;SemiBold&quot; /&gt;
+    &lt;/StackPanel&gt;
+  &lt;/SkyCard.Header&gt;
+  &lt;ItemsControl ItemsSource=&quot;{Binding Tracks}&quot; /&gt;
+&lt;/SkyCard&gt;
+</code></pre>
+<p><strong>Nested cards (use sparingly):</strong></p>
+<pre><code class="language-xml">&lt;SkyCard Header=&quot;Account&quot;&gt;
+  &lt;StackPanel Spacing=&quot;16&quot;&gt;
+    &lt;SkyCard Header=&quot;Profile&quot;&gt;...&lt;/SkyCard&gt;
+    &lt;SkyCard Header=&quot;Security&quot;&gt;...&lt;/SkyCard&gt;
+  &lt;/StackPanel&gt;
+&lt;/SkyCard&gt;
+</code></pre>
+<p>Nested elevated surfaces increase visual noise. Prefer a single card with section headers (<code>SkyDivider Text=&quot;Profile&quot;</code>) for settings-style pages.</p>
+<h3 id="lessons-from-skycard">Lessons from SkyCard</h3>
+<ul>
+<li>Use <code>ContentControl</code> when the control is fundamentally a container</li>
+<li>Expose header/footer as <code>object?</code> plus template properties for flexibility</li>
+<li>Drive visual variants through style classes when the state is configurational</li>
+<li>Keep C# minimal; let the theme own structure</li>
+<li>Use <code>{TemplateBinding}</code> in the theme for header, footer, and main content presenters</li>
+</ul>
+<hr />
+<h2 id="skydivider-pseudo-classes-for-orientation">SkyDivider: Pseudo-Classes for Orientation</h2>
+<p><code>SkyDivider</code> is a thin rule that separates content, optionally with centered label text. It is a teaching example for pseudo-class synchronization and lightweight templated controls.</p>
+<p>Unlike <code>SkyCard</code>, <code>SkyDivider</code> inherits <code>TemplatedControl</code> because its visual is entirely custom chrome (lines, optional text) with no hosted content child.</p>
+<h3 id="full-implementation">Full Implementation</h3>
+<pre><code class="language-csharp">[PseudoClasses(&quot;horizontal&quot;, &quot;vertical&quot;)]
+public class SkyDivider : TemplatedControl
+{
+    public static readonly StyledProperty&lt;string?&gt; TextProperty =
+        AvaloniaProperty.Register&lt;SkyDivider, string?&gt;(nameof(Text));
+
+    public static readonly StyledProperty&lt;Orientation&gt; OrientationProperty =
+        AvaloniaProperty.Register&lt;SkyDivider, Orientation&gt;(
+            nameof(Orientation), Orientation.Horizontal);
+
+    static SkyDivider()
+    {
+        OrientationProperty.Changed.AddClassHandler&lt;SkyDivider&gt;((divider, e) =&gt;
+            divider.SyncOrientation((Orientation)e.NewValue!));
+    }
+
+    public SkyDivider()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-divider&quot;);
+        SyncOrientation(Orientation.Horizontal);
+    }
+
+    private void SyncOrientation(Orientation orientation)
+    {
+        PseudoClasses.Set(&quot;:horizontal&quot;, orientation == Orientation.Horizontal);
+        PseudoClasses.Set(&quot;:vertical&quot;, orientation == Orientation.Vertical);
+    }
+}
+</code></pre>
+<p>The entire behavioral logic fits in under fifty lines. The <code>Orientation</code> property is the single source of truth; <code>SyncOrientation</code> translates it into mutually exclusive pseudo-classes.</p>
+<p>Calling <code>SyncOrientation</code> from the constructor ensures the initial visual state matches the default property value <strong>before</strong> the first layout pass. Without that call, pseudo-classes might be unset until the property change handler runs.</p>
+<h3 id="why-pseudo-classes-instead-of-triggers">Why Pseudo-Classes Instead of Triggers?</h3>
+<p>You could handle orientation with a <code>DataTrigger</code> in XAML, but pseudo-classes are preferable because:</p>
+<ol>
+<li><strong>Testability</strong> — You can assert pseudo-class state in a headless test without loading full theme triggers</li>
+<li><strong>Consistency</strong> — Every SkyUI control uses the same pseudo-class pattern for enum-like state</li>
+<li><strong>Selector power</strong> — Theme styles can combine pseudo-classes with style classes: <code>SkyDivider.horizontal.sky-divider</code></li>
+<li><strong>Property system integration</strong> — Orientation remains a normal styled property bindable from view models</li>
+</ol>
+<h3 id="theme-template-and-styles">Theme Template and Styles</h3>
+<p><strong>ControlTheme (simplified horizontal layout with optional text):</strong></p>
+<pre><code class="language-xml">&lt;ControlTheme x:Key=&quot;{x:Type controls:SkyDivider}&quot; TargetType=&quot;controls:SkyDivider&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate&gt;
+      &lt;Grid Name=&quot;PART_Root&quot; ColumnDefinitions=&quot;*,Auto,*&quot;&gt;
+        &lt;Border Grid.Column=&quot;0&quot;
+                Height=&quot;1&quot;
+                VerticalAlignment=&quot;Center&quot;
+                Background=&quot;{DynamicResource SkyBorderSubtleBrush}&quot; /&gt;
+        &lt;TextBlock Grid.Column=&quot;1&quot;
+                   Text=&quot;{TemplateBinding Text}&quot;
+                   Margin=&quot;{DynamicResource SkySpace8Px}&quot;
+                   Foreground=&quot;{DynamicResource SkyTextSecondaryBrush}&quot;
+                   IsVisible=&quot;{TemplateBinding Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}&quot; /&gt;
+        &lt;Border Grid.Column=&quot;2&quot;
+                Height=&quot;1&quot;
+                VerticalAlignment=&quot;Center&quot;
+                Background=&quot;{DynamicResource SkyBorderSubtleBrush}&quot; /&gt;
+      &lt;/Grid&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p><strong>Orientation styles (dimension overrides):</strong></p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyDivider.horizontal&quot;&gt;
+  &lt;Setter Property=&quot;Height&quot; Value=&quot;1&quot; /&gt;
+  &lt;Setter Property=&quot;HorizontalAlignment&quot; Value=&quot;Stretch&quot; /&gt;
+&lt;/Style&gt;
+
+&lt;Style Selector=&quot;controls|SkyDivider.vertical&quot;&gt;
+  &lt;Setter Property=&quot;Width&quot; Value=&quot;1&quot; /&gt;
+  &lt;Setter Property=&quot;VerticalAlignment&quot; Value=&quot;Stretch&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>When <code>Text</code> is empty, the center <code>TextBlock</code> collapses via visibility converter and the two borders still form a continuous line. When <code>Text</code> is non-empty, the template renders a horizontal line–text–line layout.</p>
+<p>Vertical orientation typically swaps the template to a row-based grid or applies styles that rotate alignment — SkyUI keeps dimension logic in styles and structural layout in the template.</p>
+<h3 id="step-by-step-section-layout-with-dividers">Step-by-Step: Section Layout with Dividers</h3>
+<p><strong>Goal:</strong> Settings page with labeled sections.</p>
+<pre><code class="language-xml">&lt;StackPanel Spacing=&quot;{DynamicResource SkySpace16Px}&quot;&gt;
+  &lt;SkyCard Header=&quot;Notifications&quot;&gt;
+    &lt;StackPanel Spacing=&quot;8&quot;&gt;
+      &lt;CheckBox Content=&quot;Email alerts&quot; /&gt;
+      &lt;CheckBox Content=&quot;Push alerts&quot; /&gt;
+    &lt;/StackPanel&gt;
+  &lt;/SkyCard&gt;
+
+  &lt;SkyDivider Text=&quot;Advanced&quot; /&gt;
+
+  &lt;SkyCard Header=&quot;Developer&quot;&gt;
+    &lt;TextBlock Text=&quot;API keys and webhooks.&quot; /&gt;
+  &lt;/SkyCard&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<ol>
+<li>First card groups related toggles</li>
+<li><code>SkyDivider Text=&quot;Advanced&quot;</code> creates a labeled section break without a second card header</li>
+<li>Spacing tokens on the outer stack keep vertical rhythm aligned with the design system</li>
+</ol>
+<p>For toolbar-style vertical separation:</p>
+<pre><code class="language-xml">&lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;
+  &lt;Button Classes=&quot;sky sky-ghost&quot; Content=&quot;Edit&quot; /&gt;
+  &lt;SkyDivider Orientation=&quot;Vertical&quot; /&gt;
+  &lt;Button Classes=&quot;sky sky-ghost&quot; Content=&quot;Delete&quot; /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>Ensure the hosting stack has sufficient height; vertical dividers stretch only when the parent grants vertical space.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;StackPanel Spacing=&quot;16&quot;&gt;
+  &lt;TextBlock Text=&quot;Section A&quot; /&gt;
+  &lt;SkyDivider /&gt;
+  &lt;TextBlock Text=&quot;Section B&quot; /&gt;
+  &lt;SkyDivider Text=&quot;OR&quot; /&gt;
+&lt;/StackPanel&gt;
+
+&lt;!-- Vertical divider in a horizontal stack --&gt;
+&lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;
+  &lt;Button Content=&quot;Edit&quot; /&gt;
+  &lt;SkyDivider Orientation=&quot;Vertical&quot; /&gt;
+  &lt;Button Content=&quot;Delete&quot; /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>Bind orientation dynamically when layout changes at runtime:</p>
+<pre><code class="language-xml">&lt;SkyDivider Orientation=&quot;{Binding SplitOrientation}&quot; /&gt;
+</code></pre>
+<p>The enum binds through the styled property system; <code>SyncOrientation</code> updates pseudo-classes when the bound value changes.</p>
+<h3 id="lessons-from-skydivider">Lessons from SkyDivider</h3>
+<ul>
+<li>Map enum properties to pseudo-classes in a dedicated sync method</li>
+<li>Call the sync method from both the constructor and the property changed handler</li>
+<li>Keep orientation logic in C#; keep dimension overrides in theme styles</li>
+<li>Use <code>{TemplateBinding Text}</code> for optional label text inside the template</li>
+</ul>
+<hr />
+<h2 id="comparing-the-two-controls">Comparing the Two Controls</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Aspect</th>
+<th>SkyCard</th>
+<th>SkyDivider</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base class</td>
+<td>ContentControl</td>
+<td>TemplatedControl</td>
+</tr>
+<tr>
+<td>C# complexity</td>
+<td>Low (properties + one class toggle)</td>
+<td>Very low (orientation sync)</td>
+</tr>
+<tr>
+<td>Template complexity</td>
+<td>Medium (header, content, footer)</td>
+<td>Low (line + optional text)</td>
+</tr>
+<tr>
+<td>State mechanism</td>
+<td>Style class (<code>sky-card-hoverable</code>)</td>
+<td>Pseudo-classes (<code>:horizontal</code>, <code>:vertical</code>)</td>
+</tr>
+<tr>
+<td>Primary pattern</td>
+<td>Container composition</td>
+<td>Property-to-pseudo-class mapping</td>
+</tr>
+<tr>
+<td>Logical children</td>
+<td>Yes (Content, Header, Footer)</td>
+<td>No hosted content</td>
+</tr>
+<tr>
+<td>Typical binding</td>
+<td>Header, Content, IsHoverable</td>
+<td>Text, Orientation</td>
+</tr>
+</tbody>
+</table>
+<p>Both controls follow the SkyUI recipe from Chapter 4 but sit at different points on the simplicity spectrum. When you build your own layout primitive, ask whether it is closer to a container (like SkyCard) or a stateful visual element (like SkyDivider), and choose the base class accordingly.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Control</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subclass <code>TemplatedControl</code> for a simple panel</td>
+<td>SkyCard-like</td>
+<td>Use <code>ContentControl</code> + theme template</td>
+</tr>
+<tr>
+<td>Duplicate <code>ContentProperty</code> on card</td>
+<td>SkyCard</td>
+<td>Use inherited <code>Content</code> from <code>ContentControl</code></td>
+</tr>
+<tr>
+<td>Use <code>:hoverable</code> pseudo-class for <code>IsHoverable</code></td>
+<td>SkyCard</td>
+<td>Use style class <code>sky-card-hoverable</code></td>
+</tr>
+<tr>
+<td>Forget constructor sync</td>
+<td>SkyDivider</td>
+<td>Call <code>SyncOrientation</code> in constructor</td>
+</tr>
+<tr>
+<td>Both <code>:horizontal</code> and <code>:vertical</code> true</td>
+<td>SkyDivider</td>
+<td>Make pseudo-classes mutually exclusive</td>
+</tr>
+<tr>
+<td>Vertical divider in short stack</td>
+<td>SkyDivider</td>
+<td>Give parent min height or stretch alignment</td>
+</tr>
+<tr>
+<td>Hard-coded divider color</td>
+<td>SkyDivider</td>
+<td>Use <code>SkyBorderSubtleBrush</code> token</td>
+</tr>
+</tbody>
+</table>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<p><strong>SkyCard content shows but header does not.</strong> Confirm <code>Header</code> is set (not <code>Title</code> or wrong property name). Check <code>PART_HeaderPresenter</code> visibility binding — null header hides the presenter.</p>
+<p><strong>Hover effect never triggers.</strong> Verify <code>IsHoverable=&quot;True&quot;</code> and that theme defines styles for <code>sky-card-hoverable</code> combined with <code>:pointerover</code>.</p>
+<p><strong>SkyDivider always horizontal despite <code>Orientation=Vertical</code>.</strong> Inspect pseudo-classes in dev tools — if <code>:vertical</code> is false, the property changed handler may not run (check binding path). If pseudo-class is true but layout wrong, theme vertical styles may be missing.</p>
+<p><strong>Divider text overlaps lines.</strong> Spacing token on center <code>TextBlock</code> may be too small; increase horizontal margin or shorten label text.</p>
+<p><strong>Bindings inside card content fail.</strong> Data context may be broken by setting <code>SkyCard.DataContext</code> to the card's own view model without propagating parent context — use <code>{Binding #Root.DataContext}</code> patterns or nest view models deliberately.</p>
+<h2 id="summary">Summary</h2>
+<p><code>SkyCard</code> demonstrates how far you can get with <code>ContentControl</code>, a rich theme template, and minimal C# — header/footer templates, token-driven elevation, and style-class hover gating. <code>SkyDivider</code> demonstrates the other pole: a tiny <code>TemplatedControl</code> that delegates all visuals to XAML and uses pseudo-classes to bridge one enum property to theme selectors.</p>
+<p>Together they form the layout vocabulary SkyUI builds on: grouped content in elevated surfaces, and lightweight separation between sections. The next chapter extends layout to width-driven responsive grids that reflow dashboard tiles as windows resize.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-5-skycard-and-skydivider">Chapter 5: SkyCard and SkyDivider</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skycard-composition-without-templates">SkyCard: Composition Without Templates</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#the-property-surface">The Property Surface</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#contentcontrol-and-the-logical-tree">ContentControl and the Logical Tree</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#style-classes-in-the-constructor">Style Classes in the Constructor</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#theme-template-structure">Theme Template Structure</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#visual-tree-layout">Visual Tree Layout</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#step-by-step-card-with-bound-header-and-custom-content">Step-by-Step: Card with Bound Header and Custom Content</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage-patterns">Usage Patterns</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#lessons-from-skycard">Lessons from SkyCard</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skydivider-pseudo-classes-for-orientation">SkyDivider: Pseudo-Classes for Orientation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#full-implementation">Full Implementation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-pseudo-classes-instead-of-triggers">Why Pseudo-Classes Instead of Triggers?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#theme-template-and-styles">Theme Template and Styles</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#step-by-step-section-layout-with-dividers">Step-by-Step: Section Layout with Dividers</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#lessons-from-skydivider">Lessons from SkyDivider</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#comparing-the-two-controls">Comparing the Two Controls</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#common-mistakes">Common Mistakes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-tips">Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

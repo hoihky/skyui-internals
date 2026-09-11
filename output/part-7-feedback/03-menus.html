@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 23 — SkyMenuBar and SkyContextMenu · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 23 — SkyMenuBar and SkyContextMenu</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-23-skymenubar-and-skycontextmenu">Chapter 23: SkyMenuBar and SkyContextMenu</h1>
+<p>Menus expose commands hierarchically — top-level menu bar for discoverability, context menus for situational actions. SkyUI styles Avalonia's built-in menu types rather than reimplementing menu logic.</p>
+<h2 id="avalonia-menu-types">Avalonia Menu Types</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Type</th>
+<th>Base</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Menu</code></td>
+<td><code>MenuBase</code></td>
+<td>Horizontal menu bar</td>
+</tr>
+<tr>
+<td><code>MenuItem</code></td>
+<td><code>HeaderedItemsControl</code></td>
+<td>Entry with optional submenu</td>
+</tr>
+<tr>
+<td><code>ContextMenu</code></td>
+<td><code>MenuBase</code></td>
+<td>Right-click popup</td>
+</tr>
+<tr>
+<td><code>MenuFlyout</code></td>
+<td><code>PopupFlyoutBase</code></td>
+<td>Flyout attached to buttons</td>
+</tr>
+</tbody>
+</table>
+<p>SkyUI subclasses <code>Menu</code> and <code>ContextMenu</code> only to add style classes.</p>
+<h2 id="skymenubar">SkyMenuBar</h2>
+<pre><code class="language-csharp">public class SkyMenuBar : Menu
+{
+    public SkyMenuBar()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-menu-bar&quot;);
+    }
+}
+</code></pre>
+<h3 id="inherited-behavior-from-menu">Inherited Behavior from Menu</h3>
+<ul>
+<li>Keyboard accelerators via <code>HotKey</code> on <code>MenuItem</code></li>
+<li>Submenu open on hover or click (platform style)</li>
+<li><code>MenuItem</code> nesting for arbitrary depth</li>
+<li>Access key mnemonics with <code>_</code> prefix in header text (<code>_File</code>)</li>
+</ul>
+<h3 id="theme-styling">Theme Styling</h3>
+<p><code>Menus.axaml</code> styles:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;Menu.sky-menu-bar&quot;&gt;
+  &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource SkySurfaceBrush}&quot; /&gt;
+  &lt;Setter Property=&quot;Height&quot; Value=&quot;{DynamicResource SkyMenuBarHeight}&quot; /&gt;
+&lt;/Style&gt;
+&lt;Style Selector=&quot;MenuItem.sky-menu-item&quot;&gt;
+  &lt;Setter Property=&quot;Padding&quot; Value=&quot;{DynamicResource SkySpace8Px}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Popup submenus inherit <code>sky-context-menu</code> styles for consistent dropdown appearance.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyMenuBar&gt;
+  &lt;MenuItem Header=&quot;_File&quot;&gt;
+    &lt;MenuItem Header=&quot;_New&quot; Command=&quot;{Binding NewCommand}&quot; /&gt;
+    &lt;MenuItem Header=&quot;_Open&quot; Command=&quot;{Binding OpenCommand}&quot; /&gt;
+    &lt;Separator /&gt;
+    &lt;MenuItem Header=&quot;E_xit&quot; Command=&quot;{Binding ExitCommand}&quot; /&gt;
+  &lt;/MenuItem&gt;
+  &lt;MenuItem Header=&quot;_Edit&quot;&gt;
+    &lt;MenuItem Header=&quot;_Undo&quot; InputGesture=&quot;Ctrl+Z&quot; /&gt;
+    &lt;MenuItem Header=&quot;_Redo&quot; InputGesture=&quot;Ctrl+Y&quot; /&gt;
+  &lt;/MenuItem&gt;
+&lt;/SkyMenuBar&gt;
+</code></pre>
+<h3 id="skyaccelerator-utilities">SkyAccelerator Utilities</h3>
+<p><code>SkyAccelerator</code> and <code>SkyAcceleratorFormatConverter</code> register and display keyboard shortcuts consistently:</p>
+<pre><code class="language-csharp">SkyAccelerator.Register(mainWindow, Key.S, KeyModifiers.Control, SaveCommand);
+</code></pre>
+<p>The converter formats <code>KeyModifiers</code> + <code>Key</code> for display in menu item headers.</p>
+<hr />
+<h2 id="skycontextmenu">SkyContextMenu</h2>
+<pre><code class="language-csharp">public class SkyContextMenu : ContextMenu
+{
+    public SkyContextMenu()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-context-menu&quot;);
+    }
+}
+</code></pre>
+<h3 id="attaching-to-controls">Attaching to Controls</h3>
+<pre><code class="language-xml">&lt;ListBox ItemsSource=&quot;{Binding Items}&quot;&gt;
+  &lt;ListBox.ContextMenu&gt;
+    &lt;SkyContextMenu&gt;
+      &lt;MenuItem Header=&quot;Copy&quot; Command=&quot;{Binding CopyCommand}&quot; /&gt;
+      &lt;MenuItem Header=&quot;Delete&quot; Command=&quot;{Binding DeleteCommand}&quot; /&gt;
+    &lt;/SkyContextMenu&gt;
+  &lt;/ListBox.ContextMenu&gt;
+&lt;/ListBox&gt;
+</code></pre>
+<p>Or in code:</p>
+<pre><code class="language-csharp">listBox.ContextMenu = new SkyContextMenu
+{
+    Items = { new MenuItem { Header = &quot;Refresh&quot; } }
+};
+</code></pre>
+<h3 id="context-menu-and-datacontext">Context Menu and DataContext</h3>
+<p><code>ContextMenu</code> is a separate visual tree root. By default it inherits <code>DataContext</code> from its placement target, so <code>Command=&quot;{Binding DeleteCommand}&quot;</code> on a <code>MenuItem</code> resolves against the <code>ListBox</code>'s data context — usually the view model you want.</p>
+<p>If binding fails, set <code>ContextMenu.DataContext</code> explicitly or use <code>Tag</code> on the placement target.</p>
+<h2 id="skymenuflyout">SkyMenuFlyout</h2>
+<p>For command bars and buttons that need dropdown menus without a full menu bar:</p>
+<pre><code class="language-csharp">public class SkyMenuFlyout : MenuFlyout
+{
+    public SkyMenuFlyout()
+    {
+        // theme applied via flyout presenter classes
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;Button Content=&quot;Actions&quot;&gt;
+  &lt;Button.Flyout&gt;
+    &lt;SkyMenuFlyout&gt;
+      &lt;MenuItem Header=&quot;Duplicate&quot; /&gt;
+      &lt;MenuItem Header=&quot;Archive&quot; /&gt;
+    &lt;/SkyMenuFlyout&gt;
+  &lt;/Button.Flyout&gt;
+&lt;/Button&gt;
+</code></pre>
+<h2 id="skymenugestures">SkyMenuGestures</h2>
+<p>Static helpers wire platform-appropriate context menu invocation (right-click on desktop, long-press on touch). Mobile demos use these alongside <code>SkyTouchTarget</code> for accessible hit areas.</p>
+<h2 id="when-to-subclass-vs-style">When to Subclass vs Style</h2>
+<p>Menus demonstrate the <strong>style-only</strong> extreme:</p>
+<ul>
+<li>Avalonia's menu implementation handles popups, scrolling, separators, icons, and accelerators</li>
+<li>SkyUI needs consistent dark-theme colors and padding</li>
+<li>Subclassing adds <code>Classes</code> in constructor — zero behavior change</li>
+</ul>
+<p>Before writing a custom <code>TemplatedControl</code> menu, verify Avalonia's <code>MenuItem</code> template cannot be retargeted with <code>ControlTheme</code>.</p>
+<h2 id="deep-dive-menu-item-hierarchy-and-popups">Deep Dive: Menu Item Hierarchy and Popups</h2>
+<h3 id="menuitem-tree-structure">MenuItem Tree Structure</h3>
+<pre><code class="language-xml">&lt;MenuItem Header=&quot;_File&quot;&gt;
+  &lt;MenuItem Header=&quot;_New&quot; InputGesture=&quot;Ctrl+N&quot; Command=&quot;{Binding NewCommand}&quot; /&gt;
+  &lt;MenuItem Header=&quot;_Open&quot; /&gt;
+  &lt;Separator /&gt;
+  &lt;MenuItem Header=&quot;Recent&quot;&gt;
+    &lt;MenuItem Header=&quot;doc1.txt&quot; /&gt;
+    &lt;MenuItem Header=&quot;doc2.txt&quot; /&gt;
+  &lt;/MenuItem&gt;
+&lt;/MenuItem&gt;
+</code></pre>
+<p>Each submenu is a nested <code>MenuItem</code> collection. Avalonia opens submenus on hover (desktop) or click (touch). <code>Separator</code> inserts a horizontal rule — use sparingly to group related actions.</p>
+<h3 id="icons-in-menu-items">Icons in Menu Items</h3>
+<pre><code class="language-xml">&lt;MenuItem Header=&quot;Save&quot; Command=&quot;{Binding SaveCommand}&quot;&gt;
+  &lt;MenuItem.Icon&gt;
+    &lt;SkyIcon Kind=&quot;Save&quot; Size=&quot;Small&quot; /&gt;
+  &lt;/MenuItem.Icon&gt;
+&lt;/MenuItem&gt;
+</code></pre>
+<p>Icon column width is uniform in the theme template so text aligns across items.</p>
+<h3 id="inputgesture-display">InputGesture Display</h3>
+<p><code>InputGesture=&quot;Ctrl+S&quot;</code> renders accelerator text right-aligned in the menu row. <code>SkyAcceleratorFormatConverter</code> formats platform-specific modifiers (⌘ on macOS when configured).</p>
+<hr />
+<h2 id="deep-dive-skyaccelerator-registration">Deep Dive: SkyAccelerator Registration</h2>
+<p>Global shortcuts work even when menus are closed:</p>
+<pre><code class="language-csharp">public static class SkyAccelerator
+{
+    public static void Register(
+        InputElement root,
+        Key key,
+        KeyModifiers modifiers,
+        ICommand command)
+    {
+        root.KeyBindings.Add(new KeyBinding
+        {
+            Gesture = new KeyGesture(key, modifiers),
+            Command = command
+        });
+    }
+}
+</code></pre>
+<p>Register on <code>Window</code> or <code>MainView</code> root. Menu <code>InputGesture</code> and <code>KeyBinding</code> can share the same <code>ICommand</code> — one implementation, two discovery paths.</p>
+<hr />
+<h2 id="deep-dive-context-menu-placement">Deep Dive: Context Menu Placement</h2>
+<p><code>ContextMenu</code> opens as a popup positioned at pointer coordinates. Avalonia flips placement when near screen edges. <code>SkyContextMenu</code> theme adds:</p>
+<ul>
+<li>Drop shadow from <code>SkyElevationMd</code></li>
+<li>Rounded corners from <code>SkyRadiusMd</code></li>
+<li>Max height with scroll for long menus</li>
+</ul>
+<h3 id="opening-from-code">Opening from Code</h3>
+<pre><code class="language-csharp">void OnListBoxRightClick(object? sender, PointerPressedEventArgs e)
+{
+    if (e.GetCurrentPoint(listBox).Properties.IsRightButtonPressed)
+    {
+        var menu = new SkyContextMenu
+        {
+            Items =
+            {
+                new MenuItem { Header = &quot;Copy&quot;, Command = CopyCommand },
+                new MenuItem { Header = &quot;Delete&quot;, Command = DeleteCommand }
+            }
+        };
+        menu.Open(listBox);
+    }
+}
+</code></pre>
+<p>Prefer declarative <code>ContextMenu</code> in XAML when the menu structure is static.</p>
+<h3 id="datacontext-inheritance">DataContext Inheritance</h3>
+<p><code>ContextMenu</code> is a separate visual tree root. Avalonia assigns <code>PlacementTarget.DataContext</code> to the menu by default. If bindings fail:</p>
+<pre><code class="language-xml">&lt;ListBox.ContextMenu&gt;
+&lt;SkyContextMenu DataContext=&quot;{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}&quot;&gt;
+</code></pre>
+<hr />
+<h2 id="skymenuflyout-vs-contextmenu">SkyMenuFlyout vs ContextMenu</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Type</th>
+<th>Attached to</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkyContextMenu</code></td>
+<td><code>Control.ContextMenu</code></td>
+<td>Right-click on list rows</td>
+</tr>
+<tr>
+<td><code>SkyMenuFlyout</code></td>
+<td><code>Button.Flyout</code></td>
+<td>Explicit ⋮ or Actions button</td>
+</tr>
+</tbody>
+</table>
+<p>Flyouts support the same <code>MenuItem</code> children but open below the button — better for touch than right-click.</p>
+<hr />
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>Mnemonics: <code>_File</code> → Alt+F on Windows/Linux</li>
+<li>Set <code>AutomationProperties.Name</code> on icon-only menu items</li>
+<li>Disable items with <code>IsEnabled=false</code> rather than hiding — users learn unavailable actions exist</li>
+</ul>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command not firing</td>
+<td>Check <code>DataContext</code> on context menu</td>
+</tr>
+<tr>
+<td>Submenu does not open</td>
+<td>Parent <code>MenuItem</code> must be enabled</td>
+</tr>
+<tr>
+<td>Accelerator shows wrong</td>
+<td>Verify <code>KeyGesture</code> matches OS</td>
+</tr>
+<tr>
+<td>Menu styled wrong</td>
+<td>Missing <code>sky-context-menu</code> class on template root</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p><code>SkyMenuBar</code> and <code>SkyContextMenu</code> inherit platform menu infrastructure and own visual design in theme XAML. Accelerator registration, context menu data context, and flyout vs context menu choice complete the desktop command surface story.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-23-skymenubar-and-skycontextmenu">Chapter 23: SkyMenuBar and SkyContextMenu</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#avalonia-menu-types">Avalonia Menu Types</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skymenubar">SkyMenuBar</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#inherited-behavior-from-menu">Inherited Behavior from Menu</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#theme-styling">Theme Styling</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyaccelerator-utilities">SkyAccelerator Utilities</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skycontextmenu">SkyContextMenu</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#attaching-to-controls">Attaching to Controls</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#context-menu-and-datacontext">Context Menu and DataContext</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skymenuflyout">SkyMenuFlyout</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skymenugestures">SkyMenuGestures</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#when-to-subclass-vs-style">When to Subclass vs Style</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-menu-item-hierarchy-and-popups">Deep Dive: Menu Item Hierarchy and Popups</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#menuitem-tree-structure">MenuItem Tree Structure</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#icons-in-menu-items">Icons in Menu Items</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#inputgesture-display">InputGesture Display</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skyaccelerator-registration">Deep Dive: SkyAccelerator Registration</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-context-menu-placement">Deep Dive: Context Menu Placement</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#opening-from-code">Opening from Code</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#datacontext-inheritance">DataContext Inheritance</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skymenuflyout-vs-contextmenu">SkyMenuFlyout vs ContextMenu</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#accessibility">Accessibility</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-tips">Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

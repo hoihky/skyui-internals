@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 26 — SkyIcon and SkyFontIcon · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 26 — SkyIcon and SkyFontIcon</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-26-skyicon-and-skyfonticon">Chapter 26: SkyIcon and SkyFontIcon</h1>
+<p>Icons appear in navigation, command bars, chips, and alerts. SkyUI provides two mechanisms: <strong>vector path icons</strong> (<code>SkyIcon</code>) and <strong>font glyph icons</strong> (<code>SkyFontIcon</code>). This chapter focuses on <code>SkyIcon</code>, which demonstrates programmatic visual tree construction without a XAML template.</p>
+<h2 id="skyicon-viewbox-path-geometry">SkyIcon: Viewbox + Path Geometry</h2>
+<pre><code class="language-csharp">public class SkyIcon : Viewbox
+{
+    public static readonly StyledProperty&lt;SkyIconKind&gt; KindProperty = ...;
+    public static readonly StyledProperty&lt;SkyIconSize&gt; SizeProperty = ...;
+    public static readonly StyledProperty&lt;IBrush?&gt; ForegroundProperty =
+        TextElement.ForegroundProperty.AddOwner&lt;SkyIcon&gt;();
+
+    private readonly PathShape _path = new() { Stretch = Stretch.Fill };
+
+    public SkyIcon()
+    {
+        Child = _path;
+        ApplyIcon();
+    }
+}
+</code></pre>
+<h3 id="why-viewbox-instead-of-templatedcontrol">Why Viewbox Instead of TemplatedControl?</h3>
+<p><code>SkyIcon</code> has a fixed structure: one <code>Path</code> inside a <code>Viewbox</code>. Creating a <code>ControlTheme</code> for this would add indirection without flexibility. Building the visual tree in the constructor is simpler and avoids <code>OnApplyTemplate</code> entirely.</p>
+<p><code>Viewbox</code> scales its child uniformly to fit the control's <code>Width</code>/<code>Height</code> — ideal for vector icons at multiple sizes.</p>
+<h3 id="skyiconkind-catalog">SkyIconKind Catalog</h3>
+<pre><code class="language-csharp">public enum SkyIconKind
+{
+    None, Home, Search, Settings, Close, ChevronDown, Music, User, ...
+}
+</code></pre>
+<p><code>SkyIconGlyphs.TryGetGeometry(Kind)</code> returns <code>StreamGeometry</code> for each kind — path data stored in a static dictionary or generated source file in <code>SkyUI.Icons</code>.</p>
+<h3 id="applyicon-implementation">ApplyIcon Implementation</h3>
+<pre><code class="language-csharp">protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+{
+    base.OnPropertyChanged(change);
+
+    if (change.Property == KindProperty
+        || change.Property == SizeProperty
+        || change.Property == ForegroundProperty)
+        ApplyIcon();
+}
+
+private void ApplyIcon()
+{
+    _path.Data = SkyIconGlyphs.TryGetGeometry(Kind);
+    _path.Fill = Foreground;
+    _path.IsVisible = _path.Data is not null;
+
+    var px = SkyIconGlyphs.ToPixels(Size);
+    Width = Height = px;
+}
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th><code>SkyIconSize</code></th>
+<th>Pixels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<p>Explicit pixel sizes align icons to the design grid — navigation uses 24px, inline buttons use 16px.</p>
+<h3 id="foreground-via-addowner">Foreground via AddOwner</h3>
+<p>Re-using <code>TextElement.ForegroundProperty</code> means icons respond to inherited foreground like <code>TextBlock</code>:</p>
+<pre><code class="language-xml">&lt;Button Classes=&quot;sky sky-primary&quot;&gt;
+  &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;
+    &lt;SkyIcon Kind=&quot;Save&quot; Foreground=&quot;{DynamicResource SkyOnAccentBrush}&quot; /&gt;
+    &lt;TextBlock Text=&quot;Save&quot; /&gt;
+  &lt;/StackPanel&gt;
+&lt;/Button&gt;
+</code></pre>
+<h3 id="kind.none">Kind.None</h3>
+<p>When <code>Kind</code> is <code>None</code> or geometry is missing, <code>_path.IsVisible = false</code> — the <code>Viewbox</code> collapses to zero visual content but retains layout size from <code>Width</code>/<code>Height</code>. Set <code>IsVisible=&quot;False&quot;</code> on the whole icon to remove layout space.</p>
+<h2 id="skyfonticon-glyph-from-icon-font">SkyFontIcon: Glyph from Icon Font</h2>
+<pre><code class="language-csharp">public class SkyFontIcon : TextBlock
+{
+    public static readonly StyledProperty&lt;string?&gt; GlyphProperty = ...;
+    public static readonly StyledProperty&lt;SkyIconSize&gt; SizeProperty = ...;
+
+    public SkyFontIcon()
+    {
+        Classes.Add(&quot;sky-font-icon&quot;);
+        FontFamily = SkyIconFontFamily.Default;
+    }
+}
+</code></pre>
+<p>Font icons trade crisp scaling at any size for simpler authoring (single character per icon). SkyUI uses path icons (<code>SkyIcon</code>) as the primary system; font icons supplement when a glyph font is already loaded.</p>
+<h2 id="adding-a-new-icon-kind">Adding a New Icon Kind</h2>
+<ol>
+<li>Add geometry path data to <code>SkyIconGlyphs</code> (or SVG import pipeline)</li>
+<li>Add enum value to <code>SkyIconKind</code></li>
+<li>No theme change required — geometry is resolved in code</li>
+<li>Add demo entry in <code>SkyUI.Demo</code> icons page</li>
+</ol>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li><code>StreamGeometry</code> instances are cached statically — not recreated per <code>ApplyIcon</code> call</li>
+<li><code>InvalidateVisual</code> is not needed; changing <code>Path.Data</code> and <code>Fill</code> triggers redraw automatically</li>
+<li>For lists with hundreds of icons, path icons outperform image-based icons (no bitmap decode)</li>
+</ul>
+<h2 id="usage-patterns">Usage Patterns</h2>
+<pre><code class="language-xml">&lt;!-- Navigation --&gt;
+&lt;SkyNavigationViewItem&gt;
+  &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;12&quot;&gt;
+    &lt;SkyIcon Kind=&quot;Home&quot; Size=&quot;Large&quot; /&gt;
+    &lt;TextBlock Text=&quot;Home&quot; /&gt;
+  &lt;/StackPanel&gt;
+&lt;/SkyNavigationViewItem&gt;
+
+&lt;!-- Command bar --&gt;
+&lt;SkyCommandBarItem Icon=&quot;{StaticResource IconExport}&quot; ... /&gt;
+&lt;!-- where Icon is a SkyIcon in XAML resources --&gt;
+
+&lt;!-- Alert --&gt;
+&lt;SkyAlert Variant=&quot;Info&quot; Message=&quot;Update available&quot;&gt;
+  &lt;!-- template may include SkyIcon Kind=Info --&gt;
+&lt;/SkyAlert&gt;
+</code></pre>
+<h2 id="comparison-skyicon-vs-image-control">Comparison: SkyIcon vs Image Control</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Approach</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SkyIcon (path)</td>
+<td>Crisp at any DPI, themes via Foreground brush</td>
+<td>Fixed catalog</td>
+</tr>
+<tr>
+<td>Bitmap Image</td>
+<td>Any raster artwork</td>
+<td>Needs multiple resolutions</td>
+</tr>
+<tr>
+<td>SkyFontIcon</td>
+<td>Easy bulk import from font</td>
+<td>Less precise than paths</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deep-dive-skyiconglyphs-geometry-catalog">Deep Dive: SkyIconGlyphs Geometry Catalog</h2>
+<p><code>SkyIconGlyphs</code> maps each <code>SkyIconKind</code> to <code>StreamGeometry</code> path data:</p>
+<pre><code class="language-csharp">public static class SkyIconGlyphs
+{
+    private static readonly Dictionary&lt;SkyIconKind, StreamGeometry&gt; Cache = new();
+
+    public static Geometry? TryGetGeometry(SkyIconKind kind)
+    {
+        if (kind == SkyIconKind.None)
+            return null;
+        if (Cache.TryGetValue(kind, out var g))
+            return g;
+        var geometry = LoadGeometry(kind);
+        if (geometry is not null)
+            Cache[kind] = geometry;
+        return geometry;
+    }
+
+    public static double ToPixels(SkyIconSize size) =&gt; size switch
+    {
+        SkyIconSize.Small =&gt; 16,
+        SkyIconSize.Medium =&gt; 20,
+        SkyIconSize.Large =&gt; 24,
+        _ =&gt; 20
+    };
+}
+</code></pre>
+<p>Geometries are parsed once and cached statically — scrolling a list of 500 <code>SkyIcon</code> rows does not re-parse SVG path strings per row.</p>
+<h3 id="design-grid">Design Grid</h3>
+<p>Icons are authored on a 24×24 viewbox. <code>Viewbox</code> scales uniformly to <code>Width</code>/<code>Height</code> from <code>ToPixels(Size)</code>. Stroke-based icons are converted to filled paths for consistent <code>Fill</code> binding.</p>
+<h3 id="adding-a-custom-kind">Adding a Custom Kind</h3>
+<ol>
+<li>Add path data to the glyphs source (often generated from design tool export)</li>
+<li>Add enum value to <code>SkyIconKind</code></li>
+<li>Register in <code>TryGetGeometry</code> switch or dictionary loader</li>
+<li>No theme XAML change — color comes from <code>Foreground</code></li>
+</ol>
+<hr />
+<h2 id="deep-dive-foreground-and-theme-integration">Deep Dive: Foreground and Theme Integration</h2>
+<p><code>SkyIcon</code> re-owns <code>TextElement.ForegroundProperty</code>:</p>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;IBrush?&gt; ForegroundProperty =
+TextElement.ForegroundProperty.AddOwner&lt;SkyIcon&gt;();
+</code></pre>
+<p>In templates, bind to token brushes:</p>
+<pre><code class="language-xml">&lt;SkyIcon Kind=&quot;Warning&quot;
+Foreground=&quot;{DynamicResource SkyWarningBrush}&quot; /&gt;
+</code></pre>
+<p>When parent <code>TextBlock</code> sets foreground, icons without explicit <code>Foreground</code> can inherit via visual tree if the theme sets <code>{Binding Foreground, RelativeSource=Ancestor}</code> — SkyUI icons typically set brush explicitly for semantic colors.</p>
+<h3 id="high-contrast">High Contrast</h3>
+<p>Because icons are vectors, high-contrast themes swap <code>Foreground</code> via resource overrides — no <code>@2x</code> bitmap assets required.</p>
+<hr />
+<h2 id="skyfonticon-when-paths-are-not-enough">SkyFontIcon: When Paths Are Not Enough</h2>
+<pre><code class="language-csharp">public class SkyFontIcon : TextBlock
+{
+    public static readonly StyledProperty&lt;string?&gt; GlyphProperty =
+        AvaloniaProperty.Register&lt;SkyFontIcon, string?&gt;(nameof(Glyph));
+
+    public SkyFontIcon()
+    {
+        Classes.Add(&quot;sky-font-icon&quot;);
+        FontFamily = SkyIconFontResources.IconFont;
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;SkyFontIcon Glyph=&quot;&amp;#xE700;&quot; FontSize=&quot;16&quot; /&gt;
+</code></pre>
+<p>Font icons suit rapid prototyping when designers deliver a glyph font. Tradeoffs:</p>
+<table class="table">
+<thead>
+<tr>
+<th>SkyIcon (path)</th>
+<th>SkyFontIcon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Per-icon color easy</td>
+<td>Single foreground per glyph</td>
+</tr>
+<tr>
+<td>Crisp at any size</td>
+<td>Hinting varies by OS</td>
+</tr>
+<tr>
+<td>Fixed catalog</td>
+<td>Any Unicode code point in font</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="performance-notes">Performance Notes</h2>
+<ul>
+<li><strong>Avoid</strong> binding <code>Kind</code> in high-frequency lists to rapidly changing values — each change reparses layout</li>
+<li><strong>Prefer</strong> <code>IsVisible=&quot;False&quot;</code> over <code>Kind=&quot;None&quot;</code> when toggling — <code>None</code> still allocates viewbox space unless collapsed</li>
+<li><strong>Batch</strong> icon updates outside scroll handlers — icon property changes during scroll cause unnecessary <code>ApplyIcon</code> calls</li>
+</ul>
+<h3 id="list-virtualization-interaction">List Virtualization Interaction</h3>
+<p>In virtualized lists, recycled row containers may show stale icons until <code>Kind</code> binding updates. Use <code>x:DataType</code> compiled bindings for zero-lag updates when rows reuse.</p>
+<hr />
+<h2 id="resource-dictionary-pattern">Resource Dictionary Pattern</h2>
+<p>Define reusable icons in XAML resources:</p>
+<pre><code class="language-xml">&lt;SkyIcon x:Key=&quot;IconSave&quot; Kind=&quot;Save&quot; Size=&quot;Medium&quot; /&gt;
+&lt;SkyIcon x:Key=&quot;IconDelete&quot; Kind=&quot;Delete&quot; Size=&quot;Medium&quot;
+         Foreground=&quot;{DynamicResource SkyDangerBrush}&quot; /&gt;
+</code></pre>
+<p>Reference in command bar items:</p>
+<pre><code class="language-xml">&lt;SkyCommandBarItem Label=&quot;Save&quot; Icon=&quot;{StaticResource IconSave}&quot; /&gt;
+</code></pre>
+<p>Centralizing icons ensures command bar, menus, and dialogs use identical geometry.</p>
+<h2 id="summary">Summary</h2>
+<p><code>SkyIcon</code> constructs a cached <code>Path</code> inside a <code>Viewbox</code> — no <code>TemplatedControl</code> required. <code>SkyIconGlyphs</code> provides performance and consistency; <code>SkyFontIcon</code> supplements with font glyphs. Master <code>Foreground</code> via <code>AddOwner</code> and static geometry cache when building your own icon system.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-26-skyicon-and-skyfonticon">Chapter 26: SkyIcon and SkyFontIcon</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyicon-viewbox-path-geometry">SkyIcon: Viewbox + Path Geometry</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-viewbox-instead-of-templatedcontrol">Why Viewbox Instead of TemplatedControl?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyiconkind-catalog">SkyIconKind Catalog</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#applyicon-implementation">ApplyIcon Implementation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#foreground-via-addowner">Foreground via AddOwner</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#kindnone">Kind.None</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyfonticon-glyph-from-icon-font">SkyFontIcon: Glyph from Icon Font</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#adding-a-new-icon-kind">Adding a New Icon Kind</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#performance-considerations">Performance Considerations</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#usage-patterns">Usage Patterns</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#comparison-skyicon-vs-image-control">Comparison: SkyIcon vs Image Control</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skyiconglyphs-geometry-catalog">Deep Dive: SkyIconGlyphs Geometry Catalog</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#design-grid">Design Grid</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#adding-a-custom-kind">Adding a Custom Kind</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-foreground-and-theme-integration">Deep Dive: Foreground and Theme Integration</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#high-contrast">High Contrast</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyfonticon-when-paths-are-not-enough">SkyFontIcon: When Paths Are Not Enough</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#performance-notes">Performance Notes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#list-virtualization-interaction">List Virtualization Interaction</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#resource-dictionary-pattern">Resource Dictionary Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 18 — SkySplitView and Page Scaffolds · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 18 — SkySplitView and Page Scaffolds</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-18-skysplitview-and-page-scaffolds">Chapter 18: SkySplitView and Page Scaffolds</h1>
+<p>Individual shell controls solve one layout problem each. Page scaffolds compose them into complete page templates. This chapter covers <code>SkySplitView</code> as a master-detail primitive and <code>SkyListDetailPage</code> as a composite scaffold that assembles header, command bar, split view, status bar, and drawer into one control. Along the way we examine Avalonia template parts, pointer capture, pseudo-class state machines, and the composition patterns that keep large apps structurally consistent.</p>
+<h2 id="skysplitview-master-detail-layout">SkySplitView: Master-Detail Layout</h2>
+<p><code>SkySplitView</code> divides space between a pane (master) and a detail area. It supports inline and overlay display modes, left/right placement, and user-resizable pane width. It is the building block behind mail clients, file browsers, settings lists, and any screen where selecting an item in a narrow column reveals detail in a wider region.</p>
+<h3 id="avalonia-concept-templatedcontrol-and-template-parts">Avalonia Concept: TemplatedControl and Template Parts</h3>
+<p><code>SkySplitView</code> inherits <code>TemplatedControl</code>, meaning its visual tree comes from a <code>ControlTheme</code> rather than inline XAML on the control class. Named elements in the theme are located via <code>[TemplatePart]</code> constants and <code>e.NameScope.Find</code> in <code>OnApplyTemplate</code>. If a part is missing, the control should degrade gracefully — null-check before attaching pointer handlers.</p>
+<h3 id="pseudo-classes">Pseudo-Classes</h3>
+<pre><code class="language-csharp">[PseudoClasses(&quot;open&quot;, &quot;closed&quot;, &quot;overlay&quot;, &quot;inline&quot;, &quot;left&quot;, &quot;right&quot;, &quot;resizing&quot;)]
+public class SkySplitView : TemplatedControl
+</code></pre>
+<p>Seven pseudo-classes drive a matrix of visual states:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Pseudo-class</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:open</code> / <code>:closed</code></td>
+<td>Pane is expanded or collapsed</td>
+</tr>
+<tr>
+<td><code>:inline</code> / <code>:overlay</code></td>
+<td>Pane shares layout space or floats over content</td>
+</tr>
+<tr>
+<td><code>:left</code> / <code>:right</code></td>
+<td>Pane placement</td>
+</tr>
+<tr>
+<td><code>:resizing</code></td>
+<td>User is dragging the resize grip</td>
+</tr>
+</tbody>
+</table>
+<p>Theme authors combine selectors for precise styling:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;SkySplitView:open:inline:left&quot;&gt;
+  &lt;!-- inline left pane open: show grip, animate width --&gt;
+&lt;/Style&gt;
+
+&lt;Style Selector=&quot;SkySplitView:open:overlay:right:resizing&quot;&gt;
+  &lt;!-- suppress width transition while dragging --&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>When <code>:resizing</code> is active, disable CSS-like width transitions in the theme. Animating <code>OpenPaneLength</code> during drag feels laggy and fights the pointer.</p>
+<h3 id="state-synchronization">State Synchronization</h3>
+<pre><code class="language-csharp">static SkySplitView()
+{
+    IsPaneOpenProperty.Changed.AddClassHandler&lt;SkySplitView&gt;((v, _) =&gt; v.ApplyPaneState());
+    OpenPaneLengthProperty.Changed.AddClassHandler&lt;SkySplitView&gt;((v, _) =&gt; v.ApplyPaneState());
+    DisplayModeProperty.Changed.AddClassHandler&lt;SkySplitView&gt;((v, _) =&gt; v.ApplyPaneState());
+    PanePlacementProperty.Changed.AddClassHandler&lt;SkySplitView&gt;((v, _) =&gt; v.ApplyPaneState());
+}
+
+private void ApplyPaneState()
+{
+    PseudoClasses.Set(&quot;:open&quot;, IsPaneOpen);
+    PseudoClasses.Set(&quot;:closed&quot;, !IsPaneOpen);
+    PseudoClasses.Set(&quot;:inline&quot;, DisplayMode == SkySplitViewDisplayMode.Inline);
+    PseudoClasses.Set(&quot;:overlay&quot;, DisplayMode == SkySplitViewDisplayMode.Overlay);
+    PseudoClasses.Set(&quot;:left&quot;, PanePlacement == SkySplitViewPanePlacement.Left);
+    PseudoClasses.Set(&quot;:right&quot;, PanePlacement == SkySplitViewPanePlacement.Right);
+
+    UpdatePaneWidth();
+    UpdateScrimVisibility();
+}
+</code></pre>
+<p>Every property that affects layout calls into <code>ApplyPaneState</code>. This central method is the single place where pseudo-classes and pane dimensions are updated.</p>
+<p>Centralizing state application avoids scattered <code>if</code> blocks that drift out of sync when a new property is added. When you add <code>CompactPaneLength</code> or <code>IsPanePinned</code>, register one more changed handler that calls <code>ApplyPaneState()</code> — do not patch pseudo-classes in individual property setters.</p>
+<h3 id="inline-vs-overlay-semantics">Inline vs Overlay Semantics</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Mode</th>
+<th>Layout</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Inline</strong></td>
+<td>Pane consumes horizontal space; detail shrinks</td>
+<td>Desktop, wide tablets, persistent lists</td>
+</tr>
+<tr>
+<td><strong>Overlay</strong></td>
+<td>Pane floats above detail; scrim dims background</td>
+<td>Narrow widths, temporary filters, mobile</td>
+</tr>
+</tbody>
+</table>
+<p>Switch modes at runtime when the control width crosses a threshold — the same adaptive pattern as <code>SkyNavigationView</code>:</p>
+<pre><code class="language-csharp">protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+{
+    base.OnPropertyChanged(change);
+    if (change.Property == BoundsProperty &amp;&amp; AdaptiveDisplayMode)
+    {
+        DisplayMode = Bounds.Width &lt; OverlayBreakpoint
+            ? SkySplitViewDisplayMode.Overlay
+            : SkySplitViewDisplayMode.Inline;
+    }
+}
+</code></pre>
+<h3 id="resize-grip">Resize Grip</h3>
+<p>When <code>IsPaneResizable</code> is true, pointer events on <code>PART_ResizeGrip</code> track horizontal drag:</p>
+<pre><code class="language-csharp">private void OnResizeGripPointerPressed(object sender, PointerPressedEventArgs e)
+{
+    isResizing = true;
+    PseudoClasses.Set(&quot;:resizing&quot;, true);
+    resizeStartX = e.GetPosition(root).X;
+    resizeStartLength = OpenPaneLength;
+    e.Pointer.Capture(resizeGrip);
+}
+
+private void OnResizeGripPointerMoved(object sender, PointerEventArgs e)
+{
+    if (!isResizing) return;
+    var delta = e.GetPosition(root).X - resizeStartX;
+    var newLength = PanePlacement == SkySplitViewPanePlacement.Left
+        ? resizeStartLength + delta
+        : resizeStartLength - delta;
+    OpenPaneLength = Math.Clamp(newLength, MinPaneLength, MaxPaneLength);
+}
+
+private void OnResizeGripPointerReleased(object sender, PointerReleasedEventArgs e)
+{
+    isResizing = false;
+    PseudoClasses.Set(&quot;:resizing&quot;, false);
+    e.Pointer.Capture(null);
+}
+</code></pre>
+<p><code>OpenPaneLength</code> is clamped between <code>MinPaneLength</code> and <code>MaxPaneLength</code>. The <code>:resizing</code> pseudo-class can show a different grip color or disable transitions during drag.</p>
+<h3 id="avalonia-concept-pointer-capture">Avalonia Concept: Pointer Capture</h3>
+<p>Pointer capture routes all pointer events to the capturing element until release, even when the cursor leaves the control bounds. Without capture, fast drags &quot;drop&quot; the grip when the pointer outruns the hit target. Always capture on press and release on <code>PointerReleased</code> — including when the pointer is captured elsewhere due to platform quirks.</p>
+<p>Use coordinates relative to a stable root (<code>root</code> panel) rather than the grip itself. Grip position changes as <code>OpenPaneLength</code> updates; delta math becomes wrong if you measure from a moving origin.</p>
+<h3 id="overlay-mode-and-scrim">Overlay Mode and Scrim</h3>
+<p>In overlay mode, the pane floats above the detail content. <code>PART_Scrim</code> is a semi-transparent overlay behind the pane that dismisses the pane on click:</p>
+<pre><code class="language-csharp">private void UpdateScrimVisibility()
+{
+    if (scrim is null) return;
+    scrim.IsVisible = DisplayMode == SkySplitViewDisplayMode.Overlay &amp;&amp; IsPaneOpen;
+}
+
+private void OnScrimPointerPressed(object sender, PointerPressedEventArgs e)
+{
+    if (e.Source == scrim)
+        IsPaneOpen = false;
+}
+</code></pre>
+<p>The scrim uses <code>SkyScrimBrush</code> from the token layer.</p>
+<p>Set scrim <code>ZIndex</code> below the pane panel but above detail content. If hit testing fails, verify <code>IsHitTestVisible=&quot;True&quot;</code> on the scrim when visible and that detail content is not intercepting events at a higher z-order.</p>
+<h3 id="pane-content-and-detail-content">Pane Content and Detail Content</h3>
+<p><code>SkySplitView</code> exposes two content properties:</p>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;object?&gt; PaneContentProperty = ...;
+public static readonly StyledProperty&lt;object?&gt; DetailContentProperty = ...;
+</code></pre>
+<p>The template hosts them in separate presenters. Binding from a page:</p>
+<pre><code class="language-xml">&lt;SkySplitView IsPaneOpen=&quot;{Binding IsPaneOpen}&quot;
+              OpenPaneLength=&quot;{Binding PaneWidth, Mode=TwoWay}&quot;
+              DisplayMode=&quot;Inline&quot;
+              PanePlacement=&quot;Left&quot;&gt;
+  &lt;SkySplitView.PaneContent&gt;
+    &lt;CheckedListBox ItemsSource=&quot;{Binding Items}&quot;
+                    SelectedItem=&quot;{Binding SelectedItem, Mode=TwoWay}&quot; /&gt;
+  &lt;/SkySplitView.PaneContent&gt;
+  &lt;SkySplitView.DetailContent&gt;
+    &lt;local:ItemDetailView DataContext=&quot;{Binding SelectedItem}&quot; /&gt;
+  &lt;/SkySplitView.DetailContent&gt;
+&lt;/SkySplitView&gt;
+</code></pre>
+<p>When <code>SelectedItem</code> is null, show an empty state in detail — do not collapse the pane unless product design requires it.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkySplitView IsPaneOpen=&quot;True&quot;
+            OpenPaneLength=&quot;280&quot;
+            DisplayMode=&quot;Inline&quot;
+            PanePlacement=&quot;Left&quot;&gt;
+  &lt;SkySplitView.PaneContent&gt;
+    &lt;CheckedListBox ItemsSource=&quot;{Binding Items}&quot; /&gt;
+  &lt;/SkySplitView.PaneContent&gt;
+  &lt;SkySplitView.DetailContent&gt;
+    &lt;local:ItemDetailView DataContext=&quot;{Binding SelectedItem}&quot; /&gt;
+  &lt;/SkySplitView.DetailContent&gt;
+&lt;/SkySplitView&gt;
+</code></pre>
+<h3 id="debugging-skysplitview">Debugging SkySplitView</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pane width stuck at zero</td>
+<td><code>IsPaneOpen</code> false or <code>:closed</code> styles set <code>Width=0</code></td>
+</tr>
+<tr>
+<td>Resize grip dead</td>
+<td><code>IsPaneResizable</code> false; handler not wired in <code>OnApplyTemplate</code></td>
+</tr>
+<tr>
+<td>Drag direction inverted</td>
+<td><code>PanePlacement</code> delta sign wrong for right-side panes</td>
+</tr>
+<tr>
+<td>Scrim visible in inline mode</td>
+<td><code>UpdateScrimVisibility</code> guard on <code>DisplayMode</code></td>
+</tr>
+<tr>
+<td>Pointer stuck resizing</td>
+<td>Missing <code>Capture(null)</code> on release/lost capture</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="skylistdetailpage-composition-scaffold">SkyListDetailPage: Composition Scaffold</h2>
+<p><code>SkyListDetailPage</code> is a high-level page template that composes multiple shell controls:</p>
+<pre><code>┌──────────────────────────────────────────────┐
+│ SkyPageHeader (title, subtitle, back)      │
+├──────────────────────────────────────────────┤
+│ SkyCommandBar (primary/secondary commands)   │
+├──────────────┬───────────────────────────────┤
+│ SkySplitView │                               │
+│  pane: list  │  detail: content              │
+├──────────────┴───────────────────────────────┤
+│ SkyStatusBar                                 │
+└──────────────────────────────────────────────┘
+  SkyDrawer (filter panel, slides in from right)
+</code></pre>
+<p>Rather than requiring every page to assemble these pieces manually, the scaffold exposes unified properties:</p>
+<pre><code class="language-csharp">public class SkyListDetailPage : TemplatedControl
+{
+    // Header
+    public static readonly StyledProperty&lt;string?&gt; TitleProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; SubtitleProperty = ...;
+    public static readonly StyledProperty&lt;ICommand?&gt; BackCommandProperty = ...;
+
+    // Split view
+    public static readonly StyledProperty&lt;object?&gt; ListContentProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; DetailContentProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsPaneOpenProperty = ...;
+
+    // Command bar
+    public static readonly StyledProperty&lt;IEnumerable?&gt; PrimaryCommandsProperty = ...;
+    public static readonly StyledProperty&lt;IEnumerable?&gt; SecondaryCommandsProperty = ...;
+
+    // Status
+    public static readonly StyledProperty&lt;object?&gt; StatusContentProperty = ...;
+
+    // Drawer
+    public static readonly StyledProperty&lt;bool&gt; IsFilterDrawerOpenProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; FilterContentProperty = ...;
+}
+</code></pre>
+<p>The template wires these properties to the child shell controls via <code>{TemplateBinding}</code>. Consumers set page-level properties; the scaffold distributes them to the right parts.</p>
+<h3 id="template-binding-vs-named-part-wiring">Template Binding vs Named Part Wiring</h3>
+<p>Two approaches appear in scaffolds:</p>
+<p><strong>Pure template binding</strong> — child controls bind directly to scaffold properties. Simple, declarative, no code-behind.</p>
+<p><strong>Code-behind forwarding</strong> — <code>OnApplyTemplate</code> finds <code>PART_SplitView</code> and assigns properties in handlers. Useful when one scaffold property maps to multiple child properties (e.g., <code>IsFilterDrawerOpen</code> → <code>SkyDrawer.IsOpen</code> + command bar toggle state).</p>
+<p>Prefer template binding until indirection is required — fewer moving parts at debug time.</p>
+<h3 id="why-composition-scaffolds-matter">Why Composition Scaffolds Matter</h3>
+<p>Without scaffolds, every list-detail page in an app duplicates:</p>
+<ul>
+<li>Header layout and back button wiring</li>
+<li>Command bar placement</li>
+<li>Split view configuration</li>
+<li>Status bar content</li>
+<li>Filter drawer toggle</li>
+</ul>
+<p>A scaffold encodes the <strong>page pattern</strong> once. Individual pages only provide content and commands.</p>
+<h3 id="example-page-consumption">Example Page Consumption</h3>
+<pre><code class="language-xml">&lt;SkyListDetailPage Title=&quot;{Binding Title}&quot;
+                   Subtitle=&quot;{Binding Subtitle}&quot;
+                   BackCommand=&quot;{Binding GoBackCommand}&quot;
+                   IsPaneOpen=&quot;{Binding IsListVisible}&quot;
+                   IsFilterDrawerOpen=&quot;{Binding IsFilterOpen}&quot;
+                   PrimaryCommands=&quot;{Binding ToolbarCommands}&quot;&gt;
+  &lt;SkyListDetailPage.ListContent&gt;
+    &lt;SkyVirtualList ItemsSource=&quot;{Binding Items}&quot;
+                    SelectedItem=&quot;{Binding SelectedItem, Mode=TwoWay}&quot; /&gt;
+  &lt;/SkyListDetailPage.ListContent&gt;
+  &lt;SkyListDetailPage.DetailContent&gt;
+    &lt;local:DetailPanel DataContext=&quot;{Binding SelectedItem}&quot; /&gt;
+  &lt;/SkyListDetailPage.DetailContent&gt;
+  &lt;SkyListDetailPage.FilterContent&gt;
+    &lt;local:FilterPanel DataContext=&quot;{Binding Filter}&quot; /&gt;
+  &lt;/SkyListDetailPage.FilterContent&gt;
+&lt;/SkyListDetailPage&gt;
+</code></pre>
+<p>The page XAML stays short. Visual consistency comes from the scaffold theme, not copy-pasted grid definitions.</p>
+<h3 id="skyformpage-and-skysettingspage">SkyFormPage and SkySettingsPage</h3>
+<p>Similar scaffolds exist for other page types:</p>
+<ul>
+<li><code>SkyFormPage</code> — centered form layout with header and action buttons</li>
+<li><code>SkySettingsPage</code> — sectioned settings with navigation sidebar</li>
+</ul>
+<p>Each follows the same principle: compose existing shell controls, expose a simplified property surface, and let the theme template handle layout.</p>
+<p><code>SkySettingsPage</code> often nests a compact <code>SkyNavigationView</code> or <code>ListBox</code> in the pane and a <code>ScrollViewer</code> with settings sections in the detail region — same split metaphor, different content shape.</p>
+<h2 id="skydrawer">SkyDrawer</h2>
+<p>Filter and settings panels use <code>SkyDrawer</code>, a slide-in panel with overlay:</p>
+<pre><code class="language-csharp">[TemplatePart(OverlayPartName, typeof(Panel))]
+[TemplatePart(PanelPartName, typeof(Panel))]
+[TemplatePart(CloseButtonPartName, typeof(Button))]
+public class SkyDrawer : TemplatedControl
+{
+    public static readonly StyledProperty&lt;bool&gt; IsOpenProperty = ...;
+    public static readonly StyledProperty&lt;SkyDrawerPlacement&gt; PlacementProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; ContentProperty = ...;
+}
+</code></pre>
+<p><code>SkyListDetailPage</code> embeds a <code>SkyDrawer</code> for filter panels. The <code>IsFilterDrawerOpen</code> property on the page maps to <code>SkyDrawer.IsOpen</code>.</p>
+<p>Drawers differ from <code>SkySplitView</code> overlay panes in intent: drawers are transient task panels (filters, pickers); split panes are structural navigation regions. Do not nest a drawer inside a resize grip without careful z-order — pointer capture conflicts are common.</p>
+<p>Animate drawer open/close with the same <code>SkyMotionAnimator</code> slide transitions used elsewhere. Match duration tokens so filter panels feel consistent with sheets and dialogs.</p>
+<h2 id="avalonia-concept-logical-vs-visual-tree-in-scaffolds">Avalonia Concept: Logical vs Visual Tree in Scaffolds</h2>
+<p>Scaffolds deepen the visual tree. <code>{Binding}</code> paths from a page into deeply nested template children sometimes break if you forget <code>DataContext</code> inheritance stops at template boundaries. Content injected via <code>ListContent</code> / <code>DetailContent</code> properties inherits the page's data context automatically when assigned to <code>ContentPresenter</code> slots — explicit <code>DataContext=&quot;{Binding SelectedItem}&quot;</code> on detail content remains the page author's responsibility.</p>
+<p>Use <code>x:DataType</code> on page roots for compiled bindings; scaffold templates should not hard-code view model types.</p>
+<h2 id="design-principle-composition-over-monoliths">Design Principle: Composition Over Monoliths</h2>
+<p>SkyUI shell architecture follows a clear hierarchy:</p>
+<ol>
+<li><strong>Primitives</strong> — <code>SkySplitView</code>, <code>SkyPageHeader</code>, <code>SkyCommandBar</code></li>
+<li><strong>Scaffolds</strong> — <code>SkyListDetailPage</code>, <code>SkyFormPage</code></li>
+<li><strong>Application pages</strong> — content plugged into scaffolds</li>
+</ol>
+<p>When you build a page layout system:</p>
+<ul>
+<li>Keep primitives focused on one layout concern</li>
+<li>Use pseudo-classes for state that affects styling</li>
+<li>Build scaffolds that compose primitives through template binding</li>
+<li>Expose a reduced property API on scaffolds so page authors think in page terms, not layout terms</li>
+<li>Test primitives in isolation before composing scaffolds — split view resize bugs are easier to find without drawer and command bar in the way</li>
+</ul>
+<h2 id="scaffold-debugging-tips">Scaffold Debugging Tips</h2>
+<ol>
+<li><strong>Missing header commands</strong> — verify <code>PrimaryCommands</code> implements <code>IEnumerable</code> of command models the command bar template expects</li>
+<li><strong>Back button inert</strong> — <code>BackCommand</code> null; routed commands need <code>CanExecute</code> true</li>
+<li><strong>Filter drawer won't open</strong> — two-way bind <code>IsFilterDrawerOpen</code>; check drawer part names in theme</li>
+<li><strong>Detail empty but list selects</strong> — detail <code>DataContext</code> not bound to selected item</li>
+<li><strong>Theme regression after scaffold change</strong> — run UI snapshot tests on one primitive, one scaffold, one full page</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p><code>SkySplitView</code> is the workhorse master-detail primitive with resize, overlay, and placement support. Page scaffolds like <code>SkyListDetailPage</code> demonstrate how to compose multiple shell controls into reusable page templates, reducing boilerplate and enforcing consistent application structure. Master pointer capture, pseudo-class matrices, and template binding — those three Avalonia skills transfer directly to any custom shell you build.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-18-skysplitview-and-page-scaffolds">Chapter 18: SkySplitView and Page Scaffolds</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skysplitview-master-detail-layout">SkySplitView: Master-Detail Layout</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-templatedcontrol-and-template-parts">Avalonia Concept: TemplatedControl and Template Parts</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#pseudo-classes">Pseudo-Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#state-synchronization">State Synchronization</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#inline-vs-overlay-semantics">Inline vs Overlay Semantics</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#resize-grip">Resize Grip</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-pointer-capture">Avalonia Concept: Pointer Capture</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#overlay-mode-and-scrim">Overlay Mode and Scrim</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#pane-content-and-detail-content">Pane Content and Detail Content</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-skysplitview">Debugging SkySplitView</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skylistdetailpage-composition-scaffold">SkyListDetailPage: Composition Scaffold</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-binding-vs-named-part-wiring">Template Binding vs Named Part Wiring</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-composition-scaffolds-matter">Why Composition Scaffolds Matter</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#example-page-consumption">Example Page Consumption</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyformpage-and-skysettingspage">SkyFormPage and SkySettingsPage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skydrawer">SkyDrawer</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#avalonia-concept-logical-vs-visual-tree-in-scaffolds">Avalonia Concept: Logical vs Visual Tree in Scaffolds</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#design-principle-composition-over-monoliths">Design Principle: Composition Over Monoliths</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#scaffold-debugging-tips">Scaffold Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

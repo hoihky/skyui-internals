@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 28 — Mobile Primitives · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 28 — Mobile Primitives</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-28-mobile-primitives-skysafearea-and-skyactionsheet">Chapter 28: Mobile Primitives — SkySafeArea and SkyActionSheet</h1>
+<p>SkyUI's mobile support is early but establishes patterns for safe-area insets, touch targets, and bottom action sheets. This chapter explains platform service integration through Avalonia's <code>TopLevel</code> APIs.</p>
+<h2 id="skysafearea-device-notch-and-home-indicator">SkySafeArea: Device Notch and Home Indicator</h2>
+<p>Modern phones have non-rectangular screens. Content must pad away from notches, status bars, and home indicators.</p>
+<pre><code class="language-csharp">public class SkySafeArea : ContentControl
+{
+    public static readonly StyledProperty&lt;bool&gt; ApplyTopProperty = ...;    // default true
+    public static readonly StyledProperty&lt;bool&gt; ApplyBottomProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; ApplyLeftProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; ApplyRightProperty = ...;
+}
+</code></pre>
+<h3 id="platform-integration">Platform Integration</h3>
+<pre><code class="language-csharp">protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+{
+    base.OnAttachedToVisualTree(e);
+    var topLevel = TopLevel.GetTopLevel(this);
+    if (topLevel?.InsetsManager is { } insets)
+    {
+        insets.SafeAreaChanged += OnSafeAreaChanged;
+        ApplyInsets(insets.SafeAreaPadding);
+    }
+}
+
+private void ApplyInsets(Thickness safeArea)
+{
+    Padding = new Thickness(
+        ApplyLeft ? safeArea.Left : 0,
+        ApplyTop ? safeArea.Top : 0,
+        ApplyRight ? safeArea.Right : 0,
+        ApplyBottom ? safeArea.Bottom : 0);
+}
+</code></pre>
+<h3 id="avalonia-concept-iinsetsmanager">Avalonia Concept: IInsetsManager</h3>
+<p><code>IInsetsManager</code> is Avalonia's cross-platform abstraction for display cutouts. On iOS it maps to safe area layout guides; on Android to window insets; on desktop it typically returns zero padding.</p>
+<p><code>SafeAreaChanged</code> fires on rotation, split-screen, or keyboard appearance — the handler re-applies padding.</p>
+<h3 id="detach-on-removal">Detach on Removal</h3>
+<pre><code class="language-csharp">protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+{
+    DetachInsets();
+    base.OnDetachedFromVisualTree(e);
+}
+</code></pre>
+<p>Always unsubscribe platform events on detach to prevent callbacks on disposed controls.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkySafeArea&gt;
+  &lt;Grid RowDefinitions=&quot;Auto,*&quot;&gt;
+    &lt;SkyPageHeader Title=&quot;Settings&quot; /&gt;
+    &lt;ScrollViewer Grid.Row=&quot;1&quot;&gt;
+      &lt;!-- content avoids notch and home bar --&gt;
+    &lt;/ScrollViewer&gt;
+  &lt;/Grid&gt;
+&lt;/SkySafeArea&gt;
+</code></pre>
+<p>Disable individual edges when a parent already handles that inset:</p>
+<pre><code class="language-xml">&lt;SkySafeArea ApplyTop=&quot;False&quot;&gt;
+  &lt;!-- top safe area handled by system status bar overlay --&gt;
+&lt;/SkySafeArea&gt;
+</code></pre>
+<h2 id="skykeyboardinset">SkyKeyboardInset</h2>
+<p>Sibling control that pads bottom content when the on-screen keyboard occludes the view. Uses <code>IInputPane</code> from <code>TopLevel</code>:</p>
+<pre><code class="language-csharp">var inputPane = TopLevel.GetTopLevel(this)?.InputPane;
+inputPane!.OccludedRectChanged += (_, _) =&gt;
+    Padding = new Thickness(0, 0, 0, inputPane.OccludedRect.Height);
+</code></pre>
+<p>Combine <code>SkySafeArea</code> + <code>SkyKeyboardInset</code> for full mobile layout handling.</p>
+<h2 id="skytouchtarget-44px-minimum">SkyTouchTarget: 44px Minimum</h2>
+<pre><code class="language-csharp">public static class SkyTouchTarget
+{
+    public static readonly AttachedProperty&lt;bool&gt; EnsureMinSizeProperty =
+        AvaloniaProperty.RegisterAttached&lt;Control, bool&gt;(&quot;EnsureMinSize&quot;, defaultValue: true);
+}
+</code></pre>
+<p>When true, sets <code>MinWidth</code> and <code>MinHeight</code> to 44 (Apple HIG / Material touch target guideline) without changing visual icon size inside the button.</p>
+<pre><code class="language-xml">&lt;Button Classes=&quot;sky&quot; Width=&quot;32&quot; Height=&quot;32&quot;
+sky:SkyTouchTarget.EnsureMinSize=&quot;True&quot; /&gt;
+</code></pre>
+<p>The button's <strong>layout</strong> hit area expands to 44×44; content can remain smaller.</p>
+<hr />
+<h2 id="skyactionsheet-bottom-sheet-menu">SkyActionSheet: Bottom Sheet Menu</h2>
+<p>Mobile apps use action sheets for contextual choices (Share, Delete, Cancel).</p>
+<h3 id="static-facade-over-skysheethost">Static Facade over SkySheetHost</h3>
+<pre><code class="language-csharp">public static class SkyActionSheet
+{
+    private static SkySheetHost? attachedHost;
+
+    public static void Attach(SkySheetHost host) =&gt; attachedHost = host;
+
+    public static async Task&lt;SkyActionSheetResult&gt; ShowAsync(
+        IReadOnlyList&lt;SkyActionSheetItem&gt; items,
+        string? title = null,
+        SkySheetHost? host = null)
+    {
+        // Build button column UI, show sheet, await tap
+    }
+}
+</code></pre>
+<p>Same <strong>Attach + ShowAsync</strong> pattern as <code>SkyMessageBox</code>.</p>
+<h3 id="skyactionsheetitem-model">SkyActionSheetItem Model</h3>
+<pre><code class="language-csharp">public class SkyActionSheetItem
+{
+    public string Title { get; set; } = &quot;&quot;;
+    public bool IsDestructive { get; set; }
+    public bool IsCancel { get; set; }
+}
+</code></pre>
+<p>Destructive actions render in danger color; cancel item is visually separated at the bottom (iOS pattern).</p>
+<h3 id="application-setup">Application Setup</h3>
+<pre><code class="language-xml">&lt;Panel&gt;
+  &lt;local:MainView /&gt;
+  &lt;SkySheetHost x:Name=&quot;SheetHost&quot; /&gt;
+&lt;/Panel&gt;
+</code></pre>
+<pre><code class="language-csharp">SkyActionSheet.Attach(SheetHost);
+</code></pre>
+<pre><code class="language-csharp">var result = await SkyActionSheet.ShowAsync(new[]
+{
+    new SkyActionSheetItem { Title = &quot;Share&quot; },
+    new SkyActionSheetItem { Title = &quot;Delete&quot;, IsDestructive = true },
+    new SkyActionSheetItem { Title = &quot;Cancel&quot;, IsCancel = true },
+}, title: &quot;Playlist options&quot;);
+
+if (result.SelectedIndex == 1)
+    await DeletePlaylistAsync();
+</code></pre>
+<h3 id="skysheethost-animation">SkySheetHost Animation</h3>
+<p>Uses <code>SkyMotionAnimator</code> translate-from-bottom enter/exit — parallel to dialog fade-scale but directionally appropriate for mobile sheets.</p>
+<h2 id="mobile-vs-desktop-control-choice">Mobile vs Desktop Control Choice</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Desktop</th>
+<th>Mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkyContextMenu</code></td>
+<td><code>SkyActionSheet</code></td>
+</tr>
+<tr>
+<td><code>SkyDialogHost</code></td>
+<td><code>SkySheetHost</code> for non-blocking choices</td>
+</tr>
+<tr>
+<td>Standard padding</td>
+<td><code>SkySafeArea</code> + <code>SkyKeyboardInset</code></td>
+</tr>
+<tr>
+<td>32px buttons</td>
+<td><code>SkyTouchTarget.EnsureMinSize</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="deep-dive-skysafearea-implementation-details">Deep Dive: SkySafeArea Implementation Details</h2>
+<h3 id="why-visual-tree-attachment-matters">Why Visual Tree Attachment Matters</h3>
+<p><code>IInsetsManager</code> is only available after the control attaches to a <code>TopLevel</code> (window). <code>OnAttachedToVisualTree</code> is the correct hook — not the constructor:</p>
+<pre><code class="language-csharp">protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+{
+    base.OnAttachedToVisualTree(e);
+    var topLevel = TopLevel.GetTopLevel(this);
+    _insetsManager = topLevel?.InsetsManager;
+    if (_insetsManager is null) return;
+
+    _insetsManager.SafeAreaChanged += OnSafeAreaChanged;
+    ApplyInsets(_insetsManager.SafeAreaPadding);
+}
+</code></pre>
+<p>On iOS simulators and notched devices, <code>SafeAreaPadding</code> returns non-zero top/bottom. Desktop returns <code>0</code> — the same XAML works everywhere.</p>
+<h3 id="per-edge-toggles">Per-Edge Toggles</h3>
+<pre><code class="language-csharp">Padding = new Thickness(
+ApplyLeft ? safeArea.Left : 0,
+ApplyTop ? safeArea.Top : 0,
+ApplyRight ? safeArea.Right : 0,
+ApplyBottom ? safeArea.Bottom : 0);
+</code></pre>
+<p>Use <code>ApplyTop=&quot;False&quot;</code> when a full-bleed header image extends under the status bar but body content should still respect safe area via a nested <code>SkySafeArea</code>.</p>
+<h3 id="nesting-safe-areas">Nesting Safe Areas</h3>
+<p>Avoid double-padding:</p>
+<pre><code class="language-xml">&lt;!-- Wrong: double top inset --&gt;
+&lt;SkySafeArea&gt;
+  &lt;SkySafeArea&gt;...&lt;/SkySafeArea&gt;
+&lt;/SkySafeArea&gt;
+
+&lt;!-- Right: outer handles horizontal, inner handles bottom only --&gt;
+&lt;SkySafeArea ApplyBottom=&quot;False&quot;&gt;
+  &lt;Grid RowDefinitions=&quot;Auto,*&quot;&gt;
+    &lt;SkyPageHeader /&gt;  &lt;!-- extends under status bar --&gt;
+    &lt;SkySafeArea Grid.Row=&quot;1&quot; ApplyTop=&quot;False&quot;&gt;
+      &lt;ScrollViewer&gt;...&lt;/ScrollViewer&gt;
+    &lt;/SkySafeArea&gt;
+  &lt;/Grid&gt;
+&lt;/SkySafeArea&gt;
+</code></pre>
+<hr />
+<h2 id="deep-dive-skykeyboardinset">Deep Dive: SkyKeyboardInset</h2>
+<p>When the on-screen keyboard opens, <code>IInputPane.OccludedRect</code> reports the covered region:</p>
+<pre><code class="language-csharp">private void OnOccludedRectChanged(object? sender, EventArgs e)
+{
+    var pane = TopLevel.GetTopLevel(this)?.InputPane;
+    if (pane is null) return;
+    var bottom = pane.OccludedRect.Bottom - pane.OccludedRect.Top;
+    Padding = new Thickness(0, 0, 0, Math.Max(0, bottom));
+}
+</code></pre>
+<p>Place <code>SkyKeyboardInset</code> around the page root so the focused <code>TextBox</code> scrolls above the keyboard. Pair with <code>ScrollViewer</code> <code>BringIntoViewOnFocusChanged</code> on inputs.</p>
+<hr />
+<h2 id="deep-dive-skyactionsheet-implementation-flow">Deep Dive: SkyActionSheet Implementation Flow</h2>
+<p><code>ShowAsync</code> builds UI dynamically:</p>
+<ol>
+<li>Create vertical <code>StackPanel</code> of buttons from <code>SkyActionSheetItem</code> list</li>
+<li>Mark destructive item with danger brush class</li>
+<li>Separate cancel item at bottom with gap</li>
+<li>Assign panel to <code>SkySheetHost.SheetContent</code></li>
+<li>Set <code>IsOpen = true</code> — animator slides up</li>
+<li><code>TaskCompletionSource</code> completes when user taps an item or dismisses</li>
+</ol>
+<pre><code class="language-csharp">private static Task&lt;SkyActionSheetResult&gt; ShowOnHostAsync(...)
+{
+    var tcs = new TaskCompletionSource&lt;SkyActionSheetResult&gt;();
+    foreach (var item in items)
+    {
+        var btn = new Button { Content = item.Title };
+        if (item.IsDestructive)
+            btn.Classes.Add(&quot;sky-danger&quot;);
+        btn.Click += (_, _) =&gt;
+        {
+            host.IsOpen = false;
+            tcs.TrySetResult(new SkyActionSheetResult(index));
+        };
+        panel.Children.Add(btn);
+    }
+    host.IsOpen = true;
+    return tcs.Task;
+}
+</code></pre>
+<p><code>SemaphoreSlim</code> optional — only one sheet at a time, matching dialog gate pattern.</p>
+<h3 id="skyactionsheetitem-semantics">SkyActionSheetItem Semantics</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Flag</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsDestructive</code></td>
+<td>Red text — delete account, remove file</td>
+</tr>
+<tr>
+<td><code>IsCancel</code></td>
+<td>Separated visually; dismisses without action index</td>
+</tr>
+</tbody>
+</table>
+<p>iOS Human Interface Guidelines inspire the layout; Android Material bottom sheets are similar.</p>
+<hr />
+<h2 id="skytouchtarget-in-practice">SkyTouchTarget in Practice</h2>
+<pre><code class="language-xml">&lt;Button Width=&quot;24&quot; Height=&quot;24&quot;
+        sky:SkyTouchTarget.EnsureMinSize=&quot;True&quot;&gt;
+  &lt;SkyIcon Kind=&quot;More&quot; Size=&quot;Small&quot; /&gt;
+&lt;/Button&gt;
+</code></pre>
+<p>Visual remains 24px; hit target expands to 44px via <code>MinWidth</code>/<code>MinHeight</code> coercion. Theme may add transparent padding — check <code>SkyTouchTarget</code> changed handler for exact behavior.</p>
+<hr />
+<h2 id="testing-mobile-layouts-without-devices">Testing Mobile Layouts Without Devices</h2>
+<ul>
+<li>Avalonia iOS/Android simulators report safe area insets</li>
+<li>Desktop: insets are zero — test padding logic with mocked <code>IInsetsManager</code> in unit tests</li>
+<li>Resize window in mobile demo project to verify <code>SkyNavigationView</code> bottom mode</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>Mobile primitives integrate <strong>platform services through TopLevel</strong> — safe area, keyboard occlusion, touch targets, and action sheets. The architecture mirrors desktop overlays (host + static facade + motion) while respecting platform inset APIs.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-28-mobile-primitives-skysafearea-and-skyactionsheet">Chapter 28: Mobile Primitives — SkySafeArea and SkyActionSheet</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skysafearea-device-notch-and-home-indicator">SkySafeArea: Device Notch and Home Indicator</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#platform-integration">Platform Integration</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-iinsetsmanager">Avalonia Concept: IInsetsManager</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#detach-on-removal">Detach on Removal</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skykeyboardinset">SkyKeyboardInset</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skytouchtarget-44px-minimum">SkyTouchTarget: 44px Minimum</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyactionsheet-bottom-sheet-menu">SkyActionSheet: Bottom Sheet Menu</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#static-facade-over-skysheethost">Static Facade over SkySheetHost</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyactionsheetitem-model">SkyActionSheetItem Model</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#application-setup">Application Setup</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skysheethost-animation">SkySheetHost Animation</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#mobile-vs-desktop-control-choice">Mobile vs Desktop Control Choice</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skysafearea-implementation-details">Deep Dive: SkySafeArea Implementation Details</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-visual-tree-attachment-matters">Why Visual Tree Attachment Matters</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#per-edge-toggles">Per-Edge Toggles</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#nesting-safe-areas">Nesting Safe Areas</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skykeyboardinset">Deep Dive: SkyKeyboardInset</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skyactionsheet-implementation-flow">Deep Dive: SkyActionSheet Implementation Flow</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyactionsheetitem-semantics">SkyActionSheetItem Semantics</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skytouchtarget-in-practice">SkyTouchTarget in Practice</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#testing-mobile-layouts-without-devices">Testing Mobile Layouts Without Devices</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

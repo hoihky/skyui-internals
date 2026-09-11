@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 12 — CheckedListBox · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 12 — CheckedListBox</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-12-checkedlistbox-adapters-virtualization-and-tree-flattening">Chapter 12: CheckedListBox — Adapters, Virtualization, and Tree Flattening</h1>
+<p><code>CheckedListBox</code> is one of the most sophisticated controls in SkyUI. It renders a hierarchical checklist with optional tri-state parent checkboxes, drag reorder, inline editing, and UI virtualization. This chapter explains the adapter pattern, row flattening, and checkbox cascade that make it work.</p>
+<p>Tree controls with checkboxes appear simple in mockups but demand careful engineering. You must bridge hierarchical domain data with flat scrollable UI, keep parent and child check states consistent, and remain responsive with thousands of nodes. <code>CheckedListBox</code> solves these problems through adapters, flattening, and virtualization.</p>
+<h2 id="what-checkedlistbox-does">What CheckedListBox Does</h2>
+<p>At first glance, <code>CheckedListBox</code> looks like a <code>TreeView</code> with checkboxes. But its design goals are broader:</p>
+<ul>
+<li>Display arbitrary domain models through a pluggable adapter</li>
+<li>Support async child loading for large trees</li>
+<li>Cascade check state from parents to children (with optional tri-state)</li>
+<li>Virtualize row rendering for performance</li>
+<li>Allow drag-and-drop reorder when enabled</li>
+<li>Support inline rename through an editable adapter</li>
+</ul>
+<p>Unlike Avalonia's built-in <code>TreeView</code>, which expects <code>TreeDataTemplate</code> and <code>HierarchicalDataTemplate</code>, <code>CheckedListBox</code> delegates all tree semantics to an adapter. That indirection costs a few method calls per row but eliminates tight coupling to your domain model.</p>
+<h2 id="the-adapter-pattern">The Adapter Pattern</h2>
+<p>The control never assumes a specific model type. All tree semantics flow through <code>ICheckedListItemAdapter</code>:</p>
+<pre><code class="language-csharp">public interface ICheckedListItemAdapter
+{
+    string GetLabel(object item);
+    IEnumerable? GetChildren(object item);
+    bool GetIsExpanded(object item);
+    void SetIsExpanded(object item, bool expanded);
+    bool? GetIsChecked(object item);
+    void SetIsChecked(object item, bool? value);
+    bool GetHasChildren(object item);
+}
+</code></pre>
+<p>A default implementation handles simple in-memory trees:</p>
+<pre><code class="language-csharp">public class DefaultCheckedListItemAdapter : ICheckedListItemAdapter
+{
+    public string GetLabel(object item) =&gt;
+        item is ICheckedListBoxItem boxItem ? boxItem.Label : item.ToString() ?? &quot;&quot;;
+
+    public IEnumerable? GetChildren(object item) =&gt;
+        item is ICheckedListBoxItem boxItem ? boxItem.Children : null;
+    // ...
+}
+</code></pre>
+<p>Consumers with domain models implement the interface directly or wrap models in an adapter class. This is <strong>dependency inversion</strong>: the control depends on an abstraction, not on your <code>FolderNode</code> or <code>PermissionGroup</code> class.</p>
+<h3 id="implementing-an-adapter-step-by-step">Implementing an Adapter: Step by Step</h3>
+<p>Suppose your domain model is a <code>Permission</code> record with nested children:</p>
+<pre><code class="language-csharp">public class Permission
+{
+    public string Name { get; set; } = &quot;&quot;;
+    public bool? IsChecked { get; set; }
+    public bool IsExpanded { get; set; }
+    public List&lt;Permission&gt; Children { get; set; } = new();
+}
+</code></pre>
+<p>Your adapter maps each method to model properties:</p>
+<pre><code class="language-csharp">public class PermissionAdapter : ICheckedListItemAdapter
+{
+    public static readonly PermissionAdapter Instance = new();
+
+    public string GetLabel(object item) =&gt; ((Permission)item).Name;
+
+    public IEnumerable? GetChildren(object item) =&gt; ((Permission)item).Children;
+
+    public bool GetIsExpanded(object item) =&gt; ((Permission)item).IsExpanded;
+
+    public void SetIsExpanded(object item, bool expanded) =&gt;
+        ((Permission)item).IsExpanded = expanded;
+
+    public bool? GetIsChecked(object item) =&gt; ((Permission)item).IsChecked;
+
+    public void SetIsChecked(object item, bool? value) =&gt;
+        ((Permission)item).IsChecked = value;
+
+    public bool GetHasChildren(object item) =&gt;
+        ((Permission)item).Children.Count &gt; 0;
+}
+</code></pre>
+<p>Keep adapters thin. Business rules belong in the model or view model, not in adapter methods.</p>
+<h3 id="optional-adapter-extensions">Optional Adapter Extensions</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Interface</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ICheckedListEditableAdapter</code></td>
+<td>Inline rename: <code>BeginEdit</code>, <code>CommitEdit</code>, <code>CancelEdit</code></td>
+</tr>
+<tr>
+<td><code>ICheckedListRowActionProvider</code></td>
+<td>Per-row context menu actions</td>
+</tr>
+<tr>
+<td><code>IAsyncTreeDataSource</code></td>
+<td>Lazy child loading with <code>LoadChildrenAsync</code></td>
+</tr>
+</tbody>
+</table>
+<p>When a row enters edit mode, the control swaps the label <code>TextBlock</code> for a <code>TextBox</code>. The editable adapter receives commit and cancel callbacks:</p>
+<pre><code class="language-csharp">public interface ICheckedListEditableAdapter
+{
+    bool CanEdit(object item);
+    string GetEditText(object item);
+    bool TryCommitEdit(object item, string newText, out string? error);
+}
+</code></pre>
+<p><code>TryCommitEdit</code> returns false with an error message when the new name violates validation rules (duplicate name, empty string).</p>
+<h2 id="row-flattening">Row Flattening</h2>
+<p>Tree controls face a fundamental challenge: tree data is hierarchical, but scrolling lists are flat. <code>CheckedListBox</code> maintains a flattened <code>ObservableCollection&lt;CheckedListRowModel&gt;</code> called <code>Rows</code>:</p>
+<pre><code>Tree:                    Flat Rows:
+├─ A (expanded)          [0] A, depth=0
+│  ├─ B                  [1] B, depth=1
+│  └─ C                  [2] C, depth=1
+└─ D (collapsed)         [3] D, depth=0
+</code></pre>
+<p>Only expanded nodes contribute children to the flat list. Collapsing a node removes its descendants from <code>Rows</code> without destroying the underlying tree data.</p>
+<p><code>CheckedListRowBuilder</code> performs the flattening walk:</p>
+<pre><code class="language-csharp">internal static void Rebuild(
+    IEnumerable? items,
+    ICheckedListItemAdapter adapter,
+    ObservableCollection&lt;CheckedListRowModel&gt; rows,
+    double indent,
+    IComparer&lt;object?&gt;? comparer)
+{
+    rows.Clear();
+    if (items is null) return;
+
+    foreach (var item in SortItems(items, comparer))
+        AppendSubtree(item, adapter, rows, indent, depth: 0);
+}
+</code></pre>
+<p>Each <code>CheckedListRowModel</code> carries:</p>
+<ul>
+<li>Reference to the source item</li>
+<li>Depth level (for left indent)</li>
+<li>Cached label and check state</li>
+<li>Expand/collapse affordance visibility</li>
+</ul>
+<h3 id="expand-and-collapse">Expand and Collapse</h3>
+<p>When the user clicks an expander, the adapter updates <code>IsExpanded</code> on the source item, then the control schedules a rebuild:</p>
+<pre><code class="language-csharp">private void OnExpanderClick(CheckedListRowModel row)
+{
+    var expanded = !ItemAdapter!.GetIsExpanded(row.Item);
+    ItemAdapter.SetIsExpanded(row.Item, expanded);
+    ScheduleRebuild();
+}
+</code></pre>
+<p>The rebuild walks the tree again from the root. This is O(n) in total nodes but coalesced to once per frame (see Rebuild Scheduling below). For very large trees, incremental flattening (insert/remove descendant rows only) is an optimization, but full rebuild keeps the code correct and simple.</p>
+<h3 id="indent-calculation">Indent Calculation</h3>
+<p>Row indent is <code>depth * Indent</code> where <code>Indent</code> is a styled property on the control (default 16–20 pixels). The row template applies a left margin or padding based on <code>CheckedListRowModel.Depth</code>:</p>
+<pre><code class="language-xml">&lt;Border Margin=&quot;{Binding Indent, RelativeSource={RelativeSource AncestorType=ContentPresenter}}&quot; /&gt;
+</code></pre>
+<p>Bind indent through the row model rather than computing in the template converter when possible — it simplifies debugging.</p>
+<h2 id="ui-virtualization">UI Virtualization</h2>
+<p>The template hosts a <code>VirtualizingStackPanel</code> inside a <code>ScrollViewer</code>:</p>
+<pre><code class="language-xml">&lt;ScrollViewer Name=&quot;PART_ScrollViewer&quot;&gt;
+  &lt;ItemsControl Name=&quot;PART_ItemsHost&quot;&gt;
+    &lt;ItemsControl.ItemsPanel&gt;
+      &lt;ItemsPanelTemplate&gt;
+        &lt;VirtualizingStackPanel /&gt;
+      &lt;/ItemsPanelTemplate&gt;
+    &lt;/ItemsControl.ItemsPanel&gt;
+  &lt;/ItemsControl&gt;
+&lt;/ScrollViewer&gt;
+</code></pre>
+<p>Virtualization recycles row visuals. Only visible rows get live <code>Control</code> instances. The flattened <code>Rows</code> collection can hold thousands of entries, but the visual tree stays small.</p>
+<p><strong>Important limitation:</strong> flattening still allocates one <code>CheckedListRowModel</code> per visible expanded node. Extremely deep, fully expanded trees consume memory proportional to node count even though rendering is virtualized.</p>
+<h3 id="how-avalonia-virtualization-works">How Avalonia Virtualization Works</h3>
+<p><code>VirtualizingStackPanel</code> measures the total extent (sum of item heights) but only creates containers for items in the viewport plus a small buffer. When you scroll, containers are recycled — the same <code>ContentPresenter</code> may bind to a different <code>CheckedListRowModel</code> after scroll.</p>
+<p>Requirements for virtualization to work:</p>
+<ol>
+<li>Items must be in a <code>VirtualizingStackPanel</code> (not a regular <code>StackPanel</code>)</li>
+<li>The <code>ScrollViewer</code> must have a bounded height (or fill available space)</li>
+<li>Item containers should have consistent height for best results</li>
+</ol>
+<p>Variable-height rows work but cause more frequent re-measurement. <code>CheckedListBox</code> assumes uniform row height for predictable scroll behavior.</p>
+<h3 id="debugging-virtualization">Debugging Virtualization</h3>
+<p>If rows do not appear or scroll behaves erratically:</p>
+<ul>
+<li>Confirm <code>Rows</code> collection has items (bind count to a debug <code>TextBlock</code>)</li>
+<li>Check that the control has a defined height — virtualization needs a viewport</li>
+<li>Verify <code>ItemsSource</code> on the inner <code>ItemsControl</code> binds to <code>Rows</code></li>
+<li>In DevTools, count visual children of the panel — should be ~viewport size, not total row count</li>
+</ul>
+<h2 id="checkbox-cascade">Checkbox Cascade</h2>
+<p><code>CheckedListCheckCoordinator</code> manages parent-child check relationships:</p>
+<pre><code class="language-csharp">internal class CheckedListCheckCoordinator
+{
+    public void OnItemCheckedChanged(object item, bool? newValue)
+    {
+        if (_cascadeToChildren &amp;&amp; newValue.HasValue)
+            CascadeToChildren(item, newValue.Value);
+
+        UpdateParentState(item);
+    }
+}
+</code></pre>
+<p>When <code>CascadeToChildren</code> is true and a parent is checked, all descendants receive the same check state. When <code>UseThreeStateForParents</code> is true, a parent with some but not all children checked shows an indeterminate (null) state.</p>
+<p>Parent state recalculation walks up the tree:</p>
+<ol>
+<li>If all children are checked → parent is checked</li>
+<li>If no children are checked → parent is unchecked</li>
+<li>Otherwise → parent is indeterminate (null)</li>
+</ol>
+<h3 id="suppressing-recursive-updates">Suppressing Recursive Updates</h3>
+<p>Cascade operations can trigger a chain of <code>SetIsChecked</code> calls. The coordinator uses a reentrancy guard:</p>
+<pre><code class="language-csharp">private bool _isUpdating;
+
+public void OnItemCheckedChanged(object item, bool? newValue)
+{
+    if (_isUpdating) return;
+
+    _isUpdating = true;
+    try
+    {
+        // cascade and parent update logic
+    }
+    finally
+    {
+        _isUpdating = false;
+    }
+}
+</code></pre>
+<p>Without the guard, updating a parent triggers child updates, which trigger parent recalculation, which can loop or fire redundant collection change notifications.</p>
+<h3 id="tri-state-checkbox-binding">Tri-State CheckBox Binding</h3>
+<p>Avalonia's <code>CheckBox.IsChecked</code> is <code>bool?</code>. Bind row check state directly:</p>
+<pre><code class="language-xml">&lt;CheckBox IsChecked=&quot;{Binding CheckState, Mode=TwoWay}&quot;
+IsThreeState=&quot;True&quot; /&gt;
+</code></pre>
+<p>The row model exposes <code>CheckState</code> as a cached copy refreshed during rebuild or updated inline when the user toggles.</p>
+<h2 id="collection-change-tracking">Collection Change Tracking</h2>
+<p>When <code>ItemsSource</code> changes, the control subscribes to <code>INotifyCollectionChanged</code> on the root collection and recursively on child collections exposed by the adapter. Property changes on individual items (<code>INotifyPropertyChanged</code>) also trigger row updates.</p>
+<p>This subscription graph is the most complex lifecycle concern in the control. On <code>ItemsSource</code> replacement, all old subscriptions are torn down before new ones are established to prevent leaks.</p>
+<pre><code class="language-csharp">private void UnsubscribeAll()
+{
+    foreach (var sub in _collectionSubscriptions)
+        sub.Dispose();
+    _collectionSubscriptions.Clear();
+}
+
+private void SubscribeToCollection(INotifyCollectionChanged collection)
+{
+    collection.CollectionChanged += OnCollectionChanged;
+    _collectionSubscriptions.Add(new Subscription(() =&gt;
+        collection.CollectionChanged -= OnCollectionChanged));
+}
+</code></pre>
+<p>Walk child collections recursively when items are expanded so that adding a child to a nested node triggers a rebuild.</p>
+<h3 id="inotifypropertychanged-on-items">INotifyPropertyChanged on Items</h3>
+<p>If <code>GetLabel</code> reads a property that can change without collection changes, items should implement <code>INotifyPropertyChanged</code>:</p>
+<pre><code class="language-csharp">private void SubscribeToItem(object item)
+{
+    if (item is INotifyPropertyChanged npc)
+    {
+        npc.PropertyChanged += OnItemPropertyChanged;
+        _itemSubscriptions[item] = npc;
+    }
+}
+
+private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
+{
+    if (e.PropertyName is nameof(Permission.Name) or nameof(Permission.IsChecked))
+        ScheduleRebuild();
+}
+</code></pre>
+<h2 id="drag-reorder">Drag Reorder</h2>
+<p>When <code>AllowReorder</code> is true, <code>CheckedListDragReorderHandler</code> manages pointer capture, ghost overlay rendering, and drop index calculation:</p>
+<pre><code class="language-csharp">internal class CheckedListDragReorderHandler
+{
+    private readonly CheckedListBox owner;
+    private Panel? reorderOverlay;
+
+    public void OnPointerPressed(CheckedListRowModel row, PointerPressedEventArgs e) { ... }
+    public void OnPointerMoved(PointerEventArgs e) { ... }
+    public void OnPointerReleased(PointerReleasedEventArgs e) { ... }
+}
+</code></pre>
+<p>The handler is an internal collaborator class rather than inline logic in <code>CheckedListBox</code>, keeping the main class readable.</p>
+<p>Drag reorder only applies within siblings at the same tree depth. Moving a node across parent boundaries requires additional logic in your view model to restructure the tree data.</p>
+<h2 id="async-child-loading">Async Child Loading</h2>
+<p>For large trees, load children on expand:</p>
+<pre><code class="language-csharp">public interface IAsyncTreeDataSource
+{
+    Task&lt;IReadOnlyList&lt;object&gt;&gt; LoadChildrenAsync(
+        object? parent, CancellationToken cancellationToken);
+}
+</code></pre>
+<p>When the user expands a node with unloaded children, the control shows a placeholder row, awaits <code>LoadChildrenAsync</code>, then appends children to the model and rebuilds. Cancel in-flight loads if the user collapses before completion.</p>
+<h2 id="rebuild-scheduling">Rebuild Scheduling</h2>
+<p>Tree mutations can trigger cascading updates. To avoid rebuilding the flat list multiple times per frame, changes schedule a single rebuild:</p>
+<pre><code class="language-csharp">private void ScheduleRebuild()
+{
+    if (_rebuildScheduled) return;
+    _rebuildScheduled = true;
+    Dispatcher.UIThread.Post(() =&gt;
+    {
+        _rebuildScheduled = false;
+        RebuildAll();
+    });
+}
+</code></pre>
+<p>This coalesces rapid collection changes into one layout pass.</p>
+<h2 id="row-template-and-itemcontainer">Row Template and ItemContainer</h2>
+<p>Each flat row renders through an <code>ItemTemplate</code> or <code>ItemTemplateSelector</code>. A typical row includes:</p>
+<ul>
+<li>Indent spacer</li>
+<li>Expander toggle (visible when <code>HasChildren</code>)</li>
+<li>CheckBox (visible when <code>ShowCheckBoxes</code>)</li>
+<li>Label or edit <code>TextBox</code></li>
+<li>Optional action buttons</li>
+</ul>
+<pre><code class="language-xml">&lt;DataTemplate x:DataType=&quot;models:CheckedListRowModel&quot;&gt;
+  &lt;Grid ColumnDefinitions=&quot;Auto,Auto,*&quot;&gt;
+    &lt;ToggleButton Grid.Column=&quot;0&quot; IsVisible=&quot;{Binding ShowExpander}&quot; /&gt;
+    &lt;CheckBox Grid.Column=&quot;1&quot; IsVisible=&quot;{Binding ShowCheckBox}&quot; /&gt;
+    &lt;TextBlock Grid.Column=&quot;2&quot; Text=&quot;{Binding Label}&quot; /&gt;
+  &lt;/Grid&gt;
+&lt;/DataTemplate&gt;
+</code></pre>
+<h2 id="usage-example">Usage Example</h2>
+<pre><code class="language-xml">&lt;CheckedListBox ItemsSource=&quot;{Binding Permissions}&quot;
+ItemAdapter=&quot;{x:Static local:PermissionAdapter.Instance}&quot;
+CascadeToChildren=&quot;True&quot;
+UseThreeStateForParents=&quot;True&quot;
+ShowCheckBoxes=&quot;True&quot;
+AllowReorder=&quot;False&quot; /&gt;
+</code></pre>
+<p>With a custom adapter:</p>
+<pre><code class="language-csharp">public class PermissionAdapter : ICheckedListItemAdapter
+{
+    public string GetLabel(object item) =&gt; ((Permission)item).Name;
+    public IEnumerable? GetChildren(object item) =&gt; ((Permission)item).Children;
+    public bool GetIsExpanded(object item) =&gt; ((Permission)item).IsExpanded;
+    public void SetIsExpanded(object item, bool expanded) =&gt;
+        ((Permission)item).IsExpanded = expanded;
+    // check state methods...
+}
+</code></pre>
+<p>Reading selected items from the view model:</p>
+<pre><code class="language-csharp">public IEnumerable&lt;Permission&gt; GetCheckedPermissions(Permission root) =&gt;
+    root.Children.SelectMany(Flatten)
+        .Where(p =&gt; p.IsChecked == true);
+
+private IEnumerable&lt;Permission&gt; Flatten(Permission node)
+{
+    yield return node;
+    foreach (var child in node.Children)
+        foreach (var desc in Flatten(child))
+            yield return desc;
+}
+</code></pre>
+<h2 id="lessons-for-custom-treelist-controls">Lessons for Custom Tree/List Controls</h2>
+<ol>
+<li><strong>Flatten early</strong> — Keep a flat observable collection for the view; keep tree structure in the adapter</li>
+<li><strong>Adapter interface</strong> — Never bind directly to domain model types inside the control</li>
+<li><strong>Virtualize rendering</strong> — Use <code>VirtualizingStackPanel</code> for the items host</li>
+<li><strong>Coalesce rebuilds</strong> — Schedule layout-affecting work to avoid O(n²) updates</li>
+<li><strong>Separate collaborators</strong> — Drag, cascade, and build logic belong in dedicated classes</li>
+<li><strong>Subscribe carefully</strong> — Track collection and property change subscriptions to prevent leaks</li>
+<li><strong>Guard reentrancy</strong> — Cascade updates need suppression to avoid infinite loops</li>
+<li><strong>Test with large trees</strong> — Expand all nodes and verify memory and scroll performance</li>
+</ol>
+<p>The next chapter shows how <code>SkyVirtualTreeView</code> specializes <code>CheckedListBox</code> for the common tree-without-checkboxes case, and how <code>SkyAccordion</code> uses the <code>ItemsControl</code> container pattern.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-12-checkedlistbox-adapters-virtualization-and-tree-flattening">Chapter 12: CheckedListBox — Adapters, Virtualization, and Tree Flattening</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#what-checkedlistbox-does">What CheckedListBox Does</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-adapter-pattern">The Adapter Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#implementing-an-adapter-step-by-step">Implementing an Adapter: Step by Step</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#optional-adapter-extensions">Optional Adapter Extensions</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#row-flattening">Row Flattening</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#expand-and-collapse">Expand and Collapse</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#indent-calculation">Indent Calculation</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#ui-virtualization">UI Virtualization</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#how-avalonia-virtualization-works">How Avalonia Virtualization Works</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-virtualization">Debugging Virtualization</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#checkbox-cascade">Checkbox Cascade</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#suppressing-recursive-updates">Suppressing Recursive Updates</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#tri-state-checkbox-binding">Tri-State CheckBox Binding</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#collection-change-tracking">Collection Change Tracking</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#inotifypropertychanged-on-items">INotifyPropertyChanged on Items</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#drag-reorder">Drag Reorder</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#async-child-loading">Async Child Loading</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#rebuild-scheduling">Rebuild Scheduling</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#row-template-and-itemcontainer">Row Template and ItemContainer</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#usage-example">Usage Example</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#lessons-for-custom-treelist-controls">Lessons for Custom Tree/List Controls</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

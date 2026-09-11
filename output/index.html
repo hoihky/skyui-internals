@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkyUI Internals · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0 is-active">
+                          
+                            <a href="index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>SkyUI Internals</h1>
+          </header>
+          <div class="doc-body"><h1 id="skyui-internals-building-custom-avalonia-controls">SkyUI Internals: Building Custom Avalonia Controls</h1>
+<p>A comprehensive developer guide to the SkyUI toolkit for Avalonia 12 — architecture, design patterns, Avalonia concepts, and detailed implementation walkthroughs for <strong>30+ controls</strong>.</p>
+<h2 id="what-you-will-learn">What You Will Learn</h2>
+<ul>
+<li>The Avalonia property system, visual and logical trees, templates, bindings, and routed events</li>
+<li>SkyUI package architecture, design tokens, and theme authoring</li>
+<li>Step-by-step recipes for building custom controls from scratch</li>
+<li>In-depth implementation of layout, form, list, data, navigation, shell, feedback, menu, primitive, mobile, and advanced controls</li>
+<li>Recurring patterns: adapters, host facades, abstract bases, attached properties, pseudo-classes, custom panels</li>
+</ul>
+<h2 id="complete-chapter-guide">Complete Chapter Guide</h2>
+<h3 id="part-i-foundations">Part I — Foundations</h3>
+<ol>
+<li>The Avalonia Control Model</li>
+<li>Package Architecture</li>
+<li>Design Tokens and Theming</li>
+<li>The Control-Building Recipe</li>
+</ol>
+<h3 id="part-ii-layout">Part II — Layout</h3>
+<ol start="5">
+<li>SkyCard and SkyDivider</li>
+<li>Responsive Layout (SkyResponsiveGrid, SkyGridLayout)</li>
+<li>SkyExpander and SkyLoadingOverlay</li>
+</ol>
+<h3 id="part-iii-forms-and-input">Part III — Forms and Input</h3>
+<ol start="8">
+<li>SkyFormField</li>
+<li>SkyAutocomplete and Validation</li>
+<li>SkyRadioGroup, SkySlider, and SkyNumericUpDown</li>
+<li>Date and Time Pickers (SkyDatePicker, SkyDateRangePicker)</li>
+</ol>
+<h3 id="part-iv-lists-and-trees">Part IV — Lists and Trees</h3>
+<ol start="12">
+<li>CheckedListBox</li>
+<li>SkyVirtualTreeView and SkyAccordion</li>
+</ol>
+<h3 id="part-v-data-presentation">Part V — Data Presentation</h3>
+<ol start="14">
+<li>Pagination and KPI Tiles</li>
+<li>SkyVirtualDataGrid</li>
+<li>FilterEditor</li>
+</ol>
+<h3 id="part-vi-navigation-and-shell">Part VI — Navigation and Shell</h3>
+<ol start="17">
+<li>SkyNavigationView</li>
+<li>SkySplitView and Page Scaffolds</li>
+<li>SkyTabView and SkyBreadcrumb</li>
+<li>SkyCommandBar, SkyPageHeader, and SkyDrawer</li>
+</ol>
+<h3 id="part-vii-feedback-and-overlays">Part VII — Feedback and Overlays</h3>
+<ol start="21">
+<li>Dialog and Snackbar Hosts</li>
+<li>SkyAlert, SkyProgressRing, and SkySkeleton</li>
+<li>SkyMenuBar and SkyContextMenu</li>
+</ol>
+<h3 id="part-viii-primitives">Part VIII — Primitives</h3>
+<ol start="24">
+<li>Chip, Badge, and Avatar</li>
+<li>Attached Properties</li>
+<li>SkyIcon and SkyFontIcon</li>
+</ol>
+<h3 id="part-ix-advanced">Part IX — Advanced</h3>
+<ol start="27">
+<li>DiagramSurface</li>
+<li>Mobile Primitives (SkySafeArea, SkyActionSheet)</li>
+<li>VideoTimeline</li>
+</ol>
+<h2 id="controls-covered">Controls Covered</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Category</th>
+<th>Controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>SkyCard, SkyDivider, SkyResponsiveGrid, SkyGridLayout, SkyExpander, SkyLoadingOverlay</td>
+</tr>
+<tr>
+<td>Forms</td>
+<td>SkyFormField, SkyAutocomplete, SkyRadioGroup, SkySlider, SkyNumericUpDown, SkyComboBoxField, SkyMaskedTextBox, SkySearchBox, SkyPasswordBox</td>
+</tr>
+<tr>
+<td>Pickers</td>
+<td>SkyDatePicker, SkyTimePicker, SkyCalendar, SkyDateRangePicker, SkyFilePicker</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>CheckedListBox, SkyVirtualTreeView, SkyAccordion</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>SkyPagination, SkyDataPager, SkyKpiTile, SkyVirtualDataGrid, FilterEditor</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td>SkyNavigationView, SkyTabView, SkyBreadcrumb</td>
+</tr>
+<tr>
+<td>Shell</td>
+<td>SkySplitView, SkyListDetailPage, SkyCommandBar, SkyPageHeader, SkyDrawer, SkyStatusBar</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>SkyDialogHost, SkySnackbarHost, SkyMessageBox, SkyAlert, SkyBanner, SkyProgressRing, SkySkeleton, SkySheetHost</td>
+</tr>
+<tr>
+<td>Menus</td>
+<td>SkyMenuBar, SkyContextMenu, SkyMenuFlyout</td>
+</tr>
+<tr>
+<td>Primitives</td>
+<td>Chip, Badge, Avatar, SkyIcon, SkyButtonProperties, SkyTooltip</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td>SkySafeArea, SkyKeyboardInset, SkyActionSheet, SkyTouchTarget</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>DiagramSurface, VideoTimeline</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reading-order">Reading Order</h2>
+<p>Parts I–IV are essential for learning custom control development. Parts V–IX can be read selectively based on your application needs.</p>
+<h2 id="conventions">Conventions</h2>
+<ul>
+<li>Code samples reflect real SkyUI patterns</li>
+<li>Template parts use <code>PART_*</code> naming</li>
+<li>Style classes use the <code>sky-*</code> prefix</li>
+<li>Repository paths are relative (e.g. <code>src/SkyUI/Controls/...</code>)</li>
+</ul>
+<p>Begin with <strong>Part I, Chapter 1 — The Avalonia Control Model</strong>.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#skyui-internals-building-custom-avalonia-controls">SkyUI Internals: Building Custom Avalonia Controls</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#what-you-will-learn">What You Will Learn</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#complete-chapter-guide">Complete Chapter Guide</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-i-foundations">Part I — Foundations</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-ii-layout">Part II — Layout</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-iii-forms-and-input">Part III — Forms and Input</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-iv-lists-and-trees">Part IV — Lists and Trees</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-v-data-presentation">Part V — Data Presentation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-vi-navigation-and-shell">Part VI — Navigation and Shell</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-vii-feedback-and-overlays">Part VII — Feedback and Overlays</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-viii-primitives">Part VIII — Primitives</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#part-ix-advanced">Part IX — Advanced</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#controls-covered">Controls Covered</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#reading-order">Reading Order</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#conventions">Conventions</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="assets/vendor/mermaid.min.js"></script>
+  <script src="assets/vendor/highlight.min.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 27 — DiagramSurface · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 27 — DiagramSurface</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-27-diagramsurface-custom-panel-rendering">Chapter 27: DiagramSurface — Custom Panel Rendering</h1>
+<p>Most SkyUI controls inherit <code>TemplatedControl</code> and delegate rendering to XAML templates. <code>DiagramSurface</code> in the <code>SkyUI.Diagram</code> package takes a different path: it subclasses <code>Panel</code> and manages its own visual children for nodes and edges. This chapter explains when to bypass templates, how to implement custom layout, pluggable strategies, pointer interaction state machines, and the Avalonia rendering APIs that make canvas-style editors possible.</p>
+<h2 id="why-panel-instead-of-templatedcontrol">Why Panel Instead of TemplatedControl?</h2>
+<p>Diagram editors need:</p>
+<ul>
+<li>Arbitrary node positioning on a canvas</li>
+<li>Edge lines drawn between node ports</li>
+<li>Drag, connect, resize, and select interactions</li>
+<li>Zoom and pan across a large virtual canvas</li>
+</ul>
+<p>A <code>ControlTemplate</code> with fixed <code>ContentPresenter</code> slots cannot express this. A custom <code>Panel</code> overrides <code>MeasureOverride</code> and <code>ArrangeOverride</code> to position child elements at absolute coordinates, and optionally renders edge geometry in <code>Render</code>.</p>
+<h3 id="avalonia-concept-panel-vs-canvas">Avalonia Concept: Panel vs Canvas</h3>
+<p>Avalonia's built-in <code>Canvas</code> supports attached <code>Canvas.Left</code> / <code>Canvas.Top</code> positioning. <code>DiagramSurface</code> subclasses <code>Panel</code> directly for full control over measure semantics, child lifecycle tied to document nodes, and custom render passes for edges. <code>Canvas</code> would still require a separate edge layer — the diagram package unifies model sync, layout, hit testing, and drawing in one type.</p>
+<h2 id="diagramsurface-overview">DiagramSurface Overview</h2>
+<pre><code class="language-csharp">public sealed class DiagramSurface : Panel
+{
+    public static readonly StyledProperty&lt;DiagramDocument?&gt; DocumentProperty = ...;
+    public static readonly StyledProperty&lt;IEdgePathComputer?&gt; EdgePathComputerProperty = ...;
+    public static readonly StyledProperty&lt;IDiagramNodePresenterFactory?&gt; NodePresenterFactoryProperty = ...;
+    public static readonly StyledProperty&lt;IDiagramSceneHitTester?&gt; HitTesterProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; ZoomProperty = ...;
+    public static readonly StyledProperty&lt;Vector&gt; PanOffsetProperty = ...;
+}
+</code></pre>
+<p>The surface holds a <code>DiagramDocument</code> model containing nodes and edges. Visual presenters are created through factory and strategy interfaces. Default implementations ship for straight routing and rectangular nodes; swap strategies without changing surface code.</p>
+<h2 id="pluggable-strategies">Pluggable Strategies</h2>
+<p>Strategy interfaces keep the surface stable while algorithms and node visuals vary — the same extensibility pattern as <code>IEdgePathComputer</code> in graph libraries and <code>IDocumentView</code> in IDE shells.</p>
+<h3 id="iedgepathcomputer">IEdgePathComputer</h3>
+<p>Computes the geometry for edge lines between ports:</p>
+<pre><code class="language-csharp">public interface IEdgePathComputer
+{
+    Geometry ComputePath(
+        Point start, Point end,
+        EdgeRoutingStyle style);
+}
+</code></pre>
+<p>Implementations include straight lines, orthogonal routing, and bezier curves. The surface calls the computer during <code>Render</code> or when edge positions change.</p>
+<p>Example straight-line computer:</p>
+<pre><code class="language-csharp">public sealed class StraightEdgePathComputer : IEdgePathComputer
+{
+    public Geometry ComputePath(Point start, Point end, EdgeRoutingStyle style)
+    {
+        var geo = new StreamGeometry();
+        using var ctx = geo.Open();
+        ctx.BeginFigure(start, false);
+        ctx.LineTo(end);
+        return geo;
+    }
+}
+</code></pre>
+<p>Orthogonal routers add bend points — cache results per edge until node positions change to avoid recomputing on every frame.</p>
+<h3 id="idiagramnodepresenterfactory">IDiagramNodePresenterFactory</h3>
+<p>Creates the visual control for each node:</p>
+<pre><code class="language-csharp">public interface IDiagramNodePresenterFactory
+{
+    Control CreatePresenter(DiagramNode node);
+    void UpdatePresenter(Control presenter, DiagramNode node);
+}
+</code></pre>
+<p>Different node types (task, decision, start/end) can have different visual representations without the surface knowing about specific node classes.</p>
+<p>Register presenters by node type key:</p>
+<pre><code class="language-csharp">public sealed class TypedNodePresenterFactory : IDiagramNodePresenterFactory
+{
+    private readonly Dictionary&lt;string, Func&lt;DiagramNode, Control&gt;&gt; _creators = new();
+
+    public Control CreatePresenter(DiagramNode node) =&gt;
+        _creators[node.Kind](node);
+
+    public void UpdatePresenter(Control presenter, DiagramNode node)
+    {
+        if (presenter.DataContext != node)
+            presenter.DataContext = node;
+    }
+}
+</code></pre>
+<h3 id="idiagramscenehittester">IDiagramSceneHitTester</h3>
+<p>Determines what is under the pointer:</p>
+<pre><code class="language-csharp">public interface IDiagramSceneHitTester
+{
+    DiagramHitTestResult HitTest(DiagramSurface surface, Point point);
+}
+</code></pre>
+<p>Hit testing drives selection, connection dragging, and context menus.</p>
+<p>Edges drawn in <code>Render</code> are not visual children — default hit testing misses them. The hit tester must:</p>
+<ol>
+<li>Transform pointer point by inverse zoom/pan</li>
+<li>Test node bounds in document space</li>
+<li>Test edge geometry with <code>Geometry.FillContains</code> / distance-to-segment for strokes</li>
+</ol>
+<pre><code class="language-csharp">public DiagramHitTestResult HitTest(DiagramSurface surface, Point point)
+{
+    var docPoint = surface.ScreenToDocument(point);
+
+    foreach (var edge in surface.Document!.Edges.Reverse())
+    {
+        if (HitTestEdge(edge, docPoint, out var hit))
+            return DiagramHitTestResult.Edge(edge, hit);
+    }
+
+    foreach (var node in surface.Document.Nodes.Reverse())
+    {
+        var rect = new Rect(node.X, node.Y, node.Width, node.Height);
+        if (rect.Contains(docPoint))
+            return DiagramHitTestResult.Node(node);
+    }
+
+    return DiagramHitTestResult.Empty;
+}
+</code></pre>
+<p>Reverse iteration hits top-most items first — match paint order.</p>
+<h2 id="layout-measure-and-arrange">Layout: Measure and Arrange</h2>
+<p>As a <code>Panel</code>, <code>DiagramSurface</code> positions node presenters at their model coordinates:</p>
+<pre><code class="language-csharp">protected override Size MeasureOverride(Size availableSize)
+{
+    foreach (var child in Children)
+    {
+        child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+    }
+    return Document?.Bounds.Size ?? default;
+}
+
+protected override Size ArrangeOverride(Size finalSize)
+{
+    foreach (var child in Children)
+    {
+        if (child.Tag is DiagramNode node)
+        {
+            child.Arrange(new Rect(node.X, node.Y, node.Width, node.Height));
+        }
+    }
+    return finalSize;
+}
+</code></pre>
+<p>Node position and size come from the model, not from layout constraints. The panel's available size is effectively infinite (canvas semantics).</p>
+<h3 id="avalonia-concept-desired-size-vs-document-bounds">Avalonia Concept: Desired Size vs Document Bounds</h3>
+<p>Returning <code>Document.Bounds.Size</code> from <code>MeasureOverride</code> tells the parent how large the virtual canvas is. Scrollable hosts wrap the surface in a <code>ScrollViewer</code> — the surface should report intrinsic document size, not viewport size. If <code>Bounds</code> is empty, fall back to <code>finalSize</code> from last arrange to avoid collapse on empty documents.</p>
+<h3 id="syncing-children-to-document">Syncing Children to Document</h3>
+<p>Subscribe to <code>Document.Nodes.CollectionChanged</code>:</p>
+<pre><code class="language-csharp">private void OnNodesChanged(object? sender, NotifyCollectionChangedEventArgs e)
+{
+    switch (e.Action)
+    {
+        case NotifyCollectionChangedAction.Add:
+            foreach (DiagramNode node in e.NewItems!)
+                AddNodePresenter(node);
+            break;
+        case NotifyCollectionChangedAction.Remove:
+            foreach (DiagramNode node in e.OldItems!)
+                RemoveNodePresenter(node);
+            break;
+    }
+    InvalidateMeasure();
+    InvalidateVisual();
+}
+
+private void AddNodePresenter(DiagramNode node)
+{
+    var presenter = NodePresenterFactory!.CreatePresenter(node);
+    presenter.Tag = node;
+    Children.Add(presenter);
+}
+</code></pre>
+<p>Tag links visual back to model for arrange and hit testing. Use weak events or unsubscribe when <code>Document</code> property changes to avoid leaks.</p>
+<h2 id="edge-rendering">Edge Rendering</h2>
+<p>Edges are typically not <code>Control</code> children. They are drawn in <code>Render</code>:</p>
+<pre><code class="language-csharp">public override void Render(DrawingContext context)
+{
+    base.Render(context);
+
+    if (Document is null || EdgePathComputer is null)
+        return;
+
+    using (context.PushTransform(BuildZoomPanTransform()))
+    {
+        foreach (var edge in Document.Edges)
+        {
+            var start = GetPortPosition(edge.SourceNode, edge.SourcePort);
+            var end = GetPortPosition(edge.TargetNode, edge.TargetPort);
+            var geometry = EdgePathComputer.ComputePath(start, end, edge.RoutingStyle);
+
+            var pen = edge.IsSelected ? SelectedEdgePen : EdgePen;
+            context.DrawGeometry(null, pen, geometry);
+        }
+    }
+}
+</code></pre>
+<p>Keeping edges in the render pass rather than as child controls avoids the overhead of thousands of <code>Control</code> instances in large diagrams.</p>
+<h3 id="avalonia-concept-drawingcontext-and-pens">Avalonia Concept: DrawingContext and Pens</h3>
+<p><code>DrawGeometry</code> takes fill brush and pen. For stroke-only lines, pass <code>null</code> fill and a <code>Pen</code> with desired thickness. Hairline edges at odd zoom levels alias — snap coordinates or use <code>Pen</code> with <code>LineCap.Round</code> for cleaner joins.</p>
+<p>Call <code>InvalidateVisual()</code> when edge routes change — layout invalidation alone does not rerun <code>Render</code>.</p>
+<h3 id="port-position">Port Position</h3>
+<pre><code class="language-csharp">private Point GetPortPosition(DiagramNode node, DiagramPort port)
+{
+    var rect = new Rect(node.X, node.Y, node.Width, node.Height);
+    return port.Side switch
+    {
+        PortSide.Right  =&gt; rect.TopRight + new Vector(0, rect.Height * port.NormalizedOffset),
+        PortSide.Left   =&gt; rect.TopLeft  + new Vector(0, rect.Height * port.NormalizedOffset),
+        PortSide.Top    =&gt; rect.TopLeft  + new Vector(rect.Width * port.NormalizedOffset, 0),
+        PortSide.Bottom =&gt; rect.BottomLeft + new Vector(rect.Width * port.NormalizedOffset, 0),
+        _ =&gt; rect.Center
+    };
+}
+</code></pre>
+<h2 id="zoom-and-pan">Zoom and Pan</h2>
+<p>Apply transform in <code>Render</code> and inverse transform in hit testing:</p>
+<pre><code class="language-csharp">private Matrix BuildZoomPanTransform() =&gt;
+    Matrix.CreateTranslation(PanOffset.X, PanOffset.Y) *
+    Matrix.CreateScale(Zoom, Zoom);
+
+public Point ScreenToDocument(Point screen) =&gt;
+    BuildZoomPanTransform().Invert().Transform(screen);
+</code></pre>
+<p>Pointer wheel with Ctrl modifies <code>Zoom</code>; middle-button drag or space+drag modifies <code>PanOffset</code>. Clamp zoom between sensible min/max to prevent numerical instability in invert.</p>
+<p>Optional: render grid background in <code>Render</code> before edges using document-space line loop — cheap visual anchor for users.</p>
+<h2 id="interaction-connect-and-drag">Interaction: Connect and Drag</h2>
+<p>Pointer handlers on the surface manage interaction state machines:</p>
+<ol>
+<li><strong>Select</strong> — click node, update selection in document</li>
+<li><strong>Drag node</strong> — pointer capture, update node X/Y on move</li>
+<li><strong>Connect</strong> — drag from output port, show rubber-band line, snap to input port on release</li>
+<li><strong>Resize</strong> — drag resize grip, update node width/height</li>
+</ol>
+<p>Each interaction mode is a separate handler class or method group, similar to how <code>CheckedListDragReorderHandler</code> is separated from <code>CheckedListBox</code>.</p>
+<h3 id="mode-state-machine">Mode State Machine</h3>
+<pre><code class="language-csharp">private enum InteractionMode { None, DragNode, Connect, Resize, Pan }
+private InteractionMode _mode;
+
+private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
+{
+    var hit = HitTester!.HitTest(this, e.GetPosition(this));
+
+    if (hit.IsPort &amp;&amp; hit.Port!.IsOutput)
+    {
+        _mode = InteractionMode.Connect;
+        _connectSource = hit;
+        e.Pointer.Capture(this);
+        return;
+    }
+
+    if (hit.IsNode)
+    {
+        _mode = InteractionMode.DragNode;
+        _dragNode = hit.Node;
+        _dragStart = e.GetPosition(this);
+        e.Pointer.Capture(this);
+        SelectNode(hit.Node);
+    }
+}
+</code></pre>
+<p>Only one mode active at a time. <code>PointerReleased</code> clears mode and capture.</p>
+<h3 id="rubber-band-connection-line">Rubber-Band Connection Line</h3>
+<p>Draw provisional edge in <code>Render</code> when <code>_mode == Connect</code>:</p>
+<pre><code class="language-csharp">if (_mode == InteractionMode.Connect &amp;&amp; _connectSource is not null)
+{
+    var start = GetPortPosition(_connectSource.Node!, _connectSource.Port!);
+    var end = ScreenToDocument(_currentPointer);
+    context.DrawLine(RubberBandPen, start, end);
+}
+</code></pre>
+<p>On release, if hit target is compatible input port, add <code>DiagramEdge</code> to document.</p>
+<h2 id="document-model">Document Model</h2>
+<pre><code class="language-csharp">public class DiagramDocument
+{
+    public ObservableCollection&lt;DiagramNode&gt; Nodes { get; } = new();
+    public ObservableCollection&lt;DiagramEdge&gt; Edges { get; } = new();
+    public Rect Bounds { get; private set; }
+
+    public void RecalculateBounds()
+    {
+        Bounds = Nodes.Count == 0
+            ? new Rect(0, 0, 800, 600)
+            : Nodes.Aggregate(Rect.Empty, (r, n) =&gt; r.Union(new Rect(n.X, n.Y, n.Width, n.Height)));
+    }
+}
+</code></pre>
+<p>The document is bindable and serializable. The surface subscribes to collection changes and creates or removes visual presenters accordingly.</p>
+<p>Raise property change on <code>Bounds</code> after node moves so scroll viewers update extent.</p>
+<h2 id="clipboard-support">Clipboard Support</h2>
+<p>Diagram operations integrate with <code>SkyClipboard</code> for copy/paste of selected nodes and edges. Serialized node data is placed on the clipboard as JSON or a custom format, and paste creates new nodes offset from the originals.</p>
+<p>Paste offset (20, 20) prevents exact overlap. Remap edge endpoints to new node IDs during paste — storing edges without ID translation produces dangling connections.</p>
+<h2 id="performance-at-scale">Performance at Scale</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Technique</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge in <code>Render</code></td>
+<td>Avoid N <code>Control</code> instances for edges</td>
+</tr>
+<tr>
+<td>Invalidate visual on change only</td>
+<td>Skip full tree layout per frame</td>
+</tr>
+<tr>
+<td>Hit test broad phase</td>
+<td>Spatial hash or grid before geometry tests</td>
+</tr>
+<tr>
+<td>Freeze pens/brushes</td>
+<td>Reduce allocations in <code>Render</code></td>
+</tr>
+<tr>
+<td>Virtualize off-screen nodes</td>
+<td>Optional for very large graphs — advanced</td>
+</tr>
+</tbody>
+</table>
+<p>Profile with hundreds of nodes before optimizing — Avalonia handles moderate diagrams well if you avoid redundant <code>InvalidateMeasure</code> on every pointer move during drag (invalidate arrange or update model + single invalidate).</p>
+<h2 id="debugging-diagramsurface">Debugging DiagramSurface</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes clip at origin</td>
+<td>Arrange uses wrong coordinates; zoom transform missing</td>
+</tr>
+<tr>
+<td>Edges disconnected from ports</td>
+<td>Port offset math or stale layout before render</td>
+</tr>
+<tr>
+<td>Clicks miss edges</td>
+<td>Hit tester ignores render-only geometry</td>
+</tr>
+<tr>
+<td>Drag jumps</td>
+<td>Screen vs document space mix-up</td>
+</tr>
+<tr>
+<td>Children duplicate</td>
+<td>CollectionChanged add without remove on replace</td>
+</tr>
+<tr>
+<td>Blank surface</td>
+<td><code>Document</code> null or factory null — guard in property changed</td>
+</tr>
+</tbody>
+</table>
+<p>Enable diagnostic overlay drawing node bounds and port dots in debug builds.</p>
+<h2 id="when-to-build-a-custom-panel">When to Build a Custom Panel</h2>
+<p>Use a custom <code>Panel</code> subclass when:</p>
+<ul>
+<li>Children need absolute positioning, not flow layout</li>
+<li>You need to render geometry that is not a <code>Control</code> (lines, curves, grids)</li>
+<li>Performance requires avoiding a <code>Control</code> per data item (thousands of edges)</li>
+<li>Interaction is canvas-like (drag, connect, zoom, pan)</li>
+</ul>
+<p>Stay with <code>TemplatedControl</code> when:</p>
+<ul>
+<li>The visual structure is a fixed set of named parts</li>
+<li>Items map 1:1 to <code>Control</code> instances with templates</li>
+<li>Layout is flow-based (stack, grid, wrap)</li>
+</ul>
+<h2 id="building-your-own-canvas-control">Building Your Own Canvas Control</h2>
+<ol>
+<li><strong>Separate model from view</strong> — <code>DiagramDocument</code> is independent of <code>DiagramSurface</code></li>
+<li><strong>Factory for visuals</strong> — node types vary; the surface should not hard-code presenters</li>
+<li><strong>Strategy for geometry</strong> — edge routing algorithms are pluggable</li>
+<li><strong>Render non-control graphics</strong> — use <code>DrawingContext</code> for lines and shapes</li>
+<li><strong>Hit test separately</strong> — do not rely on default visual hit testing for render-only content</li>
+<li><strong>Interaction state machine</strong> — one active mode at a time (select, drag, connect, resize)</li>
+<li><strong>Transform consistency</strong> — same matrix in render, hit test, and drag delta math</li>
+<li><strong>Invalidate correctly</strong> — <code>InvalidateVisual</code> for paint; <code>InvalidateMeasure</code> for document bounds</li>
+</ol>
+<h2 id="deep-dive-diagrammodel-sync-and-presenter-lifecycle">Deep Dive: DiagramModel Sync and Presenter Lifecycle</h2>
+<p><code>DiagramSurface</code> does not bind XAML to nodes. When <code>Model</code> changes, <code>AttachModel()</code> wires collection events and syncs presenters:</p>
+<pre><code class="language-csharp">private void AttachModel()
+{
+    DetachModel();
+    _wiredModel = Model;
+    if (_wiredModel is null) return;
+
+    _wiredModel.Nodes.CollectionChanged += OnNodesChanged;
+    _wiredModel.Edges.CollectionChanged += OnEdgesChanged;
+    foreach (var node in _wiredModel.Nodes)
+        EnsureNodePresenter(node);
+    foreach (var edge in _wiredModel.Edges)
+        EnsureEdgePresenter(edge);
+}
+</code></pre>
+<h3 id="node-presenter-factory">Node Presenter Factory</h3>
+<pre><code class="language-csharp">public interface IDiagramNodePresenterFactory
+{
+    DiagramNodePresenter Create(DiagramNode node);
+    void Update(DiagramNodePresenter presenter, DiagramNode node);
+}
+</code></pre>
+<p><code>DefaultDiagramNodePresenterFactory</code> returns a bordered rectangle with label <code>TextBlock</code>. Custom factories render database tables, decision diamonds, or image thumbnails — the surface only positions <code>DiagramNodePresenter</code> controls on <code>_nodesCanvas</code>.</p>
+<pre><code class="language-csharp">internal void SyncNodeCanvasPosition(DiagramNodePresenter p)
+{
+    Canvas.SetLeft(p, n.Bounds.X);
+    Canvas.SetTop(p, n.Bounds.Y);
+    p.Width = n.Bounds.Width;
+    p.Height = n.Bounds.Height;
+    UpdateAllEdges();
+}
+</code></pre>
+<p>Every node move triggers edge reroute — edges are dependent on node port positions.</p>
+<h3 id="edge-presenters-and-z-order">Edge Presenters and Z-Order</h3>
+<pre><code class="language-csharp">private readonly Canvas _nodesCanvas = new();
+private readonly Canvas _overlayCanvas = new();  // preview line during connect
+
+private const int EdgePresenterZIndex = 10;
+private const int SelectedNodePresenterZIndex = 30;
+</code></pre>
+<p>Edges are <code>Control</code> children with higher <code>ZIndex</code> than unselected nodes so lines paint on top. Selected nodes bump to 30 so resize handles receive pointer events above edges.</p>
+<p><code>IEdgePathComputer</code> computes <code>Geometry</code> for each edge:</p>
+<pre><code class="language-csharp">public interface IEdgePathComputer
+{
+    Geometry ComputePath(Point start, Point end, DiagramEdge edge);
+}
+</code></pre>
+<p><code>StraightEdgePathComputer</code> draws line segments. <code>OrthogonalEdgePathComputer</code> adds elbow points for flowchart aesthetics.</p>
+<hr />
+<h2 id="deep-dive-pointer-drag-state-machine">Deep Dive: Pointer Drag State Machine</h2>
+<p><code>DiagramSurface</code> tracks one active drag mode:</p>
+<pre><code class="language-csharp">private enum DragKind { None, MoveNode, ResizeNode, Connect, Reconnect }
+private DragKind _drag;
+</code></pre>
+<h3 id="move-node">Move Node</h3>
+<pre><code class="language-csharp">public void BeginMoveNode(DiagramNode node, PointerPressedEventArgs e)
+{
+    _drag = DragKind.MoveNode;
+    _moveNodeId = node.Id;
+    _moveStartBounds = node.Bounds;
+    _pressDiagramPoint = e.GetPosition(this);
+    e.Pointer.Capture(this);
+    HookDrag();
+}
+</code></pre>
+<p>On <code>PointerMoved</code>, delta translates <code>node.Bounds</code> and calls <code>SyncNodeCanvasPosition</code>. <code>Pointer.Capture</code> ensures moves continue when the pointer leaves the node bounds.</p>
+<h3 id="connect-rubber-band">Connect (Rubber Band)</h3>
+<p>Starting drag from an output port:</p>
+<ol>
+<li><code>_drag = DragKind.Connect</code></li>
+<li><code>_previewLine</code> on <code>_overlayCanvas</code> follows pointer</li>
+<li>On release over input port, <code>Model.Edges.Add(new DiagramEdge(...))</code></li>
+<li>On release elsewhere, cancel — no edge created</li>
+</ol>
+<p><code>HitTester</code> identifies port vs node body vs empty canvas.</p>
+<h3 id="resize">Resize</h3>
+<p><code>ResizeHandle</code> enum (TopLeft, BottomRight, etc.) determines which bounds edges move. <code>MinWidth</code>/<code>MinHeight</code> on node model prevent collapse to zero.</p>
+<h3 id="reconnect">Reconnect</h3>
+<p>Drag an existing edge endpoint to a different port — <code>_reconnectEdgeId</code> and <code>_reconnectSourceEnd</code> track which end moves.</p>
+<hr />
+<h2 id="deep-dive-selection-and-clipboard">Deep Dive: Selection and Clipboard</h2>
+<pre><code class="language-csharp">public DiagramSelectionModel Selection { get; } = new();
+
+public void SelectNode(string nodeId, bool additive)
+{
+    if (!additive) Selection.Clear();
+    Selection.AddNode(nodeId);
+}
+</code></pre>
+<p>Shift-click adds to selection; plain click replaces. <code>SelectionChanged</code> updates visual affordances (border, resize grips).</p>
+<h3 id="copy-paste">Copy / Paste</h3>
+<pre><code class="language-csharp">private List&lt;NodeClipboardEntry&gt;? _nodeClipboard;
+private List&lt;EdgeClipboardEntry&gt;? _edgeClipboard;
+</code></pre>
+<p>Copy serializes selected nodes and <strong>internal</strong> edges (both endpoints selected). Paste clones with offset IDs so pasted nodes do not collide. Edge clipboard entries remap old IDs to new IDs through a dictionary built during node paste.</p>
+<hr />
+<h2 id="deep-dive-hit-testing-rendered-edges">Deep Dive: Hit Testing Rendered Edges</h2>
+<p>Edges drawn as <code>Path</code> controls participate in visual hit testing. For geometry-only render passes, implement <code>IDiagramSceneHitTester</code>:</p>
+<pre><code class="language-csharp">public interface IDiagramSceneHitTester
+{
+    DiagramHitResult HitTest(DiagramSurface surface, Point diagramPoint);
+}
+</code></pre>
+<p><code>DiagramSceneHitTester</code> walks nodes top-down, then edges by distance-to-path threshold. Without custom hit testing, thin lines are hard to click — widen hit tolerance in the tester, not visual stroke.</p>
+<hr />
+<h2 id="measureoverride-and-infinite-canvas">MeasureOverride and Infinite Canvas</h2>
+<pre><code class="language-csharp">protected override Size MeasureOverride(Size availableSize)
+{
+    var needed = ComputeContentSize();  // max node right/bottom + padding
+    return new Size(
+        Math.Max(availableSize.Width, needed.Width),
+        Math.Max(availableSize.Height, needed.Height));
+}
+</code></pre>
+<p>The panel grows to fit all nodes — parent <code>ScrollViewer</code> provides pan when content exceeds viewport. <code>InvalidateMeasure()</code> when nodes move outside current bounds.</p>
+<hr />
+<h2 id="usage-example">Usage Example</h2>
+<pre><code class="language-xml">&lt;diagram:DiagramSurface Model=&quot;{Binding FlowModel}&quot;
+PathComputer=&quot;{x:Static local:OrthogonalRouter.Instance}&quot;
+NodeFactory=&quot;{x:Static local:FlowchartNodeFactory.Instance}&quot; /&gt;
+</code></pre>
+<pre><code class="language-csharp">public class FlowViewModel
+{
+    public DiagramModel FlowModel { get; } = new();
+
+    public void AddStep(string label, double x, double y)
+    {
+        FlowModel.Nodes.Add(new DiagramNode
+        {
+            Id = Guid.NewGuid().ToString(),
+            Label = label,
+            Bounds = new Rect(x, y, 120, 60)
+        });
+    }
+}
+</code></pre>
+<hr />
+<h2 id="debugging-checklist">Debugging Checklist</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edges not updating</td>
+<td><code>UpdateAllEdges</code> not called after node move</td>
+</tr>
+<tr>
+<td>Cannot click edge</td>
+<td>Hit tolerance too small</td>
+</tr>
+<tr>
+<td>Nodes jump on drag</td>
+<td>Mixing screen coords with diagram coords — always <code>GetPosition(this)</code></td>
+</tr>
+<tr>
+<td>Paste duplicates IDs</td>
+<td>Clipboard remap dictionary incomplete</td>
+</tr>
+<tr>
+<td>Memory leak on model swap</td>
+<td><code>DetachModel</code> not unsubscribing collection events</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p><code>DiagramSurface</code> is a custom layout engine: model-driven presenter sync, drag state machine, pluggable routing, and explicit hit testing. Where <code>TemplatedControl</code> ends, <code>Panel</code> + canvas children + strategy injection begin — the pattern for diagrams, flow editors, and whiteboards.</p>
+<hr />
+<h2 id="epilogue-patterns-across-skyui">Epilogue: Patterns Across SkyUI</h2>
+<p>This book has covered SkyUI from foundations to advanced rendering. The patterns recur:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TemplatedControl + ControlTheme</td>
+<td>SkyFormField, Chip, SkyDialogHost</td>
+</tr>
+<tr>
+<td>ContentControl composition</td>
+<td>SkyCard, Badge</td>
+</tr>
+<tr>
+<td>ItemsControl containers</td>
+<td>SkyAccordion</td>
+</tr>
+<tr>
+<td>Primitive subclass + style class</td>
+<td>SkySearchBox, SkyDatePicker</td>
+</tr>
+<tr>
+<td>Attached properties</td>
+<td>IsLoading, GridLayout, TouchTarget</td>
+</tr>
+<tr>
+<td>Adapter interface</td>
+<td>CheckedListBox, VirtualDataGrid, Diagram</td>
+</tr>
+<tr>
+<td>Abstract base class</td>
+<td>SkyPaginationBase</td>
+</tr>
+<tr>
+<td>Inheritance for presets</td>
+<td>SkyVirtualTreeView, SkyComboBoxField</td>
+</tr>
+<tr>
+<td>Host + static facade</td>
+<td>SkyDialogHost + SkyMessageBox</td>
+</tr>
+<tr>
+<td>Pseudo-classes</td>
+<td>SkyDivider, SkySplitView, SkyNavigationView</td>
+</tr>
+<tr>
+<td>Design tokens</td>
+<td>All theme templates</td>
+</tr>
+<tr>
+<td>Custom Panel</td>
+<td>DiagramSurface</td>
+</tr>
+</tbody>
+</table>
+<p>Every custom control you build can be classified into one or more of these patterns. Start with the simplest approach — style class on a primitive — and add complexity only when the behavior demands it. That is the SkyUI way.</p>
+<p>When you reach for <code>Panel</code> + <code>Render</code>, you trade template convenience for explicit geometry and interaction ownership. The diagram package shows that tradeoff executed with clear model boundaries, strategy injection, and disciplined invalidation — a template you can reuse for charts, whiteboards, timelines, and any scene where data is spatial rather than hierarchical.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-27-diagramsurface-custom-panel-rendering">Chapter 27: DiagramSurface — Custom Panel Rendering</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#why-panel-instead-of-templatedcontrol">Why Panel Instead of TemplatedControl?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-panel-vs-canvas">Avalonia Concept: Panel vs Canvas</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#diagramsurface-overview">DiagramSurface Overview</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#pluggable-strategies">Pluggable Strategies</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#iedgepathcomputer">IEdgePathComputer</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#idiagramnodepresenterfactory">IDiagramNodePresenterFactory</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#idiagramscenehittester">IDiagramSceneHitTester</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#layout-measure-and-arrange">Layout: Measure and Arrange</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-desired-size-vs-document-bounds">Avalonia Concept: Desired Size vs Document Bounds</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#syncing-children-to-document">Syncing Children to Document</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#edge-rendering">Edge Rendering</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-drawingcontext-and-pens">Avalonia Concept: DrawingContext and Pens</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#port-position">Port Position</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#zoom-and-pan">Zoom and Pan</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#interaction-connect-and-drag">Interaction: Connect and Drag</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#mode-state-machine">Mode State Machine</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#rubber-band-connection-line">Rubber-Band Connection Line</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#document-model">Document Model</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#clipboard-support">Clipboard Support</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#performance-at-scale">Performance at Scale</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-diagramsurface">Debugging DiagramSurface</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#when-to-build-a-custom-panel">When to Build a Custom Panel</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-canvas-control">Building Your Own Canvas Control</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-diagrammodel-sync-and-presenter-lifecycle">Deep Dive: DiagramModel Sync and Presenter Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#node-presenter-factory">Node Presenter Factory</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#edge-presenters-and-z-order">Edge Presenters and Z-Order</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-pointer-drag-state-machine">Deep Dive: Pointer Drag State Machine</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#move-node">Move Node</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#connect-rubber-band">Connect (Rubber Band)</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#resize">Resize</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#reconnect">Reconnect</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-selection-and-clipboard">Deep Dive: Selection and Clipboard</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#copy-paste">Copy / Paste</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-hit-testing-rendered-edges">Deep Dive: Hit Testing Rendered Edges</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#measureoverride-and-infinite-canvas">MeasureOverride and Infinite Canvas</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#usage-example">Usage Example</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-checklist">Debugging Checklist</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#epilogue-patterns-across-skyui">Epilogue: Patterns Across SkyUI</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

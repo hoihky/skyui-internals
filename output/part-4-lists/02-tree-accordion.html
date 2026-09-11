@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 13 — SkyVirtualTreeView and SkyAccordion · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 13 — SkyVirtualTreeView and SkyAccordion</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-13-skyvirtualtreeview-and-skyaccordion">Chapter 13: SkyVirtualTreeView and SkyAccordion</h1>
+<p>This chapter covers two list controls that solve different problems. <code>SkyVirtualTreeView</code> demonstrates <strong>inheritance for preset configuration</strong> — reusing <code>CheckedListBox</code> machinery without checkboxes. <code>SkyAccordion</code> demonstrates the <strong>ItemsControl container pattern</strong> — auto-wrapping arbitrary data in typed item containers.</p>
+<p>Choosing between inheritance and container overrides is one of the recurring design decisions in Avalonia control development. These two controls illustrate opposite ends of the spectrum: one adds almost no code; the other customizes how <code>ItemsControl</code> materializes children.</p>
+<h2 id="skyvirtualtreeview-specialization-by-inheritance">SkyVirtualTreeView: Specialization by Inheritance</h2>
+<p><code>SkyVirtualTreeView</code> is a tree view for navigation and browsing. It does not need checkboxes, cascade logic, or tri-state parents. Rather than duplicating the flattening and virtualization code, it subclasses <code>CheckedListBox</code> and sets sensible defaults:</p>
+<pre><code class="language-csharp">public class SkyVirtualTreeView : CheckedListBox
+{
+    public SkyVirtualTreeView()
+    {
+        ShowCheckBoxes = false;
+        SelectionMode = CheckedListBoxSelectionMode.Single;
+        Indent = 20;
+        Classes.Add(&quot;sky-virtual-tree&quot;);
+    }
+}
+</code></pre>
+<p>That is the entire custom code. Everything else — adapter, row flattening, virtualization, expand/collapse — comes from the base class.</p>
+<h3 id="when-inheritance-is-the-right-tool">When Inheritance Is the Right Tool</h3>
+<p>Inheritance for preset defaults is appropriate when:</p>
+<ul>
+<li>The subclass does not override template parts</li>
+<li>The base class API fully supports the narrowed use case</li>
+<li>The only differences are property defaults and style classes</li>
+</ul>
+<p>It is <strong>not</strong> appropriate when the subclass needs a fundamentally different visual tree. In that case, compose or share logic through helper classes instead.</p>
+<p>If you find yourself overriding <code>OnApplyTemplate</code> and replacing half the template parts, you have outgrown inheritance. Extract shared logic into <code>CheckedListRowBuilder</code> and <code>CheckedListCheckCoordinator</code> collaborators, then build a new <code>TemplatedControl</code> that uses them.</p>
+<h3 id="selection-mode">Selection Mode</h3>
+<p>With <code>ShowCheckBoxes = false</code>, selection is driven by row click highlighting rather than checkbox state. <code>CheckedListBoxSelectionMode.Single</code> ensures only one row is selected at a time, matching conventional tree view behavior.</p>
+<p>Selection is tracked on <code>CheckedListRowModel.IsSelected</code> and updated on pointer press:</p>
+<pre><code class="language-csharp">private void OnRowPointerPressed(CheckedListRowModel row, PointerPressedEventArgs e)
+{
+    if (SelectionMode == CheckedListBoxSelectionMode.Single)
+        ClearSelection();
+
+    row.IsSelected = true;
+    SelectedItem = row.Item;
+}
+</code></pre>
+<p>Bind <code>SelectedItem</code> two-way to your view model for navigation scenarios:</p>
+<pre><code class="language-xml">&lt;SkyVirtualTreeView ItemsSource=&quot;{Binding RootFolders}&quot;
+SelectedItem=&quot;{Binding CurrentFolder, Mode=TwoWay}&quot;
+ItemAdapter=&quot;{x:Static local:FolderAdapter.Instance}&quot; /&gt;
+</code></pre>
+<h3 id="styling">Styling</h3>
+<p>The <code>sky-virtual-tree</code> style class adjusts row padding, expander icon size, and selected row highlight to match navigation tree conventions rather than checklist conventions:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyVirtualTreeView.sky-virtual-tree&quot;&gt;
+  &lt;Setter Property=&quot;Background&quot; Value=&quot;Transparent&quot; /&gt;
+&lt;/Style&gt;
+
+&lt;Style Selector=&quot;controls|SkyVirtualTreeView.sky-virtual-tree ListBoxItem:selected&quot;&gt;
+  &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource SkyAccentSubtleBrush}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Style classes are preferable to separate control types when the behavior is identical. One class, multiple themes.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyVirtualTreeView ItemsSource=&quot;{Binding Folders}&quot;
+ItemAdapter=&quot;{x:Static local:FolderAdapter.Instance}&quot; /&gt;
+</code></pre>
+<p>For async loading of large directory trees, provide an adapter backed by <code>IAsyncTreeDataSource</code>:</p>
+<pre><code class="language-csharp">public class AsyncFolderAdapter : IAsyncTreeDataSource
+{
+    public async Task&lt;IReadOnlyList&lt;object&gt;&gt; LoadChildrenAsync(
+        object? parent, CancellationToken cancellationToken)
+    {
+        var path = parent is null ? &quot;/&quot; : ((Folder)parent).Path;
+        var entries = await _fileSystem.ListAsync(path, cancellationToken);
+        return entries.Cast&lt;object&gt;().ToList();
+    }
+}
+</code></pre>
+<p>Show a loading indicator by returning a placeholder child before the async call completes, then replace it with real children when the task finishes.</p>
+<h3 id="debugging-navigation-trees">Debugging Navigation Trees</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selection does not update VM</td>
+<td><code>SelectedItem</code> binding mode is TwoWay</td>
+</tr>
+<tr>
+<td>Expand does nothing</td>
+<td>Adapter <code>SetIsExpanded</code> mutates model; <code>GetIsExpanded</code> reads same property</td>
+</tr>
+<tr>
+<td>Empty tree</td>
+<td><code>ItemsSource</code> binding path; root collection not empty</td>
+</tr>
+<tr>
+<td>Slow expand</td>
+<td>Async load blocking UI thread — await properly</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="skyaccordion-the-itemscontrol-container-pattern">SkyAccordion: The ItemsControl Container Pattern</h2>
+<p><code>SkyAccordion</code> is a vertically stacked set of expandable sections. It inherits <code>ItemsControl</code> and customizes how items become visual containers.</p>
+<p><code>ItemsControl</code> is Avalonia's base for any control that displays a collection of items. ListBox, ComboBox, and Menu all extend it. The container factory overrides are the extension point that turns raw data into typed visual wrappers.</p>
+<h3 id="selection-modes">Selection Modes</h3>
+<pre><code class="language-csharp">public enum SkyAccordionSelectionMode
+{
+    Multiple,
+    Single
+}
+</code></pre>
+<p>In <code>Multiple</code> mode, any number of sections can be expanded simultaneously. In <code>Single</code> mode, expanding one section collapses all others.</p>
+<p>Single mode suits wizards and settings where only one section should be visible. Multiple mode suits dashboards and FAQs where users compare content across sections.</p>
+<h3 id="single-selection-enforcement">Single-Selection Enforcement</h3>
+<p>Two mechanisms cooperate:</p>
+<p><strong>On selection mode change</strong> — collapse all but the first expanded item:</p>
+<pre><code class="language-csharp">private void OnSelectionModeChanged()
+{
+    if (SelectionMode != SkyAccordionSelectionMode.Single)
+        return;
+
+    SkyAccordionItem? first = null;
+    foreach (var ac in this.GetVisualDescendants().OfType&lt;SkyAccordionItem&gt;())
+    {
+        if (!ac.IsExpanded) continue;
+        if (first is null) { first = ac; continue; }
+        ac.IsExpanded = false;
+    }
+}
+</code></pre>
+<p><strong>On child expanded event</strong> — collapse siblings when a section opens:</p>
+<pre><code class="language-csharp">public SkyAccordion()
+{
+    AddHandler(SkyAccordionItem.ExpandedEvent, OnChildExpanded, RoutingStrategies.Bubble);
+}
+
+private void OnChildExpanded(object? sender, RoutedEventArgs e)
+{
+    if (SelectionMode != SkyAccordionSelectionMode.Single) return;
+    if (e.Source is not SkyAccordionItem opened) return;
+
+    foreach (var ac in this.GetVisualDescendants().OfType&lt;SkyAccordionItem&gt;())
+    {
+        if (!ReferenceEquals(ac, opened))
+            ac.IsExpanded = false;
+    }
+}
+</code></pre>
+<p>Using a bubbling routed event means the accordion does not need direct references to its children. Any <code>SkyAccordionItem</code> anywhere in the subtree that raises <code>ExpandedEvent</code> triggers the handler.</p>
+<h3 id="routed-events-in-avalonia">Routed Events in Avalonia</h3>
+<p><code>ExpandedEvent</code> is registered with <code>RoutingStrategies.Bubble</code>, so it travels from the source item up through ancestors. The accordion attaches a class handler with <code>AddHandler</code> rather than wiring each child in <code>PrepareContainerForItemOverride</code>. New items added later automatically participate.</p>
+<p>To raise the event:</p>
+<pre><code class="language-csharp">item.RaiseEvent(new RoutedEventArgs(ExpandedEvent));
+</code></pre>
+<p>The source (<code>e.Source</code>) identifies which item expanded; the sender parameter on the handler may be the accordion itself.</p>
+<h3 id="container-factory-overrides">Container Factory Overrides</h3>
+<p>This is the core of the ItemsControl container pattern:</p>
+<pre><code class="language-csharp">protected override bool NeedsContainerOverride(
+    object? item, int index, out object? recycleKey)
+{
+    recycleKey = null;
+    return item is not SkyAccordionItem;
+}
+
+protected override Control CreateContainerForItemOverride(
+    object? item, int index, object? recycleKey) =&gt;
+    new SkyAccordionItem();
+
+protected override void PrepareContainerForItemOverride(
+    Control container, object? item, int index)
+{
+    base.PrepareContainerForItemOverride(container, item, index);
+    if (container is not SkyAccordionItem ac || item is SkyAccordionItem)
+        return;
+    if (ac.Header is null &amp;&amp; item is not null)
+        ac.Header = item.ToString();
+}
+</code></pre>
+<p>Walkthrough:</p>
+<ol>
+<li><p><code>NeedsContainerOverride</code> returns <code>true</code> when the item is not already a <code>SkyAccordionItem</code>. Plain strings and view model objects need wrapping.</p>
+</li>
+<li><p><code>CreateContainerForItemOverride</code> returns a new <code>SkyAccordionItem</code> container.</p>
+</li>
+<li><p><code>PrepareContainerForItemOverride</code> sets the header from <code>item.ToString()</code> when consumers bind a collection of strings or objects without explicit headers.</p>
+</li>
+</ol>
+<p>The <code>recycleKey</code> parameter supports container recycling for heterogeneous collections. <code>SkyAccordion</code> returns <code>null</code> because all containers are the same type.</p>
+<h3 id="itemtemplate-and-datacontext">ItemTemplate and DataContext</h3>
+<p>When you set <code>ItemTemplate</code>, the template applies to the <strong>content</strong> inside each <code>SkyAccordionItem</code>, not the item itself. The data context for the template is the bound collection item:</p>
+<pre><code class="language-xml">&lt;DataTemplate x:DataType=&quot;vm:SettingGroupViewModel&quot;&gt;
+  &lt;StackPanel Spacing=&quot;8&quot;&gt;
+    &lt;TextBox Text=&quot;{Binding SettingValue}&quot; /&gt;
+    &lt;CheckBox Content=&quot;Enabled&quot; IsChecked=&quot;{Binding IsEnabled}&quot; /&gt;
+  &lt;/StackPanel&gt;
+&lt;/DataTemplate&gt;
+</code></pre>
+<p>For richer headers, use <code>ItemTemplate</code> on the accordion for content and a separate <code>HeaderTemplate</code> or map header in <code>PrepareContainerForItemOverride</code>:</p>
+<pre><code class="language-csharp">if (item is SettingGroupViewModel vm)
+ac.Header = vm.Title;
+</code></pre>
+<h3 id="skyaccordionitem">SkyAccordionItem</h3>
+<p>Each item is a <code>ContentControl</code> with expand/collapse behavior:</p>
+<pre><code class="language-csharp">[PseudoClasses(&quot;expanded&quot;)]
+public class SkyAccordionItem : ContentControl
+{
+    public static readonly StyledProperty&lt;object?&gt; HeaderProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsExpandedProperty = ...;
+
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; ExpandedEvent =
+        RoutedEvent.Register&lt;SkyAccordionItem, RoutedEventArgs&gt;(
+            nameof(Expanded), RoutingStrategies.Bubble);
+
+    static SkyAccordionItem()
+    {
+        IsExpandedProperty.Changed.AddClassHandler&lt;SkyAccordionItem&gt;(
+            (item, e) =&gt;
+            {
+                item.PseudoClasses.Set(&quot;:expanded&quot;, (bool)e.NewValue!);
+                if ((bool)e.NewValue!)
+                    item.RaiseEvent(new RoutedEventArgs(ExpandedEvent));
+            });
+    }
+}
+</code></pre>
+<p>The <code>:expanded</code> pseudo-class drives the chevron rotation and content visibility in the theme template.</p>
+<h3 id="accordion-template-anatomy">Accordion Template Anatomy</h3>
+<p>A typical <code>SkyAccordionItem</code> template:</p>
+<pre><code class="language-xml">&lt;ControlTemplate&gt;
+  &lt;Border&gt;
+    &lt;DockPanel&gt;
+      &lt;ToggleButton DockPanel.Dock=&quot;Top&quot;
+                    IsChecked=&quot;{TemplateBinding IsExpanded, Mode=TwoWay}&quot;
+                    Content=&quot;{TemplateBinding Header}&quot; /&gt;
+      &lt;ContentPresenter IsVisible=&quot;{TemplateBinding IsExpanded}&quot;
+                        Content=&quot;{TemplateBinding Content}&quot; /&gt;
+    &lt;/DockPanel&gt;
+  &lt;/Border&gt;
+&lt;/ControlTemplate&gt;
+</code></pre>
+<p>Alternatively, drive visibility through the <code>:expanded</code> pseudo-class on the content presenter:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyAccordionItem:expanded ContentPresenter&quot;&gt;
+  &lt;Setter Property=&quot;IsVisible&quot; Value=&quot;True&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Animating height with <code>Transitions</code> on <code>MaxHeight</code> or <code>Opacity</code> produces smoother expand/collapse than toggling <code>IsVisible</code> abruptly.</p>
+<h3 id="usage-patterns">Usage Patterns</h3>
+<p><strong>XAML children (explicit items):</strong></p>
+<pre><code class="language-xml">&lt;SkyAccordion SelectionMode=&quot;Single&quot;&gt;
+  &lt;SkyAccordionItem Header=&quot;General&quot; IsExpanded=&quot;True&quot;&gt;
+    &lt;StackPanel&gt;
+      &lt;CheckBox Content=&quot;Enable notifications&quot; /&gt;
+    &lt;/StackPanel&gt;
+  &lt;/SkyAccordionItem&gt;
+  &lt;SkyAccordionItem Header=&quot;Privacy&quot;&gt;
+    &lt;TextBlock Text=&quot;Privacy settings here.&quot; /&gt;
+  &lt;/SkyAccordionItem&gt;
+&lt;/SkyAccordion&gt;
+</code></pre>
+<p><strong>Data-bound with automatic containers:</strong></p>
+<pre><code class="language-xml">&lt;SkyAccordion ItemsSource=&quot;{Binding SettingGroups}&quot;
+ItemTemplate=&quot;{StaticResource SettingGroupTemplate}&quot; /&gt;
+</code></pre>
+<p>When <code>ItemsSource</code> contains view model objects, the container factory wraps each in a <code>SkyAccordionItem</code> and applies <code>ItemTemplate</code> to the content.</p>
+<p><strong>Mixed: explicit headers from view model:</strong></p>
+<pre><code class="language-csharp">public class SettingGroup
+{
+    public string Title { get; set; } = &quot;&quot;;
+    public ObservableCollection&lt;Setting&gt; Settings { get; set; } = new();
+}
+</code></pre>
+<pre><code class="language-xml">&lt;SkyAccordion ItemsSource=&quot;{Binding Groups}&quot;&gt;
+  &lt;ItemsControl.ItemTemplate&gt;
+    &lt;DataTemplate x:DataType=&quot;vm:SettingGroup&quot;&gt;
+      &lt;ItemsControl ItemsSource=&quot;{Binding Settings}&quot; /&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/ItemsControl.ItemTemplate&gt;
+&lt;/SkyAccordion&gt;
+</code></pre>
+<p>Override <code>PrepareContainerForItemOverride</code> to set <code>Header</code> from <code>Title</code>.</p>
+<h2 id="comparing-the-two-approaches">Comparing the Two Approaches</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Aspect</th>
+<th>SkyVirtualTreeView</th>
+<th>SkyAccordion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base class</td>
+<td>CheckedListBox (inheritance)</td>
+<td>ItemsControl (container override)</td>
+</tr>
+<tr>
+<td>Data shape</td>
+<td>Hierarchical tree</td>
+<td>Flat list of sections</td>
+</tr>
+<tr>
+<td>Virtualization</td>
+<td>Yes (from base)</td>
+<td>No (typically few sections)</td>
+</tr>
+<tr>
+<td>Primary pattern</td>
+<td>Preset defaults on existing control</td>
+<td>Auto-container wrapping</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>File trees, nav hierarchies</td>
+<td>Settings panels, FAQs</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>Style class + adapter</td>
+<td>Container factory + item template</td>
+</tr>
+</tbody>
+</table>
+<h2 id="building-your-own-itemscontrol">Building Your Own ItemsControl</h2>
+<p>When you need an items control with custom item chrome:</p>
+<ol>
+<li>Subclass <code>ItemsControl</code></li>
+<li>Override <code>NeedsContainerOverride</code> to detect when wrapping is needed</li>
+<li>Override <code>CreateContainerForItemOverride</code> to return your container type</li>
+<li>Override <code>PrepareContainerForItemOverride</code> to map data properties to container properties</li>
+<li>Use routed events on the container for interaction that the parent must handle</li>
+<li>Use pseudo-classes on the container for expand/collapse, selection, or error states</li>
+<li>Set <code>ItemsPanel</code> to control layout (vertical stack, wrap, grid)</li>
+</ol>
+<h3 id="walkthrough-tag-list-control">Walkthrough: Tag List Control</h3>
+<p>Imagine a read-only tag list that wraps each string in a pill-shaped border:</p>
+<pre><code class="language-csharp">public class SkyTagList : ItemsControl
+{
+    protected override bool NeedsContainerOverride(
+        object? item, int index, out object? recycleKey)
+    {
+        recycleKey = null;
+        return item is not SkyTagItem;
+    }
+
+    protected override Control CreateContainerForItemOverride(
+        object? item, int index, object? recycleKey) =&gt;
+        new SkyTagItem();
+
+    protected override void PrepareContainerForItemOverride(
+        Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is SkyTagItem tag &amp;&amp; item is string text)
+            tag.Label = text;
+    }
+}
+</code></pre>
+<p>This follows the same three-override pattern as <code>SkyAccordion</code>.</p>
+<h3 id="debugging-container-issues">Debugging Container Issues</h3>
+<ul>
+<li><strong>Items appear empty</strong> — <code>ItemTemplate</code> may be null; check <code>PrepareContainerForItemOverride</code> maps data to container properties</li>
+<li><strong>Duplicate wrappers</strong> — <code>NeedsContainerOverride</code> returns true for items already wrapped</li>
+<li><strong>Wrong data context</strong> — Template binds to container instead of item; ensure <code>Content</code> or <code>DataContext</code> is set in prepare</li>
+<li><strong>Single mode not collapsing</strong> — Routed event not bubbling; verify <code>RoutingStrategies.Bubble</code> and <code>AddHandler</code> on parent</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p><code>SkyVirtualTreeView</code> proves that not every control needs new logic — sometimes the right move is configuring an existing control for a narrower scenario. <code>SkyAccordion</code> shows the Avalonia container pattern that every list-based control builds upon. Together they cover the two most common ways to extend list behavior in SkyUI: inheritance and container factory overrides.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-13-skyvirtualtreeview-and-skyaccordion">Chapter 13: SkyVirtualTreeView and SkyAccordion</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyvirtualtreeview-specialization-by-inheritance">SkyVirtualTreeView: Specialization by Inheritance</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#when-inheritance-is-the-right-tool">When Inheritance Is the Right Tool</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#selection-mode">Selection Mode</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#styling">Styling</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-navigation-trees">Debugging Navigation Trees</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyaccordion-the-itemscontrol-container-pattern">SkyAccordion: The ItemsControl Container Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#selection-modes">Selection Modes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#single-selection-enforcement">Single-Selection Enforcement</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#routed-events-in-avalonia">Routed Events in Avalonia</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#container-factory-overrides">Container Factory Overrides</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#itemtemplate-and-datacontext">ItemTemplate and DataContext</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyaccordionitem">SkyAccordionItem</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#accordion-template-anatomy">Accordion Template Anatomy</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage-patterns">Usage Patterns</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#comparing-the-two-approaches">Comparing the Two Approaches</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-itemscontrol">Building Your Own ItemsControl</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#walkthrough-tag-list-control">Walkthrough: Tag List Control</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-container-issues">Debugging Container Issues</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

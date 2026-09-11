@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 25 — Attached Properties · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 25 — Attached Properties</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-25-attached-properties-and-primitive-enhancement">Chapter 25: Attached Properties and Primitive Enhancement</h1>
+<p>Attached properties let you add capabilities to existing types without subclassing. SkyUI uses them for button loading states, tooltip configuration, responsive grid behavior, theme overrides, and mobile touch targets. This chapter explains the Avalonia registration mechanism, changed-handler wiring, storage semantics, and walks through the most important attached property classes with debugging guidance.</p>
+<h2 id="what-is-an-attached-property">What Is an Attached Property?</h2>
+<p>In Avalonia, an attached property is registered on a static helper class but can be set on any compatible <code>AvaloniaObject</code>:</p>
+<pre><code class="language-csharp">public static class SkyButtonProperties
+{
+    public static readonly AttachedProperty&lt;bool&gt; IsLoadingProperty =
+        AvaloniaProperty.RegisterAttached&lt;Button, bool&gt;(
+            &quot;IsLoading&quot;,
+            typeof(SkyButtonProperties),
+            defaultValue: false);
+
+    public static bool GetIsLoading(Button button) =&gt;
+        button.GetValue(IsLoadingProperty);
+
+    public static void SetIsLoading(Button button, bool value) =&gt;
+        button.SetValue(IsLoadingProperty, value);
+}
+</code></pre>
+<p>XAML usage:</p>
+<pre><code class="language-xml">&lt;Button Classes=&quot;sky sky-primary&quot;
+sky:SkyButtonProperties.IsLoading=&quot;{Binding IsSaving}&quot;
+Content=&quot;Save&quot; /&gt;
+</code></pre>
+<p>The property is stored on the <code>Button</code> instance but defined externally.</p>
+<h3 id="avalonia-concept-property-inheritance">Avalonia Concept: Property Inheritance</h3>
+<p>Attached properties do <strong>not</strong> automatically inherit down the visual tree unless registered with <code>inherits: true</code> in metadata. <code>SkyThemeProperties</code> on <code>Application</code> intentionally inherit so descendant controls read density and accent overrides. <code>IsLoading</code> on a <code>Button</code> does not propagate to child text blocks — each owner holds its own value.</p>
+<p>Check metadata when a child does not see an attached value you set on a parent.</p>
+<h3 id="registerattached-owner-type">RegisterAttached Owner Type</h3>
+<p>The generic parameter <code>RegisterAttached&lt;Button, bool&gt;</code> declares the <strong>expected owner type</strong> for class handlers and XAML assignability. Setting the property on a wrong type fails at compile time in strict XAML or silently stores on unexpected types if forced in code — stick to documented owner types.</p>
+<h2 id="skybuttonproperties.isloading">SkyButtonProperties.IsLoading</h2>
+<p>When <code>IsLoading</code> becomes true, the button should show a spinner and ignore clicks:</p>
+<pre><code class="language-csharp">static SkyButtonProperties()
+{
+    IsLoadingProperty.Changed.AddClassHandler&lt;Button&gt;(OnIsLoadingChanged);
+}
+
+private static void OnIsLoadingChanged(Button button, AvaloniaPropertyChangedEventArgs e)
+{
+    var isLoading = e.NewValue is true;
+    button.Classes.Set(&quot;sky-loading&quot;, isLoading);
+    button.IsEnabled = !isLoading;
+
+    if (isLoading)
+    {
+        StoreOriginalContent(button);
+        button.Content = CreateSpinner();
+    }
+    else
+    {
+        RestoreOriginalContent(button);
+    }
+}
+</code></pre>
+<h3 id="storing-original-content">Storing Original Content</h3>
+<p>Attached property handlers cannot use instance fields on the static helper per button. Store original content in a weak dictionary or Avalonia's attached property storage:</p>
+<pre><code class="language-csharp">private static readonly AttachedProperty&lt;object?&gt; OriginalContentProperty =
+    AvaloniaProperty.RegisterAttached&lt;Button, object?&gt;(
+        &quot;OriginalContent&quot;,
+        typeof(SkyButtonProperties));
+
+private static void StoreOriginalContent(Button button)
+{
+    if (button.GetValue(OriginalContentProperty) is null)
+        button.SetValue(OriginalContentProperty, button.Content);
+}
+
+private static void RestoreOriginalContent(Button button)
+{
+    var original = button.GetValue(OriginalContentProperty);
+    if (original is not null)
+    {
+        button.Content = original;
+        button.SetValue(OriginalContentProperty, null);
+    }
+}
+</code></pre>
+<p>Using a private attached property avoids a static <code>Dictionary&lt;Button, object&gt;</code> that leaks if buttons are removed without clearing loading state.</p>
+<h3 id="design-decisions">Design Decisions</h3>
+<ol>
+<li><strong>Content swap</strong> — Original content is stored in attached data; a <code>SkyProgressRing</code> replaces it during loading</li>
+<li><strong>Disable interaction</strong> — <code>IsEnabled = false</code> prevents double-submit</li>
+<li><strong>Style class</strong> — <code>sky-loading</code> can adjust opacity and min-width in the theme</li>
+<li><strong>Works on any Button</strong> — No <code>SkyButton</code> subclass required</li>
+</ol>
+<p>This is the canonical example of enhancing a primitive through attached properties.</p>
+<h3 id="debugging-isloading">Debugging IsLoading</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button text never returns</td>
+<td><code>IsLoading</code> stuck true; restore path not hit</td>
+</tr>
+<tr>
+<td>Spinner shows but button clickable</td>
+<td>Missing <code>IsEnabled = !isLoading</code></td>
+</tr>
+<tr>
+<td>Content wrong after rapid toggle</td>
+<td>Race — guard re-entrancy; store original only once</td>
+</tr>
+<tr>
+<td>Min-width collapse</td>
+<td>Theme should set min-width on <code>.sky-loading</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="skythemeproperties">SkyThemeProperties</h2>
+<p>Theme attached properties live on <code>Application</code> (or any resource host):</p>
+<pre><code class="language-csharp">public static class SkyThemeProperties
+{
+    public static readonly AttachedProperty&lt;Color?&gt; AccentOverrideProperty = ...;
+    public static readonly AttachedProperty&lt;SkyDensity&gt; DensityProperty = ...;
+}
+</code></pre>
+<pre><code class="language-xml">&lt;Application sky:SkyThemeProperties.AccentOverride=&quot;#1ED760&quot;
+sky:SkyThemeProperties.Density=&quot;Compact&quot;&gt;
+</code></pre>
+<p>Changed handlers invoke applicators:</p>
+<pre><code class="language-csharp">private static void OnAccentOverrideChanged(
+    AvaloniaObject sender, AvaloniaPropertyChangedEventArgs e)
+{
+    if (sender is Application app &amp;&amp; e.NewValue is Color color)
+        SkyAccentOverrideApplicator.Apply(app, color);
+    else if (sender is Application app2 &amp;&amp; e.NewValue is null)
+        SkyAccentOverrideApplicator.Clear(app2);
+}
+</code></pre>
+<p>The applicator injects overridden brush values into the resource dictionary. All controls using <code>{DynamicResource SkyAccentBrush}</code> pick up the new color.</p>
+<h3 id="dynamicresource-vs-staticresource">DynamicResource vs StaticResource</h3>
+<p>Overrides must target resources read via <code>DynamicResource</code>. <code>{StaticResource}</code> resolves once at load — accent changes will not propagate. Audit theme templates when debugging &quot;accent override does nothing.&quot;</p>
+<h3 id="density-propagation">Density Propagation</h3>
+<p><code>SkyDensity.Compact</code> adjusts padding tokens, row heights, and font sizes through merged resource dictionaries the applicator swaps. Set density once on <code>Application</code> rather than per-page unless a specific screen requires comfort mode.</p>
+<h2 id="skygridlayout">SkyGridLayout</h2>
+<p>Attached properties on <code>Grid</code> enable responsive column behavior:</p>
+<pre><code class="language-csharp">public static readonly AttachedProperty&lt;bool&gt; IsResponsiveProperty =
+    AvaloniaProperty.RegisterAttached&lt;Grid, bool&gt;(&quot;IsResponsive&quot;);
+
+public static readonly AttachedProperty&lt;SkyResponsiveColumnProfile?&gt; ColumnProfileProperty = ...;
+public static readonly AttachedProperty&lt;bool&gt; AutoPlaceChildrenProperty = ...;
+</code></pre>
+<p>When <code>IsResponsive</code> is set on a grid, the changed handler subscribes to bounds changes and recalculates column definitions. This was covered in Chapter 6; the attached property form is the alternative to using <code>SkyResponsiveGrid</code>.</p>
+<h3 id="subscription-lifecycle">Subscription Lifecycle</h3>
+<pre><code class="language-csharp">private static void OnIsResponsiveChanged(Grid grid, AvaloniaPropertyChangedEventArgs e)
+{
+    if (e.NewValue is true)
+    {
+        grid.GetObservable(BoundsProperty).Subscribe(grid, OnBoundsChanged);
+        RecalculateColumns(grid);
+    }
+    else
+    {
+        // unsubscribe — use composite disposable stored on grid via attached property
+    }
+}
+</code></pre>
+<p>Failing to unsubscribe leaks subscriptions when grids leave the tree. Store <code>IDisposable</code> on a private attached property and dispose when <code>IsResponsive</code> becomes false or the grid is detached.</p>
+<h3 id="autoplacechildren">AutoPlaceChildren</h3>
+<p>When true, the handler assigns <code>Grid.Column</code> and <code>Grid.Row</code> on direct children based on column count — useful for form fields that should reflow without rewriting XAML Grid indices at every breakpoint.</p>
+<h2 id="skytooltipproperties">SkyTooltipProperties</h2>
+<p>Configures tooltip delay and placement on any control:</p>
+<pre><code class="language-csharp">public static readonly AttachedProperty&lt;int&gt; ShowDelayProperty = ...;
+public static readonly AttachedProperty&lt;PlacementMode&gt; PlacementProperty = ...;
+</code></pre>
+<p>A changed handler on the attached properties configures the <code>ToolTip</code> instance on the target control:</p>
+<pre><code class="language-csharp">private static void OnShowDelayChanged(Control control, AvaloniaPropertyChangedEventArgs e)
+{
+    ToolTip.SetShowDelay(control, (int)(e.NewValue ?? 400));
+}
+
+private static void OnPlacementChanged(Control control, AvaloniaPropertyChangedEventArgs e)
+{
+    if (e.NewValue is PlacementMode mode)
+        ToolTip.SetPlacement(control, mode);
+}
+</code></pre>
+<p>Prefer wrapping Avalonia's built-in <code>ToolTip.*</code> attached properties when possible — SkyUI adds semantic defaults aligned with shell timing tokens (longer delay on touch-first layouts).</p>
+<p>Set <code>ToolTip.Tip</code> in XAML as usual; Sky properties only adjust behavior:</p>
+<pre><code class="language-xml">&lt;Button Content=&quot;Save&quot;
+ToolTip.Tip=&quot;Save changes&quot;
+sky:SkyTooltipProperties.ShowDelay=&quot;600&quot;
+sky:SkyTooltipProperties.Placement=&quot;Top&quot; /&gt;
+</code></pre>
+<h2 id="skytouchtarget">SkyTouchTarget</h2>
+<p>Mobile primitives enforce minimum 44-pixel touch targets:</p>
+<pre><code class="language-csharp">public static readonly AttachedProperty&lt;bool&gt; EnsureMinSizeProperty =
+    AvaloniaProperty.RegisterAttached&lt;Control, bool&gt;(
+        &quot;EnsureMinSize&quot;,
+        typeof(SkyTouchTarget),
+        defaultValue: true);
+
+private static void OnEnsureMinSizeChanged(Control control, AvaloniaPropertyChangedEventArgs e)
+{
+    if (e.NewValue is true)
+    {
+        control.MinWidth = Math.Max(control.MinWidth, 44);
+        control.MinHeight = Math.Max(control.MinHeight, 44);
+    }
+}
+</code></pre>
+<p>This is applied to small icon buttons in mobile layouts to meet accessibility guidelines without changing the visual icon size.</p>
+<h3 id="visual-vs-logical-target">Visual vs Logical Target</h3>
+<p>Enlarging <code>MinWidth</code>/<code>MinHeight</code> expands the hit area and layout slot — icon may look small inside a larger box. Alternative: keep visual size, pad with transparent margin via theme when <code>EnsureMinSize</code> is true. SkyUI uses min size for simplicity; custom themes can switch to padding selectors.</p>
+<p>Apply selectively — global default <code>true</code> on all controls wastes space on desktop:</p>
+<pre><code class="language-xml">&lt;Button Classes=&quot;sky-icon&quot;
+sky:SkyTouchTarget.EnsureMinSize=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="advanced-registering-metadata">Advanced: Registering Metadata</h2>
+<p>Attached properties support the same metadata as styled properties:</p>
+<pre><code class="language-csharp">public static readonly AttachedProperty&lt;bool&gt; IsLoadingProperty =
+AvaloniaProperty.RegisterAttached&lt;Button, bool&gt;(
+    &quot;IsLoading&quot;,
+    typeof(SkyButtonProperties),
+    defaultValue: false,
+    inherits: false);
+</code></pre>
+<p>Optional coerce and validate callbacks catch invalid values at set time rather than in the changed handler:</p>
+<pre><code class="language-csharp">private static bool ValidateDelay(int delay) =&gt; delay &gt;= 0;
+</code></pre>
+<h2 id="when-to-use-attached-properties-vs-subclassing">When to Use Attached Properties vs Subclassing</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add one behavior to an existing primitive</td>
+<td>Attached property</td>
+</tr>
+<tr>
+<td>Change default styling only</td>
+<td>Style class</td>
+</tr>
+<tr>
+<td>New visual structure with template parts</td>
+<td>Subclass or TemplatedControl</td>
+</tr>
+<tr>
+<td>Cross-cutting concern on many types</td>
+<td>Attached property</td>
+</tr>
+<tr>
+<td>Fundamentally different interaction model</td>
+<td>Subclass</td>
+</tr>
+</tbody>
+</table>
+<h3 id="anti-patterns">Anti-Patterns</h3>
+<ul>
+<li><strong>God attached class</strong> — one static class with twenty unrelated properties; split by concern</li>
+<li><strong>Hidden state without cleanup</strong> — subscriptions, timers, original content not restored</li>
+<li><strong>Behavior on <code>AvaloniaObject</code></strong> — handlers become no-ops on wrong types; prefer typed owners</li>
+<li><strong>Duplicating styled property</strong> — if Avalonia already exposes <code>Grid.Row</code>, do not wrap unless adding semantics</li>
+</ul>
+<h3 id="attached-property-checklist">Attached Property Checklist</h3>
+<ol>
+<li>Create a static class (not a control)</li>
+<li>Register with <code>RegisterAttached&lt;TOwner, TValue&gt;</code></li>
+<li>Provide <code>Get*</code> and <code>Set*</code> static methods</li>
+<li>Register a changed handler in the static constructor</li>
+<li>Document the XAML namespace prefix for consumers</li>
+<li>Clean up subscriptions and stored state when property clears or control detaches</li>
+<li>Add XML doc with owner type and default value</li>
+</ol>
+<h2 id="registering-changed-handlers-on-attached-properties">Registering Changed Handlers on Attached Properties</h2>
+<pre><code class="language-csharp">static SkyButtonProperties()
+{
+    IsLoadingProperty.Changed.AddClassHandler&lt;Button&gt;(OnIsLoadingChanged);
+}
+</code></pre>
+<p>Note the type parameter: <code>AddClassHandler&lt;Button&gt;</code> means the handler receives <code>Button</code> as the sender. The handler only fires when the property is set on a <code>Button</code> instance.</p>
+<p>For properties attached to <code>Control</code> or <code>AvaloniaObject</code>, use the corresponding type parameter:</p>
+<pre><code class="language-csharp">IsResponsiveProperty.Changed.AddClassHandler&lt;Grid&gt;(OnIsResponsiveChanged);
+</code></pre>
+<h3 id="global-changed-handlers">Global Changed Handlers</h3>
+<p>You can subscribe without a class handler:</p>
+<pre><code class="language-csharp">IsLoadingProperty.Changed.Subscribe(args =&gt;
+{
+    if (args.Sender is Button b) OnIsLoadingChanged(b, args);
+});
+</code></pre>
+<p>Class handlers are preferred in SkyUI — less allocation, clearer owner typing.</p>
+<h2 id="testing-attached-properties">Testing Attached Properties</h2>
+<p>Unit tests construct a <code>Button</code>, call <code>SetIsLoading</code>, assert <code>Classes.Contains(&quot;sky-loading&quot;)</code>, then clear and assert content restored. Headless Avalonia test hosts materialize enough tree for property system to run.</p>
+<p>For theme properties, attach a test <code>Application</code>, set accent override, assert resource dictionary contains expected brush key.</p>
+<h2 id="debugging-attached-properties-in-devtools">Debugging Attached Properties in DevTools</h2>
+<p>Avalonia DevTools property grid shows attached values under the owner node. If XAML set fails silently, verify:</p>
+<ul>
+<li>XML namespace maps to the static class assembly</li>
+<li>Property name spelling matches registration name</li>
+<li>Owner type matches — <code>Grid</code> property on <code>StackPanel</code> ignored</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>Attached properties are SkyUI's primary tool for extending Avalonia primitives without proliferating subclasses. <code>IsLoading</code> on buttons, accent override on applications, responsive behavior on grids, and touch targets on mobile controls all follow the same pattern: register, get/set, changed handler, XAML-accessible, cleanup on clear.</p>
+<p>Combined with style classes (Chapter 3) and templated controls (Chapter 4), attached properties complete the three mechanisms SkyUI uses to build a cohesive toolkit on top of Avalonia's primitives. Reach for attached properties when behavior is orthogonal to control type; reach for subclasses when the visual tree itself must change.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-25-attached-properties-and-primitive-enhancement">Chapter 25: Attached Properties and Primitive Enhancement</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#what-is-an-attached-property">What Is an Attached Property?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-property-inheritance">Avalonia Concept: Property Inheritance</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#registerattached-owner-type">RegisterAttached Owner Type</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skybuttonpropertiesisloading">SkyButtonProperties.IsLoading</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#storing-original-content">Storing Original Content</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#design-decisions">Design Decisions</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-isloading">Debugging IsLoading</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skythemeproperties">SkyThemeProperties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#dynamicresource-vs-staticresource">DynamicResource vs StaticResource</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#density-propagation">Density Propagation</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skygridlayout">SkyGridLayout</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#subscription-lifecycle">Subscription Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#autoplacechildren">AutoPlaceChildren</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skytooltipproperties">SkyTooltipProperties</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skytouchtarget">SkyTouchTarget</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#visual-vs-logical-target">Visual vs Logical Target</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#advanced-registering-metadata">Advanced: Registering Metadata</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#when-to-use-attached-properties-vs-subclassing">When to Use Attached Properties vs Subclassing</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#anti-patterns">Anti-Patterns</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#attached-property-checklist">Attached Property Checklist</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#registering-changed-handlers-on-attached-properties">Registering Changed Handlers on Attached Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#global-changed-handlers">Global Changed Handlers</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#testing-attached-properties">Testing Attached Properties</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-attached-properties-in-devtools">Debugging Attached Properties in DevTools</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

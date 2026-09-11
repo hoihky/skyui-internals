@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-10-skyradiogroup-skyslider-and-skynumericupdown">Chapter 10: SkyRadioGroup, SkySlider, and SkyNumericUpDown</h1>
+<p>Part III continues with three form controls that illustrate different Avalonia techniques: <strong>programmatic child creation</strong> (<code>SkyRadioGroup</code>), <strong>property re-ownership</strong> (<code>SkySlider</code>), and <strong>parse/format with culture</strong> (<code>SkyNumericUpDown</code>).</p>
+<h2 id="skyradiogroup-mvvm-friendly-single-selection">SkyRadioGroup: MVVM-Friendly Single Selection</h2>
+<p>Native <code>RadioButton</code> groups require a shared <code>GroupName</code> so only one button is checked. <code>SkyRadioGroup</code> wraps this into a single control with <code>SelectedValue</code> bound to your model's enum or string.</p>
+<h3 id="api-surface">API Surface</h3>
+<pre><code class="language-csharp">[TemplatePart(ItemsHostPartName, typeof(Panel))]
+public class SkyRadioGroup : TemplatedControl
+{
+    public static readonly StyledProperty&lt;object?&gt; SelectedValueProperty =
+        AvaloniaProperty.Register&lt;SkyRadioGroup, object?&gt;(
+            nameof(SelectedValue), defaultBindingMode: BindingMode.TwoWay);
+
+    public static readonly StyledProperty&lt;Orientation&gt; OrientationProperty = ...;
+
+    [Content]
+    public IList Items =&gt; _items;  // SkyRadioGroupItem collection
+}
+</code></pre>
+<p><code>SelectedValue</code> compares against each item's <code>Value</code> property — not the display label — so you can bind directly to view model enums:</p>
+<pre><code class="language-xml">&lt;SkyRadioGroup SelectedValue=&quot;{Binding SortOrder}&quot;
+               Orientation=&quot;Horizontal&quot;&gt;
+  &lt;SkyRadioGroupItem Label=&quot;Name&quot; Value=&quot;Name&quot; /&gt;
+  &lt;SkyRadioGroupItem Label=&quot;Date&quot; Value=&quot;Date&quot; /&gt;
+  &lt;SkyRadioGroupItem Label=&quot;Size&quot; Value=&quot;Size&quot; /&gt;
+&lt;/SkyRadioGroup&gt;
+</code></pre>
+<h3 id="dynamic-radiobutton-creation">Dynamic RadioButton Creation</h3>
+<p>Unlike <code>SkyAccordion</code> which uses <code>ItemsControl</code> container overrides, <code>SkyRadioGroup</code> <strong>rebuilds</strong> <code>RadioButton</code> children in code:</p>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+    _itemsHost = e.NameScope.Find(ItemsHostPartName) as Panel;
+    RebuildRadioButtons();
+}
+
+private void RebuildRadioButtons()
+{
+    if (_itemsHost is null) return;
+
+    foreach (var rb in _itemsHost.Children.OfType&lt;RadioButton&gt;())
+        rb.IsCheckedChanged -= OnRadioButtonChecked;
+
+    _itemsHost.Children.Clear();
+
+    foreach (var item in _items)
+    {
+        var rb = new RadioButton
+        {
+            Content = item.Label,
+            GroupName = _groupName,
+            Tag = item.Value,
+            IsChecked = Equals(item.Value, SelectedValue)
+        };
+        rb.IsCheckedChanged += OnRadioButtonChecked;
+        _itemsHost.Children.Add(rb);
+    }
+}
+</code></pre>
+<p><strong>Why rebuild instead of ItemsControl?</strong> Radio buttons need a unique <code>GroupName</code> per group instance. Using <code>Guid.NewGuid()</code> in <code>_groupName</code> prevents collisions when multiple <code>SkyRadioGroup</code> controls exist on one page.</p>
+<h3 id="selection-sync-with-guard-flag">Selection Sync with Guard Flag</h3>
+<pre><code class="language-csharp">private bool _syncingSelection;
+
+private void OnRadioButtonChecked(object? sender, RoutedEventArgs e)
+{
+    if (_syncingSelection || sender is not RadioButton rb) return;
+    SelectedValue = rb.Tag;
+}
+
+private void SyncRadioButtonChecks()
+{
+    _syncingSelection = true;
+    try
+    {
+        foreach (var rb in _itemsHost!.Children.OfType&lt;RadioButton&gt;())
+            rb.IsChecked = Equals(rb.Tag, SelectedValue);
+    }
+    finally { _syncingSelection = false; }
+}
+</code></pre>
+<p>Without <code>_syncingSelection</code>, setting <code>SelectedValue</code> from the view model would check a radio button, which fires <code>IsCheckedChanged</code>, which sets <code>SelectedValue</code> again — potentially raising duplicate <code>SelectionChanged</code> events.</p>
+<h3 id="avalonia-concept-groupname">Avalonia Concept: GroupName</h3>
+<p><code>RadioButton.GroupName</code> is a string identifier. All radio buttons with the same group name are mutually exclusive. This is an Avalonia platform feature <code>SkyRadioGroup</code> orchestrates rather than reimplements.</p>
+<hr />
+<h2 id="skyslider-property-re-ownership">SkySlider: Property Re-Ownership</h2>
+<p><code>SkySlider</code> wraps Avalonia's <code>Slider</code> with a label and formatted value readout.</p>
+<h3 id="re-owning-rangebase-properties">Re-Owning RangeBase Properties</h3>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;double&gt; ValueProperty =
+    RangeBase.ValueProperty.AddOwner&lt;SkySlider&gt;();
+
+public static readonly StyledProperty&lt;double&gt; MinimumProperty =
+    RangeBase.MinimumProperty.AddOwner&lt;SkySlider&gt;();
+
+public static readonly StyledProperty&lt;double&gt; TickFrequencyProperty =
+    Slider.TickFrequencyProperty.AddOwner&lt;SkySlider&gt;();
+</code></pre>
+<p><code>AddOwner&lt;T&gt;()</code> registers the <strong>same</strong> underlying property on <code>SkySlider</code>. Bindings on the outer control propagate to the inner <code>PART_Slider</code> via template:</p>
+<pre><code class="language-xml">&lt;Slider Name=&quot;PART_Slider&quot;
+Value=&quot;{TemplateBinding Value}&quot;
+Minimum=&quot;{TemplateBinding Minimum}&quot;
+Maximum=&quot;{TemplateBinding Maximum}&quot; /&gt;
+</code></pre>
+<h3 id="value-label-formatting">Value Label Formatting</h3>
+<pre><code class="language-csharp">static SkySlider()
+{
+    ValueProperty.Changed.AddClassHandler&lt;SkySlider&gt;((s, _) =&gt; s.UpdateValueLabel());
+}
+
+private void UpdateValueLabel()
+{
+    if (_valueLabel is null) return;
+    _valueLabel.Text = string.Format(ValueFormat, Value);
+    _valueLabel.IsVisible = ShowValueLabel;
+}
+</code></pre>
+<p><code>ValueFormat</code> defaults to <code>&quot;{0:0}&quot;</code> but accepts any <code>string.Format</code> pattern — <code>&quot;{0:P0}&quot;</code> for percentages, <code>&quot;{0:F1}&quot;</code> for one decimal place.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyFormField Label=&quot;Volume&quot;&gt;
+  &lt;SkySlider Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+             Value=&quot;{Binding Volume, Mode=TwoWay}&quot;
+             ValueFormat=&quot;{}{0}%&quot;
+             ShowValueLabel=&quot;True&quot; /&gt;
+&lt;/SkyFormField&gt;
+</code></pre>
+<h3 id="lesson">Lesson</h3>
+<p>When your composite control's inner primitive already exposes the right properties, <strong>re-own</strong> them rather than duplicating backing fields. The outer control becomes a thin coordinator for label formatting and layout.</p>
+<hr />
+<h2 id="skynumericupdown-culture-aware-parsing">SkyNumericUpDown: Culture-Aware Parsing</h2>
+<p><code>SkyNumericUpDown</code> combines a text box with increment/decrement buttons and handles the messy reality of locale-specific decimal separators.</p>
+<h3 id="properties">Properties</h3>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;decimal&gt; ValueProperty =
+    AvaloniaProperty.Register&lt;SkyNumericUpDown, decimal&gt;(
+        nameof(Value), defaultBindingMode: BindingMode.TwoWay);
+
+public static readonly StyledProperty&lt;decimal&gt; MinimumProperty = ...; // default 0
+public static readonly StyledProperty&lt;decimal&gt; MaximumProperty = ...; // default 100
+public static readonly StyledProperty&lt;decimal&gt; StepProperty = ...;  // default 1
+public static readonly StyledProperty&lt;bool&gt; IsIntegerProperty = ...;
+public static readonly StyledProperty&lt;CultureInfo?&gt; CultureProperty = ...;
+public static readonly StyledProperty&lt;string?&gt; FormatStringProperty = ...;
+</code></pre>
+<h3 id="clamp-pipeline">Clamp Pipeline</h3>
+<p>Every value change passes through clamping:</p>
+<pre><code class="language-csharp">private void SetClampedValue(decimal raw)
+{
+    var clamped = Clamp(raw);
+    if (IsInteger)
+        clamped = decimal.Truncate(clamped);
+    if (clamped != Value)
+        Value = clamped;
+    else
+        UpdateDisplay();
+}
+
+private decimal Clamp(decimal v) =&gt;
+    Math.Clamp(v, Minimum, Maximum);
+</code></pre>
+<p><code>IsInteger</code> truncates toward zero after clamp — useful for quantity fields.</p>
+<h3 id="text-parse-on-lost-focus">Text Parse on Lost Focus</h3>
+<p>The text box shows formatted values; users type raw text:</p>
+<pre><code class="language-csharp">private void OnTextBoxLostFocus(object? sender, RoutedEventArgs e)
+{
+    if (TryParse(_textBox!.Text, out var parsed))
+        SetClampedValue(parsed);
+    else
+        UpdateDisplay(); // revert invalid input
+}
+</code></pre>
+<p>Invalid input does not corrupt <code>Value</code> — the display reverts to the last valid formatted string. This is essential UX for numeric fields.</p>
+<h3 id="keyboard-stepping">Keyboard Stepping</h3>
+<pre><code class="language-csharp">private void OnTextBoxKeyDown(object? sender, KeyEventArgs e)
+{
+    if (e.Key == Key.Up) { SetClampedValue(Value + Step); e.Handled = true; }
+    if (e.Key == Key.Down) { SetClampedValue(Value - Step); e.Handled = true; }
+}
+</code></pre>
+<p>Arrow keys step by <code>Step</code> without leaving the field — standard spreadsheet behavior.</p>
+<h3 id="formatting">Formatting</h3>
+<pre><code class="language-csharp">private string FormatValue(decimal v)
+{
+    if (!string.IsNullOrEmpty(FormatString))
+        return string.Format(Culture, FormatString, v);
+    return IsInteger
+        ? v.ToString(&quot;N0&quot;, Culture)
+        : v.ToString(&quot;N&quot;, Culture);
+}
+</code></pre>
+<p><code>Culture</code> defaults to <code>CultureInfo.CurrentCulture</code> so <code>1.234,56</code> displays correctly for German users when appropriate.</p>
+<h3 id="template-part-wiring">Template Part Wiring</h3>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+    DetachHandlers();
+
+    _textBox = e.NameScope.Find(TextBoxPartName) as TextBox;
+    _increment = e.NameScope.Find(IncrementButtonPartName) as Button;
+    _decrement = e.NameScope.Find(DecrementButtonPartName) as Button;
+
+    if (_textBox is not null)
+    {
+        _textBox.LostFocus += OnTextBoxLostFocus;
+        _textBox.KeyDown += OnTextBoxKeyDown;
+    }
+    if (_increment is not null) _increment.Click += (_, _) =&gt; SetClampedValue(Value + Step);
+    if (_decrement is not null) _decrement.Click += (_, _) =&gt; SetClampedValue(Value - Step);
+
+    UpdateDisplay();
+}
+</code></pre>
+<p><code>DetachHandlers()</code> is called before re-subscribing — mandatory when templates reapply.</p>
+<h3 id="usage-1">Usage</h3>
+<pre><code class="language-xml">&lt;SkyFormField Label=&quot;Quantity&quot; Validator=&quot;{x:Static local:Validators.Positive}&quot;&gt;
+  &lt;SkyNumericUpDown Value=&quot;{Binding Quantity, Mode=TwoWay}&quot;
+                    Minimum=&quot;1&quot; Maximum=&quot;999&quot;
+                    IsInteger=&quot;True&quot;
+                    Step=&quot;1&quot; /&gt;
+&lt;/SkyFormField&gt;
+</code></pre>
+<h2 id="pattern-comparison">Pattern Comparison</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Control</th>
+<th>Primary pattern</th>
+<th>Avalonia concept highlighted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SkyRadioGroup</td>
+<td>Programmatic children + GroupName</td>
+<td>RadioButton mutual exclusion</td>
+</tr>
+<tr>
+<td>SkySlider</td>
+<td>Property AddOwner</td>
+<td>TemplateBinding to inner Slider</td>
+</tr>
+<tr>
+<td>SkyNumericUpDown</td>
+<td>Parse/format pipeline</td>
+<td>CultureInfo, LostFocus validation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p>These three controls show that &quot;form control&quot; does not always mean the same implementation strategy. Choose programmatic child management when platform primitives need orchestration (radio groups), re-ownership when wrapping a single primitive (slider), and explicit parse/format when text display diverges from typed values (numeric up-down).</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-10-skyradiogroup-skyslider-and-skynumericupdown">Chapter 10: SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyradiogroup-mvvm-friendly-single-selection">SkyRadioGroup: MVVM-Friendly Single Selection</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#api-surface">API Surface</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#dynamic-radiobutton-creation">Dynamic RadioButton Creation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#selection-sync-with-guard-flag">Selection Sync with Guard Flag</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-groupname">Avalonia Concept: GroupName</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyslider-property-re-ownership">SkySlider: Property Re-Ownership</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#re-owning-rangebase-properties">Re-Owning RangeBase Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#value-label-formatting">Value Label Formatting</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#lesson">Lesson</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skynumericupdown-culture-aware-parsing">SkyNumericUpDown: Culture-Aware Parsing</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#properties">Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#clamp-pipeline">Clamp Pipeline</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#text-parse-on-lost-focus">Text Parse on Lost Focus</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#keyboard-stepping">Keyboard Stepping</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#formatting">Formatting</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-part-wiring">Template Part Wiring</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#pattern-comparison">Pattern Comparison</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

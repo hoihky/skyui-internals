@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 19 — SkyTabView and SkyBreadcrumb · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 19 — SkyTabView and SkyBreadcrumb</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-19-skytabview-and-skybreadcrumb">Chapter 19: SkyTabView and SkyBreadcrumb</h1>
+<p>Navigation is not only sidebars. Tabs organize peer views at the same hierarchy level; breadcrumbs show where the user is in a deep hierarchy. This chapter covers <code>SkyTabView</code> (minimal <code>TabControl</code> specialization) and <code>SkyBreadcrumb</code> (styled <code>ItemsControl</code>).</p>
+<h2 id="skytabview-overriding-defaults">SkyTabView: Overriding Defaults</h2>
+<pre><code class="language-csharp">public class SkyTabView : TabControl
+{
+    static SkyTabView()
+    {
+        TabStripPlacementProperty.OverrideDefaultValue&lt;SkyTabView&gt;(Dock.Top);
+    }
+}
+</code></pre>
+<p>That is the entire C# implementation. Visual design lives in the theme.</p>
+<h3 id="avalonia-concept-overridedefaultvalue">Avalonia Concept: OverrideDefaultValue</h3>
+<p><code>OverrideDefaultValue&lt;T&gt;()</code> in a static constructor changes the default for a styled property <strong>for this type only</strong>. <code>TabControl</code> defaults to top placement already, but explicit override documents intent and protects against upstream Avalonia default changes.</p>
+<h3 id="what-tabcontrol-provides">What TabControl Provides</h3>
+<p><code>TabControl</code> is an <code>ItemsControl</code> with:</p>
+<ul>
+<li><code>Items</code> / <code>ItemsSource</code> — tab entries</li>
+<li><code>SelectedIndex</code> / <code>SelectedItem</code> — active tab</li>
+<li><code>TabStripPlacement</code> — top, bottom, left, right</li>
+<li>Automatic content switching — only selected tab's content is visible</li>
+</ul>
+<p>SkyUI's theme applies <strong>pill-style</strong> tab strips:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;TabControl.sky-tab-view&quot;&gt;
+  &lt;Setter Property=&quot;Padding&quot; Value=&quot;0&quot; /&gt;
+&lt;/Style&gt;
+&lt;Style Selector=&quot;TabControl.sky-tab-view &gt; TabItem&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource SkyTabItemPillTemplate}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h3 id="usage-with-view-models">Usage with View Models</h3>
+<pre><code class="language-xml">&lt;SkyTabView SelectedIndex=&quot;{Binding SelectedTabIndex}&quot;&gt;
+  &lt;TabItem Header=&quot;Overview&quot;&gt;
+    &lt;local:OverviewView /&gt;
+  &lt;/TabItem&gt;
+  &lt;TabItem Header=&quot;Details&quot;&gt;
+    &lt;local:DetailsView /&gt;
+  &lt;/TabItem&gt;
+  &lt;TabItem Header=&quot;History&quot;&gt;
+    &lt;local:HistoryView /&gt;
+  &lt;/TabItem&gt;
+&lt;/SkyTabView&gt;
+</code></pre>
+<p>Or data-bound:</p>
+<pre><code class="language-xml">&lt;SkyTabView ItemsSource=&quot;{Binding Sections}&quot;
+            SelectedItem=&quot;{Binding CurrentSection, Mode=TwoWay}&quot;&gt;
+  &lt;TabControl.ItemTemplate&gt;
+    &lt;DataTemplate&gt;
+      &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/TabControl.ItemTemplate&gt;
+  &lt;TabControl.ContentTemplate&gt;
+    &lt;DataTemplate&gt;
+      &lt;ContentControl Content=&quot;{Binding View}&quot; /&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/TabControl.ContentTemplate&gt;
+&lt;/SkyTabView&gt;
+</code></pre>
+<h3 id="when-to-use-tabs-vs-navigationview">When to Use Tabs vs NavigationView</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App-level sections (Home, Library, Settings)</td>
+<td><code>SkyNavigationView</code></td>
+</tr>
+<tr>
+<td>Page-level sub-views (Details, Permissions, Audit)</td>
+<td><code>SkyTabView</code></td>
+</tr>
+<tr>
+<td>Mobile bottom navigation</td>
+<td><code>SkyNavigationView</code> bottom mode</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="skybreadcrumb-minimal-itemscontrol">SkyBreadcrumb: Minimal ItemsControl</h2>
+<pre><code class="language-csharp">public class SkyBreadcrumb : ItemsControl
+{
+    public static readonly StyledProperty&lt;string&gt; SeparatorProperty =
+        AvaloniaProperty.Register&lt;SkyBreadcrumb, string&gt;(nameof(Separator), &quot;/&quot;);
+}
+</code></pre>
+<h3 id="design-philosophy">Design Philosophy</h3>
+<p><code>SkyBreadcrumb</code> exposes only <code>Separator</code>. Item rendering, click handling, and truncation are template concerns:</p>
+<pre><code class="language-xml">&lt;ControlTheme TargetType=&quot;controls:SkyBreadcrumb&quot;&gt;
+  &lt;Setter Property=&quot;ItemsPanel&quot;&gt;
+    &lt;ItemsPanelTemplate&gt;
+      &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;4&quot; /&gt;
+    &lt;/ItemsPanelTemplate&gt;
+  &lt;/Setter&gt;
+  &lt;Setter Property=&quot;ItemTemplate&quot;&gt;
+    &lt;DataTemplate&gt;
+      &lt;Button Classes=&quot;sky sky-subtle&quot;
+              Content=&quot;{Binding Label}&quot;
+              Command=&quot;{Binding NavigateCommand}&quot; /&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p>Separators between items are typically implemented with an <code>ItemsControl</code> alternate template or a custom panel in advanced themes. The <code>Separator</code> property supplies the string inserted between items (default <code>/</code>).</p>
+<h3 id="view-model-pattern">View Model Pattern</h3>
+<pre><code class="language-csharp">public class BreadcrumbItem
+{
+    public string Label { get; init; } = &quot;&quot;;
+    public ICommand? NavigateCommand { get; init; }
+    public bool IsCurrent { get; init; }
+}
+</code></pre>
+<pre><code class="language-csharp">Breadcrumbs = new[]
+{
+    new BreadcrumbItem { Label = &quot;Projects&quot;, NavigateCommand = GoProjects },
+    new BreadcrumbItem { Label = &quot;SkyUI&quot;, NavigateCommand = GoProject },
+    new BreadcrumbItem { Label = &quot;Settings&quot;, IsCurrent = true },
+};
+</code></pre>
+<pre><code class="language-xml">&lt;SkyBreadcrumb ItemsSource=&quot;{Binding Breadcrumbs}&quot;
+Separator=&quot;›&quot; /&gt;
+</code></pre>
+<h3 id="accessibility">Accessibility</h3>
+<p>Mark the current (last) item with <code>IsCurrent</code> in your template — disable its button or render as <code>TextBlock</code> so screen readers announce it as the current page, not a link.</p>
+<h2 id="itemscontrol-vs-templatedcontrol-for-lists">ItemsControl vs TemplatedControl for Lists</h2>
+<p>Both <code>SkyBreadcrumb</code> and <code>SkyTabView</code> build on <code>ItemsControl</code> family types rather than <code>TemplatedControl</code> because:</p>
+<ul>
+<li>Item count is dynamic</li>
+<li>Each item may use <code>DataTemplate</code></li>
+<li>Platform (<code>TabControl</code>, <code>ItemsControl</code>) handles selection and containers</li>
+</ul>
+<p>Reach for <code>TemplatedControl</code> when the control has a <strong>fixed</strong> structure with named parts; reach for <code>ItemsControl</code> when the control is primarily a <strong>collection of variable items</strong>.</p>
+<h2 id="deep-dive-tabcontrol-selection-and-content-lifecycle">Deep Dive: TabControl Selection and Content Lifecycle</h2>
+<h3 id="how-tabcontrol-switches-content">How TabControl Switches Content</h3>
+<p><code>TabControl</code> keeps all tab items in the visual tree but typically shows only the selected tab's content. Avalonia's <code>TabItem</code> template includes a <code>ContentPresenter</code> whose <code>IsVisible</code> or content host toggles with selection. Understanding this matters when tabs host heavy views:</p>
+<pre><code class="language-xml">&lt;SkyTabView SelectedIndex=&quot;{Binding TabIndex, Mode=TwoWay}&quot;&gt;
+  &lt;TabItem Header=&quot;Dashboard&quot;&gt;
+    &lt;local:DashboardView /&gt;  &lt;!-- constructed when tab strip loads --&gt;
+  &lt;/TabItem&gt;
+&lt;/SkyTabView&gt;
+</code></pre>
+<p>For <strong>lazy-loaded</strong> tabs, use <code>ContentTemplate</code> with a ViewModel that creates views on first selection:</p>
+<pre><code class="language-csharp">public class TabSection
+{
+    public string Title { get; init; } = &quot;&quot;;
+    public object? View { get; set; }  // null until first activate
+    public Func&lt;object&gt; ViewFactory { get; init; } = () =&gt; new TextBlock();
+}
+
+public void OnTabSelected(TabSection section)
+{
+    section.View ??= section.ViewFactory();
+}
+</code></pre>
+<h3 id="tab-strip-placement-and-keyboard">Tab Strip Placement and Keyboard</h3>
+<p><code>TabStripPlacement</code> supports <code>Top</code>, <code>Bottom</code>, <code>Left</code>, <code>Right</code>. SkyUI's pill theme targets top placement. For vertical tabs (settings side nav), set:</p>
+<pre><code class="language-xml">&lt;SkyTabView TabStripPlacement=&quot;Left&quot; /&gt;
+</code></pre>
+<p>Arrow keys navigate between tabs when the tab strip has focus — inherited from Avalonia <code>TabControl</code> keyboard navigation. Ensure <code>TabIndex</code> on surrounding controls does not trap focus away from the strip.</p>
+<h3 id="skytabview-theme-anatomy">SkyTabView Theme Anatomy</h3>
+<p>The pill template typically structures:</p>
+<pre><code>Border (strip background)
+└── ItemsPresenter (horizontal TabItems)
+      └── TabItem template
+            ├── Border (pill background, :selected pseudo)
+            └── ContentPresenter (header)
+Content area below strip
+└── ContentPresenter (selected tab content only)
+</code></pre>
+<p><code>:selected</code> on <code>TabItem</code> drives accent fill. Inactive tabs use <code>SkyTextSecondaryBrush</code>; active uses <code>SkyOnAccentBrush</code> on accent background.</p>
+<hr />
+<h2 id="deep-dive-breadcrumb-navigation-stack">Deep Dive: Breadcrumb Navigation Stack</h2>
+<p>Real apps derive breadcrumbs from a <strong>navigation stack</strong>, not a static list:</p>
+<pre><code class="language-csharp">public class NavigationStack
+{
+    private readonly List&lt;NavigationFrame&gt; _frames = new();
+
+    public void Push(string label, object parameter)
+    {
+        _frames.Add(new NavigationFrame(label, parameter));
+        Breadcrumbs = BuildBreadcrumbs();
+    }
+
+    public void PopTo(int index)
+    {
+        _frames.RemoveRange(index + 1, _frames.Count - index - 1);
+        Breadcrumbs = BuildBreadcrumbs();
+    }
+
+    private IReadOnlyList&lt;BreadcrumbItem&gt; BuildBreadcrumbs()
+    {
+        var items = new List&lt;BreadcrumbItem&gt;();
+        for (var i = 0; i &lt; _frames.Count; i++)
+        {
+            var idx = i;
+            items.Add(new BreadcrumbItem
+            {
+                Label = _frames[i].Label,
+                IsCurrent = i == _frames.Count - 1,
+                NavigateCommand = i &lt; _frames.Count - 1
+                    ? new RelayCommand(() =&gt; PopTo(idx))
+                    : null
+            });
+        }
+        return items;
+    }
+}
+</code></pre>
+<p>Clicking &quot;Projects&quot; in <code>Home › Projects › Settings</code> calls <code>PopTo(1)</code> — the stack truncates and the detail view reloads for that frame.</p>
+<h3 id="truncation-for-deep-paths">Truncation for Deep Paths</h3>
+<p>When depth exceeds five levels, collapse middle segments:</p>
+<pre><code>Home › … › Folder › File › Properties
+</code></pre>
+<p>Implement in <code>ItemTemplate</code> with a <code>BreadcrumbItem.IsEllipsis</code> flag that renders <code>…</code> non-clickable.</p>
+<h3 id="separator-property">Separator Property</h3>
+<p><code>SkyBreadcrumb.Separator</code> defaults to <code>&quot;/&quot;</code>. Unicode arrows (<code>›</code>, <code>→</code>) improve scanability. The separator is a styled property — change at runtime for locale:</p>
+<pre><code class="language-csharp">breadcrumb.Separator = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
+</code></pre>
+<h2 id="tab-vs-breadcrumb-when-to-use-both">Tab vs Breadcrumb: When to Use Both</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tabs</td>
+<td>&quot;Which peer view at this level?&quot;</td>
+</tr>
+<tr>
+<td>Breadcrumb</td>
+<td>&quot;Where am I in the hierarchy?&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>A file manager might use breadcrumbs for folder path and tabs for &quot;Details | Permissions | History&quot; on the selected file — orthogonal concerns.</p>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab content empty</td>
+<td><code>SelectedIndex</code> -1 or no TabItem children</td>
+</tr>
+<tr>
+<td>Wrong tab selected on load</td>
+<td>Two-way binding overwriting before items added</td>
+</tr>
+<tr>
+<td>Breadcrumb click does nothing</td>
+<td><code>NavigateCommand</code> null on non-current items</td>
+</tr>
+<tr>
+<td>Separator not showing</td>
+<td>Custom <code>ItemsPanel</code> may omit separator logic in template</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p><code>SkyTabView</code> and <code>SkyBreadcrumb</code> sit at the lightweight end of SkyUI's navigation spectrum — thin subclasses whose value is mostly in themed templates and consistent class names. Master <code>TabControl</code> selection lifecycle and breadcrumb stack derivation to use them effectively in real applications.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-19-skytabview-and-skybreadcrumb">Chapter 19: SkyTabView and SkyBreadcrumb</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skytabview-overriding-defaults">SkyTabView: Overriding Defaults</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-overridedefaultvalue">Avalonia Concept: OverrideDefaultValue</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#what-tabcontrol-provides">What TabControl Provides</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage-with-view-models">Usage with View Models</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#when-to-use-tabs-vs-navigationview">When to Use Tabs vs NavigationView</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skybreadcrumb-minimal-itemscontrol">SkyBreadcrumb: Minimal ItemsControl</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#design-philosophy">Design Philosophy</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#view-model-pattern">View Model Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#accessibility">Accessibility</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#itemscontrol-vs-templatedcontrol-for-lists">ItemsControl vs TemplatedControl for Lists</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-tabcontrol-selection-and-content-lifecycle">Deep Dive: TabControl Selection and Content Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#how-tabcontrol-switches-content">How TabControl Switches Content</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#tab-strip-placement-and-keyboard">Tab Strip Placement and Keyboard</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skytabview-theme-anatomy">SkyTabView Theme Anatomy</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-breadcrumb-navigation-stack">Deep Dive: Breadcrumb Navigation Stack</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#truncation-for-deep-paths">Truncation for Deep Paths</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#separator-property">Separator Property</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#tab-vs-breadcrumb-when-to-use-both">Tab vs Breadcrumb: When to Use Both</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-tips">Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 24 — Chip, Badge, and Avatar · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 24 — Chip, Badge, and Avatar</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-24-chip-badge-and-avatar">Chapter 24: Chip, Badge, and Avatar</h1>
+<p>Primitive controls are small, focused widgets used everywhere: tags, notification counts, user photos. SkyUI's <code>Chip</code>, <code>Badge</code>, and <code>Avatar</code> demonstrate variant enums, routed events for interaction, size coercion, and overlay positioning. Notably, these three controls omit the <code>Sky</code> prefix — a legacy naming choice — but follow the same implementation conventions as prefixed controls. This chapter also covers Avalonia templating choices, style class mechanics, and practical debugging for high-frequency UI atoms.</p>
+<h2 id="why-primitives-matter">Why Primitives Matter</h2>
+<p>Buttons, text boxes, and lists dominate line counts, but chips, badges, and avatars appear dozens of times per screen. Inconsistent sizing or event behavior across these atoms makes an app feel unfinished. SkyUI treats them as first-class <code>TemplatedControl</code> / <code>ContentControl</code> implementations with explicit template contracts rather than ad-hoc <code>Border</code> + <code>TextBlock</code> stacks in every view.</p>
+<h2 id="chip-interactive-tag">Chip: Interactive Tag</h2>
+<p><code>Chip</code> renders a compact label with optional leading avatar and delete button. It supports filled and outlined variants, three sizes, and optional click handling.</p>
+<h3 id="properties-and-events">Properties and Events</h3>
+<pre><code class="language-csharp">public class Chip : TemplatedControl
+{
+    public static readonly StyledProperty&lt;string?&gt; LabelProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; AvatarContentProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsDeletableProperty = ...;
+    public static readonly StyledProperty&lt;ChipVariant&gt; VariantProperty = ...;
+    public static readonly StyledProperty&lt;ChipSize&gt; SizeProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsClickableProperty = ...;
+
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; DeleteRequestedEvent = ...;
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; ChipClickEvent = ...;
+}
+</code></pre>
+<p><code>Label</code> duplicates content you could put in <code>Content</code> — the split exists so simple tags need only a string while advanced chips still host composite content via <code>AvatarContent</code> without replacing the label text block in the template.</p>
+<h3 id="variant-and-size-as-style-classes">Variant and Size as Style Classes</h3>
+<pre><code class="language-csharp">static Chip()
+{
+    VariantProperty.Changed.AddClassHandler&lt;Chip&gt;((c, _) =&gt; c.ApplyVariant());
+    SizeProperty.Changed.AddClassHandler&lt;Chip&gt;((c, _) =&gt; c.ApplySize());
+    IsClickableProperty.Changed.AddClassHandler&lt;Chip&gt;((c, _) =&gt; c.ApplyClickableCursor());
+}
+
+private void ApplyVariant()
+{
+    Classes.Set(&quot;chip-filled&quot;, Variant == ChipVariant.Filled);
+    Classes.Set(&quot;chip-outlined&quot;, Variant == ChipVariant.Outlined);
+}
+
+private void ApplySize()
+{
+    Classes.Set(&quot;chip-sm&quot;, Size == ChipSize.Small);
+    Classes.Set(&quot;chip-md&quot;, Size == ChipSize.Medium);
+    Classes.Set(&quot;chip-lg&quot;, Size == ChipSize.Large);
+}
+</code></pre>
+<p>Enum properties map to mutually exclusive style classes. Theme selectors target <code>Chip.chip-filled.chip-md</code> for precise styling without inline setters.</p>
+<h3 id="avalonia-concept-classes-vs-pseudoclasses-on-primitives">Avalonia Concept: Classes vs PseudoClasses on Primitives</h3>
+<p><code>Chip</code> uses <strong>style classes</strong> (<code>Classes.Set</code>) for designer-facing variants because consumers pick filled vs outlined in XAML. Pressed/disabled states still come from Avalonia's built-in pseudo-classes (<code>:pointerover</code>, <code>:disabled</code>) combined in selectors:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;Chip.chip-outlined:pointerover&quot;&gt;
+  &lt;Setter Property=&quot;BorderBrush&quot; Value=&quot;{DynamicResource SkyAccentBrush}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Do not manually toggle <code>:pointerover</code> — the input system manages it.</p>
+<h3 id="delete-button-handling">Delete Button Handling</h3>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+    _deleteButton = e.NameScope.Find(DeletePartName) as Button;
+
+    if (_deleteButton is not null)
+    {
+        _deleteButton.Click -= OnDeleteClick;
+        _deleteButton.Click += OnDeleteClick;
+    }
+    SyncDeleteVisibility();
+}
+
+private void OnDeleteClick(object? sender, RoutedEventArgs e)
+{
+    e.Handled = true; // prevent ChipClick from also firing
+    RaiseEvent(new RoutedEventArgs(DeleteRequestedEvent));
+}
+</code></pre>
+<p><code>e.Handled = true</code> prevents the delete click from bubbling up to the chip root, which would also raise <code>ChipClickEvent</code>.</p>
+<p>Hide the delete part when <code>IsDeletable</code> is false — do not leave a collapsed button that still captures tab focus:</p>
+<pre><code class="language-csharp">private void SyncDeleteVisibility()
+{
+    if (_deleteButton is not null)
+        _deleteButton.IsVisible = IsDeletable;
+}
+</code></pre>
+<h3 id="clickable-state">Clickable State</h3>
+<p>When <code>IsClickable</code> is true, the root border gets a hand cursor and a pointer pressed handler raises <code>ChipClickEvent</code>. When false, the chip is purely presentational.</p>
+<p>Use <code>PointerPressed</code> with <code>e.GetCurrentPoint(this).Properties.IsLeftButtonPressed</code> rather than <code>Tapped</code> if you need parity with mouse and pen. Set <code>Focusable=&quot;True&quot;</code> only when clickable — screen readers should not land on decorative tags.</p>
+<h3 id="keyboard-accessibility-for-clickable-chips">Keyboard Accessibility for Clickable Chips</h3>
+<p>Treat clickable chips like compact buttons:</p>
+<pre><code class="language-csharp">protected override void OnKeyDown(KeyEventArgs e)
+{
+    if (IsClickable &amp;&amp; (e.Key == Key.Enter || e.Key == Key.Space))
+    {
+        RaiseEvent(new RoutedEventArgs(ChipClickEvent));
+        e.Handled = true;
+    }
+    base.OnKeyDown(e);
+}
+</code></pre>
+<p>Set <code>AutomationProperties.Name</code> from <code>Label</code> in the theme or code-behind.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;
+  &lt;Chip Label=&quot;Rock&quot; Variant=&quot;Filled&quot; /&gt;
+  &lt;Chip Label=&quot;Jazz&quot; Variant=&quot;Outlined&quot; IsDeletable=&quot;True&quot;
+        DeleteRequested=&quot;OnTagRemoved&quot; /&gt;
+  &lt;Chip Label=&quot;Anna&quot; IsClickable=&quot;True&quot; ChipClick=&quot;OnChipClicked&quot;&gt;
+    &lt;Chip.AvatarContent&gt;
+      &lt;Avatar DisplayName=&quot;Anna K&quot; Size=&quot;24&quot; /&gt;
+    &lt;/Chip.AvatarContent&gt;
+  &lt;/Chip&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<h3 id="chip-list-in-a-view-model">Chip List in a View Model</h3>
+<pre><code class="language-csharp">public partial class TagChipViewModel : ObservableObject
+{
+    public string Label { get; init; } = &quot;&quot;;
+    public ICommand? DeleteCommand { get; init; }
+}
+
+// XAML with ItemsControl
+&lt;ItemsControl ItemsSource=&quot;{Binding Tags}&quot;&gt;
+  &lt;ItemsControl.ItemTemplate&gt;
+    &lt;DataTemplate x:DataType=&quot;local:TagChipViewModel&quot;&gt;
+      &lt;Chip Label=&quot;{Binding Label}&quot;
+            IsDeletable=&quot;{Binding DeleteCommand, Converter={x:Static ObjectConverters.IsNotNull}}&quot;
+            DeleteRequested=&quot;OnDeleteTag&quot; /&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/ItemsControl.ItemTemplate&gt;
+&lt;/ItemsControl&gt;
+</code></pre>
+<p>Wire <code>DeleteRequested</code> to a handler that resolves the data context item — routed events do not automatically invoke <code>ICommand</code> on the view model.</p>
+<h3 id="debugging-chip">Debugging Chip</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Delete fires click too</td>
+<td>Missing <code>e.Handled = true</code></td>
+</tr>
+<tr>
+<td>Variant style wrong</td>
+<td>Class not applied; check enum default</td>
+</tr>
+<tr>
+<td>Avatar overlaps label</td>
+<td><code>chip-sm</code> template padding not adjusted for avatar slot</td>
+</tr>
+<tr>
+<td>Chip not keyboard activatable</td>
+<td><code>Focusable</code> false or no key handler</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="badge-overlay-indicator">Badge: Overlay Indicator</h2>
+<p><code>Badge</code> is a <code>ContentControl</code> that overlays a count or dot on its content — typically an icon or avatar.</p>
+<pre><code class="language-csharp">public class Badge : ContentControl
+{
+    public static readonly StyledProperty&lt;int&gt; CountProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsDotProperty = ...;
+    public static readonly StyledProperty&lt;BadgePlacement&gt; PlacementProperty = ...;
+    public static readonly StyledProperty&lt;int&gt; MaxCountProperty = ...;
+}
+</code></pre>
+<h3 id="why-contentcontrol">Why ContentControl?</h3>
+<p><code>Badge</code> wraps arbitrary content (icon, avatar, button). Subclassing <code>ContentControl</code> gives a single <code>Content</code> property and a template with two layers: the child content and the badge overlay <code>PART_Badge</code>. <code>TemplatedControl</code> would work but <code>ContentControl</code> matches the mental model — badge is adornment <strong>on</strong> something else.</p>
+<h3 id="auto-hide-logic">Auto-Hide Logic</h3>
+<pre><code class="language-csharp">static Badge()
+{
+    CountProperty.Changed.AddClassHandler&lt;Badge&gt;((b, _) =&gt; b.UpdateVisibility());
+    IsDotProperty.Changed.AddClassHandler&lt;Badge&gt;((b, _) =&gt; b.UpdateVisibility());
+}
+
+private void UpdateVisibility()
+{
+    var show = IsDot || Count &gt; 0;
+    if (_badgeElement is not null)
+        _badgeElement.IsVisible = show;
+}
+</code></pre>
+<p>When count is zero and dot mode is off, the badge element hides entirely. This lets consumers bind <code>Count</code> directly without wrapping visibility logic in the view model.</p>
+<p>Negative counts should coerce to zero in a property coerce callback — binding glitches can produce <code>-1</code> transiently during refresh.</p>
+<h3 id="count-overflow">Count Overflow</h3>
+<p>Display text caps at <code>MaxCount</code> (default 99):</p>
+<pre><code class="language-csharp">private string FormatCount() =&gt;
+Count &gt; MaxCount ? $&quot;{MaxCount}+&quot; : Count.ToString();
+</code></pre>
+<p>Bind the badge text block to a formatted property or update text in <code>UpdateVisibility</code> when count changes.</p>
+<h3 id="placement">Placement</h3>
+<p><code>BadgePlacement</code> enum (TopRight, TopLeft, BottomRight, BottomLeft) drives margin and alignment on the badge element through style classes or template bindings.</p>
+<pre><code class="language-csharp">private void ApplyPlacement()
+{
+    Classes.Set(&quot;badge-top-right&quot;, Placement == BadgePlacement.TopRight);
+    Classes.Set(&quot;badge-top-left&quot;, Placement == BadgePlacement.TopLeft);
+    // ...
+}
+</code></pre>
+<p>Template uses a <code>Grid</code> with the content centered and the badge in a secondary cell aligned to the chosen corner. Negative margins pull the badge over the content edge — tune per size token.</p>
+<h3 id="avalonia-concept-layout-rounding">Avalonia Concept: Layout Rounding</h3>
+<p>Badge positioning uses small negative margins. At non-integer DPI scales, sub-pixel layout can blur the badge edge. Snap badge width/height to even integers in the theme and use <code>UseLayoutRounding=&quot;True&quot;</code> on the badge root.</p>
+<h3 id="usage-1">Usage</h3>
+<pre><code class="language-xml">&lt;Badge Count=&quot;{Binding UnreadCount}&quot; Placement=&quot;TopRight&quot;&gt;
+  &lt;SkyIcon Kind=&quot;Notification&quot; /&gt;
+&lt;/Badge&gt;
+
+&lt;Badge IsDot=&quot;True&quot; Placement=&quot;TopRight&quot;&gt;
+  &lt;Avatar DisplayName=&quot;User&quot; /&gt;
+&lt;/Badge&gt;
+</code></pre>
+<h3 id="debugging-badge">Debugging Badge</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Badge always visible</td>
+<td><code>IsDot</code> true or count binding not clearing</td>
+</tr>
+<tr>
+<td>Badge clipped</td>
+<td>Parent <code>ClipToBounds=&quot;True&quot;</code> — move badge outside clipped container or disable clip</td>
+</tr>
+<tr>
+<td>Wrong corner</td>
+<td>Placement class not toggled exclusively</td>
+</tr>
+<tr>
+<td>&quot;99+&quot; never shows</td>
+<td><code>MaxCount</code> overridden too low</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="avatar-image-or-initials">Avatar: Image or Initials</h2>
+<p><code>Avatar</code> displays a profile image or falls back to initials derived from <code>DisplayName</code>.</p>
+<pre><code class="language-csharp">public class Avatar : TemplatedControl
+{
+    public const string ImagePartName = &quot;PART_Image&quot;;
+    public const string InitialsPartName = &quot;PART_Initials&quot;;
+
+    public static readonly StyledProperty&lt;IImage?&gt; SourceProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; DisplayNameProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; SizeProperty = ...;
+}
+</code></pre>
+<h3 id="initials-extraction">Initials Extraction</h3>
+<pre><code class="language-csharp">private static string ExtractInitials(string? displayName)
+{
+    if (string.IsNullOrWhiteSpace(displayName))
+        return &quot;?&quot;;
+
+    var parts = displayName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    if (parts.Length == 1)
+        return parts[0][..Math.Min(2, parts[0].Length)].ToUpperInvariant();
+
+    return $&quot;{parts[0][0]}{parts[^1][0]}&quot;.ToUpperInvariant();
+}
+</code></pre>
+<p>&quot;Anna Kwan&quot; becomes &quot;AK&quot;. &quot;Cher&quot; becomes &quot;CH&quot; (first two characters of a single name).</p>
+<p>For CJK names without spaces, consider grabbing one character — localization may require a different extractor injected via attached property in localized apps.</p>
+<h3 id="image-vs-initials-visibility">Image vs Initials Visibility</h3>
+<pre><code class="language-csharp">private void SyncImageState()
+{
+    var hasImage = Source is not null;
+    if (_image is not null) _image.IsVisible = hasImage;
+    if (_initials is not null)
+    {
+        _initials.IsVisible = !hasImage;
+        _initials.Text = ExtractInitials(DisplayName);
+    }
+}
+</code></pre>
+<p>Subscribe to <code>SourceProperty</code> and <code>DisplayNameProperty</code> changed handlers that call <code>SyncImageState</code>. Async image loading may set <code>Source</code> after first layout — handle <code>Bitmap</code> decode completion if using lazy loaders.</p>
+<h3 id="avalonia-concept-iimage-and-async-loading">Avalonia Concept: IImage and Async Loading</h3>
+<p><code>Source</code> is <code>IImage?</code>, not <code>string</code> URI — view models often expose <code>Bitmap</code> or <code>AsyncImageLoader</code> callbacks. Binding a URL string requires a converter or loading in the view model:</p>
+<pre><code class="language-csharp">[ObservableProperty] private IImage? profileImage;
+
+async Task LoadAvatarAsync(Uri uri)
+{
+    ProfileImage = await Task.Run(() =&gt; Bitmap.DecodeToWidth(uri.AbsoluteUri, (int)Size));
+}
+</code></pre>
+<p>When load fails, set <code>Source</code> null so initials appear — do not leave a broken image placeholder unless the template provides one.</p>
+<h3 id="size-coercion">Size Coercion</h3>
+<p>Avatar size is coerced to snap to standard sizes (24, 32, 40, 48, 64):</p>
+<pre><code class="language-csharp">private static double CoerceSize(AvaloniaObject _, double size) =&gt;
+    size switch
+    {
+        &lt;= 28 =&gt; 24,
+        &lt;= 36 =&gt; 32,
+        &lt;= 44 =&gt; 40,
+        &lt;= 56 =&gt; 48,
+        _ =&gt; 64
+    };
+
+// Register with coerce in property metadata
+public static readonly StyledProperty&lt;double&gt; SizeProperty =
+    AvaloniaProperty.Register&lt;Avatar, double&gt;(
+        nameof(Size), 40, coerce: CoerceSize);
+</code></pre>
+<p>Coercion ensures avatars align with the design system's size scale even when consumers pass arbitrary values.</p>
+<p>Template binds width and height to <code>Size</code> on a circular clip border. Font size for initials scales via theme setters per coerced size class if you add <code>avatar-sm</code> / <code>avatar-lg</code> classes when <code>Size</code> changes.</p>
+<h3 id="usage-2">Usage</h3>
+<pre><code class="language-xml">&lt;Avatar DisplayName=&quot;Anna Kwan&quot; Size=&quot;40&quot; /&gt;
+&lt;Avatar Source=&quot;{Binding ProfileImage}&quot; DisplayName=&quot;Anna Kwan&quot; Size=&quot;48&quot; /&gt;
+&lt;Badge Count=&quot;3&quot; Placement=&quot;BottomRight&quot;&gt;
+  &lt;Avatar DisplayName=&quot;Team Lead&quot; Size=&quot;32&quot; /&gt;
+&lt;/Badge&gt;
+</code></pre>
+<h2 id="composing-chip-badge-and-avatar">Composing Chip, Badge, and Avatar</h2>
+<p>Common combinations:</p>
+<table class="table">
+<thead>
+<tr>
+<th>UI pattern</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tag with person</td>
+<td><code>Chip</code> + <code>AvatarContent</code></td>
+</tr>
+<tr>
+<td>Notify icon</td>
+<td><code>Badge</code> wrapping <code>SkyIcon</code></td>
+</tr>
+<tr>
+<td>User menu trigger</td>
+<td><code>Badge</code> wrapping <code>Avatar</code></td>
+</tr>
+<tr>
+<td>Filter tags row</td>
+<td><code>ItemsControl</code> of deletable <code>Chip</code></td>
+</tr>
+</tbody>
+</table>
+<p>Keep avatar size inside chips one step smaller than standalone avatars (24 inside medium chip) — define token pairs in the theme so designers do not guess.</p>
+<h2 id="common-patterns-across-primitives">Common Patterns Across Primitives</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Chip</th>
+<th>Badge</th>
+<th>Avatar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base class</td>
+<td>TemplatedControl</td>
+<td>ContentControl</td>
+<td>TemplatedControl</td>
+</tr>
+<tr>
+<td>Enum → style class</td>
+<td>Variant, Size</td>
+<td>Placement</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Routed events</td>
+<td>Delete, Click</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Auto visibility</td>
+<td>Delete button</td>
+<td>Badge on zero count</td>
+<td>Image vs initials</td>
+</tr>
+<tr>
+<td>Template parts</td>
+<td>Root, Label, Delete</td>
+<td>Badge overlay</td>
+<td>Image, Initials</td>
+</tr>
+<tr>
+<td>Coercion</td>
+<td>—</td>
+<td>MaxCount default</td>
+<td>Size snap</td>
+</tr>
+</tbody>
+</table>
+<h2 id="performance-notes">Performance Notes</h2>
+<p>These controls are instantiated frequently. Avoid heavy bindings inside chip templates. Prefer <code>DisplayName</code> string over full view model in avatar lists. Virtualize tag rows with <code>ItemsRepeater</code> or virtualizing panels when tag count exceeds a few dozen — non-virtualized wrap panels stutter during window resize.</p>
+<h2 id="building-your-own-primitive">Building Your Own Primitive</h2>
+<p>Primitives should be:</p>
+<ol>
+<li><strong>Small API surface</strong> — few properties, clear defaults</li>
+<li><strong>Self-contained</strong> — no dependency on app-level services</li>
+<li><strong>Enum-driven variants</strong> — map enums to style classes in property handlers</li>
+<li><strong>Defensive visibility</strong> — hide elements that have nothing to show</li>
+<li><strong>Standard sizes</strong> — coerce to design scale values</li>
+<li><strong>Explicit event boundaries</strong> — handle or bubble deliberately (<code>Delete</code> vs <code>Click</code>)</li>
+<li><strong>Template part null checks</strong> — degrade when theme incomplete</li>
+</ol>
+<p>The next chapter covers attached properties, the other major primitive extension mechanism in SkyUI.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-24-chip-badge-and-avatar">Chapter 24: Chip, Badge, and Avatar</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#why-primitives-matter">Why Primitives Matter</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#chip-interactive-tag">Chip: Interactive Tag</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#properties-and-events">Properties and Events</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#variant-and-size-as-style-classes">Variant and Size as Style Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-classes-vs-pseudoclasses-on-primitives">Avalonia Concept: Classes vs PseudoClasses on Primitives</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#delete-button-handling">Delete Button Handling</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#clickable-state">Clickable State</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#keyboard-accessibility-for-clickable-chips">Keyboard Accessibility for Clickable Chips</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#chip-list-in-a-view-model">Chip List in a View Model</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-chip">Debugging Chip</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#badge-overlay-indicator">Badge: Overlay Indicator</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-contentcontrol">Why ContentControl?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#auto-hide-logic">Auto-Hide Logic</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#count-overflow">Count Overflow</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#placement">Placement</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-layout-rounding">Avalonia Concept: Layout Rounding</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-badge">Debugging Badge</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#avatar-image-or-initials">Avatar: Image or Initials</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#initials-extraction">Initials Extraction</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#image-vs-initials-visibility">Image vs Initials Visibility</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-iimage-and-async-loading">Avalonia Concept: IImage and Async Loading</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#size-coercion">Size Coercion</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#composing-chip-badge-and-avatar">Composing Chip, Badge, and Avatar</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#common-patterns-across-primitives">Common Patterns Across Primitives</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#performance-notes">Performance Notes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-primitive">Building Your Own Primitive</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 17 — SkyNavigationView · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 17 — SkyNavigationView</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-17-skynavigationview">Chapter 17: SkyNavigationView</h1>
+<p><code>SkyNavigationView</code> is the application shell control. It provides adaptive navigation that switches between an expanded sidebar, a compact icon-only sidebar, and a bottom tab bar depending on available width. This chapter explains display mode resolution, dual list hosts, selection synchronization, content transitions, and the Avalonia mechanics that make adaptive shell chrome reliable across window sizes and platforms.</p>
+<h2 id="role-in-the-application-shell">Role in the Application Shell</h2>
+<p>Most desktop and tablet apps need a persistent navigation region and a content region that swaps as the user moves between sections. Avalonia gives you <code>ListBox</code>, <code>ContentControl</code>, and layout panels — but wiring them into a responsive shell with synchronized selection, animated content swaps, and theme-driven layout variants is repetitive. <code>SkyNavigationView</code> packages that wiring into one <code>TemplatedControl</code> with a predictable template contract.</p>
+<p>Think of it as three layers:</p>
+<ol>
+<li><strong>Layout resolution</strong> — width drives display mode (expanded sidebar, compact icons, bottom tabs)</li>
+<li><strong>Data host</strong> — one <code>Items</code> collection feeds two visual list hosts</li>
+<li><strong>Content host</strong> — selected item drives the main <code>ContentPresenter</code>, optionally with motion</li>
+</ol>
+<h2 id="display-modes">Display Modes</h2>
+<pre><code class="language-csharp">public enum SkyNavigationDisplayMode
+{
+    Auto,
+    Expanded,
+    Compact,
+    Bottom
+}
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Mode</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Auto</code></td>
+<td>Picks expanded, compact, or bottom based on control width</td>
+</tr>
+<tr>
+<td><code>Expanded</code></td>
+<td>Full sidebar with icons and labels</td>
+</tr>
+<tr>
+<td><code>Compact</code></td>
+<td>Narrow sidebar with icons only</td>
+</tr>
+<tr>
+<td><code>Bottom</code></td>
+<td>Horizontal bottom navigation bar</td>
+</tr>
+</tbody>
+</table>
+<p><code>Auto</code> mode uses <code>SkyBreakpoint</code> thresholds similar to the grid breakpoint system but tuned for navigation chrome rather than content columns. Navigation breakpoints typically sit slightly below content grid breakpoints because sidebar chrome consumes horizontal space before content reflows.</p>
+<h3 id="avalonia-concept-styledproperty-vs-directproperty">Avalonia Concept: StyledProperty vs DirectProperty</h3>
+<p><code>DisplayMode</code> is a <code>StyledProperty&lt;SkyNavigationDisplayMode&gt;</code> — it participates in styling, binding, and inheritance like most control properties. The <code>Items</code> collection (covered later) is a <code>DirectProperty&lt;IList&gt;</code> backed by a field. Styled properties are ideal for values consumers set in XAML; direct properties suit mutable collections that the control owns internally and mutates without going through the styled property pipeline on every add/remove.</p>
+<p>When debugging binding issues, check which kind of property you are targeting. A <code>{Binding Items}</code> on a view model will not populate a direct <code>[Content]</code> collection unless you explicitly bridge them.</p>
+<h3 id="width-thresholds-in-auto-mode">Width Thresholds in Auto Mode</h3>
+<p>A typical resolver looks like this:</p>
+<pre><code class="language-csharp">private ResolvedDisplayMode ResolveDisplayMode()
+{
+    if (DisplayMode != SkyNavigationDisplayMode.Auto)
+        return MapFixedMode(DisplayMode);
+
+    var width = Bounds.Width;
+    if (width &gt;= ExpandedMinWidth) return ResolvedDisplayMode.Expanded;
+    if (width &gt;= CompactMinWidth)  return ResolvedDisplayMode.Compact;
+    return ResolvedDisplayMode.Bottom;
+}
+</code></pre>
+<p>Threshold constants live near other shell breakpoints so designers and developers tune them in one place. If your sidebar labels truncate before the mode switches, lower <code>CompactMinWidth</code> rather than shrinking font sizes in the theme.</p>
+<h2 id="pseudo-classes-for-layout-variants">Pseudo-Classes for Layout Variants</h2>
+<pre><code class="language-csharp">[PseudoClasses(&quot;compact&quot;, &quot;bottom&quot;)]
+public class SkyNavigationView : TemplatedControl
+</code></pre>
+<p>When display mode resolves to compact or bottom, the corresponding pseudo-class activates:</p>
+<pre><code class="language-csharp">private void ApplyDisplayMode()
+{
+    var mode = ResolveDisplayMode();
+    PseudoClasses.Set(&quot;:compact&quot;, mode == ResolvedDisplayMode.Compact);
+    PseudoClasses.Set(&quot;:bottom&quot;, mode == ResolvedDisplayMode.Bottom);
+    UpdateNavListVisibility(mode);
+}
+</code></pre>
+<p>Theme styles use these pseudo-classes to show/hide the side nav host and bottom nav host, adjust widths, and change item templates.</p>
+<h3 id="pseudo-classes-vs-style-classes">Pseudo-Classes vs Style Classes</h3>
+<p>Avalonia distinguishes two class systems:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>API</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pseudo-classes</strong></td>
+<td><code>PseudoClasses.Set(&quot;:compact&quot;, true)</code></td>
+<td>Structural states tied to control logic (open, pressed, compact)</td>
+</tr>
+<tr>
+<td><strong>Style classes</strong></td>
+<td><code>Classes.Set(&quot;chip-filled&quot;, true)</code></td>
+<td>Designer-facing variants consumers opt into (<code>sky-primary</code>, <code>chip-md</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><code>SkyNavigationView</code> uses pseudo-classes because compact and bottom modes are resolved by the control, not chosen by the page author. Theme selectors target <code>SkyNavigationView:compact</code> and <code>SkyNavigationView:bottom</code> without requiring XAML class attributes on every instance.</p>
+<h3 id="debugging-theme-selectors">Debugging Theme Selectors</h3>
+<p>If the bottom bar never appears when you shrink the window:</p>
+<ol>
+<li>Confirm <code>DisplayMode=&quot;Auto&quot;</code> (a fixed <code>Expanded</code> overrides width logic)</li>
+<li>Inspect <code>Bounds.Width</code> on the control, not the window — nested margins and split panes reduce available width</li>
+<li>Use Avalonia DevTools to verify <code>:bottom</code> is set on the control when width drops below threshold</li>
+<li>Check theme selectors — a missing <code>:bottom</code> rule may leave <code>PART_BottomNavHost</code> at <code>IsVisible=&quot;False&quot;</code> in the default template state</li>
+</ol>
+<h2 id="dual-list-hosts">Dual List Hosts</h2>
+<p>The template contains two <code>ListBox</code> elements for navigation items:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_SideNavList</code></td>
+<td>Vertical sidebar items</td>
+</tr>
+<tr>
+<td><code>PART_BottomNavList</code></td>
+<td>Horizontal bottom bar items</td>
+</tr>
+<tr>
+<td><code>PART_SideNavHost</code></td>
+<td>Container for side nav (hidden in bottom mode)</td>
+</tr>
+<tr>
+<td><code>PART_BottomNavHost</code></td>
+<td>Container for bottom nav (hidden in sidebar modes)</td>
+</tr>
+<tr>
+<td><code>PART_Content</code></td>
+<td><code>ContentPresenter</code> for the main content area</td>
+</tr>
+</tbody>
+</table>
+<p>Both lists bind to the same <code>Items</code> collection. When display mode changes, visibility toggles between hosts but selection state must stay synchronized.</p>
+<h3 id="why-two-listbox-controls">Why Two ListBox Controls?</h3>
+<p>A single <code>ListBox</code> with a rotated <code>ItemsPanel</code> sounds simpler but breaks down quickly:</p>
+<ul>
+<li>Item templates differ (vertical label stack vs horizontal icon row)</li>
+<li>Focus visuals and keyboard navigation paths differ between sidebar and bottom bar</li>
+<li>Scroll behavior differs — sidebars scroll vertically; bottom bars often clip or scroll horizontally</li>
+</ul>
+<p>Duplicating hosts with shared data is a common Avalonia pattern for adaptive chrome. The cost is selection sync, which the control handles internally.</p>
+<h3 id="template-binding-pattern">Template Binding Pattern</h3>
+<p>In the control theme, both lists typically bind like this:</p>
+<pre><code class="language-xml">&lt;ListBox x:Name=&quot;PART_SideNavList&quot;
+ItemsSource=&quot;{TemplateBinding Items}&quot;
+SelectedIndex=&quot;{TemplateBinding SelectedIndex,
+    Mode=TwoWay}&quot; /&gt;
+</code></pre>
+<p>Using <code>TemplateBinding</code> keeps the lists in sync with the control's <code>SelectedIndex</code> property. The code-behind still mirrors indices during mode transitions because template reapplication or host visibility changes can reset internal list state.</p>
+<h2 id="selection-synchronization">Selection Synchronization</h2>
+<pre><code class="language-csharp">private bool syncingSelection;
+
+private void OnSelectedIndexChanged(AvaloniaPropertyChangedEventArgs e)
+{
+    if (syncingSelection) return;
+    syncingSelection = true;
+    try
+    {
+        sideNavList?.SelectedIndex = SelectedIndex;
+        bottomNavList?.SelectedIndex = SelectedIndex;
+        UpdateContent();
+    }
+    finally
+    {
+        syncingSelection = false;
+    }
+}
+</code></pre>
+<p>The <code>syncingSelection</code> flag prevents infinite loops when updating one list triggers a change handler on the other. Both lists are set to the same index, and the content presenter updates to show the selected item's content.</p>
+<h3 id="re-entrancy-guards-in-avalonia">Re-entrancy Guards in Avalonia</h3>
+<p>Property changed handlers in Avalonia can chain: setting <code>SelectedIndex</code> on list A raises <code>SelectionChanged</code>, which sets the control's <code>SelectedIndex</code>, which sets list B, which raises again. A boolean guard is the standard fix. Alternatives like comparing old/new values before writing help but do not cover every path (template reapply, programmatic <code>-1</code> clears).</p>
+<p>Hook both lists in <code>OnApplyTemplate</code>:</p>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+    sideNavList = e.NameScope.Find(PART_SideNavList) as ListBox;
+    bottomNavList = e.NameScope.Find(PART_BottomNavList) as ListBox;
+
+    if (sideNavList is not null)
+    {
+        sideNavList.SelectionChanged -= OnSideSelectionChanged;
+        sideNavList.SelectionChanged += OnSideSelectionChanged;
+    }
+    // same for bottomNavList
+}
+</code></pre>
+<p>Always unsubscribe before resubscribe in <code>OnApplyTemplate</code> — themes can reapply and duplicate handlers leak memory and double-fire events.</p>
+<h3 id="debugging-selection-drift">Debugging Selection Drift</h3>
+<p>Symptoms and fixes:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content updates but highlight wrong</td>
+<td>Lists out of sync; guard flag stuck <code>true</code> after exception</td>
+</tr>
+<tr>
+<td>Selection resets on resize</td>
+<td><code>SelectedIndex</code> not persisted across <code>ApplyDisplayMode</code></td>
+</tr>
+<tr>
+<td><code>-1</code> selection blank content</td>
+<td>No default item; set <code>SelectedIndex=&quot;0&quot;</code> on load</td>
+</tr>
+<tr>
+<td>Click does nothing</td>
+<td><code>IsEnabled=&quot;False&quot;</code> on inactive host still capturing hit tests</td>
+</tr>
+</tbody>
+</table>
+<h2 id="items-collection">Items Collection</h2>
+<p>Navigation items use a <code>DirectProperty&lt;IList&gt;</code> backed by an <code>AvaloniaList</code>:</p>
+<pre><code class="language-csharp">private readonly AvaloniaList&lt;SkyNavigationViewItem&gt; items = new();
+
+[Content]
+public IList Items =&gt; items;
+</code></pre>
+<p>The <code>[Content]</code> attribute allows implicit collection syntax in XAML — child elements become items without a wrapper property.</p>
+<p><code>SkyNavigationViewItem</code> is a <code>ContentControl</code> with icon, label, and optional badge properties:</p>
+<pre><code class="language-xml">&lt;SkyNavigationView&gt;
+  &lt;SkyNavigationViewItem Content=&quot;Home&quot; Tag=&quot;{x:Static local:Pages.Home}&quot; /&gt;
+  &lt;SkyNavigationViewItem Content=&quot;Library&quot; Tag=&quot;{x:Static local:Pages.Library}&quot; /&gt;
+  &lt;SkyNavigationViewItem Content=&quot;Settings&quot; Tag=&quot;{x:Static local:Pages.Settings}&quot; /&gt;
+&lt;/SkyNavigationView&gt;
+</code></pre>
+<h3 id="mapping-selection-to-page-content">Mapping Selection to Page Content</h3>
+<p>Three common strategies:</p>
+<p><strong>Tag + factory</strong> — store a page key or view model type on <code>Tag</code>, resolve in <code>UpdateContent()</code>:</p>
+<pre><code class="language-csharp">private void UpdateContent()
+{
+    if (SelectedIndex &lt; 0 || SelectedIndex &gt;= items.Count) return;
+    var item = items[SelectedIndex];
+    contentPresenter!.Content = item.Tag switch
+    {
+        Pages.Home     =&gt; homeView,
+        Pages.Library  =&gt; libraryView,
+        Pages.Settings =&gt; settingsView,
+        _              =&gt; null
+    };
+}
+</code></pre>
+<p><strong>Content on item</strong> — each <code>SkyNavigationViewItem</code> holds its view as <code>Content</code>; the nav view presents the selected item's content in <code>PART_Content</code>.</p>
+<p><strong>View model index</strong> — bind <code>SelectedIndex</code> two-way to the shell view model; pages swap via a <code>DataTemplate</code> in the content area.</p>
+<p>Pick one strategy per app — mixing Tag resolution and inline content confuses debugging.</p>
+<h2 id="content-transitions">Content Transitions</h2>
+<p>When the selected item changes, the content area animates using <code>SkyMotionAnimator</code>:</p>
+<pre><code class="language-csharp">private async void UpdateContentWithTransition(object? newContent)
+{
+    contentAnimationCancellation?.Cancel();
+    contentAnimationCancellation = new CancellationTokenSource();
+    var token = contentAnimationCancellation.Token;
+
+    if (contentPresenter?.Content is not null)
+        await SkyMotionAnimator.Default.AnimateFadeOutAsync(contentPresenter, token);
+
+    if (token.IsCancellationRequested) return;
+
+    contentPresenter!.Content = newContent;
+    await SkyMotionAnimator.Default.AnimateFadeInAsync(contentPresenter, token);
+}
+</code></pre>
+<p>Cancellation ensures rapid navigation clicks do not stack animations. Only the latest selection's animation completes.</p>
+<h3 id="avalonia-concept-async-void-in-controls">Avalonia Concept: async void in Controls</h3>
+<p><code>async void</code> is acceptable in UI event handlers when exceptions are contained and cancellation is handled. Here, rapid clicks cancel prior tokens so stale animations never overwrite newer content. If you refactor to <code>async Task</code>, callers rarely await — but unit tests can.</p>
+<p>Avoid starting transitions before <code>OnApplyTemplate</code> assigns <code>contentPresenter</code>. Guard with a null check and fall back to synchronous <code>Content = newContent</code>.</p>
+<h3 id="reduced-motion">Reduced Motion</h3>
+<p>Respect system accessibility settings by skipping animation when reduced motion is preferred:</p>
+<pre><code class="language-csharp">if (SkyMotionPreferences.ShouldReduceMotion)
+{
+    contentPresenter!.Content = newContent;
+    return;
+}
+</code></pre>
+<p>Shell controls should not be the only place this check lives, but navigation transitions are a high-impact spot.</p>
+<h2 id="width-based-mode-resolution">Width-Based Mode Resolution</h2>
+<pre><code class="language-csharp">protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+{
+    base.OnPropertyChanged(change);
+    if (change.Property == BoundsProperty)
+        ApplyDisplayMode();
+}
+</code></pre>
+<p>Like <code>SkyResponsiveGrid</code>, the navigation view watches <code>BoundsProperty</code>. When the window is resized across a breakpoint threshold, display mode recalculates and pseudo-classes update.</p>
+<p><code>BoundsProperty</code> fires after layout passes complete, so width reflects actual arranged size. If mode resolution runs too early (constructor, before measure), <code>Bounds.Width</code> may be zero and incorrectly resolve to bottom mode. Defer initial <code>ApplyDisplayMode()</code> to <code>OnAttachedToVisualTree</code> or guard zero-width:</p>
+<pre><code class="language-csharp">if (Bounds.Width &lt;= 0) return;
+</code></pre>
+<h2 id="keyboard-and-focus-navigation">Keyboard and Focus Navigation</h2>
+<p>Sidebar mode typically maps Up/Down to item navigation; bottom mode maps Left/Right. Avalonia's built-in <code>ListBox</code> keyboard behavior handles this per orientation if the <code>ItemsPanel</code> is a vertical or horizontal stack.</p>
+<p>Ensure only the <strong>visible</strong> host has <code>IsVisible=&quot;True&quot;</code> and receives focus — hidden lists still in the visual tree can steal focus if left enabled. <code>UpdateNavListVisibility</code> should set <code>IsEnabled</code> or <code>Focusable=&quot;False&quot;</code> on the inactive host.</p>
+<p>For page content, call <code>Focus()</code> on the first focusable element after navigation if your app targets keyboard-heavy workflows (kiosk, accessibility audits).</p>
+<h2 id="usage-in-an-application-shell">Usage in an Application Shell</h2>
+<pre><code class="language-xml">&lt;SkyNavigationView DisplayMode=&quot;Auto&quot;
+                   SelectedIndex=&quot;{Binding SelectedNavIndex}&quot;&gt;
+  &lt;SkyNavigationViewItem&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;12&quot;&gt;
+      &lt;SkyIcon Kind=&quot;Home&quot; /&gt;
+      &lt;TextBlock Text=&quot;Dashboard&quot; /&gt;
+    &lt;/StackPanel&gt;
+  &lt;/SkyNavigationViewItem&gt;
+  &lt;!-- more items --&gt;
+  &lt;local:DashboardView /&gt;
+&lt;/SkyNavigationView&gt;
+</code></pre>
+<p>The last child without being a <code>SkyNavigationViewItem</code> can serve as default content, or content can be set programmatically based on selection.</p>
+<h3 id="shell-view-model-pattern">Shell View Model Pattern</h3>
+<pre><code class="language-csharp">public partial class ShellViewModel : ObservableObject
+{
+    [ObservableProperty] private int selectedNavIndex;
+
+    partial void OnSelectedNavIndexChanged(int value)
+    {
+        CurrentPage = value switch
+        {
+            0 =&gt; new DashboardViewModel(),
+            1 =&gt; new LibraryViewModel(),
+            _ =&gt; new SettingsViewModel()
+        };
+    }
+
+    [ObservableProperty] private object? currentPage;
+}
+</code></pre>
+<p>Bind <code>SelectedIndex</code> two-way and place <code>CurrentPage</code> inside <code>PART_Content</code> via a <code>ContentControl</code> if you prefer MVVM over Tag-based resolution.</p>
+<h2 id="design-patterns">Design Patterns</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adaptive layout</td>
+<td>Width-driven display mode with pseudo-classes</td>
+</tr>
+<tr>
+<td>Dual hosts</td>
+<td>Same data, different visual hosts for different modes</td>
+</tr>
+<tr>
+<td>Selection sync</td>
+<td>Guard flag prevents re-entrant updates</td>
+</tr>
+<tr>
+<td>Motion</td>
+<td>Content transitions via shared animator</td>
+</tr>
+<tr>
+<td>Direct property collection</td>
+<td><code>Items</code> as <code>DirectProperty&lt;IList&gt;</code> with <code>[Content]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="building-your-own-navigation-shell">Building Your Own Navigation Shell</h2>
+<ol>
+<li>Define display modes as an enum with an <code>Auto</code> option</li>
+<li>Map width to mode in a dedicated resolver</li>
+<li>Use pseudo-classes for mode-specific theme selectors</li>
+<li>Host the same items collection in multiple list controls if layouts differ</li>
+<li>Guard selection sync with a boolean flag</li>
+<li>Animate content changes with cancellable async transitions</li>
+<li>Subscribe and unsubscribe template events in <code>OnApplyTemplate</code></li>
+<li>Disable or hide inactive list hosts so focus and hit testing stay correct</li>
+</ol>
+<h2 id="debugging-checklist">Debugging Checklist</h2>
+<p>Before filing a shell bug, walk through this list:</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Is <code>DisplayMode</code> set to <code>Auto</code> for adaptive behavior?</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Does <code>Bounds.Width</code> on the nav control (not the window) cross the threshold?</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Are <code>:compact</code> / <code>:bottom</code> pseudo-classes active in DevTools?</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Is <code>syncingSelection</code> false after navigation clicks?</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Are both list handlers wired in <code>OnApplyTemplate</code> without duplicates?</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Does inactive host have visibility/focus disabled?</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" /> Is content transition cancelled on rapid selection changes?</li>
+</ul>
+<p>The next chapter covers <code>SkySplitView</code> and the page scaffolds that compose shell primitives into complete page layouts.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-17-skynavigationview">Chapter 17: SkyNavigationView</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#role-in-the-application-shell">Role in the Application Shell</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#display-modes">Display Modes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-styledproperty-vs-directproperty">Avalonia Concept: StyledProperty vs DirectProperty</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#width-thresholds-in-auto-mode">Width Thresholds in Auto Mode</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#pseudo-classes-for-layout-variants">Pseudo-Classes for Layout Variants</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#pseudo-classes-vs-style-classes">Pseudo-Classes vs Style Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-theme-selectors">Debugging Theme Selectors</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#dual-list-hosts">Dual List Hosts</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-two-listbox-controls">Why Two ListBox Controls?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-binding-pattern">Template Binding Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#selection-synchronization">Selection Synchronization</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#re-entrancy-guards-in-avalonia">Re-entrancy Guards in Avalonia</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#debugging-selection-drift">Debugging Selection Drift</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#items-collection">Items Collection</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#mapping-selection-to-page-content">Mapping Selection to Page Content</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#content-transitions">Content Transitions</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#avalonia-concept-async-void-in-controls">Avalonia Concept: async void in Controls</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#reduced-motion">Reduced Motion</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#width-based-mode-resolution">Width-Based Mode Resolution</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#keyboard-and-focus-navigation">Keyboard and Focus Navigation</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#usage-in-an-application-shell">Usage in an Application Shell</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#shell-view-model-pattern">Shell View Model Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#design-patterns">Design Patterns</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-navigation-shell">Building Your Own Navigation Shell</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-checklist">Debugging Checklist</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

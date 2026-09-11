@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-22-skyalert-skyprogressring-and-skyskeleton">Chapter 22: SkyAlert, SkyProgressRing, and SkySkeleton</h1>
+<p>Feedback controls communicate status without blocking the entire application. This chapter covers inline alerts, circular progress indicators, and skeleton placeholders — three controls that share <code>SkyFeedbackVariant</code> semantics but serve different UX roles.</p>
+<h2 id="skyfeedbackvariant-shared-semantic-coloring">SkyFeedbackVariant: Shared Semantic Coloring</h2>
+<pre><code class="language-csharp">public enum SkyFeedbackVariant
+{
+    Neutral, Info, Warning, Danger, Success
+}
+</code></pre>
+<p>Used by <code>SkyAlert</code>, <code>SkyBanner</code>, <code>SkySnackbarBar</code>, and message box content. Each variant maps to brush tokens in the theme:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Variant</th>
+<th>Typical brush</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Info</td>
+<td><code>SkyInfoBrush</code></td>
+</tr>
+<tr>
+<td>Warning</td>
+<td><code>SkyWarningBrush</code></td>
+</tr>
+<tr>
+<td>Danger</td>
+<td><code>SkyDangerBrush</code></td>
+</tr>
+<tr>
+<td>Success</td>
+<td><code>SkyAccentBrush</code></td>
+</tr>
+<tr>
+<td>Neutral</td>
+<td><code>SkySurfaceElevatedBrush</code></td>
+</tr>
+</tbody>
+</table>
+<p>One enum ensures a &quot;warning&quot; looks identical whether it appears in an alert bar or a snackbar toast.</p>
+<hr />
+<h2 id="skyalert-inline-dismissible-message">SkyAlert: Inline Dismissible Message</h2>
+<pre><code class="language-csharp">public class SkyAlert : TemplatedControl
+{
+    public static readonly StyledProperty&lt;string?&gt; TitleProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; MessageProperty = ...;
+    public static readonly StyledProperty&lt;SkyFeedbackVariant&gt; VariantProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsCloseableProperty = ...;
+
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; CloseRequestedEvent = ...;
+}
+</code></pre>
+<h3 id="variant-as-style-class">Variant as Style Class</h3>
+<pre><code class="language-csharp">private void SyncVariantClass()
+{
+    foreach (var name in Enum.GetNames&lt;SkyFeedbackVariant&gt;())
+        Classes.Remove($&quot;sky-feedback-{name.ToLowerInvariant()}&quot;);
+
+    Classes.Add($&quot;sky-feedback-{Variant.ToString().ToLowerInvariant()}&quot;);
+}
+</code></pre>
+<p>Unlike pseudo-classes, SkyUI uses <strong>style classes</strong> for feedback variants because they combine with other classes (<code>sky-alert</code>). Theme selector example:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyAlert.sky-feedback-danger&quot;&gt;
+  &lt;Setter Property=&quot;BorderBrush&quot; Value=&quot;{DynamicResource SkyDangerBrush}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Removing all variant classes before adding the current one prevents stale classes when <code>Variant</code> changes from <code>Info</code> to <code>Danger</code>.</p>
+<h3 id="close-button-wiring">Close Button Wiring</h3>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+    SyncVariantClass();
+
+    if (_closeButton is not null)
+        _closeButton.Click -= OnCloseClick;
+
+    _closeButton = e.NameScope.Find(CloseButtonPartName) as Button;
+    if (_closeButton is not null)
+        _closeButton.Click += OnCloseClick;
+}
+
+private void OnCloseClick(object? sender, RoutedEventArgs e) =&gt;
+    RaiseEvent(new RoutedEventArgs(CloseRequestedEvent));
+</code></pre>
+<p>The alert does not remove itself — the parent handles <code>CloseRequested</code> and removes the control or hides it via view model. This keeps the control stateless regarding persistence.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyAlert Title=&quot;Connection lost&quot;
+Message=&quot;Retrying in 30 seconds...&quot;
+Variant=&quot;Warning&quot;
+IsCloseable=&quot;True&quot;
+CloseRequested=&quot;OnAlertDismissed&quot; /&gt;
+</code></pre>
+<p><code>SkyMessageBox</code> reuses <code>SkyAlert</code> as dialog body content — composition across feedback layers.</p>
+<hr />
+<h2 id="skyprogressring-determinate-and-indeterminate">SkyProgressRing: Determinate and Indeterminate</h2>
+<pre><code class="language-csharp">public class SkyProgressRing : TemplatedControl
+{
+    public static readonly StyledProperty&lt;double&gt; ValueProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; MinimumProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; MaximumProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsIndeterminateProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; StrokeThicknessProperty = ...;
+}
+</code></pre>
+<h3 id="default-size-overrides">Default Size Overrides</h3>
+<pre><code class="language-csharp">static SkyProgressRing()
+{
+    WidthProperty.OverrideDefaultValue&lt;SkyProgressRing&gt;(40);
+    HeightProperty.OverrideDefaultValue&lt;SkyProgressRing&gt;(40);
+    MinWidthProperty.OverrideDefaultValue&lt;SkyProgressRing&gt;(24);
+    MinHeightProperty.OverrideDefaultValue&lt;SkyProgressRing&gt;(24);
+}
+</code></pre>
+<p>Default dimensions ensure the ring is usable without explicit Width/Height in XAML — important when <code>SkyButtonProperties.IsLoading</code> injects a ring into a button.</p>
+<h3 id="indeterminate-animation">Indeterminate Animation</h3>
+<pre><code class="language-csharp">protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+{
+    base.OnPropertyChanged(change);
+    if (change.Property == IsIndeterminateProperty)
+        UpdateSpinTimer();
+    else if (change.Property is StyledProperty&lt;double&gt; &amp;&amp;
+             change.Property.Name is nameof(Value) or nameof(Minimum) or nameof(Maximum))
+        InvalidateVisual();
+}
+
+private void UpdateSpinTimer()
+{
+    if (IsIndeterminate)
+    {
+        _spinTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(16) };
+        _spinTimer.Tick += (_, _) =&gt;
+        {
+            _spinAngle = (_spinAngle + 6) % 360;
+            InvalidateVisual();
+        };
+        _spinTimer.Start();
+    }
+    else
+    {
+        _spinTimer?.Stop();
+        _spinTimer = null;
+    }
+}
+</code></pre>
+<p>Indeterminate mode uses <code>DispatcherTimer</code> + <code>InvalidateVisual()</code> to rotate an arc. Determinate mode draws an arc proportional to <code>(Value - Minimum) / (Maximum - Minimum)</code>.</p>
+<h3 id="custom-render">Custom Render</h3>
+<p><code>SkyProgressRing</code> overrides rendering in <code>Render(DrawingContext context)</code> (implementation in source) rather than using only XAML shapes — this gives precise arc geometry and animation performance.</p>
+<h3 id="skybuttonproperties.isloading-integration">SkyButtonProperties.IsLoading Integration</h3>
+<p>When <code>IsLoading</code> attaches to a <code>Button</code>:</p>
+<pre><code class="language-csharp">button.Content = new SkyProgressRing
+{
+    IsIndeterminate = true,
+    Width = 20,
+    Height = 20
+};
+</code></pre>
+<p>The ring becomes the button's content until loading completes. Understanding <code>SkyProgressRing</code> internals explains button loading behavior.</p>
+<hr />
+<h2 id="skyskeleton-loading-placeholder">SkySkeleton: Loading Placeholder</h2>
+<pre><code class="language-csharp">public class SkySkeleton : TemplatedControl
+{
+    public static readonly StyledProperty&lt;bool&gt; IsActiveProperty =
+        AvaloniaProperty.Register&lt;SkySkeleton, bool&gt;(nameof(IsActive), true);
+
+    static SkySkeleton()
+    {
+        WidthProperty.OverrideDefaultValue&lt;SkySkeleton&gt;(120);
+        HeightProperty.OverrideDefaultValue&lt;SkySkeleton&gt;(16);
+        MinHeightProperty.OverrideDefaultValue&lt;SkySkeleton&gt;(8);
+        CornerRadiusProperty.OverrideDefaultValue&lt;SkySkeleton&gt;(new CornerRadius(6));
+    }
+}
+</code></pre>
+<h3 id="skeleton-vs-overlay-vs-progress">Skeleton vs Overlay vs Progress</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Control</th>
+<th>Blocks input</th>
+<th>Shows structure</th>
+<th>Typical scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkySkeleton</code></td>
+<td>No</td>
+<td>Yes (gray shapes)</td>
+<td>Initial list/card load</td>
+</tr>
+<tr>
+<td><code>SkyLoadingOverlay</code></td>
+<td>Optional</td>
+<td>No (spinner over content)</td>
+<td>Refresh existing view</td>
+</tr>
+<tr>
+<td><code>SkyProgressRing</code></td>
+<td>No</td>
+<td>No</td>
+<td>Inline spinner in button or row</td>
+</tr>
+</tbody>
+</table>
+<h3 id="theme-animation">Theme Animation</h3>
+<p>The C# class only exposes <code>IsActive</code>. The theme applies a pulsing opacity animation:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkySkeleton&quot;&gt;
+  &lt;Style.Animations&gt;
+    &lt;Animation Duration=&quot;0:0:1.2&quot; IterationCount=&quot;Infinite&quot;&gt;
+      &lt;KeyFrame Cue=&quot;0%&quot;&gt;&lt;Setter Property=&quot;Opacity&quot; Value=&quot;0.4&quot; /&gt;&lt;/KeyFrame&gt;
+      &lt;KeyFrame Cue=&quot;50%&quot;&gt;&lt;Setter Property=&quot;Opacity&quot; Value=&quot;1.0&quot; /&gt;&lt;/KeyFrame&gt;
+      &lt;KeyFrame Cue=&quot;100%&quot;&gt;&lt;Setter Property=&quot;Opacity&quot; Value=&quot;0.4&quot; /&gt;&lt;/KeyFrame&gt;
+    &lt;/Animation&gt;
+  &lt;/Style.Animations&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Separating animation to XAML lets designers tune timing without recompiling C#.</p>
+<h3 id="composing-skeleton-layouts">Composing Skeleton Layouts</h3>
+<pre><code class="language-xml">&lt;StackPanel Spacing=&quot;12&quot; IsVisible=&quot;{Binding IsLoading}&quot;&gt;
+  &lt;SkySkeleton Width=&quot;200&quot; Height=&quot;24&quot; /&gt;
+  &lt;SkySkeleton Width=&quot;320&quot; Height=&quot;16&quot; /&gt;
+  &lt;SkySkeleton Width=&quot;280&quot; Height=&quot;16&quot; /&gt;
+&lt;/StackPanel&gt;
+
+&lt;local:ContentView IsVisible=&quot;{Binding IsLoading, Converter={x:Static BoolConverters.Not}}&quot;
+                   DataContext=&quot;{Binding Data}&quot; /&gt;
+</code></pre>
+<p>Match skeleton shapes to final content layout to minimize visual jump when data arrives.</p>
+<h2 id="summary">Summary</h2>
+<p>Feedback controls share variant semantics but implement distinct UX patterns: alerts for messages, progress rings for ongoing work, skeletons for structural placeholders. Variant sync via style classes and <code>InvalidateVisual</code> for custom render are the key implementation techniques to study.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-22-skyalert-skyprogressring-and-skyskeleton">Chapter 22: SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyfeedbackvariant-shared-semantic-coloring">SkyFeedbackVariant: Shared Semantic Coloring</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyalert-inline-dismissible-message">SkyAlert: Inline Dismissible Message</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#variant-as-style-class">Variant as Style Class</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#close-button-wiring">Close Button Wiring</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyprogressring-determinate-and-indeterminate">SkyProgressRing: Determinate and Indeterminate</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#default-size-overrides">Default Size Overrides</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#indeterminate-animation">Indeterminate Animation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#custom-render">Custom Render</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skybuttonpropertiesisloading-integration">SkyButtonProperties.IsLoading Integration</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyskeleton-loading-placeholder">SkySkeleton: Loading Placeholder</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skeleton-vs-overlay-vs-progress">Skeleton vs Overlay vs Progress</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#theme-animation">Theme Animation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#composing-skeleton-layouts">Composing Skeleton Layouts</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

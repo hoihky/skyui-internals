@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 6 — Responsive Layout · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 6 — Responsive Layout</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-6-responsive-layout-with-skyresponsivegrid-and-skygridlayout">Chapter 6: Responsive Layout with SkyResponsiveGrid and SkyGridLayout</h1>
+<p>Modern desktop applications are not fixed-width. Users resize windows, dock panels, and run apps on tablets. SkyUI provides responsive layout through <code>SkyResponsiveGrid</code> (a self-adjusting grid) and <code>SkyGridLayout</code> (attached properties that make any <code>Grid</code> responsive). This chapter explains both, the breakpoint system they share, and how width-driven layout connects to Avalonia's property system and visual tree lifecycle.</p>
+<h2 id="why-width-driven-columns">Why Width-Driven Columns?</h2>
+<p>Fixed column counts break on small windows: tiles clip, horizontal scrollbars appear, or content stacks awkwardly. Fixed counts also waste space on ultrawide monitors — four narrow columns when eight would fit.</p>
+<p>SkyUI responsive layout answers one question repeatedly: <strong>given the current width of this container, how many equal columns should we use?</strong> Child controls flow in row-major order; when column count changes, children reflow without explicit <code>Grid.Column</code> edits in page XAML.</p>
+<p>This is container-query-style behavior implemented with Avalonia's <code>Bounds</code> property rather than window-level media queries. The grid reacts to <strong>its own</strong> width, not only the window — important when the grid lives inside a sidebar or split pane.</p>
+<h2 id="the-breakpoint-model">The Breakpoint Model</h2>
+<p><code>SkyGridBreakpoint</code> maps control width to a column count:</p>
+<pre><code class="language-csharp">public static int ResolveColumns(double width, SkyResponsiveColumnProfile? profile)
+{
+    profile ??= SkyResponsiveColumnProfile.Default;
+
+    if (width &gt;= profile.Xl) return profile.XlColumns;
+    if (width &gt;= profile.Lg) return profile.LgColumns;
+    if (width &gt;= profile.Md) return profile.MdColumns;
+    if (width &gt;= profile.Sm) return profile.SmColumns;
+    return profile.XsColumns;
+}
+</code></pre>
+<p><code>SkyResponsiveColumnProfile</code> holds the breakpoint widths and corresponding column counts:</p>
+<pre><code class="language-csharp">public class SkyResponsiveColumnProfile
+{
+    public double Xs { get; set; } = 0;
+    public int XsColumns { get; set; } = 1;
+
+    public double Sm { get; set; } = 480;
+    public int SmColumns { get; set; } = 2;
+
+    public double Md { get; set; } = 768;
+    public int MdColumns { get; set; } = 3;
+
+    public double Lg { get; set; } = 1024;
+    public int LgColumns { get; set; } = 4;
+
+    public double Xl { get; set; } = 1440;
+    public int XlColumns { get; set; } = 4;
+
+    public static SkyResponsiveColumnProfile Default { get; } = new();
+}
+</code></pre>
+<p>This is a mobile-first stepped scale. As the container grows wider, more columns become available. The profile is configurable per grid instance so a dashboard and a settings page can use different breakpoints.</p>
+<h3 id="reading-the-breakpoint-table">Reading the Breakpoint Table</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Width range</th>
+<th>Default columns</th>
+<th>Typical layout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt; 480px</code></td>
+<td>1</td>
+<td>Phone-narrow, stacked KPIs</td>
+</tr>
+<tr>
+<td><code>480–767px</code></td>
+<td>2</td>
+<td>Small tablet, two-up tiles</td>
+</tr>
+<tr>
+<td><code>768–1023px</code></td>
+<td>3</td>
+<td>Laptop partial width</td>
+</tr>
+<tr>
+<td><code>1024–1439px</code></td>
+<td>4</td>
+<td>Full desktop</td>
+</tr>
+<tr>
+<td><code>&gt;= 1440px</code></td>
+<td>4</td>
+<td>Wide desktop (same count, wider cells)</td>
+</tr>
+</tbody>
+</table>
+<p>The default profile caps at four columns on extra-large widths. Dashboards with eight small tiles can set <code>XlColumns=&quot;6&quot;</code> or <code>&quot;8&quot;</code> on a custom profile without changing <code>ResolveColumns</code> logic.</p>
+<h2 id="skyresponsivegrid">SkyResponsiveGrid</h2>
+<p><code>SkyResponsiveGrid</code> subclasses <code>UniformGrid</code> and updates <code>Columns</code> whenever its width changes:</p>
+<pre><code class="language-csharp">public class SkyResponsiveGrid : UniformGrid
+{
+    public static readonly StyledProperty&lt;SkyResponsiveColumnProfile?&gt; ColumnProfileProperty =
+        AvaloniaProperty.Register&lt;SkyResponsiveGrid, SkyResponsiveColumnProfile?&gt;(
+            nameof(ColumnProfile));
+
+    public SkyResponsiveGrid()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-responsive-grid&quot;);
+        ColumnSpacing = 16;
+        RowSpacing = 16;
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        UpdateColumns(Bounds.Width);
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == BoundsProperty)
+            UpdateColumns(Bounds.Width);
+        else if (change.Property == ColumnProfileProperty)
+            UpdateColumns(Bounds.Width);
+    }
+
+    private void UpdateColumns(double width)
+    {
+        if (width &lt;= 0)
+            return;
+
+        var columns = SkyGridBreakpoint.ResolveColumns(width, ColumnProfile);
+        if (Columns != columns)
+            Columns = columns;
+    }
+}
+</code></pre>
+<h3 id="key-implementation-details">Key Implementation Details</h3>
+<ol>
+<li><p><strong>Bounds watching</strong> — <code>OnPropertyChanged</code> listens for <code>BoundsProperty</code> changes. This fires on every resize without manual <code>SizeChanged</code> event subscription. <code>Bounds</code> is a styled property on <code>Visual</code>; when layout assigns a new size, your handler runs.</p>
+</li>
+<li><p><strong>Visual tree attachment</strong> — <code>OnAttachedToVisualTree</code> triggers the first column calculation once the control has a visual parent and valid layout slot. Before attachment, bounds may be zero or stale.</p>
+</li>
+<li><p><strong>Guard against zero width</strong> — During initial layout, bounds may be zero. Updating columns to zero would break <code>UniformGrid</code> layout, so the method returns early.</p>
+</li>
+<li><p><strong>Conditional assignment</strong> — <code>if (Columns != columns)</code> avoids redundant layout passes when the column count has not actually changed.</p>
+</li>
+<li><p><strong>Default spacing</strong> — Constructor sets <code>ColumnSpacing</code> and <code>RowSpacing</code> to 16, matching the <code>SkySpace16Px</code> token. Theme styles can override spacing via selectors on <code>sky-responsive-grid</code>.</p>
+</li>
+</ol>
+<h3 id="uniformgrid-behavior">UniformGrid Behavior</h3>
+<p><code>UniformGrid</code> assigns each child the same cell size and fills row-major: item 0 column 0, item 1 column 1, …, item N wraps to the next row. SkyResponsiveGrid does not implement custom placement — it only changes <strong>how many</strong> columns exist. For explicit positioning, use <code>SkyGridLayout</code> on a standard <code>Grid</code> or set <code>Grid.Column</code> manually.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyResponsiveGrid&gt;
+  &lt;SkyKpiTile Title=&quot;Users&quot; Value=&quot;12,450&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Revenue&quot; Value=&quot;$84.2k&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Churn&quot; Value=&quot;2.1%&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;NPS&quot; Value=&quot;72&quot; /&gt;
+&lt;/SkyResponsiveGrid&gt;
+</code></pre>
+<p>At narrow widths, tiles stack in one column. As the window widens, they reflow into two, three, or four columns automatically. Each <code>SkyKpiTile</code> is a logical and visual child of the grid.</p>
+<h3 id="custom-profile">Custom Profile</h3>
+<pre><code class="language-xml">&lt;SkyResponsiveGrid&gt;
+  &lt;SkyResponsiveGrid.ColumnProfile&gt;
+    &lt;SkyResponsiveColumnProfile Sm=&quot;600&quot; SmColumns=&quot;2&quot;
+                                Md=&quot;900&quot; MdColumns=&quot;3&quot;
+                                Lg=&quot;1200&quot; LgColumns=&quot;4&quot;
+                                Xl=&quot;1600&quot; XlColumns=&quot;6&quot; /&gt;
+  &lt;/SkyResponsiveGrid.ColumnProfile&gt;
+  &lt;!-- children --&gt;
+&lt;/SkyResponsiveGrid&gt;
+</code></pre>
+<p>Profiles are plain CLR objects stored on a styled property — you can define them inline in XAML, in resources, or assign from code when a view model exposes layout preferences.</p>
+<h3 id="step-by-step-dashboard-page">Step-by-Step: Dashboard Page</h3>
+<p><strong>Goal:</strong> Analytics dashboard with KPI row and detail cards below.</p>
+<ol>
+<li><strong>Page root</strong> — <code>ScrollViewer</code> or <code>SkyPageScaffold</code> content area (see navigation chapters)</li>
+<li><strong>KPI section:</strong></li>
+</ol>
+<pre><code class="language-xml">&lt;SkyResponsiveGrid Margin=&quot;{DynamicResource SkySpace16Px}&quot;&gt;
+  &lt;SkyKpiTile Title=&quot;Active users&quot; Value=&quot;{Binding ActiveUsers}&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;MRR&quot; Value=&quot;{Binding Mrr}&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Tickets&quot; Value=&quot;{Binding OpenTickets}&quot; /&gt;
+&lt;/SkyResponsiveGrid&gt;
+</code></pre>
+<ol start="3">
+<li><strong>Section break</strong> — optional <code>SkyDivider Text=&quot;Details&quot;</code></li>
+<li><strong>Detail cards in second grid</strong> with tighter profile if cards need minimum width:</li>
+</ol>
+<pre><code class="language-xml">&lt;SkyResponsiveGrid ColumnProfile=&quot;{StaticResource TwoColumnProfile}&quot;&gt;
+  &lt;SkyCard Header=&quot;Sales&quot;&gt;...&lt;/SkyCard&gt;
+  &lt;SkyCard Header=&quot;Support&quot;&gt;...&lt;/SkyCard&gt;
+&lt;/SkyResponsiveGrid&gt;
+</code></pre>
+<ol start="5">
+<li><strong>Resize window</strong> — observe column count steps at breakpoints without changing XAML</li>
+<li><strong>Verify</strong> spacing tokens on margins match grid <code>ColumnSpacing</code> for aligned rhythm</li>
+</ol>
+<h2 id="skygridlayout-attached-properties">SkyGridLayout: Attached Properties</h2>
+<p>Sometimes you already have a <code>Grid</code> and want responsive behavior without replacing it with <code>SkyResponsiveGrid</code>. <code>SkyGridLayout</code> provides attached properties:</p>
+<pre><code class="language-csharp">public static class SkyGridLayout
+{
+    public static readonly AttachedProperty&lt;bool&gt; IsResponsiveProperty =
+        AvaloniaProperty.RegisterAttached&lt;Grid, bool&gt;(&quot;IsResponsive&quot;);
+
+    public static readonly AttachedProperty&lt;SkyResponsiveColumnProfile?&gt; ColumnProfileProperty =
+        AvaloniaProperty.RegisterAttached&lt;Grid, SkyResponsiveColumnProfile?&gt;(&quot;ColumnProfile&quot;);
+
+    public static readonly AttachedProperty&lt;bool&gt; AutoPlaceChildrenProperty =
+        AvaloniaProperty.RegisterAttached&lt;Grid, bool&gt;(&quot;AutoPlaceChildren&quot;);
+}
+</code></pre>
+<p>When <code>IsResponsive</code> is true on a <code>Grid</code>, the attached property changed handler subscribes to bounds changes and updates <code>Grid.ColumnDefinitions</code> to create equal-width <code>*</code> columns based on the resolved column count.</p>
+<p><code>AutoPlaceChildren</code> optionally assigns <code>Grid.Column</code> and <code>Grid.Row</code> to children in row-major order, which is convenient for dashboard tiles that do not need explicit grid positioning.</p>
+<h3 id="how-attached-property-handlers-wire-the-visual-tree">How Attached Property Handlers Wire the Visual Tree</h3>
+<p>On <code>IsResponsive</code> changed to <code>true</code>:</p>
+<ol>
+<li>Handler resolves the target <code>Grid</code></li>
+<li>Subscribes to <code>Bounds</code> changes (same signal <code>SkyResponsiveGrid</code> uses)</li>
+<li>Calls shared <code>SkyGridBreakpoint.ResolveColumns</code></li>
+<li>Rebuilds <code>ColumnDefinitions</code> with N equal star columns</li>
+<li>If <code>AutoPlaceChildren</code> is true, walks <strong>logical children</strong> and sets <code>Grid.Row</code> / <code>Grid.Column</code></li>
+</ol>
+<p>Using attached properties keeps page markup on <code>Grid</code> — no new control type — while centralizing breakpoint math in one helper class.</p>
+<h3 id="usage-1">Usage</h3>
+<pre><code class="language-xml">&lt;Grid sky:SkyGridLayout.IsResponsive=&quot;True&quot;
+      sky:SkyGridLayout.AutoPlaceChildren=&quot;True&quot;
+      ColumnSpacing=&quot;{DynamicResource SkySpace16Px}&quot;
+      RowSpacing=&quot;{DynamicResource SkySpace16Px}&quot;&gt;
+  &lt;SkyKpiTile Title=&quot;Users&quot; Value=&quot;12,450&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Revenue&quot; Value=&quot;$84.2k&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;Churn&quot; Value=&quot;2.1%&quot; /&gt;
+  &lt;SkyKpiTile Title=&quot;NPS&quot; Value=&quot;72&quot; /&gt;
+&lt;/Grid&gt;
+</code></pre>
+<p>Mix explicit and auto placement by leaving <code>AutoPlaceChildren</code> false and setting <code>Grid.Column</code> on special items (hero tile spanning two columns requires a span API or nested grid — SkyGridLayout auto-place does not merge cells).</p>
+<h3 id="when-to-prefer-each-api">When to Prefer Each API</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New dashboard section, uniform tiles</td>
+<td><code>SkyResponsiveGrid</code></td>
+</tr>
+<tr>
+<td>Existing page already structured as <code>Grid</code></td>
+<td><code>SkyGridLayout</code> attached props</td>
+</tr>
+<tr>
+<td>Mixed column spans in same row</td>
+<td>Plain <code>Grid</code> + manual columns; responsive optional</td>
+</tr>
+<tr>
+<td>Nested inside <code>SkyCard</code> content</td>
+<td>Either — both respect container width</td>
+</tr>
+</tbody>
+</table>
+<h2 id="design-pattern-subclass-vs-attached-property">Design Pattern: Subclass vs Attached Property</h2>
+<p>SkyUI offers both approaches deliberately:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Approach</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkyResponsiveGrid</code></td>
+<td>New layouts where you control the container type</td>
+</tr>
+<tr>
+<td><code>SkyGridLayout</code> attached props</td>
+<td>Existing grids, mixed layouts, XAML that already uses <code>Grid</code></td>
+</tr>
+</tbody>
+</table>
+<p>Attached properties follow the same pattern as <code>SkyThemeProperties</code> and <code>SkyButtonProperties</code>: extend existing types without subclassing. Breakpoint resolution stays in <code>SkyGridBreakpoint.ResolveColumns</code> — a single function used by both paths.</p>
+<h2 id="property-system-and-layout-interaction">Property System and Layout Interaction</h2>
+<p><code>Columns</code> on <code>UniformGrid</code> and <code>ColumnDefinitions</code> on <code>Grid</code> are styled properties. When responsive logic updates them:</p>
+<ol>
+<li>Property change invalidates measure</li>
+<li>Parent layout pass re-runs</li>
+<li>Children receive new available widths</li>
+<li><code>Bounds</code> on children may change, but column count should stabilize after one pass</li>
+</ol>
+<p>The guard <code>if (Columns != columns)</code> prevents infinite measure loops that would occur if every bounds notification reset columns even when unchanged.</p>
+<h2 id="relationship-to-navigation-breakpoints">Relationship to Navigation Breakpoints</h2>
+<p><code>SkyBreakpoint</code> in the navigation package uses similar width thresholds for switching <code>SkyNavigationView</code> between expanded sidebar, compact sidebar, and bottom navigation. The grid breakpoints and navigation breakpoints are separate profiles because layout density and navigation chrome have different requirements. A wide window might show four grid columns but still use compact sidebar if the user prefers it.</p>
+<p>Do not assume one profile fits all subsystems. Copy numeric thresholds only when product design explicitly aligns navigation mode with content columns.</p>
+<h2 id="building-your-own-responsive-control">Building Your Own Responsive Control</h2>
+<p>To add responsive behavior to a custom control:</p>
+<ol>
+<li>Define a column profile or breakpoint table</li>
+<li>Override <code>OnPropertyChanged</code> and watch <code>BoundsProperty</code></li>
+<li>Recalculate layout parameters in a single <code>UpdateLayout(double width)</code> method</li>
+<li>Guard against zero bounds and redundant updates</li>
+<li>Expose the profile as a <code>StyledProperty</code> so consumers can customize breakpoints</li>
+<li>Hook <code>OnAttachedToVisualTree</code> for the initial layout after visual parent exists</li>
+</ol>
+<p>Example extension: a responsive <code>WrapPanel</code> substitute that sets <code>ItemWidth</code> based on resolved columns:</p>
+<pre><code class="language-csharp">private void UpdateLayout(double width)
+{
+    if (width &lt;= 0) return;
+
+    var columns = SkyGridBreakpoint.ResolveColumns(width, ColumnProfile);
+    var spacing = ColumnSpacing;
+    var itemWidth = (width - spacing * (columns - 1)) / columns;
+
+    if (Math.Abs(ItemWidth - itemWidth) &gt; 0.5)
+        ItemWidth = itemWidth;
+}
+</code></pre>
+<p>Reuse <code>SkyGridBreakpoint</code> rather than duplicating threshold logic.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Responsive grid inside horizontal <code>StackPanel</code></td>
+<td>Grid width unconstrained; columns never increase</td>
+<td>Wrap in grid row with <code>*</code> width or use <code>HorizontalAlignment=&quot;Stretch&quot;</code></td>
+</tr>
+<tr>
+<td>Expect cell spanning on <code>SkyResponsiveGrid</code></td>
+<td>Items cannot span columns</td>
+<td>Use <code>Grid</code> + <code>SkyGridLayout</code> or manual <code>Grid</code></td>
+</tr>
+<tr>
+<td>Custom profile with descending breakpoints</td>
+<td>Wrong column count at some widths</td>
+<td>Ensure Sm &lt; Md &lt; Lg &lt; Xl</td>
+</tr>
+<tr>
+<td><code>AutoPlaceChildren</code> after manual columns</td>
+<td>Children jump position on resize</td>
+<td>Disable auto-place or manage all positions in code</td>
+</tr>
+<tr>
+<td>Watch window width instead of control bounds</td>
+<td>Sidebar open does not reflow content</td>
+<td>Watch <code>BoundsProperty</code> on the grid itself</td>
+</tr>
+<tr>
+<td>Zero spacing with many columns</td>
+<td>Tiles touch</td>
+<td>Set <code>ColumnSpacing</code> / <code>RowSpacing</code> to token values</td>
+</tr>
+</tbody>
+</table>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<p><strong>Column count stuck at 1.</strong> Inspect actual <code>Bounds.Width</code> of the responsive control in dev tools. If width is always small, parent layout is not allocating horizontal space.</p>
+<p><strong>Flicker on resize.</strong> Column count may oscillate if bounds hover near a breakpoint. Widen dead band only if product requires it — usually fix parent layout instead.</p>
+<p><strong>Children overlap after profile change.</strong> <code>AutoPlaceChildren</code> may need to re-run when column count changes; verify attached property handler re-places children on profile updates.</p>
+<p><strong>Responsive grid empty on first paint.</strong> Early <code>Bounds.Width</code> is zero — expected. If layout never updates, check that the control reached the visual tree (<code>OnAttachedToVisualTree</code> path).</p>
+<p><strong>Different behavior between <code>SkyResponsiveGrid</code> and <code>SkyGridLayout</code>.</strong> Confirm both use the same <code>ColumnProfile</code> instance or equivalent values; inline profiles that look similar may differ by one pixel threshold.</p>
+<h2 id="summary">Summary</h2>
+<p>Responsive layout in SkyUI is width-driven column resolution. <code>SkyResponsiveGrid</code> packages the behavior as a drop-in <code>UniformGrid</code> replacement for tile dashboards and KPI rows. <code>SkyGridLayout</code> brings the same behavior to ordinary <code>Grid</code> elements through attached properties, preserving existing markup while sharing <code>SkyGridBreakpoint.ResolveColumns</code> as the single source of breakpoint logic.</p>
+<p>Watch <code>Bounds</code>, guard zero width, avoid redundant column updates, and treat container width — not window width — as the signal. Combined with layout primitives like <code>SkyCard</code> and <code>SkyDivider</code> from the previous chapter, you can build pages that reflow cleanly from narrow phone-like windows to wide multi-monitor desktops without duplicating XAML per form factor.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-6-responsive-layout-with-skyresponsivegrid-and-skygridlayout">Chapter 6: Responsive Layout with SkyResponsiveGrid and SkyGridLayout</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#why-width-driven-columns">Why Width-Driven Columns?</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-breakpoint-model">The Breakpoint Model</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#reading-the-breakpoint-table">Reading the Breakpoint Table</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyresponsivegrid">SkyResponsiveGrid</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#key-implementation-details">Key Implementation Details</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#uniformgrid-behavior">UniformGrid Behavior</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#custom-profile">Custom Profile</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#step-by-step-dashboard-page">Step-by-Step: Dashboard Page</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skygridlayout-attached-properties">SkyGridLayout: Attached Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#how-attached-property-handlers-wire-the-visual-tree">How Attached Property Handlers Wire the Visual Tree</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#when-to-prefer-each-api">When to Prefer Each API</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#design-pattern-subclass-vs-attached-property">Design Pattern: Subclass vs Attached Property</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#property-system-and-layout-interaction">Property System and Layout Interaction</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#relationship-to-navigation-breakpoints">Relationship to Navigation Breakpoints</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-responsive-control">Building Your Own Responsive Control</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#common-mistakes">Common Mistakes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-tips">Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

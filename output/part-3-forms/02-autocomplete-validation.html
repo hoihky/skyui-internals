@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 9 — SkyAutocomplete and Validation · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 9 — SkyAutocomplete and Validation</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-9-skyautocomplete-and-validation-infrastructure">Chapter 9: SkyAutocomplete and Validation Infrastructure</h1>
+<p><code>SkyAutocomplete</code> is a typeahead input that filters local items or queries an async provider. It demonstrates popup lifecycle management, search debouncing, and cancellation. This chapter also deepens the validation infrastructure introduced with <code>SkyFormField</code>.</p>
+<p>Autocomplete controls are deceptively complex. The surface is a text box; underneath you coordinate popups, keyboard routing, async data, and selection state. Avalonia's <code>Popup</code> control and <code>DispatcherTimer</code> provide the primitives; <code>SkyAutocomplete</code> wires them into a cohesive input.</p>
+<h2 id="skyautocomplete-architecture">SkyAutocomplete Architecture</h2>
+<p>The control composes three template parts:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Type</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_TextBox</code></td>
+<td><code>TextBox</code></td>
+<td>User text input</td>
+</tr>
+<tr>
+<td><code>PART_Popup</code></td>
+<td><code>Popup</code></td>
+<td>Floating suggestion panel</td>
+</tr>
+<tr>
+<td><code>PART_Suggestions</code></td>
+<td><code>ListBox</code></td>
+<td>Suggestion list inside popup</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-csharp">public class SkyAutocomplete : TemplatedControl
+{
+    public const string TextBoxPartName = &quot;PART_TextBox&quot;;
+    public const string PopupPartName = &quot;PART_Popup&quot;;
+    public const string SuggestionsPartName = &quot;PART_Suggestions&quot;;
+
+    public static readonly StyledProperty&lt;string?&gt; TextProperty =
+        AvaloniaProperty.Register&lt;SkyAutocomplete, string?&gt;(
+            nameof(Text), defaultBindingMode: BindingMode.TwoWay);
+
+    public static readonly StyledProperty&lt;object?&gt; SelectedItemProperty =
+        AvaloniaProperty.Register&lt;SkyAutocomplete, object?&gt;(
+            nameof(SelectedItem), defaultBindingMode: BindingMode.TwoWay);
+
+    public static readonly StyledProperty&lt;ISkyAutocompleteProvider?&gt; ProviderProperty = ...;
+    public static readonly StyledProperty&lt;IEnumerable?&gt; ItemsSourceProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsFreeTextAllowedProperty = ...;
+    public static readonly StyledProperty&lt;int&gt; MinimumQueryLengthProperty = ...;
+}
+</code></pre>
+<p>Two binding modes deserve attention:</p>
+<ul>
+<li><code>Text</code> is two-way because the user types directly</li>
+<li><code>SelectedItem</code> is two-way because picking a suggestion updates the selection</li>
+</ul>
+<h3 id="template-wiring-in-onapplytemplate">Template Wiring in OnApplyTemplate</h3>
+<p>After the template loads, the control connects events:</p>
+<pre><code class="language-csharp">protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    base.OnApplyTemplate(e);
+
+    if (_textBox is not null)
+        _textBox.TextChanged -= OnTextBoxTextChanged;
+
+    _textBox = e.NameScope.Find&lt;TextBox&gt;(TextBoxPartName);
+    _popup = e.NameScope.Find&lt;Popup&gt;(PopupPartName);
+    _suggestions = e.NameScope.Find&lt;ListBox&gt;(SuggestionsPartName);
+
+    if (_textBox is not null)
+        _textBox.TextChanged += OnTextBoxTextChanged;
+
+    if (_suggestions is not null)
+    {
+        _suggestions.SelectionChanged += OnSuggestionSelectionChanged;
+        _suggestions.PointerPressed += OnSuggestionPointerPressed;
+    }
+}
+</code></pre>
+<p>Always unsubscribe old handlers before subscribing new ones. Templates can be reapplied when themes change, and duplicate handlers cause double-firing.</p>
+<h2 id="local-vs-remote-data-sources">Local vs Remote Data Sources</h2>
+<p><code>SkyAutocomplete</code> supports two data paths:</p>
+<p><strong>Local filtering</strong> — Set <code>ItemsSource</code> to an in-memory collection. As the user types, the control filters items whose display text contains the query.</p>
+<p><strong>Async provider</strong> — Set <code>Provider</code> to an <code>ISkyAutocompleteProvider</code>:</p>
+<pre><code class="language-csharp">public interface ISkyAutocompleteProvider
+{
+    Task&lt;IReadOnlyList&lt;object&gt;&gt; SearchAsync(
+        string query, CancellationToken cancellationToken);
+}
+</code></pre>
+<p>A typical implementation calls a REST API:</p>
+<pre><code class="language-csharp">public class CityAutocompleteProvider : ISkyAutocompleteProvider
+{
+    public async Task&lt;IReadOnlyList&lt;object&gt;&gt; SearchAsync(
+        string query, CancellationToken cancellationToken)
+    {
+        var results = await _api.SearchCitiesAsync(query, cancellationToken);
+        return results.Cast&lt;object&gt;().ToList();
+    }
+}
+</code></pre>
+<p>The control does not know about HTTP, databases, or view models. It only knows the interface.</p>
+<h3 id="local-filtering-implementation">Local Filtering Implementation</h3>
+<p>For local data, filtering runs synchronously on the UI thread:</p>
+<pre><code class="language-csharp">private IReadOnlyList&lt;object&gt; FilterLocalItems(string query)
+{
+    if (ItemsSource is null)
+        return Array.Empty&lt;object&gt;();
+
+    return ItemsSource
+        .Cast&lt;object&gt;()
+        .Where(item =&gt; FormatItem(item)
+            .Contains(query, StringComparison.OrdinalIgnoreCase))
+        .Take(MaxSuggestionCount)
+        .ToList();
+}
+</code></pre>
+<p>Local filtering is appropriate for collections under a few thousand items. Beyond that, pre-index or switch to an async provider that queries a database.</p>
+<h3 id="display-text-formatting">Display Text Formatting</h3>
+<p>The control needs a consistent way to turn items into display strings:</p>
+<pre><code class="language-csharp">protected virtual string FormatItem(object? item) =&gt;
+item switch
+{
+    null =&gt; string.Empty,
+    string s =&gt; s,
+    _ =&gt; item.ToString() ?? string.Empty
+};
+</code></pre>
+<p>Override <code>FormatItem</code> in a subclass or set <code>ItemTemplate</code> on the suggestions list for rich display (icons, secondary text). The suggestions <code>ListBox</code> uses <code>ItemTemplate</code> for rendering; <code>FormatItem</code> is for setting <code>Text</code> after selection.</p>
+<h2 id="debouncing-and-cancellation">Debouncing and Cancellation</h2>
+<p>Rapid keystrokes would trigger a search on every character without debouncing. <code>SkyAutocomplete</code> uses a version counter and <code>CancellationTokenSource</code>:</p>
+<pre><code class="language-csharp">private CancellationTokenSource? searchCancellation;
+private int searchVersion;
+
+private void QueueTextChanged()
+{
+    var version = ++searchVersion;
+
+    DispatcherTimer.RunOnce(async () =&gt;
+    {
+        if (version != searchVersion)
+            return; // superseded by newer keystroke
+
+        searchCancellation?.Cancel();
+        searchCancellation = new CancellationTokenSource();
+
+        await RunSearchAsync(searchCancellation.Token);
+    }, TimeSpan.FromMilliseconds(200));
+}
+</code></pre>
+<p>When a new character arrives before the timer fires, <code>searchVersion</code> increments and the pending search is discarded. When the timer fires, any in-flight async search is cancelled before starting a new one.</p>
+<p>This is a standard pattern for search-as-you-type controls. The 200ms delay balances responsiveness against request volume.</p>
+<h3 id="why-not-task.delay">Why Not Task.Delay?</h3>
+<p><code>DispatcherTimer.RunOnce</code> schedules on the UI thread's dispatcher. If you use <code>Task.Delay</code> inside an async handler attached to <code>TextChanged</code>, you must marshal back to the UI thread before updating <code>ItemsSource</code> on the suggestions list. <code>DispatcherTimer</code> keeps everything on the correct thread by default.</p>
+<h3 id="cancellation-in-the-provider">Cancellation in the Provider</h3>
+<p>Providers should respect <code>CancellationToken</code>:</p>
+<pre><code class="language-csharp">public async Task&lt;IReadOnlyList&lt;object&gt;&gt; SearchAsync(
+    string query, CancellationToken cancellationToken)
+{
+    var response = await _httpClient.GetAsync(
+        $&quot;/api/search?q={Uri.EscapeDataString(query)}&quot;,
+        cancellationToken);
+
+    cancellationToken.ThrowIfCancellationRequested();
+
+    var items = await response.Content.ReadFromJsonAsync&lt;List&lt;SearchResult&gt;&gt;(
+        cancellationToken: cancellationToken);
+
+    return items?.Cast&lt;object&gt;().ToList() ?? new List&lt;object&gt;();
+}
+</code></pre>
+<p>Without cancellation, abandoned searches still complete and may overwrite newer results if you forget the version check.</p>
+<h2 id="popup-lifecycle">Popup Lifecycle</h2>
+<p>The popup opens when:</p>
+<ol>
+<li>The query length meets <code>MinimumQueryLength</code></li>
+<li>There are suggestions to show</li>
+<li>The text box has focus</li>
+</ol>
+<p>It closes when:</p>
+<ol>
+<li>The user selects an item</li>
+<li>The text box loses focus</li>
+<li>Escape is pressed</li>
+<li>The query is cleared</li>
+</ol>
+<p><code>IsSuggestionOpen</code> is a styled property bound to the popup's <code>IsOpen</code> in the template, but the C# class also sets it directly to keep logic centralized.</p>
+<h3 id="popup-placement">Popup Placement</h3>
+<p>Avalonia's <code>Popup</code> supports <code>PlacementMode</code> and <code>PlacementTarget</code>. For autocomplete, anchor below the text box:</p>
+<pre><code class="language-xml">&lt;Popup Name=&quot;PART_Popup&quot;
+PlacementTarget=&quot;{Binding #PART_TextBox}&quot;
+Placement=&quot;Bottom&quot;
+IsLightDismissEnabled=&quot;False&quot;&gt;
+</code></pre>
+<p>Set <code>IsLightDismissEnabled=&quot;False&quot;</code> so clicking a suggestion does not dismiss the popup before the click reaches the list. The control closes the popup programmatically after selection.</p>
+<h3 id="focus-traps">Focus Traps</h3>
+<p>When the popup is open, keyboard events on the text box must route Up/Down to the suggestions list. Handle <code>KeyDown</code> on the text box:</p>
+<pre><code class="language-csharp">private void OnTextBoxKeyDown(object? sender, KeyEventArgs e)
+{
+    if (!IsSuggestionOpen || _suggestions is null)
+        return;
+
+    switch (e.Key)
+    {
+        case Key.Down:
+            MoveSuggestionSelection(1);
+            e.Handled = true;
+            break;
+        case Key.Up:
+            MoveSuggestionSelection(-1);
+            e.Handled = true;
+            break;
+        case Key.Enter:
+            CommitHighlightedSuggestion();
+            e.Handled = true;
+            break;
+        case Key.Escape:
+            IsSuggestionOpen = false;
+            e.Handled = true;
+            break;
+    }
+}
+</code></pre>
+<p>Mark handled events with <code>e.Handled = true</code> to prevent parent controls from also processing them.</p>
+<h2 id="selection-behavior">Selection Behavior</h2>
+<p>When the user picks a suggestion:</p>
+<pre><code class="language-csharp">private void OnSuggestionSelected(object? item)
+{
+    SelectedItem = item;
+    Text = FormatItem(item);
+    IsSuggestionOpen = false;
+    textBox?.Focus();
+}
+</code></pre>
+<p><code>IsFreeTextAllowed</code> controls whether the user can commit text that does not match any suggestion. When false, leaving the field with unmatched text clears the selection or reverts to the last valid item:</p>
+<pre><code class="language-csharp">private void OnTextBoxLostFocus(object? sender, RoutedEventArgs e)
+{
+    if (IsFreeTextAllowed)
+        return;
+
+    if (SelectedItem is null || FormatItem(SelectedItem) != Text)
+    {
+        Text = SelectedItem is not null ? FormatItem(SelectedItem) : string.Empty;
+    }
+
+    IsSuggestionOpen = false;
+}
+</code></pre>
+<p>This prevents the view model from receiving free-text values when the field requires a valid selection from the provider.</p>
+<h2 id="integration-with-skyformfield">Integration with SkyFormField</h2>
+<p><code>SkyFormField.GetInputValue</code> handles autocomplete specifically:</p>
+<pre><code class="language-csharp">SkyAutocomplete autocomplete =&gt; autocomplete.SelectedItem ?? autocomplete.Text,
+</code></pre>
+<p>When a suggestion is selected, validation runs against the selected object. When the user types free text, validation runs against the raw string. Your validator should handle both cases or you should set <code>IsFreeTextAllowed=&quot;False&quot;</code> for fields that require a valid selection.</p>
+<h3 id="validator-for-selected-objects">Validator for Selected Objects</h3>
+<p>When validating a selected item, check the object type:</p>
+<pre><code class="language-csharp">public class CitySelectedValidator : ISkyValidator
+{
+    public SkyValidationResult Validate(object? value)
+    {
+        if (value is City city)
+            return SkyValidationResult.Valid;
+
+        if (value is string text &amp;&amp; !string.IsNullOrWhiteSpace(text))
+            return SkyValidationResult.Invalid(&quot;Select a city from the list.&quot;);
+
+        return SkyValidationResult.Invalid(&quot;City is required.&quot;);
+    }
+}
+</code></pre>
+<h2 id="validation-infrastructure-deep-dive">Validation Infrastructure Deep Dive</h2>
+<h3 id="skyvalidationresult">SkyValidationResult</h3>
+<p>A lightweight struct avoids allocating objects for successful validation:</p>
+<pre><code class="language-csharp">public readonly struct SkyValidationResult
+{
+    public static SkyValidationResult Valid =&gt; new(true, null);
+    public static SkyValidationResult Invalid(string message) =&gt; new(false, message);
+
+    public bool IsValid { get; }
+    public string? ErrorMessage { get; }
+}
+</code></pre>
+<p>Structs work well here because validation runs frequently (every keystroke if you validate on text change, every lost focus otherwise). The invalid path carries a string; the valid path allocates nothing.</p>
+<h3 id="compositeskyvalidator">CompositeSkyValidator</h3>
+<p>Chains validators in order, stopping at the first failure:</p>
+<pre><code class="language-csharp">public class CompositeSkyValidator : ISkyValidator
+{
+    private readonly ISkyValidator[] _validators;
+
+    public SkyValidationResult Validate(object? value)
+    {
+        foreach (var validator in _validators)
+        {
+            var result = validator.Validate(value);
+            if (!result.IsValid)
+                return result;
+        }
+        return SkyValidationResult.Valid;
+    }
+}
+</code></pre>
+<p>Order matters. Put <code>Required</code> before <code>Email</code> so empty fields get &quot;required&quot; rather than &quot;invalid email.&quot;</p>
+<h3 id="conditional-validators">Conditional Validators</h3>
+<p>Sometimes validation depends on another field's value. Wrap a validator with a condition:</p>
+<pre><code class="language-csharp">public class ConditionalValidator : ISkyValidator
+{
+    private readonly Func&lt;bool&gt; _condition;
+    private readonly ISkyValidator _inner;
+
+    public SkyValidationResult Validate(object? value) =&gt;
+        _condition() ? _inner.Validate(value) : SkyValidationResult.Valid;
+}
+</code></pre>
+<p>Use this for &quot;company name required only when account type is Business&quot; without putting that logic inside <code>SkyFormField</code>.</p>
+<h3 id="skyvalidationsummary">SkyValidationSummary</h3>
+<p>For form-level error display, <code>SkyValidationSummary</code> aggregates errors from multiple fields:</p>
+<pre><code class="language-xml">&lt;SkyValidationSummary Items=&quot;{Binding ValidationErrors}&quot; /&gt;
+</code></pre>
+<p>Each item is a <code>SkyValidationSummaryItem</code> with <code>PropertyName</code> and <code>ErrorMessage</code>. This is useful for accessibility: screen readers can announce all errors at once on submit.</p>
+<p>Populate the summary from your view model after form-wide validation:</p>
+<pre><code class="language-csharp">public void ValidateForm()
+{
+    ValidationErrors.Clear();
+
+    if (!ValidateEmail())
+        ValidationErrors.Add(new SkyValidationSummaryItem(&quot;Email&quot;, &quot;Invalid email address.&quot;));
+
+    if (!ValidatePassword())
+        ValidationErrors.Add(new SkyValidationSummaryItem(&quot;Password&quot;, &quot;Password too short.&quot;));
+}
+</code></pre>
+<h2 id="debugging-autocomplete-issues">Debugging Autocomplete Issues</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Popup never opens</td>
+<td><code>MinimumQueryLength</code> too high</td>
+<td>Lower threshold or check query length</td>
+</tr>
+<tr>
+<td>Stale results appear</td>
+<td>Missing version check</td>
+<td>Verify <code>searchVersion</code> comparison before applying results</td>
+</tr>
+<tr>
+<td>Popup flashes and closes</td>
+<td><code>IsLightDismissEnabled</code> true</td>
+<td>Set false on popup</td>
+</tr>
+<tr>
+<td>Selection does not update VM</td>
+<td>One-way binding on <code>SelectedItem</code></td>
+<td>Use <code>Mode=TwoWay</code></td>
+</tr>
+<tr>
+<td>Async errors swallowed</td>
+<td>Missing try/catch in <code>RunSearchAsync</code></td>
+<td>Log exceptions; show empty suggestions on failure</td>
+</tr>
+<tr>
+<td>Keyboard nav broken</td>
+<td><code>KeyDown</code> not handled</td>
+<td>Wire handler on text box, set <code>e.Handled</code></td>
+</tr>
+</tbody>
+</table>
+<p>Use Avalonia DevTools to inspect popup visibility and the suggestions <code>ItemsSource</code> while typing.</p>
+<h2 id="usage-examples">Usage Examples</h2>
+<p><strong>Local static list:</strong></p>
+<pre><code class="language-xml">&lt;SkyAutocomplete ItemsSource=&quot;{Binding Countries}&quot;
+Text=&quot;{Binding CountryName, Mode=TwoWay}&quot;
+SelectedItem=&quot;{Binding SelectedCountry, Mode=TwoWay}&quot;
+MinimumQueryLength=&quot;1&quot; /&gt;
+</code></pre>
+<p><strong>Async provider:</strong></p>
+<pre><code class="language-xml">&lt;SkyAutocomplete Provider=&quot;{x:Static local:CityProvider.Instance}&quot;
+IsFreeTextAllowed=&quot;False&quot;
+MinimumQueryLength=&quot;2&quot; /&gt;
+</code></pre>
+<p><strong>Inside SkyFormField:</strong></p>
+<pre><code class="language-xml">&lt;SkyFormField Label=&quot;City&quot; IsRequired=&quot;True&quot; ValidateOnLostFocus=&quot;True&quot;&gt;
+  &lt;SkyAutocomplete Provider=&quot;{x:Static local:CityProvider.Instance}&quot;
+                   IsFreeTextAllowed=&quot;False&quot; /&gt;
+&lt;/SkyFormField&gt;
+</code></pre>
+<h2 id="building-your-own-autocomplete">Building Your Own Autocomplete</h2>
+<p>Key implementation checklist:</p>
+<ol>
+<li><strong>Three template parts</strong> — text input, popup, suggestion list</li>
+<li><strong>Two-way binding</strong> on text and selected item</li>
+<li><strong>Provider interface</strong> for async data; local <code>ItemsSource</code> for static lists</li>
+<li><strong>Debounce</strong> with version counter to avoid stale results</li>
+<li><strong>Cancel</strong> in-flight async operations on new input</li>
+<li><strong>Keyboard navigation</strong> — up/down to move selection, enter to commit, escape to close</li>
+<li><strong>Free text policy</strong> — explicit property controlling whether unmatched text is valid</li>
+<li><strong>Focus management</strong> — return focus to text box after selection</li>
+<li><strong>Error handling</strong> — degrade gracefully when provider fails</li>
+</ol>
+<h3 id="walkthrough-async-search-flow">Walkthrough: Async Search Flow</h3>
+<ol>
+<li>User types &quot;lon&quot; in the text box.</li>
+<li><code>TextChanged</code> fires → <code>QueueTextChanged()</code> increments version to 3.</li>
+<li>After 200ms, timer callback checks version still equals 3.</li>
+<li>Previous <code>CancellationTokenSource</code> is cancelled; new one created.</li>
+<li><code>Provider.SearchAsync(&quot;lon&quot;, token)</code> called.</li>
+<li>Results return → suggestions <code>ItemsSource</code> updated → popup opens.</li>
+<li>User presses Down, Enter → <code>SelectedItem</code> set, <code>Text</code> formatted, popup closes.</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p><code>SkyAutocomplete</code> combines template composition, async data access through a provider interface, and debounced search with cancellation. The validation layer (<code>ISkyValidator</code>, composites, validation summary) provides a parallel strategy-based system for form correctness. Together they show how SkyUI separates <strong>data acquisition</strong> (provider), <strong>presentation</strong> (template parts), and <strong>correctness</strong> (validators) into independent concerns.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-9-skyautocomplete-and-validation-infrastructure">Chapter 9: SkyAutocomplete and Validation Infrastructure</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyautocomplete-architecture">SkyAutocomplete Architecture</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-wiring-in-onapplytemplate">Template Wiring in OnApplyTemplate</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#local-vs-remote-data-sources">Local vs Remote Data Sources</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#local-filtering-implementation">Local Filtering Implementation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#display-text-formatting">Display Text Formatting</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debouncing-and-cancellation">Debouncing and Cancellation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-not-taskdelay">Why Not Task.Delay?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#cancellation-in-the-provider">Cancellation in the Provider</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#popup-lifecycle">Popup Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#popup-placement">Popup Placement</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#focus-traps">Focus Traps</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#selection-behavior">Selection Behavior</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#integration-with-skyformfield">Integration with SkyFormField</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#validator-for-selected-objects">Validator for Selected Objects</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#validation-infrastructure-deep-dive">Validation Infrastructure Deep Dive</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyvalidationresult">SkyValidationResult</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#compositeskyvalidator">CompositeSkyValidator</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#conditional-validators">Conditional Validators</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyvalidationsummary">SkyValidationSummary</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-autocomplete-issues">Debugging Autocomplete Issues</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#usage-examples">Usage Examples</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-autocomplete">Building Your Own Autocomplete</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#walkthrough-async-search-flow">Walkthrough: Async Search Flow</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

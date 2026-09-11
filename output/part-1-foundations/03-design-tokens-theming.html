@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 3 — Design Tokens and Theming · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 3 — Design Tokens and Theming</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-3-design-tokens-and-theming">Chapter 3: Design Tokens and Theming</h1>
+<p>A control library that hard-codes colors, spacing, and font sizes in C# becomes impossible to theme. SkyUI avoids this by routing every visual decision through a <strong>design token layer</strong>. Controls reference token keys; the theme package resolves those keys to concrete values. This chapter explains how that layer works, how it connects to Avalonia's property and resource systems, and how you should use it when building custom controls.</p>
+<h2 id="what-is-a-design-token">What Is a Design Token?</h2>
+<p>A design token is a named, stable identifier for a visual value. Instead of writing <code>Background = Brushes.DarkGray</code> in control code, you reference <code>SkySurfaceBrush</code> in XAML:</p>
+<pre><code class="language-xml">&lt;Border Background=&quot;{DynamicResource SkySurfaceBrush}&quot;
+CornerRadius=&quot;{DynamicResource SkyRadiusMd}&quot;
+Padding=&quot;{DynamicResource SkySpace16Px}&quot; /&gt;
+</code></pre>
+<p><code>SkyTokenKeys</code> in <code>SkyUI.Core</code> defines these key strings as constants so C# code can reference them without magic strings:</p>
+<pre><code class="language-csharp">public static class SkyTokenKeys
+{
+    public static class Brush
+    {
+        public const string Surface = &quot;SkySurfaceBrush&quot;;
+        public const string Accent = &quot;SkyAccentBrush&quot;;
+        public const string Danger = &quot;SkyDangerBrush&quot;;
+        // ...
+    }
+
+    public static class Spacing
+    {
+        public const string Space8Px = &quot;SkySpace8Px&quot;;
+        public const string Space16Px = &quot;SkySpace16Px&quot;;
+        // ...
+    }
+}
+</code></pre>
+<p>Using <code>DynamicResource</code> rather than <code>StaticResource</code> is important. Dynamic resources re-resolve when the theme changes at runtime, which is how accent overrides and density switching work.</p>
+<h3 id="tokens-and-the-resource-dictionary-chain">Tokens and the Resource Dictionary Chain</h3>
+<p>Avalonia resolves <code>{DynamicResource SkySurfaceBrush}</code> by walking the <strong>logical tree</strong> upward from the control that requested the resource. Each ancestor may contribute a <code>ResourceDictionary</code>; merged dictionaries are searched in declaration order. At the top, your <code>Application</code> typically loads <code>ContentFirstDark.axaml</code>, which merges brush, spacing, radius, and typography dictionaries from <code>SkyUI.Themes.Sky</code>.</p>
+<p>This lookup model has two practical consequences:</p>
+<ol>
+<li><strong>Tokens are inherited like ambient context</strong> — A child <code>Border</code> inside a <code>SkyCard</code> template finds the same <code>SkyCardBrush</code> as a sibling <code>TextBlock</code> in the page, because both walk up to the application resources.</li>
+<li><strong>Runtime overrides inject at the application level</strong> — When <code>SkyAccentOverrideApplicator</code> writes new brush entries into the application dictionary, every <code>{DynamicResource SkyAccentBrush}</code> binding anywhere in the visual tree picks up the new value on the next resource refresh.</li>
+</ol>
+<p>You rarely set token values in control C#. The control class owns behavior; the theme owns appearance.</p>
+<h2 id="dynamicresource-vs-staticresource">DynamicResource vs StaticResource</h2>
+<p>Both markup extensions pull values from resource dictionaries, but they behave differently when the dictionary changes:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Extension</th>
+<th>When value is resolved</th>
+<th>Updates on theme change?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StaticResource</code></td>
+<td>At load / compile time</td>
+<td>No — value is fixed after first lookup</td>
+</tr>
+<tr>
+<td><code>DynamicResource</code></td>
+<td>On first use, then re-evaluated when resources change</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>SkyUI theme XAML uses <code>DynamicResource</code> for every brush, spacing, radius, and density-dependent value. <code>StaticResource</code> appears only for references that are truly invariant — for example, pointing one style at another style key inside the same dictionary file.</p>
+<p>If a control looks correct at startup but never updates when you change accent or density, search the template for <code>StaticResource</code> on token keys. That is the most common theming bug in custom controls.</p>
+<h3 id="binding-to-token-values-from-c">Binding to Token Values from C#</h3>
+<p>When C# must read a token (for example, to pass a brush to a custom draw operation), use the resource API rather than hard-coding:</p>
+<pre><code class="language-csharp">if (this.TryFindResource(SkyTokenKeys.Brush.Accent, out var resource)
+    &amp;&amp; resource is IBrush accentBrush)
+{
+    // use accentBrush
+}
+</code></pre>
+<p><code>TryFindResource</code> follows the same logical-tree lookup as <code>{DynamicResource}</code>. Prefer this over <code>Application.Current.FindResource</code>, which bypasses local overrides on nested resource hosts.</p>
+<h2 id="the-spacing-scale">The Spacing Scale</h2>
+<p>SkyUI uses an 8-pixel base unit. Spacing tokens map to multiples or fractions of that unit:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Token</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SkySpace4Px</code></td>
+<td>Tight internal padding, icon gaps</td>
+</tr>
+<tr>
+<td><code>SkySpace8Px</code></td>
+<td>Default gap between related elements</td>
+</tr>
+<tr>
+<td><code>SkySpace12Px</code></td>
+<td>Intermediate inset when 8 feels tight and 16 feels loose</td>
+</tr>
+<tr>
+<td><code>SkySpace16Px</code></td>
+<td>Section padding, card insets</td>
+</tr>
+<tr>
+<td><code>SkySpace24Px</code></td>
+<td>Large section separation</td>
+</tr>
+<tr>
+<td><code>SkySpace32Px</code></td>
+<td>Page-level margins, hero spacing</td>
+</tr>
+</tbody>
+</table>
+<p>When you author a new control template, pick spacing from this scale rather than inventing arbitrary values. Consistency across controls is what makes an app feel cohesive.</p>
+<p>Spacing tokens are <code>Thickness</code> or <code>double</code> resources depending on context. In a <code>ControlTemplate</code>, write:</p>
+<pre><code class="language-xml">&lt;StackPanel Spacing=&quot;{DynamicResource SkySpace8Px}&quot;
+Margin=&quot;{DynamicResource SkySpace16Px}&quot; /&gt;
+</code></pre>
+<p>Do not mix raw <code>Margin=&quot;12&quot;</code> with token-based spacing on adjacent controls — the eye notices one-off values even when users cannot name them.</p>
+<h2 id="brush-tokens-and-semantic-naming">Brush Tokens and Semantic Naming</h2>
+<p>Brush tokens use semantic names, not color names. <code>SkyTextSecondaryBrush</code> describes the role (secondary text) rather than the hue (gray). This matters because:</p>
+<ul>
+<li>Dark and light palettes map the same semantic key to different colors</li>
+<li>High-contrast themes can boost contrast without renaming keys</li>
+<li>Accent overrides replace <code>SkyAccentBrush</code> globally without touching individual controls</li>
+</ul>
+<p>Common brush categories:</p>
+<ul>
+<li><strong>Surfaces</strong> — <code>SkyBackgroundBrush</code>, <code>SkySurfaceBrush</code>, <code>SkyCardBrush</code></li>
+<li><strong>Text</strong> — <code>SkyTextPrimaryBrush</code>, <code>SkyTextSecondaryBrush</code>, <code>SkyTextDisabledBrush</code></li>
+<li><strong>Accent</strong> — <code>SkyAccentBrush</code>, <code>SkyOnAccentBrush</code>, <code>SkyAccentMutedBrush</code></li>
+<li><strong>Feedback</strong> — <code>SkyDangerBrush</code>, <code>SkyWarningBrush</code>, <code>SkyInfoBrush</code>, <code>SkySuccessBrush</code></li>
+<li><strong>Interaction</strong> — <code>SkyHoverTintBrush</code>, <code>SkySelectedTintBrush</code>, <code>SkyFocusRingBrush</code></li>
+<li><strong>Borders</strong> — <code>SkyBorderSubtleBrush</code>, <code>SkyBorderStrongBrush</code></li>
+</ul>
+<p>Semantic naming also keeps templates readable. <code>Foreground=&quot;{DynamicResource SkyTextSecondaryBrush}&quot;</code> documents intent; <code>Foreground=&quot;#888888&quot;</code> documents nothing about accessibility or theme switching.</p>
+<h2 id="radius-typography-and-elevation-tokens">Radius, Typography, and Elevation Tokens</h2>
+<p>Tokens are not limited to color and spacing. SkyUI defines:</p>
+<ul>
+<li><strong>Corner radius</strong> — <code>SkyRadiusSm</code>, <code>SkyRadiusMd</code>, <code>SkyRadiusLg</code>, <code>SkyRadiusFull</code></li>
+<li><strong>Typography</strong> — <code>SkyFontSizeBody</code>, <code>SkyFontSizeCaption</code>, <code>SkyFontWeightSemiBold</code> (often paired with <code>SkyUI.Fonts</code> family resources)</li>
+<li><strong>Elevation</strong> — <code>SkyElevationSm</code>, <code>SkyElevationMd</code> as <code>BoxShadow</code> resources used on cards and menus</li>
+</ul>
+<p><code>SkyCard</code> uses <code>SkyRadiusLg</code> and <code>SkyElevationSm</code> together so elevated surfaces share the same corner language as dialogs and popovers. When you add a new floating surface, copy that pairing rather than inventing a new shadow.</p>
+<h2 id="controltheme-vs-style">ControlTheme vs Style</h2>
+<p>Avalonia 11+ uses <code>ControlTheme</code> as the primary mechanism for control templates. SkyUI defines one <code>ControlTheme</code> per custom control type, keyed by <code>{x:Type controls:SkyCard}</code>.</p>
+<p>Separate <code>Style</code> elements handle variants:</p>
+<pre><code class="language-xml">&lt;!-- ControlTheme: default template --&gt;
+&lt;ControlTheme x:Key=&quot;{x:Type controls:SkyDivider}&quot; TargetType=&quot;controls:SkyDivider&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate&gt;
+      &lt;!-- visual tree --&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+
+&lt;!-- Style: orientation variant --&gt;
+&lt;Style Selector=&quot;controls|SkyDivider.horizontal&quot;&gt;
+  &lt;Setter Property=&quot;Height&quot; Value=&quot;1&quot; /&gt;
+&lt;/Style&gt;
+&lt;Style Selector=&quot;controls|SkyDivider.vertical&quot;&gt;
+  &lt;Setter Property=&quot;Width&quot; Value=&quot;1&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>The control toggles pseudo-classes in C#; the theme responds with selectors. This keeps orientation logic out of the template itself.</p>
+<h3 id="how-controltheme-connects-to-the-property-system">How ControlTheme Connects to the Property System</h3>
+<p>A <code>ControlTheme</code> is a bundle of setters keyed to a control type. When Avalonia creates a <code>SkyDivider</code>, the theme engine applies the matching <code>ControlTheme</code> setters before the control appears in the visual tree. The <code>Template</code> setter replaces the control's default visual subtree with your <code>ControlTemplate</code>.</p>
+<p>Inside the template, <code>{TemplateBinding Text}</code> creates a one-way binding from the templated control's styled property to the template element. Template bindings participate in the property system at <strong>template application time</strong> — they are not ordinary <code>{Binding}</code> paths to the data context. Use <code>TemplateBinding</code> for properties defined on the control (<code>Text</code>, <code>Background</code>, <code>IsEnabled</code>). Use <code>{Binding}</code> only when the template element should read from the control's <code>DataContext</code> (uncommon in SkyUI chrome).</p>
+<p>Styles layered on top can override individual properties without replacing the whole template. That separation — <strong>ControlTheme for structure, Style for variation</strong> — is the main theming pattern in SkyUI.</p>
+<h2 id="runtime-accent-override">Runtime Accent Override</h2>
+<p>Applications can change the accent color without recompiling:</p>
+<pre><code class="language-xml">&lt;Application sky:SkyThemeProperties.AccentOverride=&quot;#1ED760&quot;&gt;
+</code></pre>
+<p><code>SkyAccentOverrideApplicator</code> watches this attached property and injects overridden brush values into the application resource dictionary. Controls that reference <code>SkyAccentBrush</code> automatically pick up the new color because they use dynamic resources.</p>
+<h3 id="walkthrough-what-happens-when-accent-changes">Walkthrough: What Happens When Accent Changes</h3>
+<p>Follow this sequence when debugging accent override:</p>
+<ol>
+<li><strong>Application loads</strong> — <code>ContentFirstDark.axaml</code> merges token dictionaries; <code>SkyAccentBrush</code> resolves to the default green.</li>
+<li><strong>User sets <code>AccentOverride</code></strong> — The attached property changed handler on <code>SkyThemeProperties</code> runs.</li>
+<li><strong>Applicator runs</strong> — <code>SkyAccentOverrideApplicator</code> derives related brushes (<code>SkyOnAccentBrush</code>, focus rings, selected tints) from the override color and writes them into the application <code>Resources</code> collection.</li>
+<li><strong>Dynamic resources refresh</strong> — Every <code>{DynamicResource SkyAccentBrush}</code> in open templates re-resolves. Buttons, links, focus rings, and KPI highlights update together.</li>
+</ol>
+<p>Controls that bypass tokens — hard-coded accent hex in a template or a <code>StaticResource</code> — stay on the old color. That inconsistency is visible immediately in the demo app accent picker.</p>
+<h2 id="density">Density</h2>
+<p>Density is a second runtime axis. <code>SkyThemeProperties.Density</code> accepts values like <code>Comfortable</code> and <code>Compact</code>. <code>SkyDensityApplicator</code> swaps density-specific resource dictionaries that adjust padding, min-heights, and font sizes.</p>
+<p>Button and navigation pill templates read density tokens rather than fixed pixel values:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;MinHeight&quot; Value=&quot;{DynamicResource SkyButtonMinHeight}&quot; /&gt;
+&lt;Setter Property=&quot;Padding&quot; Value=&quot;{DynamicResource SkyButtonPadding}&quot; /&gt;
+</code></pre>
+<p>When density changes, <code>SkyButtonMinHeight</code> resolves to a different value and all buttons resize together. Navigation items, form fields, and list row heights follow the same mechanism through their own density token keys.</p>
+<p>Density and accent are independent. An app can run compact layout with a custom brand accent without forking the theme.</p>
+<h2 id="motion-tokens">Motion Tokens</h2>
+<p>Enter and exit animations for overlays use <code>SkyMotionAnimator</code> from <code>SkyUI.Core</code>. Dialog and snackbar hosts call it rather than hard-coding animation durations:</p>
+<pre><code class="language-csharp">await SkyMotionAnimator.Default.AnimateFadeScaleInAsync(
+dialogPanel, overlayPanel, cancellationToken);
+</code></pre>
+<p>Centralizing motion in one animator ensures dialogs, sheets, and snackbars feel consistent. Duration and easing curves live in motion token constants inside <code>SkyUI.Core</code>, not scattered across individual controls.</p>
+<p>If you add a new overlay host, call the same animator methods. Users perceive inconsistent motion as a product quality issue even when individual animations look fine in isolation.</p>
+<h2 id="styling-avalonia-primitives">Styling Avalonia Primitives</h2>
+<p>Not every SkyUI visual requires a custom control class. <code>SkyPreset.Primitives.axaml</code> styles native Avalonia types:</p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;Button.sky&quot;&gt;
+  &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource SkyAccentBrush}&quot; /&gt;
+  &lt;Setter Property=&quot;Foreground&quot; Value=&quot;{DynamicResource SkyOnAccentBrush}&quot; /&gt;
+  &lt;Setter Property=&quot;CornerRadius&quot; Value=&quot;{DynamicResource SkyRadiusMd}&quot; /&gt;
+  &lt;Setter Property=&quot;Padding&quot; Value=&quot;{DynamicResource SkyButtonPadding}&quot; /&gt;
+&lt;/Style&gt;
+
+&lt;Style Selector=&quot;Button.sky-primary&quot;&gt;
+  &lt;Setter Property=&quot;Classes&quot; Value=&quot;sky sky-primary&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Variant classes stack on the base <code>sky</code> class:</p>
+<pre><code class="language-xml">&lt;Button Classes=&quot;sky sky-outlined&quot; Content=&quot;Cancel&quot; /&gt;
+&lt;Button Classes=&quot;sky sky-primary&quot; Content=&quot;Save&quot; /&gt;
+&lt;Button Classes=&quot;sky sky-ghost&quot; Content=&quot;Learn more&quot; /&gt;
+</code></pre>
+<p>The <code>sky</code> class activates base typography, focus visuals, and pointer feedback. Modifier classes (<code>sky-outlined</code>, <code>sky-ghost</code>, <code>sky-danger</code>) adjust brush assignments through additional style selectors without duplicating full templates.</p>
+<h3 id="attached-properties-on-primitives">Attached Properties on Primitives</h3>
+<p><code>SkyButtonProperties.IsLoading</code> is an attached property on <code>Button</code>:</p>
+<pre><code class="language-csharp">public static readonly AttachedProperty&lt;bool&gt; IsLoadingProperty =
+    AvaloniaProperty.RegisterAttached&lt;SkyButtonProperties, Button, bool&gt;(&quot;IsLoading&quot;);
+
+public static void SetIsLoading(Button button, bool value) =&gt;
+    button.SetValue(IsLoadingProperty, value);
+</code></pre>
+<p>When <code>IsLoading</code> becomes true, the property changed handler swaps button content for a <code>SkyProgressRing</code> and adds the <code>sky-loading</code> class. This demonstrates how attached properties extend primitives without subclassing.</p>
+<p>The handler also toggles <code>IsEnabled</code> to prevent double-submit. Theme styles target <code>Button.sky-loading</code> to preserve button width while the spinner displays.</p>
+<h2 id="visual-tree-impact-of-theming">Visual Tree Impact of Theming</h2>
+<p>When a <code>ControlTemplate</code> loads, Avalonia builds a <strong>visual subtree</strong> under the control. Theme setters affect that subtree through:</p>
+<ul>
+<li><strong>Direct setters</strong> on the control (<code>Background</code>, <code>Padding</code>) forwarded via <code>{TemplateBinding}</code></li>
+<li><strong>Resources</strong> resolved per element (<code>{DynamicResource}</code> on template children)</li>
+<li><strong>Styles</strong> matching selectors on the control or its pseudo-classes</li>
+</ul>
+<p>The <strong>logical tree</strong> still shows only what you declared in page XAML. Template internals (<code>PART_Root</code>, label text blocks, dividers) exist only in the visual tree. That is why theme authors edit <code>ControlTheme</code> XAML rather than expecting consumers to nest styling elements in page markup.</p>
+<p>If you use <code>{Binding}</code> inside a template where you meant <code>{TemplateBinding}</code>, the bound element may read the page data context instead of the control property — a frequent source of &quot;the theme ignores my property&quot; reports.</p>
+<h2 id="authoring-theme-for-a-new-control">Authoring Theme for a New Control</h2>
+<p>When you add a custom control, follow this checklist:</p>
+<ol>
+<li>Create <code>ControlTheme</code> in the appropriate <code>Controls/*.axaml</code> file under <code>SkyUI.Themes.Sky</code></li>
+<li>Reference only <code>DynamicResource</code> token keys for colors, spacing, radii, typography, and shadows</li>
+<li>Add <code>Style</code> selectors in the paired <code>*.Styles.axaml</code> for pseudo-classes and size variants</li>
+<li>Register the new files in <code>ContentFirstDark.axaml</code> (merged dictionary + style include)</li>
+<li>Never set colors in the C# control class — not even as fallbacks</li>
+<li>Add a demo page scenario that toggles accent and density to verify dynamic resolution</li>
+</ol>
+<h3 id="step-by-step-theme-a-new-skystatuspill-control">Step-by-Step: Theme a New <code>SkyStatusPill</code> Control</h3>
+<p>Assume a templated control with <code>Status</code> (<code>Success</code>, <code>Warning</code>, <code>Error</code>) and optional <code>Label</code> text.</p>
+<p><strong>Step 1 — Default ControlTheme</strong></p>
+<pre><code class="language-xml">&lt;ControlTheme x:Key=&quot;{x:Type controls:SkyStatusPill}&quot;
+              TargetType=&quot;controls:SkyStatusPill&quot;&gt;
+  &lt;Setter Property=&quot;Template&quot;&gt;
+    &lt;ControlTemplate&gt;
+      &lt;Border Name=&quot;PART_Root&quot;
+              Background=&quot;{DynamicResource SkySurfaceBrush}&quot;
+              BorderBrush=&quot;{DynamicResource SkyBorderSubtleBrush}&quot;
+              BorderThickness=&quot;1&quot;
+              CornerRadius=&quot;{DynamicResource SkyRadiusFull}&quot;
+              Padding=&quot;{DynamicResource SkySpace8Px}&quot;&gt;
+        &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;{DynamicResource SkySpace4Px}&quot;&gt;
+          &lt;Ellipse Name=&quot;PART_Indicator&quot; Width=&quot;8&quot; Height=&quot;8&quot; /&gt;
+          &lt;TextBlock Name=&quot;PART_Label&quot;
+                     Text=&quot;{TemplateBinding Label}&quot;
+                     Foreground=&quot;{DynamicResource SkyTextPrimaryBrush}&quot; /&gt;
+        &lt;/StackPanel&gt;
+      &lt;/Border&gt;
+    &lt;/ControlTemplate&gt;
+  &lt;/Setter&gt;
+&lt;/ControlTheme&gt;
+</code></pre>
+<p><strong>Step 2 — Pseudo-class styles for status</strong></p>
+<pre><code class="language-xml">&lt;Style Selector=&quot;controls|SkyStatusPill.success /template/ Ellipse#PART_Indicator&quot;&gt;
+  &lt;Setter Property=&quot;Fill&quot; Value=&quot;{DynamicResource SkySuccessBrush}&quot; /&gt;
+&lt;/Style&gt;
+&lt;Style Selector=&quot;controls|SkyStatusPill.warning /template/ Ellipse#PART_Indicator&quot;&gt;
+  &lt;Setter Property=&quot;Fill&quot; Value=&quot;{DynamicResource SkyWarningBrush}&quot; /&gt;
+&lt;/Style&gt;
+&lt;Style Selector=&quot;controls|SkyStatusPill.error /template/ Ellipse#PART_Indicator&quot;&gt;
+  &lt;Setter Property=&quot;Fill&quot; Value=&quot;{DynamicResource SkyDangerBrush}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Note the <code>/template/</code> selector syntax: it pierces into the visual tree to style template parts without exposing them as public properties.</p>
+<p><strong>Step 3 — C# syncs status enum to pseudo-classes</strong> (in the control class, not the theme)</p>
+<p><strong>Step 4 — Register in <code>ContentFirstDark.axaml</code> and verify in demo with accent override</strong></p>
+<p>This walkthrough mirrors real SkyUI controls like <code>SkyBadge</code> and <code>SkyAlert</code>: token-based chrome, pseudo-class semantics, template-part styling.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why it fails</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hard-coded <code>#FF1E1E1E</code> in template</td>
+<td>Breaks light theme and accent override</td>
+<td>Use <code>SkySurfaceBrush</code></td>
+</tr>
+<tr>
+<td><code>StaticResource</code> for theme brushes</td>
+<td>Does not update on runtime theme change</td>
+<td>Use <code>DynamicResource</code></td>
+</tr>
+<tr>
+<td>Pixel padding not from scale</td>
+<td>Visual rhythm breaks across controls</td>
+<td>Use <code>SkySpace*</code> tokens</td>
+</tr>
+<tr>
+<td>Logic in XAML triggers</td>
+<td>Hard to test, hard to reuse</td>
+<td>Move to C# property handlers</td>
+</tr>
+<tr>
+<td><code>{Binding Label}</code> on template part</td>
+<td>Binds to page data context, not control</td>
+<td>Use <code>{TemplateBinding Label}</code></td>
+</tr>
+<tr>
+<td>Fallback color in C# <code>OnApplyTemplate</code></td>
+<td>Bypasses theme; hides missing resource bugs</td>
+<td>Fix theme registration instead</td>
+</tr>
+<tr>
+<td>Different spacing on every control</td>
+<td>App feels &quot;designed by committee&quot;</td>
+<td>Stick to the 8px scale</td>
+</tr>
+</tbody>
+</table>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<p><strong>Resource not found at runtime.</strong> Avalonia logs missing <code>{DynamicResource}</code> keys in debug output. Check that the token key string matches <code>SkyTokenKeys</code> exactly — typos like <code>SkySurfaceBgBrush</code> fail silently in release builds.</p>
+<p><strong>Theme changes but one control stays stale.</strong> Inspect that control's template for <code>StaticResource</code>, local <code>Background</code> setters in C#, or a cached <code>IBrush</code> field assigned once in <code>OnApplyTemplate</code>.</p>
+<p><strong>Accent override works on buttons but not custom control.</strong> Your custom <code>ControlTheme</code> likely hard-codes accent hex or uses <code>StaticResource</code>. Grep the theme file for <code>#</code> and <code>StaticResource</code>.</p>
+<p><strong>Density toggle does not affect your control.</strong> You used fixed <code>MinHeight</code> or <code>Padding</code> instead of density tokens. Compare your template to <code>SkyButton</code> theme setters.</p>
+<p><strong>Template part styles never apply.</strong> Selector may be wrong. Use Avalonia DevTools (when available) to inspect the visual tree and confirm pseudo-classes and <code>Name</code> attributes match your style selectors.</p>
+<h2 id="summary">Summary</h2>
+<p>Design tokens decouple control logic from visual values. SkyUI controls are token consumers; the theme package is the token provider. Dynamic resources, semantic brush names, and shared spacing scales let accent, density, and future palette changes propagate without recompiling controls.</p>
+<p>When you build a custom control, treat the token layer as your color palette and spacing ruler, keep all visual definitions in theme XAML, and use <code>ControlTheme</code> plus layered <code>Style</code> selectors for variation. Understand how resource lookup walks the logical tree and how template bindings differ from data bindings — those two ideas explain most theming bugs before you reach for the debugger.</p>
+<p>The next chapter brings everything together into a step-by-step recipe for creating a new SkyUI-style control from scratch.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-3-design-tokens-and-theming">Chapter 3: Design Tokens and Theming</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#what-is-a-design-token">What Is a Design Token?</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#tokens-and-the-resource-dictionary-chain">Tokens and the Resource Dictionary Chain</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#dynamicresource-vs-staticresource">DynamicResource vs StaticResource</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#binding-to-token-values-from-c">Binding to Token Values from C#</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-spacing-scale">The Spacing Scale</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#brush-tokens-and-semantic-naming">Brush Tokens and Semantic Naming</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#radius-typography-and-elevation-tokens">Radius, Typography, and Elevation Tokens</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#controltheme-vs-style">ControlTheme vs Style</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#how-controltheme-connects-to-the-property-system">How ControlTheme Connects to the Property System</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#runtime-accent-override">Runtime Accent Override</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#walkthrough-what-happens-when-accent-changes">Walkthrough: What Happens When Accent Changes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#density">Density</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#motion-tokens">Motion Tokens</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#styling-avalonia-primitives">Styling Avalonia Primitives</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#attached-properties-on-primitives">Attached Properties on Primitives</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#visual-tree-impact-of-theming">Visual Tree Impact of Theming</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#authoring-theme-for-a-new-control">Authoring Theme for a New Control</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#step-by-step-theme-a-new-control">Step-by-Step: Theme a New  Control</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#common-mistakes">Common Mistakes</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-tips">Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

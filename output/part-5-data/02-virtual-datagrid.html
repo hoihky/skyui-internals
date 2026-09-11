@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 15 — SkyVirtualDataGrid · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 15 — SkyVirtualDataGrid</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-15-skyvirtualdatagrid">Chapter 15: SkyVirtualDataGrid</h1>
+<p><code>SkyVirtualDataGrid</code> in the <code>SkyUI.Data</code> package is a high-performance tabular data control. Unlike <code>CheckedListBox</code>, which virtualizes a flat list of tree rows, the data grid must virtualize across two dimensions: rows and columns, while supporting sorting, column reorder, in-place editing, and CSV export. This chapter explains the virtual data source contract, row pooling, and update coordination.</p>
+<p>Data grids are where UI performance meets data complexity. A naive implementation creates one row control per record — fine for fifty rows, catastrophic for fifty thousand. <code>SkyVirtualDataGrid</code> treats the viewport as a window into a much larger dataset, binding only the rows you can see.</p>
+<h2 id="the-virtual-data-source-contract">The Virtual Data Source Contract</h2>
+<p>The grid never holds the full dataset in memory. It reads rows through <code>IVirtualGridDataSource</code>:</p>
+<pre><code class="language-csharp">public interface IVirtualGridDataSource : INotifyPropertyChanged
+{
+    long RowCount { get; }
+    object? GetCellValue(long rowIndex, SkyDataGridColumn column);
+    void SetCellValue(long rowIndex, SkyDataGridColumn column, object? value);
+    void Sort(SkyDataGridColumn column, ListSortDirection direction);
+}
+</code></pre>
+<p>Key design points:</p>
+<ul>
+<li><strong>Row index is <code>long</code></strong> — supports datasets larger than <code>int.MaxValue</code> in theory</li>
+<li><strong>Column is passed to cell accessors</strong> — the data source decides how to map columns to fields</li>
+<li><strong>Sort is delegated</strong> — the grid raises sort UI; the source reorders its backing store</li>
+<li><strong>INotifyPropertyChanged</strong> — when row count or data changes, the grid invalidates visible rows</li>
+</ul>
+<p>A list-backed implementation wraps any <code>IList</code>:</p>
+<pre><code class="language-csharp">public class ListVirtualGridDataSource : IVirtualGridDataSource
+{
+    private readonly IList _items;
+
+    public long RowCount =&gt; _items.Count;
+
+    public object? GetCellValue(long rowIndex, SkyDataGridColumn column)
+    {
+        var item = _items[(int)rowIndex];
+        return column.BindingPath is not null
+            ? GetPropertyValue(item, column.BindingPath)
+            : item;
+    }
+}
+</code></pre>
+<p>For server-side data, implement the interface against your repository or API, fetching pages on demand when the user scrolls.</p>
+<h3 id="server-backed-data-source">Server-Backed Data Source</h3>
+<p>A database-backed source fetches pages when the scroll window moves:</p>
+<pre><code class="language-csharp">public class PagedVirtualGridDataSource : IVirtualGridDataSource
+{
+    private readonly Dictionary&lt;long, RowCache&gt; _pageCache = new();
+    private long _rowCount;
+
+    public long RowCount =&gt; _rowCount;
+
+    public object? GetCellValue(long rowIndex, SkyDataGridColumn column)
+    {
+        var page = rowIndex / PageSize;
+        if (!_pageCache.TryGetValue(page, out var cache))
+        {
+            cache = FetchPage(page);
+            _pageCache[page] = cache;
+        }
+        var item = cache.Items[(int)(rowIndex % PageSize)];
+        return GetPropertyValue(item, column.BindingPath);
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+}
+</code></pre>
+<p>Invalidate the cache when data changes externally. Raise <code>PropertyChanged</code> for <code>RowCount</code> when records are added or deleted.</p>
+<h3 id="property-path-resolution">Property Path Resolution</h3>
+<p><code>GetPropertyValue</code> walks dotted paths (<code>&quot;Address.City&quot;</code>) via reflection or compiled expression trees:</p>
+<pre><code class="language-csharp">private static object? GetPropertyValue(object item, string? path)
+{
+    if (path is null) return item;
+
+    object? current = item;
+    foreach (var segment in path.Split('.'))
+    {
+        if (current is null) return null;
+        var prop = current.GetType().GetProperty(segment);
+        current = prop?.GetValue(current);
+    }
+    return current;
+}
+</code></pre>
+<p>For hot paths, cache compiled accessors keyed by <code>(Type, path)</code>.</p>
+<h2 id="column-definition">Column Definition</h2>
+<p>Columns are defined in an <code>ObservableCollection&lt;SkyDataGridColumn&gt;</code> on the grid:</p>
+<pre><code class="language-csharp">public class SkyDataGridColumn : AvaloniaObject
+{
+    public static readonly StyledProperty&lt;string?&gt; HeaderProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; BindingPathProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; WidthProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsSortableProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsReadOnlyProperty = ...;
+    public static readonly StyledProperty&lt;IDataTemplate?&gt; CellTemplateProperty = ...;
+}
+</code></pre>
+<p><code>BindingPath</code> is a property name for reflection-based cell value extraction. <code>CellTemplate</code> overrides the default text cell for custom rendering.</p>
+<h3 id="custom-cell-templates">Custom Cell Templates</h3>
+<p>Use <code>CellTemplate</code> for non-text content:</p>
+<pre><code class="language-xml">&lt;SkyDataGridColumn Header=&quot;Status&quot; BindingPath=&quot;Status&quot;&gt;
+  &lt;SkyDataGridColumn.CellTemplate&gt;
+    &lt;DataTemplate x:DataType=&quot;models:Order&quot;&gt;
+      &lt;Border Background=&quot;{Binding Status, Converter={StaticResource StatusBrushConverter}}&quot;
+              CornerRadius=&quot;4&quot; Padding=&quot;4,2&quot;&gt;
+        &lt;TextBlock Text=&quot;{Binding Status}&quot; /&gt;
+      &lt;/Border&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/SkyDataGridColumn.CellTemplate&gt;
+&lt;/SkyDataGridColumn&gt;
+</code></pre>
+<p>The data context for cell templates is the cell value or the row object depending on grid configuration. Verify binding context in DevTools if cells appear empty.</p>
+<h3 id="column-width-and-resize">Column Width and Resize</h3>
+<p><code>Width</code> supports fixed pixels and star sizing through a grid layout in the header and row templates. When the user drags a column divider, the grid updates <code>Width</code> on the column object and schedules invalidation.</p>
+<h2 id="row-virtualization-architecture">Row Virtualization Architecture</h2>
+<p>When <code>EnableRowVirtualization</code> is true (the default), the grid maintains a <strong>fixed pool</strong> of row visuals rather than creating one row per data record:</p>
+<pre><code>Data: 100,000 rows
+Visual pool: ~30 row controls (visible rows + buffer)
+
+Scroll position → calculate first visible row index
+                → bind pool rows to data rows [n, n+1, ..., n+29]
+                → set virtual extent height = rowCount × rowHeight
+</code></pre>
+<p>The virtual extent is a spacer element whose height represents the total scrollable area. Only the visible slice gets real row controls positioned at the correct vertical offset.</p>
+<h3 id="calculating-the-visible-window">Calculating the Visible Window</h3>
+<pre><code class="language-csharp">private void UpdateVisibleRows()
+{
+    var scrollOffset = _scrollViewer?.Offset.Y ?? 0;
+    var firstRow = (int)(scrollOffset / RowHeight);
+    var visibleCount = (int)Math.Ceiling(ViewportHeight / RowHeight) + 2; // buffer
+
+    if (firstRow == _lastScrollFirst &amp;&amp; !_forceRebind)
+    {
+        RepositionRows(firstRow, scrollOffset);
+        return;
+    }
+
+    _lastScrollFirst = firstRow;
+    RebindPoolRows(firstRow, visibleCount);
+}
+</code></pre>
+<p>The +2 buffer rows above and below the viewport reduce flicker during fast scroll. Tune buffer size against memory — each pooled row holds one control per column.</p>
+<h3 id="key-template-parts">Key Template Parts</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_Scroll</code></td>
+<td>Outer <code>ScrollViewer</code></td>
+</tr>
+<tr>
+<td><code>PART_ScrollRoot</code></td>
+<td>Custom scroll root handling offset sync</td>
+</tr>
+<tr>
+<td><code>PART_HeaderGrid</code></td>
+<td>Column headers with sort and drag</td>
+</tr>
+<tr>
+<td><code>PART_VirtualExtent</code></td>
+<td>Height spacer for total row count</td>
+</tr>
+<tr>
+<td><code>PART_Rows</code></td>
+<td><code>ItemsControl</code> hosting the row pool</td>
+</tr>
+<tr>
+<td><code>PART_ColumnDragIndicator</code></td>
+<td>Visual feedback during column drag</td>
+</tr>
+</tbody>
+</table>
+<p><code>PART_VirtualExtent</code> is critical. Without it, the scroll bar thumb would reflect viewport height, not total data height. Set its height to <code>RowCount * RowHeight</code> whenever row count or row height changes.</p>
+<h3 id="update-coordinator">Update Coordinator</h3>
+<p><code>SkyVirtualDataGridUpdateCoordinator</code> coalesces invalidation requests:</p>
+<pre><code class="language-csharp">internal class SkyVirtualDataGridUpdateCoordinator
+{
+    private readonly Action _invalidate;
+    private bool _pending;
+
+    public void RequestInvalidate()
+    {
+        if (_pending) return;
+        _pending = true;
+        Dispatcher.UIThread.Post(() =&gt;
+        {
+            _pending = false;
+            _invalidate();
+        });
+    }
+}
+</code></pre>
+<p>Scroll events, data source changes, and column width adjustments all call <code>RequestInvalidate</code> rather than rebuilding immediately. This prevents layout thrashing during rapid scrolling.</p>
+<h3 id="scroll-synchronization">Scroll Synchronization</h3>
+<p>The grid tracks <code>_lastScrollFirst</code> (the first visible row index) and compares it on every scroll offset change. When the first visible row changes, pool rows are rebound to new data indices. When only the sub-row pixel offset changes within the same row window, existing bindings are repositioned without rebinding.</p>
+<p>Repositioning is cheaper than rebinding. During smooth scroll within the same row window, update <code>Canvas.Top</code> or <code>Margin</code> on pooled rows rather than calling <code>GetCellValue</code> for every cell.</p>
+<h2 id="column-reorder">Column Reorder</h2>
+<p>When <code>AllowColumnReorder</code> is true, header pointer events track drag state:</p>
+<pre><code class="language-csharp">private int? _headerPointerColumn;
+private Point _headerPointerOrigin;
+private bool _headerDragged;
+</code></pre>
+<p>On pointer release after a drag exceeding a threshold, the column collection is reordered and header cells are rebuilt. A <code>PART_ColumnDragIndicator</code> border follows the pointer during drag.</p>
+<p>Persist column order by serializing column <code>Header</code> or a stable <code>ColumnId</code> property after reorder. Restore on next app launch.</p>
+<h2 id="sorting">Sorting</h2>
+<p>Clicking a sortable column header cycles through ascending, descending, and unsorted:</p>
+<pre><code class="language-csharp">private void OnHeaderClick(SkyDataGridColumn column)
+{
+    var newDirection = column.SortDirection switch
+    {
+        ListSortDirection.Ascending =&gt; ListSortDirection.Descending,
+        _ =&gt; ListSortDirection.Ascending
+    };
+
+    DataSource?.Sort(column, newDirection);
+    column.SortDirection = newDirection;
+    InvalidateVisibleRows();
+}
+</code></pre>
+<p>The grid updates header sort indicators; the data source performs the actual reorder.</p>
+<h3 id="multi-column-sort">Multi-Column Sort</h3>
+<p>The base interface sorts one column at a time. For multi-column sort, extend the data source:</p>
+<pre><code class="language-csharp">void Sort(IReadOnlyList&lt;(SkyDataGridColumn Column, ListSortDirection Direction)&gt; sortKeys);
+</code></pre>
+<p>The grid UI may only expose single-column sort while the source supports compound keys internally.</p>
+<h2 id="in-place-editing">In-Place Editing</h2>
+<p>Double-clicking an editable cell enters edit mode. The grid swaps the read-only <code>TextBlock</code> for an input control defined by the column's <code>CellEditingTemplate</code>. On commit, <code>SetCellValue</code> is called on the data source.</p>
+<pre><code class="language-csharp">private void BeginEdit(long rowIndex, SkyDataGridColumn column)
+{
+    if (column.IsReadOnly) return;
+
+    _editingRow = rowIndex;
+    _editingColumn = column;
+    ShowEditingTemplate(rowIndex, column);
+}
+
+private void CommitEdit(object? newValue)
+{
+    DataSource?.SetCellValue(_editingRow, _editingColumn!, newValue);
+    EndEdit();
+    InvalidateVisibleRows();
+}
+</code></pre>
+<p>Handle Escape to cancel without calling <code>SetCellValue</code>. Handle Enter and lost-focus to commit.</p>
+<p>Validation before commit can mirror <code>SkyFormField</code> — call a validator and show an error adorner on the cell without closing edit mode.</p>
+<h2 id="selection">Selection</h2>
+<p><code>SelectedRowIndex</code> is a two-way styled property. When the user clicks a row, the grid updates the index and applies a selection pseudo-class to the pooled row visual:</p>
+<pre><code class="language-csharp">[PseudoClasses(&quot;selected&quot;)]
+public class SkyDataGridRow : TemplatedControl { }
+</code></pre>
+<p>Because rows are recycled, clear selection styling when rebinding a pooled row to a different data index.</p>
+<h2 id="csv-export">CSV Export</h2>
+<p><code>SkyDataGridCsvExporter</code> walks the data source sequentially:</p>
+<pre><code class="language-csharp">public static async Task ExportAsync(
+    IVirtualGridDataSource source,
+    IReadOnlyList&lt;SkyDataGridColumn&gt; columns,
+    Stream output,
+    CancellationToken cancellationToken)
+{
+    await using var writer = new StreamWriter(output);
+
+    // Header row
+    await writer.WriteLineAsync(string.Join(&quot;,&quot;, columns.Select(c =&gt; Escape(c.Header))));
+
+    for (long i = 0; i &lt; source.RowCount; i++)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+
+        var values = columns.Select(c =&gt; source.GetCellValue(i, c));
+        await writer.WriteLineAsync(string.Join(&quot;,&quot;, values.Select(Escape)));
+    }
+}
+
+private static string Escape(object? value)
+{
+    var text = value?.ToString() ?? &quot;&quot;;
+    if (text.Contains(',') || text.Contains('&quot;'))
+        return $&quot;\&quot;{text.Replace(&quot;\&quot;&quot;, &quot;\&quot;\&quot;&quot;)}\&quot;&quot;;
+    return text;
+}
+</code></pre>
+<p>Export uses the virtual interface, so it works with both in-memory lists and database-backed sources. Run export on a background thread for large datasets; marshal progress updates to the UI thread.</p>
+<h2 id="disabling-virtualization">Disabling Virtualization</h2>
+<p>Set <code>EnableRowVirtualization=&quot;False&quot;</code> for small datasets where you want every row materialized (simpler debugging, supports row reorder animations). The grid creates one visual row per data row. Use this only when row count is modest (under a few hundred).</p>
+<p>With virtualization off, DevTools shows one row control per data row, making it easier to inspect bindings. Switch back to virtualization before profiling performance.</p>
+<h2 id="debugging-the-data-grid">Debugging the Data Grid</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blank cells</td>
+<td>Wrong <code>BindingPath</code> or null data</td>
+<td>Verify <code>GetCellValue</code> return value</td>
+</tr>
+<tr>
+<td>Scroll jumps</td>
+<td><code>RowHeight</code> mismatch with actual row height</td>
+<td>Set explicit <code>RowHeight</code>; check theme padding</td>
+</tr>
+<tr>
+<td>Stale data after edit</td>
+<td><code>SetCellValue</code> does not raise change notification</td>
+<td>Raise <code>PropertyChanged</code> on source</td>
+</tr>
+<tr>
+<td>Only first page visible</td>
+<td><code>PART_VirtualExtent</code> height wrong</td>
+<td>Set height to <code>RowCount * RowHeight</code></td>
+</tr>
+<tr>
+<td>Sort does nothing</td>
+<td><code>Sort</code> not implemented in source</td>
+<td>Implement reorder in data source</td>
+</tr>
+<tr>
+<td>Pool rows overlap</td>
+<td>Reposition logic skipped</td>
+<td>Check <code>_lastScrollFirst</code> comparison</td>
+</tr>
+</tbody>
+</table>
+<p>Enable logging in <code>UpdateVisibleRows</code> to print <code>firstRow</code>, <code>visibleCount</code>, and rebind vs reposition decisions.</p>
+<h2 id="usage-example">Usage Example</h2>
+<pre><code class="language-xml">&lt;SkyVirtualDataGrid DataSource=&quot;{Binding GridSource}&quot;
+                    SelectedRowIndex=&quot;{Binding SelectedIndex, Mode=TwoWay}&quot;
+                    RowHeight=&quot;32&quot;
+                    AllowColumnReorder=&quot;True&quot;&gt;
+  &lt;SkyVirtualDataGrid.Columns&gt;
+    &lt;SkyDataGridColumn Header=&quot;Name&quot; BindingPath=&quot;Name&quot; Width=&quot;200&quot; /&gt;
+    &lt;SkyDataGridColumn Header=&quot;Email&quot; BindingPath=&quot;Email&quot; Width=&quot;240&quot; /&gt;
+    &lt;SkyDataGridColumn Header=&quot;Role&quot; BindingPath=&quot;Role&quot; Width=&quot;120&quot; /&gt;
+  &lt;/SkyVirtualDataGrid.Columns&gt;
+&lt;/SkyVirtualDataGrid&gt;
+</code></pre>
+<p>View model setup:</p>
+<pre><code class="language-csharp">public class CrudViewModel
+{
+    public ListVirtualGridDataSource GridSource { get; }
+        = new ListVirtualGridDataSource(Records);
+
+    public void RefreshGrid()
+    {
+        GridSource.NotifyDataChanged();
+    }
+}
+</code></pre>
+<p>Wire double-click to open a detail panel:</p>
+<pre><code class="language-xml">&lt;SkyVirtualDataGrid DoubleTapped=&quot;OnRowDoubleTapped&quot; ... /&gt;
+</code></pre>
+<pre><code class="language-csharp">private void OnRowDoubleTapped(object? sender, TappedEventArgs e)
+{
+    if (DataContext is CrudViewModel vm &amp;&amp; vm.SelectedIndex &gt;= 0)
+        vm.OpenDetail(vm.GridSource.GetItem(vm.SelectedIndex));
+}
+</code></pre>
+<h2 id="building-your-own-virtualized-control">Building Your Own Virtualized Control</h2>
+<p>Lessons from the data grid:</p>
+<ol>
+<li><strong>Define a narrow data interface</strong> — the control asks for rows by index, not for collections</li>
+<li><strong>Pool visuals</strong> — fixed pool size based on viewport, not data count</li>
+<li><strong>Virtual extent</strong> — a spacer element sets scrollable height without creating children</li>
+<li><strong>Coalesce updates</strong> — one invalidation per frame maximum</li>
+<li><strong>Track scroll window</strong> — rebind only when the first visible index changes</li>
+<li><strong>Separate coordinator</strong> — scroll math and invalidation scheduling belong in a helper class</li>
+<li><strong>Distinguish rebind from reposition</strong> — sub-row scroll should not re-query the data source</li>
+<li><strong>Test with 100k rows</strong> — profile memory and scroll frame time early</li>
+</ol>
+<h3 id="walkthrough-scroll-event-to-visible-rows">Walkthrough: Scroll Event to Visible Rows</h3>
+<ol>
+<li>User scrolls down 64 pixels with <code>RowHeight = 32</code>.</li>
+<li><code>ScrollChanged</code> fires on <code>PART_Scroll</code>.</li>
+<li>Coordinator calls <code>RequestInvalidate()</code>.</li>
+<li>Next UI frame: <code>UpdateVisibleRows()</code> computes <code>firstRow = 2</code>.</li>
+<li><code>_lastScrollFirst</code> was 0 → full rebind.</li>
+<li>Pool row 0 binds to data row 2; pool row 1 to data row 3; etc.</li>
+<li><code>PART_VirtualExtent</code> height unchanged; row positions offset by <code>scrollOffset % RowHeight</code>.</li>
+</ol>
+<h2 id="deep-dive-the-row-pool-and-invalidatevisiblerowscore">Deep Dive: The Row Pool and <code>InvalidateVisibleRowsCore</code></h2>
+<p>The heart of virtualization is <code>InvalidateVisibleRowsCore</code>. Understanding this method line-by-line explains why the grid stays fast at 100,000 rows.</p>
+<h3 id="computing-the-visible-window">Computing the Visible Window</h3>
+<pre><code class="language-csharp">var bodyOffsetY = Math.Max(0, GetScrollOffsetY());
+var first = (long)(bodyOffsetY / rh);  // rh = RowHeight
+var maxFirst = Math.Max(0, count - _rowModels.Count);
+if (first &gt; maxFirst)
+    first = maxFirst;
+</code></pre>
+<p><code>first</code> is the data row index bound to pool slot 0. If the viewport fits 20 rows and the pool holds 22 (viewport + buffer), scrolling row 50,000 means pool slot 0 shows row 50,000 — not row 0.</p>
+<h3 id="logical-scroll-vs-physical-spacer">Logical Scroll vs Physical Spacer</h3>
+<p>SkyUI supports two scroll strategies via <code>SkyVirtualDataGridScrollRoot</code>:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Mode</th>
+<th>How rows move</th>
+<th>When used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logical scroll</strong></td>
+<td><code>ItemsControl</code> margin uses negative sub-row offset (<code>-partial</code>)</td>
+<td>Default with scroll root</td>
+</tr>
+<tr>
+<td><strong>Physical spacer</strong></td>
+<td><code>ItemsControl</code> margin = <code>first * RowHeight</code></td>
+<td>Fallback or non-virtualized mode</td>
+</tr>
+</tbody>
+</table>
+<p>Logical scroll avoids repositioning the entire pool when the user scrolls less than one row height — only the margin nudges by the fractional pixel remainder:</p>
+<pre><code class="language-csharp">var partial = bodyOffsetY - first * rh;
+_rowsItems.Margin = new Thickness(0, -partial, 0, 0);
+</code></pre>
+<p>Physical spacer mode sets margin to push the pool down to the correct absolute offset. Both approaches keep the number of live <code>Control</code> instances constant.</p>
+<h3 id="skyvirtualrowmodel-the-binding-bridge"><code>SkyVirtualRowModel</code>: The Binding Bridge</h3>
+<p>Each pool slot wraps a <code>SkyVirtualRowModel</code>:</p>
+<pre><code class="language-csharp">_rowModels[i].Update(idx, ds.GetRow(idx));
+_rowModels[i].SetSelected(sel.HasValue &amp;&amp; sel.Value == idx);
+</code></pre>
+<p><code>Update</code> stores the logical row index and the opaque row object from <code>IVirtualGridDataSource.GetRow(long)</code>. The row template binds cells through <code>GetCellValue(rowIndex, column)</code> — the model object is available for <code>RowFormatting</code> events but cell text comes from the data source, not from reflection on every scroll frame unless your source does that internally.</p>
+<p><code>Clear()</code> marks a pool slot unused when <code>first + i &gt;= count</code> (scrolled past the last row).</p>
+<h3 id="pool-size-calculation">Pool Size Calculation</h3>
+<pre><code class="language-csharp">private int ComputeVirtualRowPoolSize(double viewportHeight, double rowHeight, long rowCount)
+{
+    var visibleRows = (int)Math.Ceiling(viewportHeight / rowHeight) + 2; // +2 buffer
+    var maxPool = 512; // safety cap
+    // ...
+}
+</code></pre>
+<p>The <strong>+2 buffer</strong> rows above/below the viewport reduce blank flashes during fast scroll before <code>InvalidateVisibleRowsCore</code> runs on the next frame. The <strong>512 cap</strong> prevents runaway pool growth if someone sets an enormous row height or viewport.</p>
+<h3 id="update-coordinator-burst-protection">Update Coordinator: Burst Protection</h3>
+<p>When the data source fires <code>StructureChanged</code> fifty times in one database refresh, the coordinator coalesces:</p>
+<pre><code class="language-csharp">public void RequestRefresh()
+{
+    lock (_gate)
+    {
+        if (_pending) return;
+        _pending = true;
+    }
+    Dispatcher.UIThread.Post(() =&gt; { _pending = false; _flush(); }, DispatcherPriority.Background);
+}
+</code></pre>
+<p>Only one <code>InvalidateVisibleRowsCore</code> runs per UI frame burst. Without this, sorting a column while scrolling could queue hundreds of layout passes.</p>
+<h3 id="custom-scroll-host-skyvirtualdatagridscrollroot">Custom Scroll Host: <code>SkyVirtualDataGridScrollRoot</code></h3>
+<p>The header grid lives <strong>outside</strong> <code>PART_Scroll</code>. Body rows scroll independently. <code>SetLogicalExtent</code> tells Avalonia's scroll infrastructure the total scrollable height without creating that many children:</p>
+<pre><code class="language-csharp">_scrollRoot.SetLogicalExtent(new Size(Math.Max(1, w), bodyH));
+// bodyH = RowCount * RowHeight
+</code></pre>
+<p><code>GetScrollViewportSize()</code> carefully merges <code>ScrollViewer.Bounds</code>, <code>ScrollViewer.Viewport</code>, and grid <code>Bounds</code> because during template apply, not all values are valid yet — guards against <code>NaN</code> and zero prevent divide-by-zero in pool math.</p>
+<h3 id="column-hooks-and-header-rebuild">Column Hooks and Header Rebuild</h3>
+<p>Each <code>SkyDataGridColumn</code> registers hooks when added to <code>Columns</code>:</p>
+<ul>
+<li>Width changes → <code>UpdateVirtualExtent()</code> + invalidate rows</li>
+<li>Sort direction changes → header glyph update</li>
+<li>Visibility changes → header grid column rebuild</li>
+</ul>
+<p><code>RebuildHeader()</code> synchronizes <code>PART_HeaderGrid</code> column definitions with the <code>Columns</code> collection. Column drag reorder raises <code>ColumnReorderRequested</code> so the view model can persist order; the grid then mirrors the new column sequence.</p>
+<h3 id="cell-editing-pipeline">Cell Editing Pipeline</h3>
+<ol>
+<li>User double-clicks an editable cell (<code>IsReadOnly = false</code> on column).</li>
+<li>Grid swaps read template for <code>CellEditingTemplate</code>.</li>
+<li>On commit (Enter or focus leave), <code>SetCellValue(rowIndex, column, newValue)</code> on data source.</li>
+<li><code>CellEditCommitted</code> event fires for validation or audit logging.</li>
+<li><code>InvalidateVisibleRowsCore</code> refreshes the cell display.</li>
+</ol>
+<p>Keep editing logic in the data source when rows are server-backed — the grid only knows indices.</p>
+<h3 id="row-formatting-and-selection-classes">Row Formatting and Selection Classes</h3>
+<p><code>RowFormatting</code> is deferred to <code>DispatcherPriority.Render</code> so rapid scroll does not invoke user code on every intermediate frame:</p>
+<pre><code class="language-csharp">var args = new SkyDataGridRowFormattingEventArgs(model.RowIndex, model.Item, rowRoot, cells);
+RowFormatting.Invoke(this, args);
+foreach (var cls in args.RowClasses)
+    rowRoot.Classes.Add(cls);
+</code></pre>
+<p>Use this to highlight overdue invoices or error rows without custom row templates.</p>
+<p>Selection sync adds <code>sky-grid-row-selected</code> to the row root after containers are realized — pool reuse means selection classes must be re-applied whenever row index at slot <code>i</code> changes.</p>
+<h3 id="csv-export-and-clipboard">CSV Export and Clipboard</h3>
+<p><code>ExportToCsvAsync</code> walks the data source sequentially by index — it never materializes the full collection:</p>
+<pre><code class="language-csharp">public Task ExportToCsvAsync(Stream destination, long startIndex, long maxRows, CancellationToken ct)
+</code></pre>
+<p><code>CopySelectionToClipboardAsync</code> uses <code>SkyVirtualDataGridClipboard</code> to format TSV for Excel paste. Both paths call <code>GetCellValue</code> per cell, so they work with server-backed sources if <code>GetCellValue</code> is implemented.</p>
+<h3 id="non-virtualized-mode">Non-Virtualized Mode</h3>
+<p><code>EnableRowVirtualization = false</code> materializes one pool row per data row (capped by int row count). Use only for &lt; 500 rows when you need row reorder animations or simpler debugging. The code path in <code>InvalidateVisibleRowsCore</code> skips scroll window math and binds all rows directly.</p>
+<h3 id="architecture-diagram">Architecture Diagram</h3>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│ SkyVirtualDataGrid                                       │
+│  PART_HeaderGrid (fixed, sync column widths)            │
+│  PART_Scroll                                             │
+│    └── SkyVirtualDataGridScrollRoot (logical extent)    │
+│          └── PART_VirtualExtent (body height spacer)      │
+│          └── PART_Rows (ItemsControl)                    │
+│                └── Pool[N] × SkyVirtualRowModel          │
+│                      └── Row template (cells)            │
+├─────────────────────────────────────────────────────────┤
+│ IVirtualGridDataSource ←→ GetRow / GetCellValue         │
+│ SkyVirtualDataGridUpdateCoordinator (coalesce)          │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="extended-debugging-checklist">Extended Debugging Checklist</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blank rows while scrolling fast</td>
+<td>Pool too small or coordinator lag</td>
+<td>Increase buffer; check <code>RowHeight</code> matches template</td>
+</tr>
+<tr>
+<td>Wrong data in rows after sort</td>
+<td><code>GetRow</code> not updated after sort</td>
+<td>Data source must reorder backing store and raise <code>StructureChanged</code></td>
+</tr>
+<tr>
+<td>Scrollbar wrong size</td>
+<td><code>UpdateVirtualExtent</code> not called</td>
+<td>Ensure <code>RowCount</code> notifies property change</td>
+</tr>
+<tr>
+<td>Header/body column misalignment</td>
+<td>Column width changed without header rebuild</td>
+<td>Call <code>InvalidateStructure()</code> after bulk column changes</td>
+</tr>
+<tr>
+<td>Edit commits wrong row</td>
+<td>Stale row index during async edit</td>
+<td>Disable edit until <code>GetRow</code> returns for current index</td>
+</tr>
+<tr>
+<td>Memory grows unbounded</td>
+<td><code>EnableRowVirtualization = false</code> on large set</td>
+<td>Enable virtualization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p><code>SkyVirtualDataGrid</code> is the most performance-sensitive control in SkyUI. Its architecture — virtual data source, row pool, logical scroll with sub-row offset, update coordinator, and custom scroll root — is the reference implementation for any control that must display large datasets without choking on memory or layout cost. Master <code>InvalidateVisibleRowsCore</code> and you understand the entire control.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-15-skyvirtualdatagrid">Chapter 15: SkyVirtualDataGrid</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-virtual-data-source-contract">The Virtual Data Source Contract</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#server-backed-data-source">Server-Backed Data Source</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#property-path-resolution">Property Path Resolution</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#column-definition">Column Definition</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#custom-cell-templates">Custom Cell Templates</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#column-width-and-resize">Column Width and Resize</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#row-virtualization-architecture">Row Virtualization Architecture</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#calculating-the-visible-window">Calculating the Visible Window</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#key-template-parts">Key Template Parts</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#update-coordinator">Update Coordinator</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#scroll-synchronization">Scroll Synchronization</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#column-reorder">Column Reorder</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#sorting">Sorting</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#multi-column-sort">Multi-Column Sort</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#in-place-editing">In-Place Editing</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#selection">Selection</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#csv-export">CSV Export</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#disabling-virtualization">Disabling Virtualization</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-the-data-grid">Debugging the Data Grid</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#usage-example">Usage Example</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-virtualized-control">Building Your Own Virtualized Control</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#walkthrough-scroll-event-to-visible-rows">Walkthrough: Scroll Event to Visible Rows</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-the-row-pool-and">Deep Dive: The Row Pool and </a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#computing-the-visible-window">Computing the Visible Window</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#logical-scroll-vs-physical-spacer">Logical Scroll vs Physical Spacer</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#the-binding-bridge">: The Binding Bridge</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#pool-size-calculation">Pool Size Calculation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#update-coordinator-burst-protection">Update Coordinator: Burst Protection</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#custom-scroll-host">Custom Scroll Host: </a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#column-hooks-and-header-rebuild">Column Hooks and Header Rebuild</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#cell-editing-pipeline">Cell Editing Pipeline</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#row-formatting-and-selection-classes">Row Formatting and Selection Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#csv-export-and-clipboard">CSV Export and Clipboard</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#non-virtualized-mode">Non-Virtualized Mode</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#architecture-diagram">Architecture Diagram</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#extended-debugging-checklist">Extended Debugging Checklist</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

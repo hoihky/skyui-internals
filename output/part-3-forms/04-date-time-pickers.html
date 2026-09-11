@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 11 — Date and Time Pickers · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 11 — Date and Time Pickers</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-11-date-and-time-pickers">Chapter 11: Date and Time Pickers</h1>
+<p>SkyUI's picker family (<code>SkyDatePicker</code>, <code>SkyTimePicker</code>, <code>SkyCalendar</code>, <code>SkyDateRangePicker</code>) shows how to extend Avalonia's calendar primitives with consistent styling and culture-aware formatting — without reimplementing calendar logic.</p>
+<h2 id="the-picker-strategy-subclass-format-utilities">The Picker Strategy: Subclass + Format Utilities</h2>
+<p>Avalonia provides <code>CalendarDatePicker</code>, <code>TimePicker</code>, and <code>Calendar</code>. These handle month grids, keyboard navigation, and popup lifecycle. SkyUI adds:</p>
+<ol>
+<li><strong>Style classes</strong> — <code>sky</code>, <code>sky-date-picker</code>, <code>sky-time-picker</code></li>
+<li><strong>Culture property</strong> — explicit <code>CultureInfo</code> with change handler</li>
+<li><strong>Shared formatting</strong> — <code>SkyPickerFormat</code> and <code>SkyPickerFormatConverter</code></li>
+</ol>
+<pre><code class="language-csharp">public class SkyDatePicker : CalendarDatePicker
+{
+    public static readonly StyledProperty&lt;CultureInfo?&gt; CultureProperty =
+        AvaloniaProperty.Register&lt;SkyDatePicker, CultureInfo?&gt;(nameof(Culture));
+
+    public SkyDatePicker()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-date-picker&quot;);
+        ApplyCulture(CultureInfo.CurrentCulture);
+    }
+
+    private void ApplyCulture(CultureInfo? culture) =&gt;
+        SkyPickerFormat.ApplyCulture(this, SkyPickerFormat.Resolve(culture));
+}
+</code></pre>
+<h3 id="skypickerformat">SkyPickerFormat</h3>
+<p>Centralizes date/time display strings per culture:</p>
+<pre><code class="language-csharp">public static class SkyPickerFormat
+{
+    public static CulturePickerFormat Resolve(CultureInfo? culture)
+    {
+        culture ??= CultureInfo.CurrentCulture;
+        return new CulturePickerFormat(
+            shortDate: culture.DateTimeFormat.ShortDatePattern,
+            longDate: culture.DateTimeFormat.LongDatePattern,
+            shortTime: culture.DateTimeFormat.ShortTimePattern);
+    }
+
+    public static void ApplyCulture(CalendarDatePicker picker, CulturePickerFormat format)
+    {
+        picker.SelectedDateFormat = CalendarDatePickerFormat.Short;
+        // additional culture-specific watermark and format application
+    }
+}
+</code></pre>
+<p>When <code>Culture</code> changes on the picker, the static handler re-applies formats without recreating the control.</p>
+<h3 id="why-not-templatedcontrol">Why Not TemplatedControl?</h3>
+<p>A calendar popup involves dozens of template parts (day cells, month navigation, year decade view). Reimplementing that in SkyUI would duplicate Avalonia maintenance burden. Subclassing keeps bug fixes upstream while SkyUI owns <strong>look</strong> (theme) and <strong>format</strong> (culture).</p>
+<h2 id="skytimepicker">SkyTimePicker</h2>
+<p>Mirrors the date picker pattern on <code>TimePicker</code>:</p>
+<pre><code class="language-csharp">public class SkyTimePicker : TimePicker
+{
+    public SkyTimePicker()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-time-picker&quot;);
+    }
+}
+</code></pre>
+<p>Theme styles in <code>Pickers.axaml</code> set clock face colors, selected hour/minute highlight, and popup shadow from elevation tokens.</p>
+<h2 id="skycalendar">SkyCalendar</h2>
+<p>Standalone month calendar for inline embedding (not popup):</p>
+<pre><code class="language-csharp">public class SkyCalendar : Calendar
+{
+    public SkyCalendar()
+    {
+        Classes.Add(&quot;sky&quot;);
+        Classes.Add(&quot;sky-calendar&quot;);
+    }
+}
+</code></pre>
+<p>Use when the date selection UI should be always visible — booking flows, schedule builders.</p>
+<h2 id="skydaterangepicker-composing-pickers">SkyDateRangePicker: Composing Pickers</h2>
+<p><code>SkyDateRangePicker</code> is a <code>TemplatedControl</code> because it composes <strong>two</strong> <code>SkyDatePicker</code> instances plus preset buttons — behavior Avalonia does not provide as a single primitive.</p>
+<h3 id="template-parts">Template Parts</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Type</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_StartDate</code></td>
+<td><code>SkyDatePicker</code></td>
+<td>Range start</td>
+</tr>
+<tr>
+<td><code>PART_EndDate</code></td>
+<td><code>SkyDatePicker</code></td>
+<td>Range end</td>
+</tr>
+<tr>
+<td><code>PART_PresetToday</code></td>
+<td><code>Button</code></td>
+<td>Quick preset</td>
+</tr>
+<tr>
+<td><code>PART_PresetWeek</code></td>
+<td><code>Button</code></td>
+<td>Quick preset</td>
+</tr>
+</tbody>
+</table>
+<h3 id="properties">Properties</h3>
+<pre><code class="language-csharp">public static readonly StyledProperty&lt;DateTime?&gt; StartDateProperty = ...; // TwoWay
+public static readonly StyledProperty&lt;DateTime?&gt; EndDateProperty = ...;   // TwoWay
+public static readonly StyledProperty&lt;SkyDateRangePreset&gt; SelectedPresetProperty = ...;
+public static readonly StyledProperty&lt;CultureInfo?&gt; CultureProperty = ...;
+</code></pre>
+<h3 id="preset-vs-manual-sync">Preset vs Manual Sync</h3>
+<p>Changing dates manually sets preset to <code>Custom</code>:</p>
+<pre><code class="language-csharp">private bool _isApplyingPreset;
+
+private void OnManualDateChanged()
+{
+    if (_isApplyingPreset) return;
+    SelectedPreset = SkyDateRangePreset.Custom;
+}
+</code></pre>
+<p>Selecting a preset applies computed dates:</p>
+<pre><code class="language-csharp">private void ApplyPreset()
+{
+    _isApplyingPreset = true;
+    try
+    {
+        switch (SelectedPreset)
+        {
+            case SkyDateRangePreset.Today:
+                var today = DateTime.Today;
+                StartDate = EndDate = today;
+                break;
+            case SkyDateRangePreset.ThisWeek:
+                var culture = Culture ?? CultureInfo.CurrentCulture;
+                var start = StartOfWeek(DateTime.Today, culture.DateTimeFormat.FirstDayOfWeek);
+                StartDate = start;
+                EndDate = start.AddDays(6);
+                break;
+        }
+    }
+    finally { _isApplyingPreset = false; }
+}
+</code></pre>
+<p>The <code>_isApplyingPreset</code> guard prevents preset application from being interpreted as manual edit (which would immediately reset preset to <code>Custom</code>).</p>
+<h3 id="integration-with-skyformfield">Integration with SkyFormField</h3>
+<p><code>GetInputValue</code> returns a value object:</p>
+<pre><code class="language-csharp">SkyDateRangePicker dateRange =&gt;
+new SkyDateRangeValue(dateRange.StartDate, dateRange.EndDate),
+</code></pre>
+<p>Validators can check <code>StartDate &lt;= EndDate</code> and non-null bounds.</p>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-xml">&lt;SkyFormField Label=&quot;Reporting period&quot;&gt;
+  &lt;SkyDateRangePicker StartDate=&quot;{Binding RangeStart, Mode=TwoWay}&quot;
+                      EndDate=&quot;{Binding RangeEnd, Mode=TwoWay}&quot;
+                      SelectedPreset=&quot;{Binding RangePreset, Mode=TwoWay}&quot; /&gt;
+&lt;/SkyFormField&gt;
+</code></pre>
+<h2 id="skyfilepicker-static-service-api">SkyFilePicker: Static Service API</h2>
+<p>File dialogs are platform services, not visual controls:</p>
+<pre><code class="language-csharp">public static class SkyFilePicker
+{
+    public static Task&lt;IReadOnlyList&lt;string&gt;&gt; OpenFilesAsync(
+        SkyFilePickerOptions options) =&gt; ...;
+
+    public static Task&lt;string?&gt; SaveFileAsync(
+        SkyFilePickerOptions options) =&gt; ...;
+}
+</code></pre>
+<p><code>SkyFilePickerOptions</code> carries filters, default directory, and multi-select flag. The implementation resolves <code>TopLevel</code> from the calling context and invokes Avalonia's storage provider.</p>
+<h2 id="theme-considerations">Theme Considerations</h2>
+<p>Picker popups render in a separate visual tree root. Theme must style:</p>
+<ul>
+<li><code>CalendarDatePicker</code> / <code>TimePicker</code> popup content</li>
+<li><code>CalendarDayButton</code> selected/hover states</li>
+<li>Popup <code>Border</code> shadow and corner radius</li>
+</ul>
+<p>All colors reference <code>DynamicResource</code> tokens so dark theme and accent override apply inside popups.</p>
+<h2 id="building-your-own-picker">Building Your Own Picker</h2>
+<ol>
+<li><strong>Subclass</strong> if Avalonia already has the primitive</li>
+<li><strong>Extract format logic</strong> to static helpers shared across pickers</li>
+<li><strong>TemplatedControl</strong> only when composing multiple pickers or adding presets</li>
+<li><strong>Propagate Culture</strong> to all child pickers in composed controls</li>
+<li><strong>Guard flags</strong> when bidirectional sync exists between presets and manual values</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>SkyUI pickers lean on Avalonia for calendar mechanics and own culture formatting plus visual consistency. <code>SkyDateRangePicker</code> is the exception — a composed control with preset synchronization — and illustrates when subclassing is no longer sufficient.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-11-date-and-time-pickers">Chapter 11: Date and Time Pickers</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#the-picker-strategy-subclass-format-utilities">The Picker Strategy: Subclass + Format Utilities</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skypickerformat">SkyPickerFormat</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#why-not-templatedcontrol">Why Not TemplatedControl?</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skytimepicker">SkyTimePicker</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skycalendar">SkyCalendar</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skydaterangepicker-composing-pickers">SkyDateRangePicker: Composing Pickers</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-parts">Template Parts</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#properties">Properties</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#preset-vs-manual-sync">Preset vs Manual Sync</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#integration-with-skyformfield">Integration with SkyFormField</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyfilepicker-static-service-api">SkyFilePicker: Static Service API</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#theme-considerations">Theme Considerations</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#building-your-own-picker">Building Your Own Picker</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer · SkyUI Internals: Building Custom Avalonia Controls</title>
+  <meta name="description" content="Generated documentation site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/vendor/atom-one-dark.min.css">
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+      <a href="../index.html" class="brand">SkyUI Internals: Building Custom Avalonia Controls</a>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search docs…" autocomplete="off">
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav" aria-label="Documentation">
+          <ul class="nav-list">
+            
+                        <li class="nav-item depth-0">
+                          
+                            <a href="../index.html" class="nav-link">SkyUI Internals</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 1 foundations</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/01-avalonia-control-model.html" class="nav-link">Chapter 1 — The Avalonia Control Model</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/02-package-architecture.html" class="nav-link">Chapter 2 — Package Architecture</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/03-design-tokens-theming.html" class="nav-link">Chapter 3 — Design Tokens and Theming</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-1-foundations/04-building-controls-recipe.html" class="nav-link">Chapter 4 — The Control-Building Recipe</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 2 layout</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/01-skycard-skydvider.html" class="nav-link">Chapter 5 — SkyCard and SkyDivider</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/02-responsive-layout.html" class="nav-link">Chapter 6 — Responsive Layout</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-2-layout/03-expander-loading-overlay.html" class="nav-link">Chapter 7 — SkyExpander and SkyLoadingOverlay</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 3 forms</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/01-skyformfield.html" class="nav-link">Chapter 8 — SkyFormField</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/02-autocomplete-validation.html" class="nav-link">Chapter 9 — SkyAutocomplete and Validation</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/03-radio-slider-numeric.html" class="nav-link">Chapter 10 — SkyRadioGroup, SkySlider, and SkyNumericUpDown</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-3-forms/04-date-time-pickers.html" class="nav-link">Chapter 11 — Date and Time Pickers</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 4 lists</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/01-checkedlistbox.html" class="nav-link">Chapter 12 — CheckedListBox</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-4-lists/02-tree-accordion.html" class="nav-link">Chapter 13 — SkyVirtualTreeView and SkyAccordion</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 5 data</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/01-pagination-kpi.html" class="nav-link">Chapter 14 — Pagination and KPI Tiles</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/02-virtual-datagrid.html" class="nav-link">Chapter 15 — SkyVirtualDataGrid</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-5-data/03-filter-editor.html" class="nav-link">Chapter 16 — FilterEditor</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 6 navigation</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/01-navigation-view.html" class="nav-link">Chapter 17 — SkyNavigationView</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/02-split-view-scaffolds.html" class="nav-link">Chapter 18 — SkySplitView and Page Scaffolds</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-6-navigation/03-tab-breadcrumb.html" class="nav-link">Chapter 19 — SkyTabView and SkyBreadcrumb</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1 is-active">
+                          
+                            <a href="../part-6-navigation/04-command-bar-page-header.html" class="nav-link">Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 7 feedback</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/01-dialog-snackbar-hosts.html" class="nav-link">Chapter 21 — Dialog and Snackbar Hosts</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/02-alerts-progress-skeleton.html" class="nav-link">Chapter 22 — SkyAlert, SkyProgressRing, and SkySkeleton</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-7-feedback/03-menus.html" class="nav-link">Chapter 23 — SkyMenuBar and SkyContextMenu</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 8 primitives</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/01-chip-badge-avatar.html" class="nav-link">Chapter 24 — Chip, Badge, and Avatar</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/02-attached-properties.html" class="nav-link">Chapter 25 — Attached Properties</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-8-primitives/03-sky-icon.html" class="nav-link">Chapter 26 — SkyIcon and SkyFontIcon</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-0 is-group">
+                          
+                            <span class="nav-group">part 9 advanced</span>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/01-diagram-surface.html" class="nav-link">Chapter 27 — DiagramSurface</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/02-mobile-controls.html" class="nav-link">Chapter 28 — Mobile Primitives</a>
+                            
+                        </li>
+                        
+                        <li class="nav-item depth-1">
+                          
+                            <a href="../part-9-advanced/03-video-timeline.html" class="nav-link">Chapter 29 — VideoTimeline</a>
+                            
+                        </li>
+                        
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc">
+          <header class="doc-header">
+            <h1>Chapter 20 — SkyCommandBar, SkyPageHeader, and SkyDrawer</h1>
+          </header>
+          <div class="doc-body"><h1 id="chapter-20-skycommandbar-skypageheader-and-skydrawer">Chapter 20: SkyCommandBar, SkyPageHeader, and SkyDrawer</h1>
+<p>Application chrome — toolbars, page titles, slide-in panels — gives users context and actions. This chapter covers three shell controls that appear in page scaffolds and standalone layouts.</p>
+<h2 id="skypageheader-title-row-with-back-navigation">SkyPageHeader: Title Row with Back Navigation</h2>
+<pre><code class="language-csharp">public class SkyPageHeader : TemplatedControl
+{
+    public const string BackButtonPartName = &quot;PART_BackButton&quot;;
+
+    public static readonly StyledProperty&lt;string?&gt; TitleProperty = ...;
+    public static readonly StyledProperty&lt;string?&gt; SubtitleProperty = ...;
+    public static readonly StyledProperty&lt;bool&gt; IsBackButtonVisibleProperty = ...;
+    public static readonly StyledProperty&lt;ICommand?&gt; BackCommandProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; ActionContentProperty = ...;
+
+    public static readonly RoutedEvent&lt;RoutedEventArgs&gt; BackRequestedEvent = ...;
+}
+</code></pre>
+<h3 id="command-routed-event-dual-pattern">Command + Routed Event Dual Pattern</h3>
+<pre><code class="language-csharp">private void OnBackClick(object? sender, RoutedEventArgs e)
+{
+    if (BackCommand?.CanExecute(null) == true)
+        BackCommand.Execute(null);
+
+    RaiseEvent(new RoutedEventArgs(BackRequestedEvent));
+}
+</code></pre>
+<p>MVVM apps bind <code>BackCommand</code> to navigation logic. Code-behind apps handle <code>BackRequested</code>. Both fire on the same click — neither is exclusive.</p>
+<h3 id="actioncontent-slot">ActionContent Slot</h3>
+<p>The right side of the header accepts arbitrary content — icon buttons, <code>SkyCommandBar</code> fragments, or status text:</p>
+<pre><code class="language-xml">&lt;SkyPageHeader Title=&quot;Edit playlist&quot;
+               Subtitle=&quot;12 tracks&quot;
+               IsBackButtonVisible=&quot;True&quot;
+               BackCommand=&quot;{Binding GoBack}&quot;&gt;
+  &lt;SkyPageHeader.ActionContent&gt;
+    &lt;Button Classes=&quot;sky sky-primary&quot; Content=&quot;Save&quot;
+            Command=&quot;{Binding SaveCommand}&quot; /&gt;
+  &lt;/SkyPageHeader.ActionContent&gt;
+&lt;/SkyPageHeader&gt;
+</code></pre>
+<h3 id="template-binding">Template Binding</h3>
+<p>Title and subtitle bind through <code>{TemplateBinding}</code> in the theme. <code>ActionContent</code> uses a <code>ContentPresenter</code> aligned to the trailing edge.</p>
+<hr />
+<h2 id="skycommandbar-grouped-commands-with-overflow">SkyCommandBar: Grouped Commands with Overflow</h2>
+<pre><code class="language-csharp">public class SkyCommandBar : TemplatedControl
+{
+    public const string PrimaryItemsPartName = &quot;PART_PrimaryItems&quot;;
+    public const string SecondaryItemsPartName = &quot;PART_SecondaryItems&quot;;
+    public const string OverflowItemsPartName = &quot;PART_OverflowItems&quot;;
+
+    [Content]
+    public IList PrimaryCommands =&gt; primaryCommands;
+
+    public IList SecondaryCommands =&gt; secondaryCommands;
+    public IList OverflowCommands =&gt; overflowCommands;
+}
+</code></pre>
+<h3 id="three-command-tiers">Three Command Tiers</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Collection</th>
+<th>Typical content</th>
+<th>Visibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PrimaryCommands</code></td>
+<td>Save, New, Delete</td>
+<td>Always visible on wide layouts</td>
+</tr>
+<tr>
+<td><code>SecondaryCommands</code></td>
+<td>Export, Share</td>
+<td>Visible when space allows</td>
+</tr>
+<tr>
+<td><code>OverflowCommands</code></td>
+<td>Rare actions</td>
+<td>Collapsed into ⋮ menu</td>
+</tr>
+</tbody>
+</table>
+<p>The theme template uses responsive visual states or measures available width to move items to overflow — similar to Microsoft UI command bar behavior.</p>
+<h3 id="skycommandbaritem-model">SkyCommandBarItem Model</h3>
+<pre><code class="language-csharp">public class SkyCommandBarItem
+{
+    public string? Label { get; set; }
+    public ICommand? Command { get; set; }
+    public object? Icon { get; set; }
+    public string? KeyboardAccelerator { get; set; }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;SkyCommandBar Title=&quot;Documents&quot;&gt;
+  &lt;SkyCommandBarItem Label=&quot;New&quot; Icon=&quot;{StaticResource AddIcon}&quot;
+                     Command=&quot;{Binding NewCommand}&quot; /&gt;
+  &lt;SkyCommandBarItem Label=&quot;Upload&quot; Command=&quot;{Binding UploadCommand}&quot; /&gt;
+&lt;/SkyCommandBar&gt;
+</code></pre>
+<p><code>[Content]</code> on <code>PrimaryCommands</code> allows XAML children without wrapper element.</p>
+<h3 id="directproperty-collections">DirectProperty Collections</h3>
+<p>Like <code>SkyNavigationView.Items</code>, command lists use <code>DirectProperty&lt;IList&gt;</code> backed by <code>AvaloniaList&lt;object&gt;</code>. The list is mutable in code; XAML children populate <code>PrimaryCommands</code> at parse time.</p>
+<hr />
+<h2 id="skydrawer-slide-in-panel">SkyDrawer: Slide-In Panel</h2>
+<p><code>SkyDrawer</code> provides a filter/settings panel that slides from the left or right edge, with scrim overlay.</p>
+<h3 id="properties-and-template-parts">Properties and Template Parts</h3>
+<pre><code class="language-csharp">[TemplatePart(OverlayPartName, typeof(Panel))]
+[TemplatePart(DrawerPanelPartName, typeof(Border))]
+[TemplatePart(CloseButtonPartName, typeof(Button))]
+public class SkyDrawer : TemplatedControl
+{
+    public static readonly StyledProperty&lt;bool&gt; IsOpenProperty = ...; // TwoWay
+    public static readonly StyledProperty&lt;string?&gt; TitleProperty = ...;
+    public static readonly StyledProperty&lt;object?&gt; DrawerContentProperty = ...;
+    public static readonly StyledProperty&lt;SkyDrawerPlacement&gt; PlacementProperty = ...;
+    public static readonly StyledProperty&lt;double&gt; DrawerWidthProperty = ...; // default 320
+}
+</code></pre>
+<h3 id="hit-testing-lifecycle">Hit-Testing Lifecycle</h3>
+<pre><code class="language-csharp">public SkyDrawer()
+{
+    IsHitTestVisible = false; // closed drawer passes clicks through
+}
+
+private void ApplyOpenState()
+{
+    var open = IsOpen;
+    IsHitTestVisible = open;
+    if (overlay is not null)
+    {
+        overlay.IsVisible = open;
+        overlay.IsHitTestVisible = open;
+    }
+    if (drawerPanel is not null)
+        drawerPanel.IsVisible = open;
+}
+</code></pre>
+<p>Same pattern as <code>SkyDialogHost</code>: invisible host does not block interaction with page content.</p>
+<h3 id="placement-style-classes">Placement Style Classes</h3>
+<pre><code class="language-csharp">private void SyncPlacementClass()
+{
+    Classes.Set(&quot;sky-drawer-left&quot;, Placement == SkyDrawerPlacement.Left);
+    Classes.Set(&quot;sky-drawer-right&quot;, Placement == SkyDrawerPlacement.Right);
+}
+</code></pre>
+<p>Theme animations slide from the correct edge based on placement class.</p>
+<h3 id="overlay-dismiss">Overlay Dismiss</h3>
+<pre><code class="language-csharp">private void OnOverlayPointerPressed(object? sender, PointerPressedEventArgs e)
+{
+    if (e.Source == overlay)
+        Close();
+}
+</code></pre>
+<p>Checking <code>e.Source == overlay</code> ensures clicks on drawer content do not close the panel.</p>
+<h3 id="closed-routed-event">Closed Routed Event</h3>
+<pre><code class="language-csharp">public void Close()
+{
+    if (!IsOpen) return;
+    IsOpen = false;
+    RaiseClosed();
+}
+</code></pre>
+<p>Parents can reset filter state or persist draft edits on <code>Closed</code>.</p>
+<h3 id="usage-in-skylistdetailpage">Usage in SkyListDetailPage</h3>
+<p>Page scaffolds expose <code>IsFilterDrawerOpen</code> and <code>FilterContent</code> mapped to an embedded <code>SkyDrawer</code>:</p>
+<pre><code class="language-xml">&lt;SkyListDetailPage IsFilterDrawerOpen=&quot;{Binding IsFilterOpen, Mode=TwoWay}&quot;
+FilterContent=&quot;{Binding FilterView}&quot; /&gt;
+</code></pre>
+<h2 id="composing-shell-controls">Composing Shell Controls</h2>
+<p>A typical detail page stacks:</p>
+<pre><code>SkyPageHeader (back + title + save)
+SkyCommandBar (bulk actions)
+[main content]
+SkyDrawer (filters, optional)
+</code></pre>
+<p><code>SkyListDetailPage</code> encodes this composition once; individual pages supply content properties.</p>
+<h2 id="deep-dive-skycommandbar-layout-strategy">Deep Dive: SkyCommandBar Layout Strategy</h2>
+<p>The command bar template divides horizontal space into zones:</p>
+<pre><code>[ Title ]  [ Primary commands ··· ]  [ Secondary ]  [ Overflow ⋮ ]
+</code></pre>
+<h3 id="overflow-mechanics">Overflow Mechanics</h3>
+<p>When available width shrinks, secondary commands move into <code>OverflowCommands</code> and appear in a <code>MenuFlyout</code> triggered by the ⋮ button. The theme measures <code>PART_PrimaryItems</code> and <code>PART_SecondaryItems</code> <code>ItemsControl</code> bounds on <code>SizeChanged</code> — commands that clip below <code>MinWidth</code> relocate.</p>
+<p>This is <strong>responsive chrome</strong> without separate mobile/desktop XAML: one command collection, runtime repacking.</p>
+<h3 id="command-item-templates">Command Item Templates</h3>
+<p><code>SkyCommandBarItem</code> supports:</p>
+<pre><code class="language-csharp">public class SkyCommandBarItem
+{
+    public string? Label { get; set; }
+    public ICommand? Command { get; set; }
+    public object? Icon { get; set; }       // often SkyIcon
+    public string? ToolTip { get; set; }
+    public bool IsEnabled { get; set; } = true;
+}
+</code></pre>
+<p>Icon-only primary commands save width; labels appear in tooltips. Bind <code>Command</code> to <code>RelayCommand</code> with <code>CanExecute</code> tied to selection state:</p>
+<pre><code class="language-csharp">DeleteCommand = new RelayCommand(DeleteSelected, () =&gt; SelectedItems.Any());
+</code></pre>
+<hr />
+<h2 id="deep-dive-skypageheader-in-mvvm-navigation">Deep Dive: SkyPageHeader in MVVM Navigation</h2>
+<h3 id="back-navigation-patterns">Back Navigation Patterns</h3>
+<p><strong>Frame-based</strong> (mobile): <code>BackCommand</code> pops the navigation stack.</p>
+<p><strong>Modal overlay</strong>: <code>BackCommand</code> sets <code>IsOpen = false</code> on a dialog.</p>
+<p><strong>Master-detail</strong>: <code>BackCommand</code> clears <code>SelectedItem</code> on mobile when detail is full-screen.</p>
+<p>Always raise <code>BackRequested</code> even when <code>BackCommand</code> executes — analytics hooks often listen to the routed event.</p>
+<h3 id="subtitle-for-context">Subtitle for Context</h3>
+<p><code>Subtitle</code> carries secondary context without cluttering the title:</p>
+<pre><code class="language-xml">&lt;SkyPageHeader Title=&quot;Invoice #1042&quot;
+Subtitle=&quot;Due March 15 · Acme Corp&quot; /&gt;
+</code></pre>
+<p>Bind subtitle from computed view model property that updates when selection changes.</p>
+<hr />
+<h2 id="deep-dive-skydrawer-open-state-machine">Deep Dive: SkyDrawer Open State Machine</h2>
+<pre><code>Closed → IsOpen=true → ApplyOpenState → overlay visible, hit-test on
+→ user dismisses → IsOpen=false → Closed event
+</code></pre>
+<p><code>templateApplied</code> flag prevents <code>ApplyOpenState</code> from running before parts exist — early <code>IsOpen=true</code> in XAML would otherwise no-op.</p>
+<h3 id="placement-and-width">Placement and Width</h3>
+<pre><code class="language-csharp">public enum SkyDrawerPlacement { Left, Right }
+</code></pre>
+<p><code>DrawerWidth</code> default 320px matches filter panel conventions. Right placement suits property inspectors; left suits navigation drawers on narrow windows.</p>
+<h3 id="animation-hook-points">Animation Hook Points</h3>
+<p>Theme styles animate <code>TranslateTransform</code> on <code>PART_DrawerPanel</code>:</p>
+<ul>
+<li>Open: <code>X</code> from <code>-DrawerWidth</code> to <code>0</code> (left placement)</li>
+<li>Close: reverse with <code>SkyMotionAnimator</code> or CSS-like transitions in <code>Style.Animations</code></li>
+</ul>
+<p><code>IsHitTestVisible</code> on the host flips only after open animation completes if you want clicks to pass through during slide — SkyUI sets it immediately for simpler semantics.</p>
+<hr />
+<h2 id="skylistdetailpage-how-scaffolds-wire-shell-controls">SkyListDetailPage: How Scaffolds Wire Shell Controls</h2>
+<p><code>SkyListDetailPage</code> template binds scaffold properties to child controls:</p>
+<pre><code class="language-xml">&lt;!-- Conceptual template structure --&gt;
+&lt;Grid RowDefinitions=&quot;Auto,Auto,*&quot;&gt;
+  &lt;SkyPageHeader Grid.Row=&quot;0&quot; Title=&quot;{TemplateBinding Title}&quot; ... /&gt;
+  &lt;SkyCommandBar Grid.Row=&quot;1&quot; Title=&quot;{TemplateBinding CommandBarTitle}&quot; /&gt;
+  &lt;SkySplitView Grid.Row=&quot;2&quot;
+                PaneContent=&quot;{TemplateBinding ListContent}&quot;
+                DetailContent=&quot;{TemplateBinding DetailContent}&quot; /&gt;
+  &lt;SkyDrawer IsOpen=&quot;{TemplateBinding IsFilterDrawerOpen}&quot;
+             DrawerContent=&quot;{TemplateBinding FilterContent}&quot; /&gt;
+&lt;/Grid&gt;
+</code></pre>
+<p>Consumers set one property surface:</p>
+<pre><code class="language-xml">&lt;SkyListDetailPage Title=&quot;Customers&quot;
+ListContent=&quot;{Binding CustomerList}&quot;
+DetailContent=&quot;{Binding CustomerDetail}&quot;
+IsFilterDrawerOpen=&quot;{Binding ShowFilters}&quot;
+FilterContent=&quot;{Binding FilterPanel}&quot; /&gt;
+</code></pre>
+<p>The scaffold <strong>hides composition</strong> — page authors think in content slots, not grid row indices.</p>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drawer does not block clicks when open</td>
+<td><code>IsHitTestVisible</code> false on overlay</td>
+</tr>
+<tr>
+<td>Back button no-op</td>
+<td><code>BackCommand</code> null and no <code>BackRequested</code> handler</td>
+</tr>
+<tr>
+<td>Commands clipped, no overflow</td>
+<td><code>OverflowCommands</code> empty — move items there in VM</td>
+</tr>
+<tr>
+<td>Header action not showing</td>
+<td><code>ActionContent</code> null or template <code>ContentPresenter</code> missing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Control</th>
+<th>Pattern</th>
+<th>Key Avalonia concept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SkyPageHeader</td>
+<td>TemplatedControl + ICommand</td>
+<td>Routed event + command</td>
+</tr>
+<tr>
+<td>SkyCommandBar</td>
+<td>DirectProperty IList collections</td>
+<td>[Content] on primary list</td>
+</tr>
+<tr>
+<td>SkyDrawer</td>
+<td>Open state + hit-test gating</td>
+<td>Overlay pointer dismiss</td>
+</tr>
+</tbody>
+</table>
+<p>These primitives are the building blocks scaffolds assemble. Command bar overflow, drawer state machine, and page header navigation patterns translate directly to production shell design.</p>
+</div>
+          <footer class="doc-footer">
+            <p>Generated by <strong>hoihky</strong> with <strong>MDWeb</strong> and with assistance from <strong>AI</strong></p>
+
+          </footer>
+        </article>
+
+        
+                <aside class="toc" aria-label="On this page">
+                  <p class="toc-title">On this page</p>
+                  <ul>
+                    
+                        <li class="toc-h1">
+                          <a href="#chapter-20-skycommandbar-skypageheader-and-skydrawer">Chapter 20: SkyCommandBar, SkyPageHeader, and SkyDrawer</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skypageheader-title-row-with-back-navigation">SkyPageHeader: Title Row with Back Navigation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#command-routed-event-dual-pattern">Command + Routed Event Dual Pattern</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#actioncontent-slot">ActionContent Slot</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#template-binding">Template Binding</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skycommandbar-grouped-commands-with-overflow">SkyCommandBar: Grouped Commands with Overflow</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#three-command-tiers">Three Command Tiers</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skycommandbaritem-model">SkyCommandBarItem Model</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#directproperty-collections">DirectProperty Collections</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skydrawer-slide-in-panel">SkyDrawer: Slide-In Panel</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#properties-and-template-parts">Properties and Template Parts</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#hit-testing-lifecycle">Hit-Testing Lifecycle</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#placement-style-classes">Placement Style Classes</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#overlay-dismiss">Overlay Dismiss</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#closed-routed-event">Closed Routed Event</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#usage-in-skylistdetailpage">Usage in SkyListDetailPage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#composing-shell-controls">Composing Shell Controls</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skycommandbar-layout-strategy">Deep Dive: SkyCommandBar Layout Strategy</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#overflow-mechanics">Overflow Mechanics</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#command-item-templates">Command Item Templates</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skypageheader-in-mvvm-navigation">Deep Dive: SkyPageHeader in MVVM Navigation</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#back-navigation-patterns">Back Navigation Patterns</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#subtitle-for-context">Subtitle for Context</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#deep-dive-skydrawer-open-state-machine">Deep Dive: SkyDrawer Open State Machine</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#placement-and-width">Placement and Width</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#animation-hook-points">Animation Hook Points</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skylistdetailpage-how-scaffolds-wire-shell-controls">SkyListDetailPage: How Scaffolds Wire Shell Controls</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#debugging-tips">Debugging Tips</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#summary">Summary</a>
+                        </li>
+                        
+                  </ul>
+                </aside>
+                
+      </main>
+    </div>
+  </div>
+  <script src="../assets/vendor/mermaid.min.js"></script>
+  <script src="../assets/vendor/highlight.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
