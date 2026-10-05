@@ -102,6 +102,20 @@ The alert does not remove itself — the parent handles `CloseRequested` and rem
 
 ---
 
+## SkyBanner: Full-Width App Notice
+
+`SkyBanner` mirrors `SkyAlert` semantics but spans the app chrome: `Title`, `Message`, `SkyFeedbackVariant`, and the same variant style-class sync. **`IsOpen`** (default true) lets you collapse the banner without removing it from the tree — bind it to a view model flag after the user dismisses a maintenance notice.
+
+| Property | Role |
+|----------|------|
+| `IsCloseable` | Shows `PART_CloseButton`; raises `CloseRequested` |
+| `ActionContent` | Hosts a button or link in `PART_ActionHost` |
+| `Variant` | Drives `sky-feedback-*` classes like `SkyAlert` |
+
+Place banners above `SkyNavigationView` content or inside `SkyPageHeader` accessory rows. Keep messages short; long text belongs in `SkyAlert` inside the page body.
+
+---
+
 ## SkyProgressRing: Determinate and Indeterminate
 
 ```csharp

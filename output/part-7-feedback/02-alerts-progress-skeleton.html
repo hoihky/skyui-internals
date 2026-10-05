@@ -363,6 +363,32 @@ CloseRequested=&quot;OnAlertDismissed&quot; /&gt;
 </code></pre>
 <p><code>SkyMessageBox</code> reuses <code>SkyAlert</code> as dialog body content — composition across feedback layers.</p>
 <hr />
+<h2 id="skybanner-full-width-app-notice">SkyBanner: Full-Width App Notice</h2>
+<p><code>SkyBanner</code> mirrors <code>SkyAlert</code> semantics but spans the app chrome: <code>Title</code>, <code>Message</code>, <code>SkyFeedbackVariant</code>, and the same variant style-class sync. <strong><code>IsOpen</code></strong> (default true) lets you collapse the banner without removing it from the tree — bind it to a view model flag after the user dismisses a maintenance notice.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsCloseable</code></td>
+<td>Shows <code>PART_CloseButton</code>; raises <code>CloseRequested</code></td>
+</tr>
+<tr>
+<td><code>ActionContent</code></td>
+<td>Hosts a button or link in <code>PART_ActionHost</code></td>
+</tr>
+<tr>
+<td><code>Variant</code></td>
+<td>Drives <code>sky-feedback-*</code> classes like <code>SkyAlert</code></td>
+</tr>
+</tbody>
+</table>
+<p>Place banners above <code>SkyNavigationView</code> content or inside <code>SkyPageHeader</code> accessory rows. Keep messages short; long text belongs in <code>SkyAlert</code> inside the page body.</p>
+<hr />
 <h2 id="skyprogressring-determinate-and-indeterminate">SkyProgressRing: Determinate and Indeterminate</h2>
 <pre><code class="language-csharp">public class SkyProgressRing : TemplatedControl
 {
@@ -533,6 +559,10 @@ private void UpdateSpinTimer()
                         
                         <li class="toc-h3">
                           <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skybanner-full-width-app-notice">SkyBanner: Full-Width App Notice</a>
                         </li>
                         
                         <li class="toc-h2">

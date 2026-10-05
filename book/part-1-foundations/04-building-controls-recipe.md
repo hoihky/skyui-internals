@@ -341,18 +341,18 @@ Real SkyUI controls like `SkyChip` follow this same arc with more variant classe
 When your control displays hierarchical or virtualized data that can come from many model types, define an adapter interface:
 
 ```csharp
-public interface IMyItemAdapter
+public interface IMyTreeAdapter
 {
-    string GetLabel(object item);
-    IEnumerable? GetChildren(object item);
-    bool GetIsExpanded(object item);
-    void SetIsExpanded(object item, bool expanded);
+    IEnumerable<object?> GetChildren(object? item);
+    bool HasChildren(object? item);
+    bool GetIsExpanded(object? item);
+    void SetIsExpanded(object? item, bool value);
 }
 ```
 
-The control holds a `StyledProperty<IMyItemAdapter?>` with a default implementation. Consumers plug in their own adapter for domain models. `CheckedListBox` is the reference implementation of this pattern.
+The control holds a `StyledProperty<IMyTreeAdapter?>` with a default implementation. Consumers plug in their own adapter for domain models while **`ItemTemplate`** renders each row. `CheckedListBox` splits responsibilities further: `ICheckedListItemAdapter` for check/expand/children, optional `ICheckedListEditableAdapter` and `IAsyncTreeDataSource`, and `CheckedListRowBuilder` for consistent row chrome.
 
-Adapters keep the control free of domain types. The visual tree still comes from templates; only the **data** feeding `ItemsControl` changes.
+Adapters keep the control free of domain types. Templates own presentation; adapters own hierarchical state and mutations.
 
 ## Optional: Abstract Base for Shared Logic
 

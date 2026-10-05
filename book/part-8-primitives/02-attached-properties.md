@@ -359,6 +359,10 @@ Avalonia DevTools property grid shows attached values under the owner node. If X
 - Property name spelling matches registration name
 - Owner type matches — `Grid` property on `StackPanel` ignored
 
+## Related: SkyPopover
+
+Not an attached property, but often paired with buttons: `SkyPopover` subclasses Avalonia's `Flyout` and adds the `sky` class to `FlyoutPresenterClasses` so popover panels pick up theme padding and elevation. Use it for lightweight panels (help text, compact pickers) where `SkyContextMenu` menu semantics are wrong.
+
 ## Summary
 
 Attached properties are SkyUI's primary tool for extending Avalonia primitives without proliferating subclasses. `IsLoading` on buttons, accent override on applications, responsive behavior on grids, and touch targets on mobile controls all follow the same pattern: register, get/set, changed handler, XAML-accessible, cleanup on clear.

@@ -307,6 +307,44 @@
 </tr>
 </tbody>
 </table>
+<h2 id="timelinehost-where-the-logic-lives">TimelineHost: Where the Logic Lives</h2>
+<p><code>VideoTimeline</code> is intentionally thin. The constructor creates <strong><code>TimelineHost</code></strong>, which owns:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Collaborator</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TimelineProject</code></td>
+<td>Canonical <code>Tracks</code>, <code>Clips</code>, <code>Markers</code> collections</td>
+</tr>
+<tr>
+<td><code>TimelineLayoutEngine</code></td>
+<td>Lane heights, clip rectangles, snap (<code>TimelineSnapSettings</code>)</td>
+</tr>
+<tr>
+<td><code>TimelineSelectionModel</code></td>
+<td>Selected clips, tracks, time range</td>
+</tr>
+<tr>
+<td><code>TimelineUndoStack</code></td>
+<td><code>CanUndo</code> / <code>CanRedo</code>; mutating edits push commands</td>
+</tr>
+<tr>
+<td><code>TimelineRenderer</code></td>
+<td>Paints clips, playhead, selection on <code>PART_MainCanvas</code></td>
+</tr>
+<tr>
+<td><code>TimelineGestureCoordinator</code></td>
+<td>Registers zoom, keyboard, lane, ruler, clip, and header interactors</td>
+</tr>
+</tbody>
+</table>
+<p>Public API on <code>VideoTimeline</code> forwards to the host: <code>Project</code>, <code>Undo()</code> / <code>Redo()</code>, clipboard helpers, and collection properties (<code>Tracks</code>, <code>Clips</code>, <code>Markers</code>) expose the same instances as <code>_host.Project</code>. Property changed handlers on duration, pixels-per-second, and playhead call into the host so layout and playback stay coherent.</p>
+<p>When you debug timeline behavior, start in <code>TimelineHost.ApplyTemplate</code> (template part wiring and scroll sync) and <code>TimelineClipGestureInteractor</code> (drag-move and trim), not only in the control's styled properties.</p>
 <h2 id="template-parts-for-scroll-sync">Template Parts for Scroll Sync</h2>
 <p>Multiple synchronized scroll viewers:</p>
 <table class="table">
@@ -393,20 +431,20 @@ public void PasteClipboardAtPlayhead();
 </code></pre>
 <p><code>INotifyCollectionChanged</code> on clips and tracks triggers <code>FullRebuild()</code> to recalculate layout metrics. Individual property changes on clip items (start time, duration) trigger partial invalidation.</p>
 <h2 id="mvvm-integration">MVVM Integration</h2>
-<p>View models hold the same collection instances the control binds to:</p>
+<p>You can bind directly to <code>Tracks</code> / <code>Clips</code> / <code>Markers</code> on the control (they are the host's <code>TimelineProject</code> collections), or mutate <code>timeline.Project</code> after construction. Either way, use the <strong>same collection instances</strong> the timeline already owns — replacing collections goes through the direct properties on <code>VideoTimeline</code>.</p>
 <pre><code class="language-csharp">public class EditorViewModel
 {
-    public ObservableCollection&lt;TimelineTrackItem&gt; Tracks { get; } = new();
-    public ObservableCollection&lt;TimelineClipItem&gt; Clips { get; } = new();
-    public double PlayheadTime { get; set; }
+    public VideoTimeline Timeline { get; }
+
+    public EditorViewModel(VideoTimeline timeline) =&gt; Timeline = timeline;
+
+    public void LoadDemoClips()
+    {
+        Timeline.Clips.Add(new TimelineClipItem { /* ... */ });
+    }
 }
 </code></pre>
-<pre><code class="language-xml">&lt;VideoTimeline Tracks=&quot;{Binding Tracks}&quot;
-Clips=&quot;{Binding Clips}&quot;
-PlayheadTime=&quot;{Binding PlayheadTime, Mode=TwoWay}&quot;
-Duration=&quot;{Binding ProjectDuration}&quot; /&gt;
-</code></pre>
-<p>The control mutates clip positions during drag; view models should use observable clip models or listen to timeline events to persist changes.</p>
+<p>Listen to <code>ClipChanged</code>, <code>ClipsRemoved</code>, and <code>UndoRedoStateChanged</code> to persist edits. The host applies undoable commands during drag; your view model should not fight those mutations by resetting collections on every pointer move.</p>
 <h2 id="custom-rendering-vs-child-controls">Custom Rendering vs Child Controls</h2>
 <p>Clips are drawn on <code>PART_MainCanvas</code> via <code>DrawingContext</code> or positioned <code>Border</code> children — the implementation chooses based on interaction needs. Hit testing maps pointer position to clip bounds stored in layout cache.</p>
 <p>This hybrid — templated scroll chrome + imperative canvas content — is common in professional editing controls.</p>
@@ -639,6 +677,10 @@ AvaloniaProperty.Register&lt;VideoTimeline, double&gt;(nameof(Duration), 120, co
                         
                         <li class="toc-h2">
                           <a href="#domain-model">Domain Model</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#timelinehost-where-the-logic-lives">TimelineHost: Where the Logic Lives</a>
                         </li>
                         
                         <li class="toc-h2">

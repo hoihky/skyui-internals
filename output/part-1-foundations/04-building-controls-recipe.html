@@ -573,16 +573,16 @@ public class SkyToggleChip : TemplatedControl
 <p>Real SkyUI controls like <code>SkyChip</code> follow this same arc with more variant classes.</p>
 <h2 id="optional-adapter-interface-for-data-driven-controls">Optional: Adapter Interface for Data-Driven Controls</h2>
 <p>When your control displays hierarchical or virtualized data that can come from many model types, define an adapter interface:</p>
-<pre><code class="language-csharp">public interface IMyItemAdapter
+<pre><code class="language-csharp">public interface IMyTreeAdapter
 {
-    string GetLabel(object item);
-    IEnumerable? GetChildren(object item);
-    bool GetIsExpanded(object item);
-    void SetIsExpanded(object item, bool expanded);
+    IEnumerable&lt;object?&gt; GetChildren(object? item);
+    bool HasChildren(object? item);
+    bool GetIsExpanded(object? item);
+    void SetIsExpanded(object? item, bool value);
 }
 </code></pre>
-<p>The control holds a <code>StyledProperty&lt;IMyItemAdapter?&gt;</code> with a default implementation. Consumers plug in their own adapter for domain models. <code>CheckedListBox</code> is the reference implementation of this pattern.</p>
-<p>Adapters keep the control free of domain types. The visual tree still comes from templates; only the <strong>data</strong> feeding <code>ItemsControl</code> changes.</p>
+<p>The control holds a <code>StyledProperty&lt;IMyTreeAdapter?&gt;</code> with a default implementation. Consumers plug in their own adapter for domain models while <strong><code>ItemTemplate</code></strong> renders each row. <code>CheckedListBox</code> splits responsibilities further: <code>ICheckedListItemAdapter</code> for check/expand/children, optional <code>ICheckedListEditableAdapter</code> and <code>IAsyncTreeDataSource</code>, and <code>CheckedListRowBuilder</code> for consistent row chrome.</p>
+<p>Adapters keep the control free of domain types. Templates own presentation; adapters own hierarchical state and mutations.</p>
 <h2 id="optional-abstract-base-for-shared-logic">Optional: Abstract Base for Shared Logic</h2>
 <p>When two controls share paging math, validation, or command wiring, extract an abstract base:</p>
 <pre><code class="language-csharp">public abstract class SkyPaginationBase : TemplatedControl

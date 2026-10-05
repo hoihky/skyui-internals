@@ -64,6 +64,8 @@ A comprehensive developer guide to the SkyUI toolkit for Avalonia 12 — archite
 28. Mobile Primitives (SkySafeArea, SkyActionSheet)
 29. VideoTimeline
 
+Additional controls documented inside chapters include `SkyFab`, `SkyPullToRefresh`, `SkyEmptyState`, `SkyValidationSummary`, `SkyBanner`, and `SkyPopover`.
+
 ## Controls Covered
 
 | Category | Controls |

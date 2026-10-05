@@ -5,7 +5,7 @@ order: 28
 
 # Chapter 28: Mobile Primitives — SkySafeArea and SkyActionSheet
 
-SkyUI's mobile support is early but establishes patterns for safe-area insets, touch targets, and bottom action sheets. This chapter explains platform service integration through Avalonia's `TopLevel` APIs.
+SkyUI's mobile support is early but establishes patterns for safe-area insets, touch targets, floating action buttons, pull-to-refresh, and bottom action sheets. This chapter explains platform service integration through Avalonia's `TopLevel` APIs.
 
 ## SkySafeArea: Device Notch and Home Indicator
 
@@ -82,6 +82,43 @@ Disable individual edges when a parent already handles that inset:
 <SkySafeArea ApplyTop="False">
   <!-- top safe area handled by system status bar overlay -->
 </SkySafeArea>
+```
+
+## SkyFab: Floating Action Button
+
+`SkyFab` is a templated circular button (default 56×56) with optional **extended** label, `SkyIconKind` glyph, and `ICommand` wiring. `HonorSafeArea` (default true) engages `SkyFabInsetsCoordinator` so the FAB sits above the home indicator when nested in a `TopLevel` with insets.
+
+| Property | Role |
+|----------|------|
+| `Icon` | `SkyIconKind` drawn in `PART_ActionButton` |
+| `Label` | Shown when `IsExtended` is true |
+| `EdgeMargin` | Offset from bottom-right (default 16) |
+| `Command` / `CommandParameter` | MVVM click handling |
+| `Click` | Routed event when the action button fires |
+
+Place the FAB in a grid overlay above scrollable content; do not put it inside `SkyPullToRefresh` unless you accept competing vertical gestures.
+
+## SkyPullToRefresh: Gesture + MVVM Refresh
+
+`SkyPullToRefresh` wraps scrollable content (typically a `ScrollViewer` in the template). A dedicated **`SkyPullToRefreshGestureInteractor`** tracks overscroll, drives `PullOffset` (read-only direct property), and crosses `PullThreshold` to fire refresh.
+
+| Property / event | Role |
+|------------------|------|
+| `IsRefreshing` | Two-way; set true while your async load runs |
+| `RefreshCommand` | Executes when refresh is triggered |
+| `RefreshRequested` | Routed event alternative to command binding |
+| `PullThreshold` / `MaxPullDistance` | Tune feel (defaults 64 / 112) |
+| `PART_Indicator` / `PART_Progress` | Visual pull affordance and `SkyProgressRing` |
+
+When `IsRefreshing` becomes false, the interactor animates `PullOffset` back to zero. Your view model should set `IsRefreshing = true` at refresh start and clear it when data arrives — the control does not await `RefreshCommand` automatically.
+
+```xml
+<SkyPullToRefresh IsRefreshing="{Binding IsBusy}"
+                RefreshCommand="{Binding ReloadCommand}">
+  <ScrollViewer>
+    <ItemsControl ItemsSource="{Binding Items}" />
+  </ScrollViewer>
+</SkyPullToRefresh>
 ```
 
 ## SkyKeyboardInset

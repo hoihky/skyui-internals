@@ -31,6 +31,23 @@ public sealed class VideoTimeline : TemplatedControl
 | `TimelineClipItem` | Segment on a track with start time and duration |
 | `TimelineMarkerItem` | Point annotation on the ruler |
 
+## TimelineHost: Where the Logic Lives
+
+`VideoTimeline` is intentionally thin. The constructor creates **`TimelineHost`**, which owns:
+
+| Collaborator | Responsibility |
+|--------------|----------------|
+| `TimelineProject` | Canonical `Tracks`, `Clips`, `Markers` collections |
+| `TimelineLayoutEngine` | Lane heights, clip rectangles, snap (`TimelineSnapSettings`) |
+| `TimelineSelectionModel` | Selected clips, tracks, time range |
+| `TimelineUndoStack` | `CanUndo` / `CanRedo`; mutating edits push commands |
+| `TimelineRenderer` | Paints clips, playhead, selection on `PART_MainCanvas` |
+| `TimelineGestureCoordinator` | Registers zoom, keyboard, lane, ruler, clip, and header interactors |
+
+Public API on `VideoTimeline` forwards to the host: `Project`, `Undo()` / `Redo()`, clipboard helpers, and collection properties (`Tracks`, `Clips`, `Markers`) expose the same instances as `_host.Project`. Property changed handlers on duration, pixels-per-second, and playhead call into the host so layout and playback stay coherent.
+
+When you debug timeline behavior, start in `TimelineHost.ApplyTemplate` (template part wiring and scroll sync) and `TimelineClipGestureInteractor` (drag-move and trim), not only in the control's styled properties.
+
 ## Template Parts for Scroll Sync
 
 Multiple synchronized scroll viewers:
@@ -118,25 +135,23 @@ public ObservableCollection<TimelineClipItem> Clips
 
 ## MVVM Integration
 
-View models hold the same collection instances the control binds to:
+You can bind directly to `Tracks` / `Clips` / `Markers` on the control (they are the host's `TimelineProject` collections), or mutate `timeline.Project` after construction. Either way, use the **same collection instances** the timeline already owns — replacing collections goes through the direct properties on `VideoTimeline`.
 
 ```csharp
 public class EditorViewModel
 {
-    public ObservableCollection<TimelineTrackItem> Tracks { get; } = new();
-    public ObservableCollection<TimelineClipItem> Clips { get; } = new();
-    public double PlayheadTime { get; set; }
+    public VideoTimeline Timeline { get; }
+
+    public EditorViewModel(VideoTimeline timeline) => Timeline = timeline;
+
+    public void LoadDemoClips()
+    {
+        Timeline.Clips.Add(new TimelineClipItem { /* ... */ });
+    }
 }
 ```
 
-```xml
-<VideoTimeline Tracks="{Binding Tracks}"
-               Clips="{Binding Clips}"
-               PlayheadTime="{Binding PlayheadTime, Mode=TwoWay}"
-               Duration="{Binding ProjectDuration}" />
-```
-
-The control mutates clip positions during drag; view models should use observable clip models or listen to timeline events to persist changes.
+Listen to `ClipChanged`, `ClipsRemoved`, and `UndoRedoStateChanged` to persist edits. The host applies undoable commands during drag; your view model should not fight those mutations by resetting collections on every pointer move.
 
 ## Custom Rendering vs Child Controls
 

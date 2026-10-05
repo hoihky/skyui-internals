@@ -570,6 +570,8 @@ AvaloniaProperty.RegisterAttached&lt;Button, bool&gt;(
 <li>Property name spelling matches registration name</li>
 <li>Owner type matches — <code>Grid</code> property on <code>StackPanel</code> ignored</li>
 </ul>
+<h2 id="related-skypopover">Related: SkyPopover</h2>
+<p>Not an attached property, but often paired with buttons: <code>SkyPopover</code> subclasses Avalonia's <code>Flyout</code> and adds the <code>sky</code> class to <code>FlyoutPresenterClasses</code> so popover panels pick up theme padding and elevation. Use it for lightweight panels (help text, compact pickers) where <code>SkyContextMenu</code> menu semantics are wrong.</p>
 <h2 id="summary">Summary</h2>
 <p>Attached properties are SkyUI's primary tool for extending Avalonia primitives without proliferating subclasses. <code>IsLoading</code> on buttons, accent override on applications, responsive behavior on grids, and touch targets on mobile controls all follow the same pattern: register, get/set, changed handler, XAML-accessible, cleanup on clear.</p>
 <p>Combined with style classes (Chapter 3) and templated controls (Chapter 4), attached properties complete the three mechanisms SkyUI uses to build a cohesive toolkit on top of Avalonia's primitives. Reach for attached properties when behavior is orthogonal to control type; reach for subclasses when the visual tree itself must change.</p>
@@ -683,6 +685,10 @@ AvaloniaProperty.RegisterAttached&lt;Button, bool&gt;(
                         
                         <li class="toc-h2">
                           <a href="#debugging-attached-properties-in-devtools">Debugging Attached Properties in DevTools</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#related-skypopover">Related: SkyPopover</a>
                         </li>
                         
                         <li class="toc-h2">

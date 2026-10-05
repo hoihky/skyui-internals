@@ -24,36 +24,33 @@ Unlike Avalonia's built-in `TreeView`, which expects `TreeDataTemplate` and `Hie
 
 ## The Adapter Pattern
 
-The control never assumes a specific model type. All tree semantics flow through `ICheckedListItemAdapter`:
+The control never assumes a specific model type. **Hierarchy, check state, and expand state** flow through `ICheckedListItemAdapter`. **Row labels and icons** come from `ItemTemplate`, not from the adapter:
 
 ```csharp
 public interface ICheckedListItemAdapter
 {
-    string GetLabel(object item);
-    IEnumerable? GetChildren(object item);
-    bool GetIsExpanded(object item);
-    void SetIsExpanded(object item, bool expanded);
-    bool? GetIsChecked(object item);
-    void SetIsChecked(object item, bool? value);
-    bool GetHasChildren(object item);
+    bool? GetIsChecked(object? item);
+    void SetIsChecked(object? item, bool? value);
+    bool GetIsExpanded(object? item);
+    void SetIsExpanded(object? item, bool value);
+    IEnumerable<object?> GetChildren(object? item);
+    bool HasChildren(object? item);
 }
 ```
 
-A default implementation handles simple in-memory trees:
+`DefaultCheckedListItemAdapter` maps these calls to `ICheckedListBoxItem` view models (`IsChecked`, `IsExpanded`, `Children`). For arbitrary domain types, supply a custom adapter and an `ItemTemplate` that binds to your model:
 
-```csharp
-public class DefaultCheckedListItemAdapter : ICheckedListItemAdapter
-{
-    public string GetLabel(object item) =>
-        item is ICheckedListBoxItem boxItem ? boxItem.Label : item.ToString() ?? "";
-
-    public IEnumerable? GetChildren(object item) =>
-        item is ICheckedListBoxItem boxItem ? boxItem.Children : null;
-    // ...
-}
+```xml
+<CheckedListBox.ItemTemplate>
+  <DataTemplate x:DataType="local:Permission">
+    <TextBlock Text="{Binding Name}" />
+  </DataTemplate>
+</CheckedListBox.ItemTemplate>
 ```
 
-Consumers with domain models implement the interface directly or wrap models in an adapter class. This is **dependency inversion**: the control depends on an abstraction, not on your `FolderNode` or `PermissionGroup` class.
+Internally, `CheckedListRowBuilder` constructs each row in code (indent, expander, optional checkbox, `ContentPresenter` bound to `ItemTemplate`, optional inline editor). Changing `ItemTemplate`, `Indent`, or `ShowCheckBoxes` triggers `ApplyItemTemplate()` so row chrome stays in sync.
+
+This is **dependency inversion**: the control depends on adapter abstractions for tree behavior, while presentation stays template-driven.
 
 ### Implementing an Adapter: Step by Step
 
@@ -69,29 +66,28 @@ public class Permission
 }
 ```
 
-Your adapter maps each method to model properties:
+Your adapter maps tree state only — the template shows `Name`:
 
 ```csharp
 public class PermissionAdapter : ICheckedListItemAdapter
 {
     public static readonly PermissionAdapter Instance = new();
 
-    public string GetLabel(object item) => ((Permission)item).Name;
+    public IEnumerable<object?> GetChildren(object? item) =>
+        ((Permission)item!).Children.Cast<object?>();
 
-    public IEnumerable? GetChildren(object item) => ((Permission)item).Children;
+    public bool GetIsExpanded(object? item) => ((Permission)item!).IsExpanded;
 
-    public bool GetIsExpanded(object item) => ((Permission)item).IsExpanded;
+    public void SetIsExpanded(object? item, bool expanded) =>
+        ((Permission)item!).IsExpanded = expanded;
 
-    public void SetIsExpanded(object item, bool expanded) =>
-        ((Permission)item).IsExpanded = expanded;
+    public bool? GetIsChecked(object? item) => ((Permission)item!).IsChecked;
 
-    public bool? GetIsChecked(object item) => ((Permission)item).IsChecked;
+    public void SetIsChecked(object? item, bool? value) =>
+        ((Permission)item!).IsChecked = value;
 
-    public void SetIsChecked(object item, bool? value) =>
-        ((Permission)item).IsChecked = value;
-
-    public bool GetHasChildren(object item) =>
-        ((Permission)item).Children.Count > 0;
+    public bool HasChildren(object? item) =>
+        ((Permission)item!).Children.Count > 0;
 }
 ```
 
@@ -310,7 +306,7 @@ Walk child collections recursively when items are expanded so that adding a chil
 
 ### INotifyPropertyChanged on Items
 
-If `GetLabel` reads a property that can change without collection changes, items should implement `INotifyPropertyChanged`:
+If your `ItemTemplate` binds to properties that can change without collection changes, items should implement `INotifyPropertyChanged`:
 
 ```csharp
 private void SubscribeToItem(object item)
@@ -356,12 +352,14 @@ For large trees, load children on expand:
 ```csharp
 public interface IAsyncTreeDataSource
 {
-    Task<IReadOnlyList<object>> LoadChildrenAsync(
-        object? parent, CancellationToken cancellationToken);
+    bool HasChildren(object? item);
+    bool AreChildrenLoaded(object? item);
+    Task<IReadOnlyList<object?>> LoadChildrenAsync(object? item, CancellationToken cancellationToken = default);
+    void ApplyLoadedChildren(object? item, IReadOnlyList<object?> children);
 }
 ```
 
-When the user expands a node with unloaded children, the control shows a placeholder row, awaits `LoadChildrenAsync`, then appends children to the model and rebuilds. Cancel in-flight loads if the user collapses before completion.
+Wrap your synchronous adapter with `AsyncCheckedListItemAdapter(inner, asyncSource)`. When the user expands a node whose children are not loaded, the row shows a progress ring (`IsLoadingChildren`), awaits `LoadChildrenAsync`, then calls `ApplyLoadedChildren` so your model stores the new children before the flat list rebuilds.
 
 ## Rebuild Scheduling
 
@@ -382,25 +380,15 @@ private void ScheduleRebuild()
 
 This coalesces rapid collection changes into one layout pass.
 
-## Row Template and ItemContainer
+## Row Visuals: Builder + ItemTemplate
 
-Each flat row renders through an `ItemTemplate` or `ItemTemplateSelector`. A typical row includes:
+You do not replace the entire row `DataTemplate` on `CheckedListBox` — the control always uses `CheckedListRowBuilder.Build` as the outer template. Your **`ItemTemplate`** only styles the content column (`CheckedListRowModel.Item` as data context). The builder adds:
 
-- Indent spacer
-- Expander toggle (visible when `HasChildren`)
-- CheckBox (visible when `ShowCheckBoxes`)
-- Label or edit `TextBox`
-- Optional action buttons
-
-```xml
-<DataTemplate x:DataType="models:CheckedListRowModel">
-  <Grid ColumnDefinitions="Auto,Auto,*">
-    <ToggleButton Grid.Column="0" IsVisible="{Binding ShowExpander}" />
-    <CheckBox Grid.Column="1" IsVisible="{Binding ShowCheckBox}" />
-    <TextBlock Grid.Column="2" Text="{Binding Label}" />
-  </Grid>
-</DataTemplate>
-```
+- Indent spacer (`Depth * Indent`)
+- Expander or loading ring when children are async
+- Optional tri-state `CheckBox` bound to `CheckedListRowModel.IsChecked`
+- `ContentPresenter` with your `ItemTemplate`, swapped for a `TextBox` during inline edit when `ICheckedListEditableAdapter` is set
+- Optional row action flyout from `ICheckedListRowActionProvider`
 
 ## Usage Example
 
@@ -410,21 +398,13 @@ Each flat row renders through an `ItemTemplate` or `ItemTemplateSelector`. A typ
                 CascadeToChildren="True"
                 UseThreeStateForParents="True"
                 ShowCheckBoxes="True"
-                AllowReorder="False" />
-```
-
-With a custom adapter:
-
-```csharp
-public class PermissionAdapter : ICheckedListItemAdapter
-{
-    public string GetLabel(object item) => ((Permission)item).Name;
-    public IEnumerable? GetChildren(object item) => ((Permission)item).Children;
-    public bool GetIsExpanded(object item) => ((Permission)item).IsExpanded;
-    public void SetIsExpanded(object item, bool expanded) =>
-        ((Permission)item).IsExpanded = expanded;
-    // check state methods...
-}
+                AllowReorder="False">
+  <CheckedListBox.ItemTemplate>
+    <DataTemplate x:DataType="local:Permission">
+      <TextBlock Text="{Binding Name}" />
+    </DataTemplate>
+  </CheckedListBox.ItemTemplate>
+</CheckedListBox>
 ```
 
 Reading selected items from the view model:

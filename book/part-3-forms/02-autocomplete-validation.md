@@ -412,6 +412,22 @@ public void ValidateForm()
 }
 ```
 
+### SkyEmptyState
+
+List and form pages need a deliberate zero-data state. `SkyEmptyState` is a templated placeholder with `Title`, `Description`, `IconKind` (`SkyIconKind`), and optional primary action (`ActionText`, `ActionCommand`, or `ActionContent` for custom button chrome). Template parts `PART_Icon` and `PART_Action` let the theme align icon size and button placement.
+
+Use it inside `SkyListDetailPage` detail panes, search results, or empty grids instead of leaving a blank `ScrollViewer`:
+
+```xml
+<SkyEmptyState Title="No projects yet"
+               Description="Create a project to see it here."
+               IconKind="Folder"
+               ActionText="New project"
+               ActionCommand="{Binding CreateProjectCommand}" />
+```
+
+The control adds `sky` and `sky-empty-state` classes on construction so variant styles apply consistently with other form chrome.
+
 ## Debugging Autocomplete Issues
 
 | Symptom | Likely cause | Fix |

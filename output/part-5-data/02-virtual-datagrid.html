@@ -273,80 +273,77 @@
 <p><code>SkyVirtualDataGrid</code> in the <code>SkyUI.Data</code> package is a high-performance tabular data control. Unlike <code>CheckedListBox</code>, which virtualizes a flat list of tree rows, the data grid must virtualize across two dimensions: rows and columns, while supporting sorting, column reorder, in-place editing, and CSV export. This chapter explains the virtual data source contract, row pooling, and update coordination.</p>
 <p>Data grids are where UI performance meets data complexity. A naive implementation creates one row control per record — fine for fifty rows, catastrophic for fifty thousand. <code>SkyVirtualDataGrid</code> treats the viewport as a window into a much larger dataset, binding only the rows you can see.</p>
 <h2 id="the-virtual-data-source-contract">The Virtual Data Source Contract</h2>
-<p>The grid never holds the full dataset in memory. It reads rows through <code>IVirtualGridDataSource</code>:</p>
-<pre><code class="language-csharp">public interface IVirtualGridDataSource : INotifyPropertyChanged
+<p>The grid does not require a materialized <code>ObservableCollection</code> of every row. It asks the data layer for <strong>one row object at a time</strong> through <code>IVirtualGridDataSource</code>:</p>
+<pre><code class="language-csharp">public interface IVirtualGridDataSource
 {
     long RowCount { get; }
-    object? GetCellValue(long rowIndex, SkyDataGridColumn column);
-    void SetCellValue(long rowIndex, SkyDataGridColumn column, object? value);
-    void Sort(SkyDataGridColumn column, ListSortDirection direction);
+    object? GetRow(long index);
+    event EventHandler? StructureChanged;
+
+    void ApplySort(SkyDataGridColumn? column, SkyDataGridSortDirection direction) { }
 }
 </code></pre>
-<p>Key design points:</p>
+<p>Design points that matter when you implement or consume this API:</p>
 <ul>
-<li><strong>Row index is <code>long</code></strong> — supports datasets larger than <code>int.MaxValue</code> in theory</li>
-<li><strong>Column is passed to cell accessors</strong> — the data source decides how to map columns to fields</li>
-<li><strong>Sort is delegated</strong> — the grid raises sort UI; the source reorders its backing store</li>
-<li><strong>INotifyPropertyChanged</strong> — when row count or data changes, the grid invalidates visible rows</li>
+<li><strong><code>GetRow</code> returns the row payload</strong>, not a formatted cell string. Columns read properties from that object.</li>
+<li><strong><code>StructureChanged</code></strong> is the invalidation signal. When row count or ordering changes, raise this event; the grid resets scroll bookkeeping and refreshes the pool.</li>
+<li><strong><code>ApplySort</code> is optional</strong> with a default no-op. The grid updates <code>SkyDataGridColumn.SortDirection</code> in the UI, then calls <code>ApplySort</code> so your source can reorder an in-memory list or append an <code>ORDER BY</code> clause for server data.</li>
+<li><strong>Reads should be fast</strong> — <code>GetRow</code> runs on the UI thread during scroll. Heavy work belongs in background loading with <code>SkyVirtualDataGrid.Post()</code> to marshal refresh back to the UI thread (documented on the interface).</li>
 </ul>
-<p>A list-backed implementation wraps any <code>IList</code>:</p>
-<pre><code class="language-csharp">public class ListVirtualGridDataSource : IVirtualGridDataSource
+<h3 id="listvirtualgriddatasource">ListVirtualGridDataSource</h3>
+<p>For moderate in-memory lists, SkyUI ships a bridge type:</p>
+<pre><code class="language-csharp">public sealed class ListVirtualGridDataSource : IVirtualGridDataSource
 {
-    private readonly IList _items;
+    public IList List { get; set; }  // subscribes to INotifyCollectionChanged
 
-    public long RowCount =&gt; _items.Count;
+    public long RowCount =&gt; _list.Count;
 
-    public object? GetCellValue(long rowIndex, SkyDataGridColumn column)
-    {
-        var item = _items[(int)rowIndex];
-        return column.BindingPath is not null
-            ? GetPropertyValue(item, column.BindingPath)
-            : item;
-    }
+    public object? GetRow(long index) =&gt;
+        index &lt; 0 || index &gt;= _list.Count ? null : _list[(int)index];
+
+    public event EventHandler? StructureChanged;
 }
 </code></pre>
-<p>For server-side data, implement the interface against your repository or API, fetching pages on demand when the user scrolls.</p>
-<h3 id="server-backed-data-source">Server-Backed Data Source</h3>
-<p>A database-backed source fetches pages when the scroll window moves:</p>
-<pre><code class="language-csharp">public class PagedVirtualGridDataSource : IVirtualGridDataSource
+<p>Assign <code>List</code> to your view model collection. Collection changes automatically raise <code>StructureChanged</code>.</p>
+<h3 id="server-backed-source-custom">Server-Backed Source (Custom)</h3>
+<p>A paged database source typically caches windows of rows:</p>
+<pre><code class="language-csharp">public sealed class PagedVirtualGridDataSource : IVirtualGridDataSource
 {
-    private readonly Dictionary&lt;long, RowCache&gt; _pageCache = new();
-    private long _rowCount;
+    public long RowCount { get; private set; }
 
-    public long RowCount =&gt; _rowCount;
-
-    public object? GetCellValue(long rowIndex, SkyDataGridColumn column)
+    public object? GetRow(long index)
     {
-        var page = rowIndex / PageSize;
-        if (!_pageCache.TryGetValue(page, out var cache))
-        {
-            cache = FetchPage(page);
-            _pageCache[page] = cache;
-        }
-        var item = cache.Items[(int)(rowIndex % PageSize)];
-        return GetPropertyValue(item, column.BindingPath);
+        var page = index / PageSize;
+        var cache = EnsurePage(page);
+        return cache[(int)(index % PageSize)];
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-}
-</code></pre>
-<p>Invalidate the cache when data changes externally. Raise <code>PropertyChanged</code> for <code>RowCount</code> when records are added or deleted.</p>
-<h3 id="property-path-resolution">Property Path Resolution</h3>
-<p><code>GetPropertyValue</code> walks dotted paths (<code>&quot;Address.City&quot;</code>) via reflection or compiled expression trees:</p>
-<pre><code class="language-csharp">private static object? GetPropertyValue(object item, string? path)
-{
-    if (path is null) return item;
-
-    object? current = item;
-    foreach (var segment in path.Split('.'))
+    public void ApplySort(SkyDataGridColumn? column, SkyDataGridSortDirection direction)
     {
-        if (current is null) return null;
-        var prop = current.GetType().GetProperty(segment);
-        current = prop?.GetValue(current);
+        _sortColumn = column?.BindingPath;
+        _sortDirection = direction;
+        _pageCache.Clear();
+        StructureChanged?.Invoke(this, EventArgs.Empty);
     }
-    return current;
+
+    public event EventHandler? StructureChanged;
 }
 </code></pre>
+<p>After <code>ApplySort</code>, clear caches so the next <code>GetRow</code> calls fetch with the new ordering.</p>
+<h3 id="where-cell-text-comes-from">Where Cell Text Comes From</h3>
+<p>The data source does <strong>not</strong> expose per-column getters. Column display uses:</p>
+<ol>
+<li><strong><code>SkyDataGridColumn.BindingPath</code></strong> — dotted property path on the row object</li>
+<li><strong><code>SkyDataGridColumn.CellTemplate</code></strong> — full <code>IDataTemplate</code> when you need custom visuals</li>
+<li><strong><code>SkyDataGridCellFormatter</code></strong> — shared reflection helper for export and clipboard:</li>
+</ol>
+<pre><code class="language-csharp">public static class SkyDataGridCellFormatter
+{
+    public static object? ResolveValue(object? row, string? bindingPath);
+    public static string FormatCell(object? row, SkyDataGridColumn column);
+}
+</code></pre>
+<p>During virtualization, row templates bind to <code>SkyVirtualRowModel.Item</code> (the object from <code>GetRow</code>). The grid builds default text cells from <code>BindingPath</code> when no template is set.</p>
 <p>For hot paths, cache compiled accessors keyed by <code>(Type, path)</code>.</p>
 <h2 id="column-definition">Column Definition</h2>
 <p>Columns are defined in an <code>ObservableCollection&lt;SkyDataGridColumn&gt;</code> on the grid:</p>
@@ -463,7 +460,7 @@ Scroll position → calculate first visible row index
 <p>Scroll events, data source changes, and column width adjustments all call <code>RequestInvalidate</code> rather than rebuilding immediately. This prevents layout thrashing during rapid scrolling.</p>
 <h3 id="scroll-synchronization">Scroll Synchronization</h3>
 <p>The grid tracks <code>_lastScrollFirst</code> (the first visible row index) and compares it on every scroll offset change. When the first visible row changes, pool rows are rebound to new data indices. When only the sub-row pixel offset changes within the same row window, existing bindings are repositioned without rebinding.</p>
-<p>Repositioning is cheaper than rebinding. During smooth scroll within the same row window, update <code>Canvas.Top</code> or <code>Margin</code> on pooled rows rather than calling <code>GetCellValue</code> for every cell.</p>
+<p>Repositioning is cheaper than rebinding. During smooth scroll within the same row window, update <code>Canvas.Top</code> or <code>Margin</code> on pooled rows rather than re-running <code>GetRow</code> and formatter logic for every cell.</p>
 <h2 id="column-reorder">Column Reorder</h2>
 <p>When <code>AllowColumnReorder</code> is true, header pointer events track drag state:</p>
 <pre><code class="language-csharp">private int? _headerPointerColumn;
@@ -482,19 +479,16 @@ private bool _headerDragged;
         _ =&gt; ListSortDirection.Ascending
     };
 
-    DataSource?.Sort(column, newDirection);
-    column.SortDirection = newDirection;
+    column.SortDirection = MapToGridSort(newDirection);
+    DataSource?.ApplySort(column, column.SortDirection);
     InvalidateVisibleRows();
 }
 </code></pre>
-<p>The grid updates header sort indicators; the data source performs the actual reorder.</p>
+<p>The grid updates header sort indicators; <strong><code>ApplySort</code></strong> is where your source reorders an in-memory list or records sort metadata for a remote query. The default interface implementation is a no-op.</p>
 <h3 id="multi-column-sort">Multi-Column Sort</h3>
-<p>The base interface sorts one column at a time. For multi-column sort, extend the data source:</p>
-<pre><code class="language-csharp">void Sort(IReadOnlyList&lt;(SkyDataGridColumn Column, ListSortDirection Direction)&gt; sortKeys);
-</code></pre>
-<p>The grid UI may only expose single-column sort while the source supports compound keys internally.</p>
+<p>The stock grid toggles one column at a time. Compound sort belongs in your <code>ApplySort</code> implementation: read <code>column.BindingPath</code> and <code>SkyDataGridSortDirection</code>, then sort by multiple keys inside the backing store before raising <code>StructureChanged</code>.</p>
 <h2 id="in-place-editing">In-Place Editing</h2>
-<p>Double-clicking an editable cell enters edit mode. The grid swaps the read-only <code>TextBlock</code> for an input control defined by the column's <code>CellEditingTemplate</code>. On commit, <code>SetCellValue</code> is called on the data source.</p>
+<p>Double-clicking an editable cell (<code>IsReadOnly = false</code> on the column) enters inline edit mode. The grid swaps the read-only <code>TextBlock</code> for a <code>TextBox</code> inside the cell host. On commit, it raises <strong><code>CellEditCommitted</code></strong> — the data source is not updated automatically.</p>
 <pre><code class="language-csharp">private void BeginEdit(long rowIndex, SkyDataGridColumn column)
 {
     if (column.IsReadOnly) return;
@@ -504,14 +498,17 @@ private bool _headerDragged;
     ShowEditingTemplate(rowIndex, column);
 }
 
-private void CommitEdit(object? newValue)
+private void CommitEdit(string newText)
 {
-    DataSource?.SetCellValue(_editingRow, _editingColumn!, newValue);
+    var column = _editingColumn!;
+    var rowIndex = _editingRow;
     EndEdit();
+    CellEditCommitted?.Invoke(this,
+        new SkyDataGridCellEditEventArgs(rowIndex, column, newText));
     InvalidateVisibleRows();
 }
 </code></pre>
-<p>Handle Escape to cancel without calling <code>SetCellValue</code>. Handle Enter and lost-focus to commit.</p>
+<p>Handle Escape to cancel without raising <code>CellEditCommitted</code>. Handle Enter and lost-focus to commit. Persist changes in a <code>CellEditCommitted</code> handler by updating the object returned from <code>GetRow(rowIndex)</code>.</p>
 <p>Validation before commit can mirror <code>SkyFormField</code> — call a validator and show an error adorner on the cell without closing edit mode.</p>
 <h2 id="selection">Selection</h2>
 <p><code>SelectedRowIndex</code> is a two-way styled property. When the user clicks a row, the grid updates the index and applies a selection pseudo-class to the pooled row visual:</p>
@@ -520,35 +517,14 @@ public class SkyDataGridRow : TemplatedControl { }
 </code></pre>
 <p>Because rows are recycled, clear selection styling when rebinding a pooled row to a different data index.</p>
 <h2 id="csv-export">CSV Export</h2>
-<p><code>SkyDataGridCsvExporter</code> walks the data source sequentially:</p>
-<pre><code class="language-csharp">public static async Task ExportAsync(
-    IVirtualGridDataSource source,
-    IReadOnlyList&lt;SkyDataGridColumn&gt; columns,
-    Stream output,
-    CancellationToken cancellationToken)
+<p><code>SkyVirtualDataGrid.ExportToCsvAsync</code> delegates to <code>SkyDataGridCsvExporter</code>, which walks row indices and formats each column through <code>SkyDataGridCellFormatter</code>:</p>
+<pre><code class="language-csharp">public Task ExportToCsvAsync(Stream destination, long startIndex, long maxRows, CancellationToken ct = default)
 {
-    await using var writer = new StreamWriter(output);
-
-    // Header row
-    await writer.WriteLineAsync(string.Join(&quot;,&quot;, columns.Select(c =&gt; Escape(c.Header))));
-
-    for (long i = 0; i &lt; source.RowCount; i++)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-
-        var values = columns.Select(c =&gt; source.GetCellValue(i, c));
-        await writer.WriteLineAsync(string.Join(&quot;,&quot;, values.Select(Escape)));
-    }
-}
-
-private static string Escape(object? value)
-{
-    var text = value?.ToString() ?? &quot;&quot;;
-    if (text.Contains(',') || text.Contains('&quot;'))
-        return $&quot;\&quot;{text.Replace(&quot;\&quot;&quot;, &quot;\&quot;\&quot;&quot;)}\&quot;&quot;;
-    return text;
+    var exporter = new SkyDataGridCsvExporter();
+    return exporter.ExportAsync(DataSource!, Columns, destination, startIndex, maxRows, ct);
 }
 </code></pre>
+<p>Inside the exporter, each row is <code>dataSource.GetRow(i)</code> and each cell is <code>SkyDataGridCellFormatter.FormatCell(row, columns[c])</code>. Custom <code>CellTemplate</code> content is not rasterized — export uses binding paths and formatter logic, matching clipboard behavior.</p>
 <p>Export uses the virtual interface, so it works with both in-memory lists and database-backed sources. Run export on a background thread for large datasets; marshal progress updates to the UI thread.</p>
 <h2 id="disabling-virtualization">Disabling Virtualization</h2>
 <p>Set <code>EnableRowVirtualization=&quot;False&quot;</code> for small datasets where you want every row materialized (simpler debugging, supports row reorder animations). The grid creates one visual row per data row. Use this only when row count is modest (under a few hundred).</p>
@@ -565,8 +541,8 @@ private static string Escape(object? value)
 <tbody>
 <tr>
 <td>Blank cells</td>
-<td>Wrong <code>BindingPath</code> or null data</td>
-<td>Verify <code>GetCellValue</code> return value</td>
+<td>Wrong <code>BindingPath</code> or null <code>GetRow</code></td>
+<td>Verify <code>ResolveValue</code> on row object</td>
 </tr>
 <tr>
 <td>Scroll jumps</td>
@@ -575,8 +551,8 @@ private static string Escape(object? value)
 </tr>
 <tr>
 <td>Stale data after edit</td>
-<td><code>SetCellValue</code> does not raise change notification</td>
-<td>Raise <code>PropertyChanged</code> on source</td>
+<td>Handler did not mutate row object</td>
+<td>Update model in <code>CellEditCommitted</code>; call <code>StructureChanged</code> if needed</td>
 </tr>
 <tr>
 <td>Only first page visible</td>
@@ -585,8 +561,8 @@ private static string Escape(object? value)
 </tr>
 <tr>
 <td>Sort does nothing</td>
-<td><code>Sort</code> not implemented in source</td>
-<td>Implement reorder in data source</td>
+<td><code>ApplySort</code> left as default no-op</td>
+<td>Reorder backing store and raise <code>StructureChanged</code></td>
 </tr>
 <tr>
 <td>Pool rows overlap</td>
@@ -694,7 +670,7 @@ _rowsItems.Margin = new Thickness(0, -partial, 0, 0);
 <pre><code class="language-csharp">_rowModels[i].Update(idx, ds.GetRow(idx));
 _rowModels[i].SetSelected(sel.HasValue &amp;&amp; sel.Value == idx);
 </code></pre>
-<p><code>Update</code> stores the logical row index and the opaque row object from <code>IVirtualGridDataSource.GetRow(long)</code>. The row template binds cells through <code>GetCellValue(rowIndex, column)</code> — the model object is available for <code>RowFormatting</code> events but cell text comes from the data source, not from reflection on every scroll frame unless your source does that internally.</p>
+<p><code>Update</code> stores the logical row index and the opaque row object from <code>IVirtualGridDataSource.GetRow(long)</code>. Default cells bind to properties on <code>Item</code> via each column's <code>BindingPath</code>; <code>SkyDataGridCellFormatter</code> centralizes the same resolution for export and clipboard. <code>RowFormatting</code> receives both index and <code>Item</code> so you can add row classes without custom templates.</p>
 <p><code>Clear()</code> marks a pool slot unused when <code>first + i &gt;= count</code> (scrolled past the last row).</p>
 <h3 id="pool-size-calculation">Pool Size Calculation</h3>
 <pre><code class="language-csharp">private int ComputeVirtualRowPoolSize(double viewportHeight, double rowHeight, long rowCount)
@@ -735,12 +711,12 @@ _rowModels[i].SetSelected(sel.HasValue &amp;&amp; sel.Value == idx);
 <h3 id="cell-editing-pipeline">Cell Editing Pipeline</h3>
 <ol>
 <li>User double-clicks an editable cell (<code>IsReadOnly = false</code> on column).</li>
-<li>Grid swaps read template for <code>CellEditingTemplate</code>.</li>
-<li>On commit (Enter or focus leave), <code>SetCellValue(rowIndex, column, newValue)</code> on data source.</li>
-<li><code>CellEditCommitted</code> event fires for validation or audit logging.</li>
+<li>Grid hosts an inline <code>TextBox</code> in the cell (editing template support is column-driven).</li>
+<li>On commit (Enter or focus leave), the grid raises <strong><code>CellEditCommitted</code></strong> with row index, column, and new text.</li>
+<li>Your handler updates the row model (or calls an API) and optionally raises <code>StructureChanged</code>.</li>
 <li><code>InvalidateVisibleRowsCore</code> refreshes the cell display.</li>
 </ol>
-<p>Keep editing logic in the data source when rows are server-backed — the grid only knows indices.</p>
+<p>The grid never mutates your domain objects directly — indices and text are all it knows. Server-backed rows should persist in the commit handler, then refresh or patch the cache before the next <code>GetRow</code>.</p>
 <h3 id="row-formatting-and-selection-classes">Row Formatting and Selection Classes</h3>
 <p><code>RowFormatting</code> is deferred to <code>DispatcherPriority.Render</code> so rapid scroll does not invoke user code on every intermediate frame:</p>
 <pre><code class="language-csharp">var args = new SkyDataGridRowFormattingEventArgs(model.RowIndex, model.Item, rowRoot, cells);
@@ -754,7 +730,7 @@ foreach (var cls in args.RowClasses)
 <p><code>ExportToCsvAsync</code> walks the data source sequentially by index — it never materializes the full collection:</p>
 <pre><code class="language-csharp">public Task ExportToCsvAsync(Stream destination, long startIndex, long maxRows, CancellationToken ct)
 </code></pre>
-<p><code>CopySelectionToClipboardAsync</code> uses <code>SkyVirtualDataGridClipboard</code> to format TSV for Excel paste. Both paths call <code>GetCellValue</code> per cell, so they work with server-backed sources if <code>GetCellValue</code> is implemented.</p>
+<p><code>CopySelectionToClipboardAsync</code> uses <code>SkyVirtualDataGridClipboard</code> to format TSV for Excel paste. Both clipboard and CSV paths call <code>GetRow</code> once per row and <code>SkyDataGridCellFormatter</code> per column, so server-backed sources work as long as <code>GetRow</code> returns current data.</p>
 <h3 id="non-virtualized-mode">Non-Virtualized Mode</h3>
 <p><code>EnableRowVirtualization = false</code> materializes one pool row per data row (capped by int row count). Use only for &lt; 500 rows when you need row reorder animations or simpler debugging. The code path in <code>InvalidateVisibleRowsCore</code> skips scroll window math and binds all rows directly.</p>
 <h3 id="architecture-diagram">Architecture Diagram</h3>
@@ -768,7 +744,7 @@ foreach (var cls in args.RowClasses)
 │                └── Pool[N] × SkyVirtualRowModel          │
 │                      └── Row template (cells)            │
 ├─────────────────────────────────────────────────────────┤
-│ IVirtualGridDataSource ←→ GetRow / GetCellValue         │
+│ IVirtualGridDataSource ←→ GetRow + CellFormatter        │
 │ SkyVirtualDataGridUpdateCoordinator (coalesce)          │
 └─────────────────────────────────────────────────────────┘
 </code></pre>
@@ -837,11 +813,15 @@ foreach (var cls in args.RowClasses)
                         </li>
                         
                         <li class="toc-h3">
-                          <a href="#server-backed-data-source">Server-Backed Data Source</a>
+                          <a href="#listvirtualgriddatasource">ListVirtualGridDataSource</a>
                         </li>
                         
                         <li class="toc-h3">
-                          <a href="#property-path-resolution">Property Path Resolution</a>
+                          <a href="#server-backed-source-custom">Server-Backed Source (Custom)</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#where-cell-text-comes-from">Where Cell Text Comes From</a>
                         </li>
                         
                         <li class="toc-h2">

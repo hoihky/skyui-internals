@@ -600,6 +600,16 @@ IsLightDismissEnabled=&quot;False&quot;&gt;
         ValidationErrors.Add(new SkyValidationSummaryItem(&quot;Password&quot;, &quot;Password too short.&quot;));
 }
 </code></pre>
+<h3 id="skyemptystate">SkyEmptyState</h3>
+<p>List and form pages need a deliberate zero-data state. <code>SkyEmptyState</code> is a templated placeholder with <code>Title</code>, <code>Description</code>, <code>IconKind</code> (<code>SkyIconKind</code>), and optional primary action (<code>ActionText</code>, <code>ActionCommand</code>, or <code>ActionContent</code> for custom button chrome). Template parts <code>PART_Icon</code> and <code>PART_Action</code> let the theme align icon size and button placement.</p>
+<p>Use it inside <code>SkyListDetailPage</code> detail panes, search results, or empty grids instead of leaving a blank <code>ScrollViewer</code>:</p>
+<pre><code class="language-xml">&lt;SkyEmptyState Title=&quot;No projects yet&quot;
+Description=&quot;Create a project to see it here.&quot;
+IconKind=&quot;Folder&quot;
+ActionText=&quot;New project&quot;
+ActionCommand=&quot;{Binding CreateProjectCommand}&quot; /&gt;
+</code></pre>
+<p>The control adds <code>sky</code> and <code>sky-empty-state</code> classes on construction so variant styles apply consistently with other form chrome.</p>
 <h2 id="debugging-autocomplete-issues">Debugging Autocomplete Issues</h2>
 <table class="table">
 <thead>
@@ -776,6 +786,10 @@ MinimumQueryLength=&quot;2&quot; /&gt;
                         
                         <li class="toc-h3">
                           <a href="#skyvalidationsummary">SkyValidationSummary</a>
+                        </li>
+                        
+                        <li class="toc-h3">
+                          <a href="#skyemptystate">SkyEmptyState</a>
                         </li>
                         
                         <li class="toc-h2">

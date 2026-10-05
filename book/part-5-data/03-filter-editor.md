@@ -39,7 +39,7 @@ public class FilterEditor : TemplatedControl
 
 ## ViewModel Bridge Pattern
 
-The control creates an internal `FilterEditorViewModel` when `Document` is assigned:
+The control creates a `FilterEditorViewModel` when `Document` is assigned. The type is **public** in `SkyUI.FilterEditor`, so you can unit-test commands without hosting the visual control:
 
 ```csharp
 private void OnDocumentOrExporterChanged()
@@ -64,13 +64,13 @@ private void OnDocumentOrExporterChanged()
 }
 ```
 
-### Why Internal ViewModel?
+### Why a Separate ViewModel?
 
-Filter UI involves dozens of bindable commands: add group, add condition, remove node, toggle AND/OR, change operator. Putting all of that on the control class would bloat the public API. The internal ViewModel:
+Filter UI involves dozens of bindable commands: add group, add condition, remove node, toggle AND/OR, change operator. Putting all of that on the control class would bloat the public API. `FilterEditorViewModel`:
 
 - Keeps `FilterEditor` properties minimal (`Document`, `SqlExporter`, `ShowSqlPreview`)
 - Enables template bindings to `{Binding AddConditionCommand}` etc.
-- Allows unit testing ViewModel logic without visual tree
+- Can be constructed in tests with a `FilterDocument` and a fake `IFilterSqlExporter`
 
 ### Lifecycle Cleanup
 
@@ -107,11 +107,11 @@ public class FilterGroupNode : FilterNode
     public ObservableCollection<FilterNode> Children { get; }
 }
 
-public class FilterConditionNode : FilterNode
+public sealed class FilterConditionNode : FilterNodeBase
 {
-    public string FieldName { get; set; }
-    public FilterOperator Operator { get; set; } // Equals, Contains, GreaterThan, ...
-    public object? Value { get; set; }
+    public string FieldPath { get; set; }
+    public FilterCompareOperator Operator { get; set; }
+    public string? ValueText { get; set; }  // null for IsNull / IsNotNull
 }
 ```
 
@@ -122,17 +122,17 @@ public class FilterConditionNode : FilterNode
 ```csharp
 public interface IFilterSqlExporter
 {
-    string Export(FilterGroupNode root);
+    string ToSql(FilterDocument document);
 }
 ```
 
-`BasicFilterSqlExporter` generates parameterized SQL WHERE clauses. Consumers with custom dialects implement the interface:
+`BasicFilterSqlExporter` walks the document with `IFilterNodeVisitor` and emits a `WHERE` clause. Consumers with custom dialects implement the same interface:
 
 ```csharp
-public class PostgreSqlFilterExporter : IFilterSqlExporter
+public sealed class PostgreSqlFilterExporter : IFilterSqlExporter
 {
-    public string Export(FilterGroupNode root) =>
-        BuildWhereClause(root, dialect: SqlDialect.PostgreSql);
+    public string ToSql(FilterDocument document) =>
+        BuildWhereClause(document.Root, dialect: SqlDialect.PostgreSql);
 }
 ```
 
@@ -161,7 +161,7 @@ public class CrudViewModel
 
     public void ApplyFilter()
     {
-        var sql = _exporter.Export(FilterDocument.Root);
+        var sql = _exporter.ToSql(FilterDocument);
         GridSource = new SqlFilteredDataSource(_connection, sql);
     }
 }
@@ -177,14 +177,14 @@ public class CrudViewModel
 | Pattern | Application |
 |---------|-------------|
 | Document model | Serializable filter tree independent of UI |
-| Internal ViewModel | Rich command surface without public control API bloat |
+| ViewModel bridge | Rich command surface without public control API bloat |
 | Strategy | `IFilterSqlExporter` for SQL dialects |
 | IDisposable teardown | Unsubscribe on logical detach |
 
 ## Building a Similar Editor Control
 
 1. Define a **document** model the app can save/load
-2. Create an internal **ViewModel** with commands for tree mutations
+2. Create a **ViewModel** with commands for tree mutations (public type if you want isolated tests)
 3. Set `DataContext = viewModel` when document changes
 4. Keep **export/evaluation** pluggable via interfaces
 5. **Dispose** subscriptions when document clears or control detaches
@@ -201,14 +201,14 @@ public sealed class FilterDocument
 }
 ```
 
-`Fields` describes what the user can filter on — name, CLR type, allowed operators. The UI populates field dropdowns from this collection; SQL export uses `FieldPath` for column identifiers.
+`Fields` describes what the user can filter on — display name, CLR type, allowed operators. The UI populates field dropdowns from this collection; each `FilterFieldDescriptor` exposes **`PropertyPath`** (the key stored on `FilterConditionNode.FieldPath` and passed to SQL export).
 
 ### FilterNodeBase Hierarchy
 
 ```
 FilterNodeBase (abstract)
 ├── FilterGroupNode     → LogicalKind: And | Or, Children collection
-└── FilterConditionNode → FieldPath, Operator, ValueText
+└── FilterConditionNode → FieldPath, FilterCompareOperator, ValueText
 ```
 
 Every node implements the **visitor pattern**:
@@ -283,7 +283,7 @@ private void AddCondition()
     };
     if (target is null) return;
 
-    var field = _document.Fields.FirstOrDefault()?.FieldPath ?? "Field";
+    var field = _document.Fields.FirstOrDefault()?.PropertyPath ?? "Field";
     target.AddCondition(field, FilterCompareOperator.Equal, "");
     RefreshSql();
 }

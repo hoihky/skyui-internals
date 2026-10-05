@@ -285,41 +285,24 @@
 <h2 id="diagramsurface-overview">DiagramSurface Overview</h2>
 <pre><code class="language-csharp">public sealed class DiagramSurface : Panel
 {
-    public static readonly StyledProperty&lt;DiagramDocument?&gt; DocumentProperty = ...;
-    public static readonly StyledProperty&lt;IEdgePathComputer?&gt; EdgePathComputerProperty = ...;
-    public static readonly StyledProperty&lt;IDiagramNodePresenterFactory?&gt; NodePresenterFactoryProperty = ...;
-    public static readonly StyledProperty&lt;IDiagramSceneHitTester?&gt; HitTesterProperty = ...;
-    public static readonly StyledProperty&lt;double&gt; ZoomProperty = ...;
-    public static readonly StyledProperty&lt;Vector&gt; PanOffsetProperty = ...;
+    public static readonly StyledProperty&lt;DiagramModel?&gt; ModelProperty = ...;
+    public static readonly StyledProperty&lt;IEdgePathComputer?&gt; PathComputerProperty = ...;
+    public static readonly StyledProperty&lt;IDiagramNodePresenterFactory?&gt; NodeFactoryProperty = ...;
+    public DiagramSelectionModel Selection { get; }
 }
 </code></pre>
-<p>The surface holds a <code>DiagramDocument</code> model containing nodes and edges. Visual presenters are created through factory and strategy interfaces. Default implementations ship for straight routing and rectangular nodes; swap strategies without changing surface code.</p>
+<p>The surface binds to a <strong><code>DiagramModel</code></strong> (<code>IDiagramModel</code>) containing nodes and edges. <code>DiagramNodePresenter</code> controls sit on an internal nodes canvas; edges draw on a separate layer. <code>PathComputer</code> resolves port world positions; <code>NodeFactory</code> creates per-type presenters. Default straight routing ships as <code>StraightEdgePathComputer</code>.</p>
 <h2 id="pluggable-strategies">Pluggable Strategies</h2>
 <p>Strategy interfaces keep the surface stable while algorithms and node visuals vary — the same extensibility pattern as <code>IEdgePathComputer</code> in graph libraries and <code>IDocumentView</code> in IDE shells.</p>
 <h3 id="iedgepathcomputer">IEdgePathComputer</h3>
-<p>Computes the geometry for edge lines between ports:</p>
+<p>Resolves <strong>world-space endpoints</strong> for each edge from port metadata on the model:</p>
 <pre><code class="language-csharp">public interface IEdgePathComputer
 {
-    Geometry ComputePath(
-        Point start, Point end,
-        EdgeRoutingStyle style);
+    (Point Start, Point End) GetEndpoints(IDiagramEdge edge, IDiagramModel model);
 }
 </code></pre>
-<p>Implementations include straight lines, orthogonal routing, and bezier curves. The surface calls the computer during <code>Render</code> or when edge positions change.</p>
-<p>Example straight-line computer:</p>
-<pre><code class="language-csharp">public sealed class StraightEdgePathComputer : IEdgePathComputer
-{
-    public Geometry ComputePath(Point start, Point end, EdgeRoutingStyle style)
-    {
-        var geo = new StreamGeometry();
-        using var ctx = geo.Open();
-        ctx.BeginFigure(start, false);
-        ctx.LineTo(end);
-        return geo;
-    }
-}
-</code></pre>
-<p>Orthogonal routers add bend points — cache results per edge until node positions change to avoid recomputing on every frame.</p>
+<p><code>StraightEdgePathComputer</code> looks up source and target nodes, finds ports by id, and calls <code>GetWorldPosition</code> on each port relative to node bounds. The surface draws a line segment (or polyline in custom routers) between those points whenever layout changes.</p>
+<p>Orthogonal or spline routers still implement the same interface — only the segment construction differs. Cache per edge until <code>DiagramModelChangedEventArgs</code> reports <code>NodeLayout</code> or <code>Structure</code> changes.</p>
 <h3 id="idiagramnodepresenterfactory">IDiagramNodePresenterFactory</h3>
 <p>Creates the visual control for each node:</p>
 <pre><code class="language-csharp">public interface IDiagramNodePresenterFactory
@@ -362,13 +345,13 @@
 {
     var docPoint = surface.ScreenToDocument(point);
 
-    foreach (var edge in surface.Document!.Edges.Reverse())
+    foreach (var edge in surface.Model!.Edges.Reverse())
     {
         if (HitTestEdge(edge, docPoint, out var hit))
             return DiagramHitTestResult.Edge(edge, hit);
     }
 
-    foreach (var node in surface.Document.Nodes.Reverse())
+    foreach (var node in surface.Model.Nodes.Reverse())
     {
         var rect = new Rect(node.X, node.Y, node.Width, node.Height);
         if (rect.Contains(docPoint))
@@ -387,7 +370,7 @@
     {
         child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
     }
-    return Document?.Bounds.Size ?? default;
+    return ComputeContentSize(); // aggregates node bounds from Model
 }
 
 protected override Size ArrangeOverride(Size finalSize)
@@ -403,10 +386,10 @@ protected override Size ArrangeOverride(Size finalSize)
 }
 </code></pre>
 <p>Node position and size come from the model, not from layout constraints. The panel's available size is effectively infinite (canvas semantics).</p>
-<h3 id="avalonia-concept-desired-size-vs-document-bounds">Avalonia Concept: Desired Size vs Document Bounds</h3>
-<p>Returning <code>Document.Bounds.Size</code> from <code>MeasureOverride</code> tells the parent how large the virtual canvas is. Scrollable hosts wrap the surface in a <code>ScrollViewer</code> — the surface should report intrinsic document size, not viewport size. If <code>Bounds</code> is empty, fall back to <code>finalSize</code> from last arrange to avoid collapse on empty documents.</p>
-<h3 id="syncing-children-to-document">Syncing Children to Document</h3>
-<p>Subscribe to <code>Document.Nodes.CollectionChanged</code>:</p>
+<h3 id="avalonia-concept-desired-size-vs-model-bounds">Avalonia Concept: Desired Size vs Model Bounds</h3>
+<p><code>ComputeContentSize()</code> unions node <code>Bounds</code> from <code>Model</code> so <code>MeasureOverride</code> reports the intrinsic canvas size. Scrollable hosts wrap the surface in a <code>ScrollViewer</code> — report document size, not viewport size.</p>
+<h3 id="syncing-children-to-model">Syncing Children to Model</h3>
+<p>Subscribe to <code>Model.Nodes</code> / <code>Model.Edges</code> collection changes and <code>DiagramModel.Changed</code>:</p>
 <pre><code class="language-csharp">private void OnNodesChanged(object? sender, NotifyCollectionChangedEventArgs e)
 {
     switch (e.Action)
@@ -426,32 +409,26 @@ protected override Size ArrangeOverride(Size finalSize)
 
 private void AddNodePresenter(DiagramNode node)
 {
-    var presenter = NodePresenterFactory!.CreatePresenter(node);
+    var presenter = NodeFactory!.CreatePresenter(node);
     presenter.Tag = node;
     Children.Add(presenter);
 }
 </code></pre>
-<p>Tag links visual back to model for arrange and hit testing. Use weak events or unsubscribe when <code>Document</code> property changes to avoid leaks.</p>
+<p><code>DiagramNodePresenter</code> holds a reference to the <code>DiagramNode</code> model. Unsubscribe in <code>AttachModel()</code> when <code>Model</code> is replaced to avoid leaks.</p>
 <h2 id="edge-rendering">Edge Rendering</h2>
 <p>Edges are typically not <code>Control</code> children. They are drawn in <code>Render</code>:</p>
 <pre><code class="language-csharp">public override void Render(DrawingContext context)
 {
     base.Render(context);
 
-    if (Document is null || EdgePathComputer is null)
+    if (Model is null || PathComputer is null)
         return;
 
-    using (context.PushTransform(BuildZoomPanTransform()))
+    foreach (var edge in Model.Edges)
     {
-        foreach (var edge in Document.Edges)
-        {
-            var start = GetPortPosition(edge.SourceNode, edge.SourcePort);
-            var end = GetPortPosition(edge.TargetNode, edge.TargetPort);
-            var geometry = EdgePathComputer.ComputePath(start, end, edge.RoutingStyle);
-
-            var pen = edge.IsSelected ? SelectedEdgePen : EdgePen;
-            context.DrawGeometry(null, pen, geometry);
-        }
+        var (start, end) = PathComputer.GetEndpoints(edge, Model);
+        var pen = Selection.IsEdgeSelected(edge.Id) ? SelectedEdgePen : EdgePen;
+        context.DrawLine(pen, start, end);
     }
 }
 </code></pre>
@@ -530,23 +507,21 @@ private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
 }
 </code></pre>
 <p>On release, if hit target is compatible input port, add <code>DiagramEdge</code> to document.</p>
-<h2 id="document-model">Document Model</h2>
-<pre><code class="language-csharp">public class DiagramDocument
+<h2 id="diagrammodel">DiagramModel</h2>
+<pre><code class="language-csharp">public sealed class DiagramModel : IDiagramModel
 {
-    public ObservableCollection&lt;DiagramNode&gt; Nodes { get; } = new();
-    public ObservableCollection&lt;DiagramEdge&gt; Edges { get; } = new();
-    public Rect Bounds { get; private set; }
+    public ObservableCollection&lt;DiagramNode&gt; Nodes { get; }
+    public ObservableCollection&lt;DiagramEdge&gt; Edges { get; }
+    public event EventHandler&lt;DiagramModelChangedEventArgs&gt;? Changed;
 
-    public void RecalculateBounds()
-    {
-        Bounds = Nodes.Count == 0
-            ? new Rect(0, 0, 800, 600)
-            : Nodes.Aggregate(Rect.Empty, (r, n) =&gt; r.Union(new Rect(n.X, n.Y, n.Width, n.Height)));
-    }
+    public DiagramNode AddNode(string nodeTypeKey, string label, Rect initialBounds);
+    public DiagramEdge? TryAddEdge(string sourceNodeId, string sourcePortId,
+        string targetNodeId, string targetPortId);
+    public IDiagramNode? FindNode(string nodeId);
 }
 </code></pre>
-<p>The document is bindable and serializable. The surface subscribes to collection changes and creates or removes visual presenters accordingly.</p>
-<p>Raise property change on <code>Bounds</code> after node moves so scroll viewers update extent.</p>
+<p>Nodes carry <code>Bounds</code>, ports, and labels. Edges reference node and port ids. Mutations raise <code>Changed</code> with <code>DiagramModelChangeKind</code> (<code>Structure</code>, <code>NodeLayout</code>, <code>Edge</code>) so the surface can invalidate measure, sync presenters, and redraw edges without polling every property.</p>
+<p>Keep the model serializable in your app layer — the diagram package focuses on editing semantics, not persistence format.</p>
 <h2 id="clipboard-support">Clipboard Support</h2>
 <p>Diagram operations integrate with <code>SkyClipboard</code> for copy/paste of selected nodes and edges. Serialized node data is placed on the clipboard as JSON or a custom format, and paste creates new nodes offset from the originals.</p>
 <p>Paste offset (20, 20) prevents exact overlap. Remap edge endpoints to new node IDs during paste — storing edges without ID translation produces dangling connections.</p>
@@ -613,7 +588,7 @@ private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
 </tr>
 <tr>
 <td>Blank surface</td>
-<td><code>Document</code> null or factory null — guard in property changed</td>
+<td><code>Model</code> null or <code>NodeFactory</code> null — guard in <code>AttachModel</code></td>
 </tr>
 </tbody>
 </table>
@@ -634,7 +609,7 @@ private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
 </ul>
 <h2 id="building-your-own-canvas-control">Building Your Own Canvas Control</h2>
 <ol>
-<li><strong>Separate model from view</strong> — <code>DiagramDocument</code> is independent of <code>DiagramSurface</code></li>
+<li><strong>Separate model from view</strong> — <code>DiagramModel</code> is independent of <code>DiagramSurface</code></li>
 <li><strong>Factory for visuals</strong> — node types vary; the surface should not hard-code presenters</li>
 <li><strong>Strategy for geometry</strong> — edge routing algorithms are pluggable</li>
 <li><strong>Render non-control graphics</strong> — use <code>DrawingContext</code> for lines and shapes</li>
@@ -685,13 +660,7 @@ private const int EdgePresenterZIndex = 10;
 private const int SelectedNodePresenterZIndex = 30;
 </code></pre>
 <p>Edges are <code>Control</code> children with higher <code>ZIndex</code> than unselected nodes so lines paint on top. Selected nodes bump to 30 so resize handles receive pointer events above edges.</p>
-<p><code>IEdgePathComputer</code> computes <code>Geometry</code> for each edge:</p>
-<pre><code class="language-csharp">public interface IEdgePathComputer
-{
-    Geometry ComputePath(Point start, Point end, DiagramEdge edge);
-}
-</code></pre>
-<p><code>StraightEdgePathComputer</code> draws line segments. <code>OrthogonalEdgePathComputer</code> adds elbow points for flowchart aesthetics.</p>
+<p>Custom routers implement <code>GetEndpoints</code> or post-process those points into polylines before <code>DrawLine</code>. The stock <code>StraightEdgePathComputer</code> only resolves port world coordinates; the surface owns the actual stroke.</p>
 <hr />
 <h2 id="deep-dive-pointer-drag-state-machine">Deep Dive: Pointer Drag State Machine</h2>
 <p><code>DiagramSurface</code> tracks one active drag mode:</p>
@@ -926,11 +895,11 @@ NodeFactory=&quot;{x:Static local:FlowchartNodeFactory.Instance}&quot; /&gt;
                         </li>
                         
                         <li class="toc-h3">
-                          <a href="#avalonia-concept-desired-size-vs-document-bounds">Avalonia Concept: Desired Size vs Document Bounds</a>
+                          <a href="#avalonia-concept-desired-size-vs-model-bounds">Avalonia Concept: Desired Size vs Model Bounds</a>
                         </li>
                         
                         <li class="toc-h3">
-                          <a href="#syncing-children-to-document">Syncing Children to Document</a>
+                          <a href="#syncing-children-to-model">Syncing Children to Model</a>
                         </li>
                         
                         <li class="toc-h2">
@@ -962,7 +931,7 @@ NodeFactory=&quot;{x:Static local:FlowchartNodeFactory.Instance}&quot; /&gt;
                         </li>
                         
                         <li class="toc-h2">
-                          <a href="#document-model">Document Model</a>
+                          <a href="#diagrammodel">DiagramModel</a>
                         </li>
                         
                         <li class="toc-h2">

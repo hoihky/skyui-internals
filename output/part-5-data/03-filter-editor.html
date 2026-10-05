@@ -311,7 +311,7 @@
 </tbody>
 </table>
 <h2 id="viewmodel-bridge-pattern">ViewModel Bridge Pattern</h2>
-<p>The control creates an internal <code>FilterEditorViewModel</code> when <code>Document</code> is assigned:</p>
+<p>The control creates a <code>FilterEditorViewModel</code> when <code>Document</code> is assigned. The type is <strong>public</strong> in <code>SkyUI.FilterEditor</code>, so you can unit-test commands without hosting the visual control:</p>
 <pre><code class="language-csharp">private void OnDocumentOrExporterChanged()
 {
     if (Document is null)
@@ -333,12 +333,12 @@
     }
 }
 </code></pre>
-<h3 id="why-internal-viewmodel">Why Internal ViewModel?</h3>
-<p>Filter UI involves dozens of bindable commands: add group, add condition, remove node, toggle AND/OR, change operator. Putting all of that on the control class would bloat the public API. The internal ViewModel:</p>
+<h3 id="why-a-separate-viewmodel">Why a Separate ViewModel?</h3>
+<p>Filter UI involves dozens of bindable commands: add group, add condition, remove node, toggle AND/OR, change operator. Putting all of that on the control class would bloat the public API. <code>FilterEditorViewModel</code>:</p>
 <ul>
 <li>Keeps <code>FilterEditor</code> properties minimal (<code>Document</code>, <code>SqlExporter</code>, <code>ShowSqlPreview</code>)</li>
 <li>Enables template bindings to <code>{Binding AddConditionCommand}</code> etc.</li>
-<li>Allows unit testing ViewModel logic without visual tree</li>
+<li>Can be constructed in tests with a <code>FilterDocument</code> and a fake <code>IFilterSqlExporter</code></li>
 </ul>
 <h3 id="lifecycle-cleanup">Lifecycle Cleanup</h3>
 <pre><code class="language-csharp">protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
@@ -369,25 +369,25 @@ public class FilterGroupNode : FilterNode
     public ObservableCollection&lt;FilterNode&gt; Children { get; }
 }
 
-public class FilterConditionNode : FilterNode
+public sealed class FilterConditionNode : FilterNodeBase
 {
-    public string FieldName { get; set; }
-    public FilterOperator Operator { get; set; } // Equals, Contains, GreaterThan, ...
-    public object? Value { get; set; }
+    public string FieldPath { get; set; }
+    public FilterCompareOperator Operator { get; set; }
+    public string? ValueText { get; set; }  // null for IsNull / IsNotNull
 }
 </code></pre>
 <p><code>FilterFieldDescriptor</code> describes available fields (name, type, allowed operators) so the UI can populate dropdowns without hard-coding schema.</p>
 <h2 id="ifiltersqlexporter-strategy">IFilterSqlExporter Strategy</h2>
 <pre><code class="language-csharp">public interface IFilterSqlExporter
 {
-    string Export(FilterGroupNode root);
+    string ToSql(FilterDocument document);
 }
 </code></pre>
-<p><code>BasicFilterSqlExporter</code> generates parameterized SQL WHERE clauses. Consumers with custom dialects implement the interface:</p>
-<pre><code class="language-csharp">public class PostgreSqlFilterExporter : IFilterSqlExporter
+<p><code>BasicFilterSqlExporter</code> walks the document with <code>IFilterNodeVisitor</code> and emits a <code>WHERE</code> clause. Consumers with custom dialects implement the same interface:</p>
+<pre><code class="language-csharp">public sealed class PostgreSqlFilterExporter : IFilterSqlExporter
 {
-    public string Export(FilterGroupNode root) =&gt;
-        BuildWhereClause(root, dialect: SqlDialect.PostgreSql);
+    public string ToSql(FilterDocument document) =&gt;
+        BuildWhereClause(document.Root, dialect: SqlDialect.PostgreSql);
 }
 </code></pre>
 <pre><code class="language-xml">&lt;FilterEditor Document=&quot;{Binding FilterDoc}&quot;
@@ -410,7 +410,7 @@ ShowSqlPreview=&quot;True&quot; /&gt;
 
     public void ApplyFilter()
     {
-        var sql = _exporter.Export(FilterDocument.Root);
+        var sql = _exporter.ToSql(FilterDocument);
         GridSource = new SqlFilteredDataSource(_connection, sql);
     }
 }
@@ -432,7 +432,7 @@ ShowSqlPreview=&quot;True&quot; /&gt;
 <td>Serializable filter tree independent of UI</td>
 </tr>
 <tr>
-<td>Internal ViewModel</td>
+<td>ViewModel bridge</td>
 <td>Rich command surface without public control API bloat</td>
 </tr>
 <tr>
@@ -448,7 +448,7 @@ ShowSqlPreview=&quot;True&quot; /&gt;
 <h2 id="building-a-similar-editor-control">Building a Similar Editor Control</h2>
 <ol>
 <li>Define a <strong>document</strong> model the app can save/load</li>
-<li>Create an internal <strong>ViewModel</strong> with commands for tree mutations</li>
+<li>Create a <strong>ViewModel</strong> with commands for tree mutations (public type if you want isolated tests)</li>
 <li>Set <code>DataContext = viewModel</code> when document changes</li>
 <li>Keep <strong>export/evaluation</strong> pluggable via interfaces</li>
 <li><strong>Dispose</strong> subscriptions when document clears or control detaches</li>
@@ -461,11 +461,11 @@ ShowSqlPreview=&quot;True&quot; /&gt;
     public ObservableCollection&lt;FilterFieldDescriptor&gt; Fields { get; } = new();
 }
 </code></pre>
-<p><code>Fields</code> describes what the user can filter on — name, CLR type, allowed operators. The UI populates field dropdowns from this collection; SQL export uses <code>FieldPath</code> for column identifiers.</p>
+<p><code>Fields</code> describes what the user can filter on — display name, CLR type, allowed operators. The UI populates field dropdowns from this collection; each <code>FilterFieldDescriptor</code> exposes <strong><code>PropertyPath</code></strong> (the key stored on <code>FilterConditionNode.FieldPath</code> and passed to SQL export).</p>
 <h3 id="filternodebase-hierarchy">FilterNodeBase Hierarchy</h3>
 <pre><code>FilterNodeBase (abstract)
 ├── FilterGroupNode     → LogicalKind: And | Or, Children collection
-└── FilterConditionNode → FieldPath, Operator, ValueText
+└── FilterConditionNode → FieldPath, FilterCompareOperator, ValueText
 </code></pre>
 <p>Every node implements the <strong>visitor pattern</strong>:</p>
 <pre><code class="language-csharp">public abstract class FilterNodeBase : INotifyPropertyChanged
@@ -520,7 +520,7 @@ RemoveNodeCommand = new FilterEditorNodeCommand(RemoveNode);
     };
     if (target is null) return;
 
-    var field = _document.Fields.FirstOrDefault()?.FieldPath ?? &quot;Field&quot;;
+    var field = _document.Fields.FirstOrDefault()?.PropertyPath ?? &quot;Field&quot;;
     target.AddCondition(field, FilterCompareOperator.Equal, &quot;&quot;);
     RefreshSql();
 }
@@ -704,7 +704,7 @@ await File.WriteAllTextAsync(&quot;saved-filter.json&quot;, json);
                         </li>
                         
                         <li class="toc-h3">
-                          <a href="#why-internal-viewmodel">Why Internal ViewModel?</a>
+                          <a href="#why-a-separate-viewmodel">Why a Separate ViewModel?</a>
                         </li>
                         
                         <li class="toc-h3">

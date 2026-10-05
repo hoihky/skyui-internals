@@ -284,30 +284,26 @@
 </ul>
 <p>Unlike Avalonia's built-in <code>TreeView</code>, which expects <code>TreeDataTemplate</code> and <code>HierarchicalDataTemplate</code>, <code>CheckedListBox</code> delegates all tree semantics to an adapter. That indirection costs a few method calls per row but eliminates tight coupling to your domain model.</p>
 <h2 id="the-adapter-pattern">The Adapter Pattern</h2>
-<p>The control never assumes a specific model type. All tree semantics flow through <code>ICheckedListItemAdapter</code>:</p>
+<p>The control never assumes a specific model type. <strong>Hierarchy, check state, and expand state</strong> flow through <code>ICheckedListItemAdapter</code>. <strong>Row labels and icons</strong> come from <code>ItemTemplate</code>, not from the adapter:</p>
 <pre><code class="language-csharp">public interface ICheckedListItemAdapter
 {
-    string GetLabel(object item);
-    IEnumerable? GetChildren(object item);
-    bool GetIsExpanded(object item);
-    void SetIsExpanded(object item, bool expanded);
-    bool? GetIsChecked(object item);
-    void SetIsChecked(object item, bool? value);
-    bool GetHasChildren(object item);
+    bool? GetIsChecked(object? item);
+    void SetIsChecked(object? item, bool? value);
+    bool GetIsExpanded(object? item);
+    void SetIsExpanded(object? item, bool value);
+    IEnumerable&lt;object?&gt; GetChildren(object? item);
+    bool HasChildren(object? item);
 }
 </code></pre>
-<p>A default implementation handles simple in-memory trees:</p>
-<pre><code class="language-csharp">public class DefaultCheckedListItemAdapter : ICheckedListItemAdapter
-{
-    public string GetLabel(object item) =&gt;
-        item is ICheckedListBoxItem boxItem ? boxItem.Label : item.ToString() ?? &quot;&quot;;
-
-    public IEnumerable? GetChildren(object item) =&gt;
-        item is ICheckedListBoxItem boxItem ? boxItem.Children : null;
-    // ...
-}
+<p><code>DefaultCheckedListItemAdapter</code> maps these calls to <code>ICheckedListBoxItem</code> view models (<code>IsChecked</code>, <code>IsExpanded</code>, <code>Children</code>). For arbitrary domain types, supply a custom adapter and an <code>ItemTemplate</code> that binds to your model:</p>
+<pre><code class="language-xml">&lt;CheckedListBox.ItemTemplate&gt;
+  &lt;DataTemplate x:DataType=&quot;local:Permission&quot;&gt;
+    &lt;TextBlock Text=&quot;{Binding Name}&quot; /&gt;
+  &lt;/DataTemplate&gt;
+&lt;/CheckedListBox.ItemTemplate&gt;
 </code></pre>
-<p>Consumers with domain models implement the interface directly or wrap models in an adapter class. This is <strong>dependency inversion</strong>: the control depends on an abstraction, not on your <code>FolderNode</code> or <code>PermissionGroup</code> class.</p>
+<p>Internally, <code>CheckedListRowBuilder</code> constructs each row in code (indent, expander, optional checkbox, <code>ContentPresenter</code> bound to <code>ItemTemplate</code>, optional inline editor). Changing <code>ItemTemplate</code>, <code>Indent</code>, or <code>ShowCheckBoxes</code> triggers <code>ApplyItemTemplate()</code> so row chrome stays in sync.</p>
+<p>This is <strong>dependency inversion</strong>: the control depends on adapter abstractions for tree behavior, while presentation stays template-driven.</p>
 <h3 id="implementing-an-adapter-step-by-step">Implementing an Adapter: Step by Step</h3>
 <p>Suppose your domain model is a <code>Permission</code> record with nested children:</p>
 <pre><code class="language-csharp">public class Permission
@@ -318,27 +314,26 @@
     public List&lt;Permission&gt; Children { get; set; } = new();
 }
 </code></pre>
-<p>Your adapter maps each method to model properties:</p>
+<p>Your adapter maps tree state only — the template shows <code>Name</code>:</p>
 <pre><code class="language-csharp">public class PermissionAdapter : ICheckedListItemAdapter
 {
     public static readonly PermissionAdapter Instance = new();
 
-    public string GetLabel(object item) =&gt; ((Permission)item).Name;
+    public IEnumerable&lt;object?&gt; GetChildren(object? item) =&gt;
+        ((Permission)item!).Children.Cast&lt;object?&gt;();
 
-    public IEnumerable? GetChildren(object item) =&gt; ((Permission)item).Children;
+    public bool GetIsExpanded(object? item) =&gt; ((Permission)item!).IsExpanded;
 
-    public bool GetIsExpanded(object item) =&gt; ((Permission)item).IsExpanded;
+    public void SetIsExpanded(object? item, bool expanded) =&gt;
+        ((Permission)item!).IsExpanded = expanded;
 
-    public void SetIsExpanded(object item, bool expanded) =&gt;
-        ((Permission)item).IsExpanded = expanded;
+    public bool? GetIsChecked(object? item) =&gt; ((Permission)item!).IsChecked;
 
-    public bool? GetIsChecked(object item) =&gt; ((Permission)item).IsChecked;
+    public void SetIsChecked(object? item, bool? value) =&gt;
+        ((Permission)item!).IsChecked = value;
 
-    public void SetIsChecked(object item, bool? value) =&gt;
-        ((Permission)item).IsChecked = value;
-
-    public bool GetHasChildren(object item) =&gt;
-        ((Permission)item).Children.Count &gt; 0;
+    public bool HasChildren(object? item) =&gt;
+        ((Permission)item!).Children.Count &gt; 0;
 }
 </code></pre>
 <p>Keep adapters thin. Business rules belong in the model or view model, not in adapter methods.</p>
@@ -516,7 +511,7 @@ private void SubscribeToCollection(INotifyCollectionChanged collection)
 </code></pre>
 <p>Walk child collections recursively when items are expanded so that adding a child to a nested node triggers a rebuild.</p>
 <h3 id="inotifypropertychanged-on-items">INotifyPropertyChanged on Items</h3>
-<p>If <code>GetLabel</code> reads a property that can change without collection changes, items should implement <code>INotifyPropertyChanged</code>:</p>
+<p>If your <code>ItemTemplate</code> binds to properties that can change without collection changes, items should implement <code>INotifyPropertyChanged</code>:</p>
 <pre><code class="language-csharp">private void SubscribeToItem(object item)
 {
     if (item is INotifyPropertyChanged npc)
@@ -550,11 +545,13 @@ private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
 <p>For large trees, load children on expand:</p>
 <pre><code class="language-csharp">public interface IAsyncTreeDataSource
 {
-    Task&lt;IReadOnlyList&lt;object&gt;&gt; LoadChildrenAsync(
-        object? parent, CancellationToken cancellationToken);
+    bool HasChildren(object? item);
+    bool AreChildrenLoaded(object? item);
+    Task&lt;IReadOnlyList&lt;object?&gt;&gt; LoadChildrenAsync(object? item, CancellationToken cancellationToken = default);
+    void ApplyLoadedChildren(object? item, IReadOnlyList&lt;object?&gt; children);
 }
 </code></pre>
-<p>When the user expands a node with unloaded children, the control shows a placeholder row, awaits <code>LoadChildrenAsync</code>, then appends children to the model and rebuilds. Cancel in-flight loads if the user collapses before completion.</p>
+<p>Wrap your synchronous adapter with <code>AsyncCheckedListItemAdapter(inner, asyncSource)</code>. When the user expands a node whose children are not loaded, the row shows a progress ring (<code>IsLoadingChildren</code>), awaits <code>LoadChildrenAsync</code>, then calls <code>ApplyLoadedChildren</code> so your model stores the new children before the flat list rebuilds.</p>
 <h2 id="rebuild-scheduling">Rebuild Scheduling</h2>
 <p>Tree mutations can trigger cascading updates. To avoid rebuilding the flat list multiple times per frame, changes schedule a single rebuild:</p>
 <pre><code class="language-csharp">private void ScheduleRebuild()
@@ -569,41 +566,28 @@ private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
 }
 </code></pre>
 <p>This coalesces rapid collection changes into one layout pass.</p>
-<h2 id="row-template-and-itemcontainer">Row Template and ItemContainer</h2>
-<p>Each flat row renders through an <code>ItemTemplate</code> or <code>ItemTemplateSelector</code>. A typical row includes:</p>
+<h2 id="row-visuals-builder-itemtemplate">Row Visuals: Builder + ItemTemplate</h2>
+<p>You do not replace the entire row <code>DataTemplate</code> on <code>CheckedListBox</code> — the control always uses <code>CheckedListRowBuilder.Build</code> as the outer template. Your <strong><code>ItemTemplate</code></strong> only styles the content column (<code>CheckedListRowModel.Item</code> as data context). The builder adds:</p>
 <ul>
-<li>Indent spacer</li>
-<li>Expander toggle (visible when <code>HasChildren</code>)</li>
-<li>CheckBox (visible when <code>ShowCheckBoxes</code>)</li>
-<li>Label or edit <code>TextBox</code></li>
-<li>Optional action buttons</li>
+<li>Indent spacer (<code>Depth * Indent</code>)</li>
+<li>Expander or loading ring when children are async</li>
+<li>Optional tri-state <code>CheckBox</code> bound to <code>CheckedListRowModel.IsChecked</code></li>
+<li><code>ContentPresenter</code> with your <code>ItemTemplate</code>, swapped for a <code>TextBox</code> during inline edit when <code>ICheckedListEditableAdapter</code> is set</li>
+<li>Optional row action flyout from <code>ICheckedListRowActionProvider</code></li>
 </ul>
-<pre><code class="language-xml">&lt;DataTemplate x:DataType=&quot;models:CheckedListRowModel&quot;&gt;
-  &lt;Grid ColumnDefinitions=&quot;Auto,Auto,*&quot;&gt;
-    &lt;ToggleButton Grid.Column=&quot;0&quot; IsVisible=&quot;{Binding ShowExpander}&quot; /&gt;
-    &lt;CheckBox Grid.Column=&quot;1&quot; IsVisible=&quot;{Binding ShowCheckBox}&quot; /&gt;
-    &lt;TextBlock Grid.Column=&quot;2&quot; Text=&quot;{Binding Label}&quot; /&gt;
-  &lt;/Grid&gt;
-&lt;/DataTemplate&gt;
-</code></pre>
 <h2 id="usage-example">Usage Example</h2>
 <pre><code class="language-xml">&lt;CheckedListBox ItemsSource=&quot;{Binding Permissions}&quot;
-ItemAdapter=&quot;{x:Static local:PermissionAdapter.Instance}&quot;
-CascadeToChildren=&quot;True&quot;
-UseThreeStateForParents=&quot;True&quot;
-ShowCheckBoxes=&quot;True&quot;
-AllowReorder=&quot;False&quot; /&gt;
-</code></pre>
-<p>With a custom adapter:</p>
-<pre><code class="language-csharp">public class PermissionAdapter : ICheckedListItemAdapter
-{
-    public string GetLabel(object item) =&gt; ((Permission)item).Name;
-    public IEnumerable? GetChildren(object item) =&gt; ((Permission)item).Children;
-    public bool GetIsExpanded(object item) =&gt; ((Permission)item).IsExpanded;
-    public void SetIsExpanded(object item, bool expanded) =&gt;
-        ((Permission)item).IsExpanded = expanded;
-    // check state methods...
-}
+                ItemAdapter=&quot;{x:Static local:PermissionAdapter.Instance}&quot;
+                CascadeToChildren=&quot;True&quot;
+                UseThreeStateForParents=&quot;True&quot;
+                ShowCheckBoxes=&quot;True&quot;
+                AllowReorder=&quot;False&quot;&gt;
+  &lt;CheckedListBox.ItemTemplate&gt;
+    &lt;DataTemplate x:DataType=&quot;local:Permission&quot;&gt;
+      &lt;TextBlock Text=&quot;{Binding Name}&quot; /&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/CheckedListBox.ItemTemplate&gt;
+&lt;/CheckedListBox&gt;
 </code></pre>
 <p>Reading selected items from the view model:</p>
 <pre><code class="language-csharp">public IEnumerable&lt;Permission&gt; GetCheckedPermissions(Permission root) =&gt;
@@ -719,7 +703,7 @@ private IEnumerable&lt;Permission&gt; Flatten(Permission node)
                         </li>
                         
                         <li class="toc-h2">
-                          <a href="#row-template-and-itemcontainer">Row Template and ItemContainer</a>
+                          <a href="#row-visuals-builder-itemtemplate">Row Visuals: Builder + ItemTemplate</a>
                         </li>
                         
                         <li class="toc-h2">

@@ -270,7 +270,7 @@
             <h1>Chapter 28 — Mobile Primitives</h1>
           </header>
           <div class="doc-body"><h1 id="chapter-28-mobile-primitives-skysafearea-and-skyactionsheet">Chapter 28: Mobile Primitives — SkySafeArea and SkyActionSheet</h1>
-<p>SkyUI's mobile support is early but establishes patterns for safe-area insets, touch targets, and bottom action sheets. This chapter explains platform service integration through Avalonia's <code>TopLevel</code> APIs.</p>
+<p>SkyUI's mobile support is early but establishes patterns for safe-area insets, touch targets, floating action buttons, pull-to-refresh, and bottom action sheets. This chapter explains platform service integration through Avalonia's <code>TopLevel</code> APIs.</p>
 <h2 id="skysafearea-device-notch-and-home-indicator">SkySafeArea: Device Notch and Home Indicator</h2>
 <p>Modern phones have non-rectangular screens. Content must pad away from notches, status bars, and home indicators.</p>
 <pre><code class="language-csharp">public class SkySafeArea : ContentControl
@@ -327,6 +327,79 @@ private void ApplyInsets(Thickness safeArea)
 <pre><code class="language-xml">&lt;SkySafeArea ApplyTop=&quot;False&quot;&gt;
   &lt;!-- top safe area handled by system status bar overlay --&gt;
 &lt;/SkySafeArea&gt;
+</code></pre>
+<h2 id="skyfab-floating-action-button">SkyFab: Floating Action Button</h2>
+<p><code>SkyFab</code> is a templated circular button (default 56×56) with optional <strong>extended</strong> label, <code>SkyIconKind</code> glyph, and <code>ICommand</code> wiring. <code>HonorSafeArea</code> (default true) engages <code>SkyFabInsetsCoordinator</code> so the FAB sits above the home indicator when nested in a <code>TopLevel</code> with insets.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Icon</code></td>
+<td><code>SkyIconKind</code> drawn in <code>PART_ActionButton</code></td>
+</tr>
+<tr>
+<td><code>Label</code></td>
+<td>Shown when <code>IsExtended</code> is true</td>
+</tr>
+<tr>
+<td><code>EdgeMargin</code></td>
+<td>Offset from bottom-right (default 16)</td>
+</tr>
+<tr>
+<td><code>Command</code> / <code>CommandParameter</code></td>
+<td>MVVM click handling</td>
+</tr>
+<tr>
+<td><code>Click</code></td>
+<td>Routed event when the action button fires</td>
+</tr>
+</tbody>
+</table>
+<p>Place the FAB in a grid overlay above scrollable content; do not put it inside <code>SkyPullToRefresh</code> unless you accept competing vertical gestures.</p>
+<h2 id="skypulltorefresh-gesture-mvvm-refresh">SkyPullToRefresh: Gesture + MVVM Refresh</h2>
+<p><code>SkyPullToRefresh</code> wraps scrollable content (typically a <code>ScrollViewer</code> in the template). A dedicated <strong><code>SkyPullToRefreshGestureInteractor</code></strong> tracks overscroll, drives <code>PullOffset</code> (read-only direct property), and crosses <code>PullThreshold</code> to fire refresh.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Property / event</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsRefreshing</code></td>
+<td>Two-way; set true while your async load runs</td>
+</tr>
+<tr>
+<td><code>RefreshCommand</code></td>
+<td>Executes when refresh is triggered</td>
+</tr>
+<tr>
+<td><code>RefreshRequested</code></td>
+<td>Routed event alternative to command binding</td>
+</tr>
+<tr>
+<td><code>PullThreshold</code> / <code>MaxPullDistance</code></td>
+<td>Tune feel (defaults 64 / 112)</td>
+</tr>
+<tr>
+<td><code>PART_Indicator</code> / <code>PART_Progress</code></td>
+<td>Visual pull affordance and <code>SkyProgressRing</code></td>
+</tr>
+</tbody>
+</table>
+<p>When <code>IsRefreshing</code> becomes false, the interactor animates <code>PullOffset</code> back to zero. Your view model should set <code>IsRefreshing = true</code> at refresh start and clear it when data arrives — the control does not await <code>RefreshCommand</code> automatically.</p>
+<pre><code class="language-xml">&lt;SkyPullToRefresh IsRefreshing=&quot;{Binding IsBusy}&quot;
+                RefreshCommand=&quot;{Binding ReloadCommand}&quot;&gt;
+  &lt;ScrollViewer&gt;
+    &lt;ItemsControl ItemsSource=&quot;{Binding Items}&quot; /&gt;
+  &lt;/ScrollViewer&gt;
+&lt;/SkyPullToRefresh&gt;
 </code></pre>
 <h2 id="skykeyboardinset">SkyKeyboardInset</h2>
 <p>Sibling control that pads bottom content when the on-screen keyboard occludes the view. Uses <code>IInputPane</code> from <code>TopLevel</code>:</p>
@@ -577,6 +650,14 @@ ApplyBottom ? safeArea.Bottom : 0);
                         
                         <li class="toc-h3">
                           <a href="#usage">Usage</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skyfab-floating-action-button">SkyFab: Floating Action Button</a>
+                        </li>
+                        
+                        <li class="toc-h2">
+                          <a href="#skypulltorefresh-gesture-mvvm-refresh">SkyPullToRefresh: Gesture + MVVM Refresh</a>
                         </li>
                         
                         <li class="toc-h2">

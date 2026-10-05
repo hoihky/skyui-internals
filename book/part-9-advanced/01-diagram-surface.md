@@ -27,16 +27,14 @@ Avalonia's built-in `Canvas` supports attached `Canvas.Left` / `Canvas.Top` posi
 ```csharp
 public sealed class DiagramSurface : Panel
 {
-    public static readonly StyledProperty<DiagramDocument?> DocumentProperty = ...;
-    public static readonly StyledProperty<IEdgePathComputer?> EdgePathComputerProperty = ...;
-    public static readonly StyledProperty<IDiagramNodePresenterFactory?> NodePresenterFactoryProperty = ...;
-    public static readonly StyledProperty<IDiagramSceneHitTester?> HitTesterProperty = ...;
-    public static readonly StyledProperty<double> ZoomProperty = ...;
-    public static readonly StyledProperty<Vector> PanOffsetProperty = ...;
+    public static readonly StyledProperty<DiagramModel?> ModelProperty = ...;
+    public static readonly StyledProperty<IEdgePathComputer?> PathComputerProperty = ...;
+    public static readonly StyledProperty<IDiagramNodePresenterFactory?> NodeFactoryProperty = ...;
+    public DiagramSelectionModel Selection { get; }
 }
 ```
 
-The surface holds a `DiagramDocument` model containing nodes and edges. Visual presenters are created through factory and strategy interfaces. Default implementations ship for straight routing and rectangular nodes; swap strategies without changing surface code.
+The surface binds to a **`DiagramModel`** (`IDiagramModel`) containing nodes and edges. `DiagramNodePresenter` controls sit on an internal nodes canvas; edges draw on a separate layer. `PathComputer` resolves port world positions; `NodeFactory` creates per-type presenters. Default straight routing ships as `StraightEdgePathComputer`.
 
 ## Pluggable Strategies
 
@@ -44,36 +42,18 @@ Strategy interfaces keep the surface stable while algorithms and node visuals va
 
 ### IEdgePathComputer
 
-Computes the geometry for edge lines between ports:
+Resolves **world-space endpoints** for each edge from port metadata on the model:
 
 ```csharp
 public interface IEdgePathComputer
 {
-    Geometry ComputePath(
-        Point start, Point end,
-        EdgeRoutingStyle style);
+    (Point Start, Point End) GetEndpoints(IDiagramEdge edge, IDiagramModel model);
 }
 ```
 
-Implementations include straight lines, orthogonal routing, and bezier curves. The surface calls the computer during `Render` or when edge positions change.
+`StraightEdgePathComputer` looks up source and target nodes, finds ports by id, and calls `GetWorldPosition` on each port relative to node bounds. The surface draws a line segment (or polyline in custom routers) between those points whenever layout changes.
 
-Example straight-line computer:
-
-```csharp
-public sealed class StraightEdgePathComputer : IEdgePathComputer
-{
-    public Geometry ComputePath(Point start, Point end, EdgeRoutingStyle style)
-    {
-        var geo = new StreamGeometry();
-        using var ctx = geo.Open();
-        ctx.BeginFigure(start, false);
-        ctx.LineTo(end);
-        return geo;
-    }
-}
-```
-
-Orthogonal routers add bend points — cache results per edge until node positions change to avoid recomputing on every frame.
+Orthogonal or spline routers still implement the same interface — only the segment construction differs. Cache per edge until `DiagramModelChangedEventArgs` reports `NodeLayout` or `Structure` changes.
 
 ### IDiagramNodePresenterFactory
 
@@ -131,13 +111,13 @@ public DiagramHitTestResult HitTest(DiagramSurface surface, Point point)
 {
     var docPoint = surface.ScreenToDocument(point);
 
-    foreach (var edge in surface.Document!.Edges.Reverse())
+    foreach (var edge in surface.Model!.Edges.Reverse())
     {
         if (HitTestEdge(edge, docPoint, out var hit))
             return DiagramHitTestResult.Edge(edge, hit);
     }
 
-    foreach (var node in surface.Document.Nodes.Reverse())
+    foreach (var node in surface.Model.Nodes.Reverse())
     {
         var rect = new Rect(node.X, node.Y, node.Width, node.Height);
         if (rect.Contains(docPoint))
@@ -161,7 +141,7 @@ protected override Size MeasureOverride(Size availableSize)
     {
         child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
     }
-    return Document?.Bounds.Size ?? default;
+    return ComputeContentSize(); // aggregates node bounds from Model
 }
 
 protected override Size ArrangeOverride(Size finalSize)
@@ -179,13 +159,13 @@ protected override Size ArrangeOverride(Size finalSize)
 
 Node position and size come from the model, not from layout constraints. The panel's available size is effectively infinite (canvas semantics).
 
-### Avalonia Concept: Desired Size vs Document Bounds
+### Avalonia Concept: Desired Size vs Model Bounds
 
-Returning `Document.Bounds.Size` from `MeasureOverride` tells the parent how large the virtual canvas is. Scrollable hosts wrap the surface in a `ScrollViewer` — the surface should report intrinsic document size, not viewport size. If `Bounds` is empty, fall back to `finalSize` from last arrange to avoid collapse on empty documents.
+`ComputeContentSize()` unions node `Bounds` from `Model` so `MeasureOverride` reports the intrinsic canvas size. Scrollable hosts wrap the surface in a `ScrollViewer` — report document size, not viewport size.
 
-### Syncing Children to Document
+### Syncing Children to Model
 
-Subscribe to `Document.Nodes.CollectionChanged`:
+Subscribe to `Model.Nodes` / `Model.Edges` collection changes and `DiagramModel.Changed`:
 
 ```csharp
 private void OnNodesChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -207,13 +187,13 @@ private void OnNodesChanged(object? sender, NotifyCollectionChangedEventArgs e)
 
 private void AddNodePresenter(DiagramNode node)
 {
-    var presenter = NodePresenterFactory!.CreatePresenter(node);
+    var presenter = NodeFactory!.CreatePresenter(node);
     presenter.Tag = node;
     Children.Add(presenter);
 }
 ```
 
-Tag links visual back to model for arrange and hit testing. Use weak events or unsubscribe when `Document` property changes to avoid leaks.
+`DiagramNodePresenter` holds a reference to the `DiagramNode` model. Unsubscribe in `AttachModel()` when `Model` is replaced to avoid leaks.
 
 ## Edge Rendering
 
@@ -224,20 +204,14 @@ public override void Render(DrawingContext context)
 {
     base.Render(context);
 
-    if (Document is null || EdgePathComputer is null)
+    if (Model is null || PathComputer is null)
         return;
 
-    using (context.PushTransform(BuildZoomPanTransform()))
+    foreach (var edge in Model.Edges)
     {
-        foreach (var edge in Document.Edges)
-        {
-            var start = GetPortPosition(edge.SourceNode, edge.SourcePort);
-            var end = GetPortPosition(edge.TargetNode, edge.TargetPort);
-            var geometry = EdgePathComputer.ComputePath(start, end, edge.RoutingStyle);
-
-            var pen = edge.IsSelected ? SelectedEdgePen : EdgePen;
-            context.DrawGeometry(null, pen, geometry);
-        }
+        var (start, end) = PathComputer.GetEndpoints(edge, Model);
+        var pen = Selection.IsEdgeSelected(edge.Id) ? SelectedEdgePen : EdgePen;
+        context.DrawLine(pen, start, end);
     }
 }
 ```
@@ -341,27 +315,25 @@ if (_mode == InteractionMode.Connect && _connectSource is not null)
 
 On release, if hit target is compatible input port, add `DiagramEdge` to document.
 
-## Document Model
+## DiagramModel
 
 ```csharp
-public class DiagramDocument
+public sealed class DiagramModel : IDiagramModel
 {
-    public ObservableCollection<DiagramNode> Nodes { get; } = new();
-    public ObservableCollection<DiagramEdge> Edges { get; } = new();
-    public Rect Bounds { get; private set; }
+    public ObservableCollection<DiagramNode> Nodes { get; }
+    public ObservableCollection<DiagramEdge> Edges { get; }
+    public event EventHandler<DiagramModelChangedEventArgs>? Changed;
 
-    public void RecalculateBounds()
-    {
-        Bounds = Nodes.Count == 0
-            ? new Rect(0, 0, 800, 600)
-            : Nodes.Aggregate(Rect.Empty, (r, n) => r.Union(new Rect(n.X, n.Y, n.Width, n.Height)));
-    }
+    public DiagramNode AddNode(string nodeTypeKey, string label, Rect initialBounds);
+    public DiagramEdge? TryAddEdge(string sourceNodeId, string sourcePortId,
+        string targetNodeId, string targetPortId);
+    public IDiagramNode? FindNode(string nodeId);
 }
 ```
 
-The document is bindable and serializable. The surface subscribes to collection changes and creates or removes visual presenters accordingly.
+Nodes carry `Bounds`, ports, and labels. Edges reference node and port ids. Mutations raise `Changed` with `DiagramModelChangeKind` (`Structure`, `NodeLayout`, `Edge`) so the surface can invalidate measure, sync presenters, and redraw edges without polling every property.
 
-Raise property change on `Bounds` after node moves so scroll viewers update extent.
+Keep the model serializable in your app layer — the diagram package focuses on editing semantics, not persistence format.
 
 ## Clipboard Support
 
@@ -390,7 +362,7 @@ Profile with hundreds of nodes before optimizing — Avalonia handles moderate d
 | Clicks miss edges | Hit tester ignores render-only geometry |
 | Drag jumps | Screen vs document space mix-up |
 | Children duplicate | CollectionChanged add without remove on replace |
-| Blank surface | `Document` null or factory null — guard in property changed |
+| Blank surface | `Model` null or `NodeFactory` null — guard in `AttachModel` |
 
 Enable diagnostic overlay drawing node bounds and port dots in debug builds.
 
@@ -411,7 +383,7 @@ Stay with `TemplatedControl` when:
 
 ## Building Your Own Canvas Control
 
-1. **Separate model from view** — `DiagramDocument` is independent of `DiagramSurface`
+1. **Separate model from view** — `DiagramModel` is independent of `DiagramSurface`
 2. **Factory for visuals** — node types vary; the surface should not hard-code presenters
 3. **Strategy for geometry** — edge routing algorithms are pluggable
 4. **Render non-control graphics** — use `DrawingContext` for lines and shapes
@@ -477,16 +449,7 @@ private const int SelectedNodePresenterZIndex = 30;
 
 Edges are `Control` children with higher `ZIndex` than unselected nodes so lines paint on top. Selected nodes bump to 30 so resize handles receive pointer events above edges.
 
-`IEdgePathComputer` computes `Geometry` for each edge:
-
-```csharp
-public interface IEdgePathComputer
-{
-    Geometry ComputePath(Point start, Point end, DiagramEdge edge);
-}
-```
-
-`StraightEdgePathComputer` draws line segments. `OrthogonalEdgePathComputer` adds elbow points for flowchart aesthetics.
+Custom routers implement `GetEndpoints` or post-process those points into polylines before `DrawLine`. The stock `StraightEdgePathComputer` only resolves port world coordinates; the surface owns the actual stroke.
 
 ---
 
